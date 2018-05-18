@@ -60,23 +60,27 @@ class RateVisualizer(object):
         # delta = random.uniform(-0.5, 0.5)
         # r = random.random()
         since = int(decimal.Decimal(time.time()))
+        since -= 30
         print("since", since)
         i = 0
-        aggr_lastval = 0
+        aggr_last_mid_mkt = 0
         for pair in pairs:
             print("pair", pair)
-            ret = k.query_public('OHLC', data = {'pair': pair, 'since': since})
+            ret = k.query_public('Spread', data = {'pair': pair, 'since': since})
             print("ret", ret)
-            lastval = float(ret['result'][pair][-1][1])
+            bid = float(ret['result'][pair][-1][1])
+            ask = float(ret['result'][pair][-1][2])
+            last_mid_mkt = (bid + ask) / 2
+            print("last_mid_mkt", last_mid_mkt)
             if pair_first_vals[i] == -1:
-                pair_first_vals[i] = lastval
-            lastval = lastval / pair_first_vals[i]
-            print("lastval", lastval)
+                pair_first_vals[i] = last_mid_mkt
+            last_mid_mkt = last_mid_mkt / pair_first_vals[i]
+            print("last_mid_mkt", last_mid_mkt)
             print("")
-            aggr_lastval += pair_pcts[i] * lastval
+            aggr_last_mid_mkt += pair_pcts[i] * last_mid_mkt
             i += 1
 
-        self.data = aggr_lastval
+        self.data = aggr_last_mid_mkt
 
 class BoundControlBox(wx.Panel):
     """ A static box with a couple of radio buttons and a text
