@@ -26,7 +26,9 @@ import krakenex
 import decimal
 import time
 
-pair = 'XETHZEUR'
+pairs = ['XETHZEUR', 'XXRPZUSD', 'XXBTZUSD']
+pair_pcts = [0.5, 0.3, 0.2]
+pair_first_vals = [-1, -1, -1]
 k = krakenex.API()
 
 # The recommended way to use wx with mpl is with the WXAgg
@@ -59,12 +61,22 @@ class RateVisualizer(object):
         # r = random.random()
         since = int(decimal.Decimal(time.time()))
         print("since", since)
-        ret = k.query_public('OHLC', data = {'pair': pair, 'since': since})
-        print("ret", ret)
-        lastval = float(ret['result'][pair][-1][1])
-        lastval = lastval / 585.98
-        print("lastval", lastval)
-        self.data = lastval
+        i = 0
+        aggr_lastval = 0
+        for pair in pairs:
+            print("pair", pair)
+            ret = k.query_public('OHLC', data = {'pair': pair, 'since': since})
+            print("ret", ret)
+            lastval = float(ret['result'][pair][-1][1])
+            if pair_first_vals[i] == -1:
+                pair_first_vals[i] = lastval
+            lastval = lastval / pair_first_vals[i]
+            print("lastval", lastval)
+            print("")
+            aggr_lastval += pair_pcts[i] * lastval
+            i += 1
+
+        self.data = aggr_lastval
 
 class BoundControlBox(wx.Panel):
     """ A static box with a couple of radio buttons and a text
@@ -120,7 +132,7 @@ class GraphFrame(wx.Frame):
     title = 'Demo coinium'
     
     def __init__(self):
-        wx.Frame.__init__(self, None, -1, self.title)
+        wx.Frame.__init__(self, None, -1, self.title, pos = wx.Point(50,50))#size = wx.Size(200, 200))
         
         # self.datagen = DataGen()
         self.rate_visualizer = RateVisualizer()
@@ -133,7 +145,7 @@ class GraphFrame(wx.Frame):
         
         self.redraw_timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.on_redraw_timer, self.redraw_timer)        
-        self.redraw_timer.Start(2500)
+        self.redraw_timer.Start(5000)
 
     def create_menu(self):
         self.menubar = wx.MenuBar()
@@ -206,7 +218,10 @@ class GraphFrame(wx.Frame):
 
         self.axes = self.fig.add_subplot(111)
         self.axes.set_axis_bgcolor('gray')
-        # self.axes.set_title('data', size=12)
+        title_str = ""
+        for i in range(len(pairs)):
+            title_str += str(pairs[i]) + ": " + str(pair_pcts[i] * 100) + "%, "
+        self.axes.set_title(title_str, size=12)
         
         pylab.setp(self.axes.get_xticklabels(), fontsize=8)
         pylab.setp(self.axes.get_yticklabels(), fontsize=8)
@@ -227,9 +242,9 @@ class GraphFrame(wx.Frame):
         # sliding window effect. therefore, xmin is assigned after
         # xmax.
         #
-        if(len(self.data) >= 5 and self.data[len(self.data) - 1] > max(self.data[0:len(self.data) - 1])):
-            print("last one:", self.data[len(self.data) - 1])
-            print('\a\a\a')
+        # if(len(self.data) >= 5 and self.data[len(self.data) - 1] > max(self.data[0:len(self.data) - 1])):
+        #     print("last one:", self.data[len(self.data) - 1])
+        #     print('\a\a\a')
         print("self.data", self.data)
         if xmax_control_auto or self.xmax_control.is_auto():
             xmax = len(self.data) if len(self.data) > 50 else 50
@@ -249,12 +264,12 @@ class GraphFrame(wx.Frame):
         # the whole data set.
         # 
         if ymin_control_auto or self.ymin_control.is_auto():
-            ymin = max(self.data) * (1.0 - 0.04)
+            ymin = min(self.data) * (1.0 - 0.0004) #- (max(self.data) - 1.0) * 2
         else:
             ymin = int(self.ymin_control.manual_value())
         
         if ymax_control_auto or self.ymax_control.is_auto():
-            ymax = max(self.data) * (1.0 + 0.04)
+            ymax = max(self.data) * (1.0 + 0.0004) #+ (max(self.data) - 1.0) * 2
         else:
             ymax = int(self.ymax_control.manual_value())
 
@@ -342,5 +357,6 @@ if __name__ == '__main__':
     app = wx.App()
     app.frame = GraphFrame()
     app.frame.Show()
+    app.frame.SetSize((800, 800))
     app.MainLoop()
 
