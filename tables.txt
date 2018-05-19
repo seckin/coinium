@@ -39,3 +39,7 @@ CREATE TABLE IF NOT EXISTS ListHasDistribution (
 ) ENGINE=InnoDB;
 
 
+
+INSERT INTO Lists (`name`) VALUES ("seckin's list");
+INSERT INTO Distributions (`btc`,`eth`,`xrp`) VALUES (30, 30, 40);
+INSERT INTO ListHasDistribution (`list_id`, `distribution_id`, `timestamp`) VALUES (1, 1, 1400000000);
