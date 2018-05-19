@@ -1,0 +1,1 @@
+scp ~/coinium/graphapi.py root@104.131.139.250:~/graphapi/
