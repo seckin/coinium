@@ -1,0 +1,13 @@
+[Unit]
+Description=uWSGI instance to serve graphapi
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/root/graphapi
+Environment="PATH=/root/graphapi/graphapienv/bin"
+ExecStart=/root/graphapi/graphapienv/bin/uwsgi --ini graphapi.ini
+
+[Install]
+WantedBy=multi-user.target
