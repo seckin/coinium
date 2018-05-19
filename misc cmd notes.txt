@@ -1,1 +1,51 @@
 scp ~/coinium/graphapi.py root@104.131.139.250:~/graphapi/
+
+cmd to start wsgi server:
+uwsgi --socket 0.0.0.0:5000 --protocol=http -w wsgi:app
+
+tables:
+	CREATE TABLE IF NOT EXISTS Spreads (
+	  id INT(11) NOT NULL AUTO_INCREMENT,
+	  coin VARCHAR(45) NOT NULL,
+	  bestbid DOUBLE NOT NULL,
+	  bestask DOUBLE NOT NULL,
+	  timestamp INT(11),
+	  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	  PRIMARY KEY (id)
+	) ENGINE=InnoDB;
+
+	ALTER TABLE Spreads ADD CONSTRAINT coin_timestamp UNIQUE (coin, timestamp);
+
+
+	CREATE TABLE IF NOT EXISTS Distributions (
+	  id INT(11) NOT NULL AUTO_INCREMENT,
+	  btc INT(5) NOT NULL,
+	  eth INT(5) NOT NULL,
+	  xrp INT(5) NOT NULL,
+	  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	  PRIMARY KEY (id)
+	) ENGINE=InnoDB;
+
+
+	CREATE TABLE IF NOT EXISTS Lists (
+	  id INT(11) NOT NULL AUTO_INCREMENT,
+	  name VARCHAR(25) NOT NULL,
+	  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	  PRIMARY KEY (id)
+	) ENGINE=InnoDB;
+
+
+	CREATE TABLE IF NOT EXISTS ListHasDistribution (
+	  id INT(11) NOT NULL AUTO_INCREMENT,
+	  list_id INT(11) NOT NULL,
+	  distribution_id INT(11) NOT NULL,
+	  timestamp INT(11),
+	  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	  PRIMARY KEY (id)
+	) ENGINE=InnoDB;
+
+
+
+	INSERT INTO Lists (`name`) VALUES ("seckin's list");
+	INSERT INTO Distributions (`btc`,`eth`,`xrp`) VALUES (30, 30, 40);
+	INSERT INTO ListHasDistribution (`list_id`, `distribution_id`, `timestamp`) VALUES (1, 1, 1400000000);
