@@ -26,9 +26,47 @@ import krakenex
 import decimal
 import time
 
-pairs = ['XETHZEUR', 'XXRPZUSD', 'XXBTZUSD']
-pair_pcts = [0.5, 0.3, 0.2]
-pair_first_vals = [-1, -1, -1]
+import json
+import requests
+
+# api_token = 'your_api_token'
+# api_url_base = 'http://104.131.139.250/api.php/'
+# headers = {'Content-Type': 'application/json',
+#            'Authorization': 'Bearer {0}'.format(api_token)}
+
+
+# api_url = '{0}Persons'.format(api_url_base)
+
+# response = requests.get(api_url, headers=headers)
+
+# if response.status_code == 200:
+#     val = json.loads(response.content.decode('utf-8'))
+# else:
+#     val = None
+
+# print("val", val)
+# print("person:", val['Persons']['records'][0])
+
+
+pairs = []
+pair_pcts = []
+pair_first_vals = []
+
+f = open("./assets.txt", "r")
+while 1:
+    line = f.readline()
+    if len(line) == 0:
+        break
+    pair, pct = line.split(" ")
+    pairs.append(pair)
+    pair_pcts.append(float(pct))
+    pair_first_vals.append(-1)
+
+print("pairs", pairs)
+print("pair_pcts", pair_pcts)
+# pairs = ['XETHZUSD', 'XXRPZUSD', 'XXBTZUSD']
+# pair_pcts = [0.5, 0.3, 0.2]
+# pair_first_vals = [-1, -1, -1]
 k = krakenex.API()
 
 # The recommended way to use wx with mpl is with the WXAgg
@@ -251,12 +289,12 @@ class GraphFrame(wx.Frame):
         #     print('\a\a\a')
         print("self.data", self.data)
         if xmax_control_auto or self.xmax_control.is_auto():
-            xmax = len(self.data) if len(self.data) > 50 else 50
+            xmax = len(self.data) if len(self.data) > 250 else 250
         else:
             xmax = int(self.xmax_control.manual_value())
             
         if xmin_control_auto or self.xmin_control.is_auto():
-            xmin = xmax - 50
+            xmin = xmax - 250
         else:
             xmin = int(self.xmin_control.manual_value())
 
