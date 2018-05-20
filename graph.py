@@ -1,22 +1,3 @@
-"""
-This demo demonstrates how to draw a dynamic mpl (matplotlib) 
-plot in a wxPython application.
-
-It allows "live" plotting as well as manual zooming to specific
-regions.
-
-Both X and Y axes allow "auto" or "manual" settings. For Y, auto
-mode sets the scaling of the graph to see all the data points.
-For X, auto mode makes the graph "follow" the data. Set it X min
-to manual 0 to always see the whole data from the beginning.
-
-Note: press Enter in the 'manual' text box to make a new value 
-affect the plot.
-
-Eli Bendersky (eliben@gmail.com)
-License: this code is in the public domain
-Last modified: 31.07.2008
-"""
 import os
 import pprint
 import random
@@ -133,40 +114,8 @@ class BoundControlBox(wx.Panel):
         box = wx.StaticBox(self, -1, label)
         sizer = wx.StaticBoxSizer(box, wx.VERTICAL)
         
-        # self.radio_auto = wx.RadioButton(self, -1, 
-        #     label="Auto", style=wx.RB_GROUP)
-        # self.radio_manual = wx.RadioButton(self, -1,
-        #     label="Manual")
-        # self.manual_text = wx.TextCtrl(self, -1, 
-        #     size=(35,-1),
-        #     value=str(initval),
-        #     style=wx.TE_PROCESS_ENTER)
-        
-        # self.Bind(wx.EVT_UPDATE_UI, self.on_update_manual_text, self.manual_text)
-        # self.Bind(wx.EVT_TEXT_ENTER, self.on_text_enter, self.manual_text)
-        
-        # manual_box = wx.BoxSizer(wx.HORIZONTAL)
-        # manual_box.Add(self.radio_manual, flag=wx.ALIGN_CENTER_VERTICAL)
-        # manual_box.Add(self.manual_text, flag=wx.ALIGN_CENTER_VERTICAL)
-        
-        # sizer.Add(self.radio_auto, 0, wx.ALL, 10)
-        # sizer.Add(manual_box, 0, wx.ALL, 10)
-        
         self.SetSizer(sizer)
         sizer.Fit(self)
-    
-    # def on_update_manual_text(self, event):
-    #     self.manual_text.Enable(self.radio_manual.GetValue())
-    
-    # def on_text_enter(self, event):
-    #     self.value = self.manual_text.GetValue()
-    
-    # def is_auto(self):
-    #     return self.radio_auto.GetValue()
-        
-    # def manual_value(self):
-    #     return self.value
-
 
 class GraphFrame(wx.Frame):
     """ The main frame of the application
@@ -176,7 +125,6 @@ class GraphFrame(wx.Frame):
     def __init__(self):
         wx.Frame.__init__(self, None, -1, self.title, pos = wx.Point(50,50))#size = wx.Size(200, 200))
         
-        # self.datagen = DataGen()
         self.rate_visualizer = RateVisualizer()
         self.data = [self.rate_visualizer.next()]
         self.paused = False
@@ -208,22 +156,6 @@ class GraphFrame(wx.Frame):
         self.init_plot()
         self.canvas = FigCanvas(self.panel, -1, self.fig)
 
-        # self.xmin_control = BoundControlBox(self.panel, -1, "X min", 0)
-        # self.xmax_control = BoundControlBox(self.panel, -1, "X max", 50)
-        # self.ymin_control = BoundControlBox(self.panel, -1, "Y min", 0)
-        # self.ymax_control = BoundControlBox(self.panel, -1, "Y max", 100)
-        
-        # self.pause_button = wx.Button(self.panel, -1, "Pause")
-        # self.Bind(wx.EVT_BUTTON, self.on_pause_button, self.pause_button)
-        # self.Bind(wx.EVT_UPDATE_UI, self.on_update_pause_button, self.pause_button)
-        
-        # self.manual_text = wx.TextCtrl(self.panel, -1, 
-        #     size=(80,-1),
-        #     value=str("initval"),
-        #     style=wx.TE_PROCESS_ENTER)
-        # # self.Bind(wx.EVT_UPDATE_UI, self.on_update_manual_text, self.manual_text)
-        # self.Bind(wx.EVT_TEXT_ENTER, self.on_text_enter, self.manual_text)
-
         languages = ['ETH: 50% BTC: 50% XRP: 0%', \
                      'ETH: 20% BTC: 20% XRP: 60%', \
                      'ETH: 30% BTC: 30% XRP: 40%']
@@ -234,20 +166,12 @@ class GraphFrame(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.on_update_graph_button, self.update_graph_button)
         
         self.hbox1 = wx.BoxSizer(wx.HORIZONTAL)
-        # self.hbox1.Add(self.pause_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
-        # self.hbox1.AddSpacer(20)
-        # self.hbox1.Add(self.manual_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
-        # self.hbox1.AddSpacer(20)
         self.hbox1.Add(self.lst, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(20)
         self.hbox1.Add(self.update_graph_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         
         self.hbox2 = wx.BoxSizer(wx.HORIZONTAL)
-        # self.hbox2.Add(self.xmin_control, border=5, flag=wx.ALL)
-        # self.hbox2.Add(self.xmax_control, border=5, flag=wx.ALL)
         self.hbox2.AddSpacer(24)
-        # self.hbox2.Add(self.ymin_control, border=5, flag=wx.ALL)
-        # self.hbox2.Add(self.ymax_control, border=5, flag=wx.ALL)
         
         self.vbox = wx.BoxSizer(wx.VERTICAL)
         self.vbox.Add(self.canvas, 1, flag=wx.LEFT | wx.TOP | wx.GROW)        
@@ -286,13 +210,6 @@ class GraphFrame(wx.Frame):
     def draw_plot(self):
         """ Redraws the plot
         """
-        # when xmin is on auto, it "follows" xmax to produce a 
-        # sliding window effect. therefore, xmin is assigned after
-        # xmax.
-        #
-        # if(len(self.data) >= 5 and self.data[len(self.data) - 1] > max(self.data[0:len(self.data) - 1])):
-        #     print("last one:", self.data[len(self.data) - 1])
-        #     print('\a\a\a')
         print("self.data", self.data)
         if xmax_control_auto or self.xmax_control.is_auto():
             xmax = len(self.data) if len(self.data) > 250 else 250
@@ -304,13 +221,6 @@ class GraphFrame(wx.Frame):
         else:
             xmin = int(self.xmin_control.manual_value())
 
-        # for ymin and ymax, find the minimal and maximal values
-        # in the data set and add a mininal margin.
-        # 
-        # note that it's easy to change this scheme to the 
-        # minimal/maximal value in the current display, and not
-        # the whole data set.
-        # 
         if ymin_control_auto or self.ymin_control.is_auto():
             ymin = min(self.data) * (1.0 - 0.0004) #- (max(self.data) - 1.0) * 2
         else:
@@ -346,23 +256,10 @@ class GraphFrame(wx.Frame):
         
         self.canvas.draw()
     
-    # def on_pause_button(self, event):
-    #     self.paused = not self.paused
-    
-    # def on_update_pause_button(self, event):
-    #     label = "Resume" if self.paused else "Pause"
-    #     self.pause_button.SetLabel(label)
-
     def on_update_graph_button(self, event):
         print( "Update Graph pressed for: \
          "+self.lst.GetStringSelection()+"\n")
     
-    def on_update_manual_text(self, event):
-        print("on_update_manual_text")
-
-    def on_text_enter(self, event):
-        print("on_text_enter")
-
     def onListBox(self, event):
       print( "Current selection: \
          "+event.GetEventObject().GetStringSelection()+"\n")
