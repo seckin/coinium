@@ -98,7 +98,7 @@ class RateVisualizer(object):
         # delta = random.uniform(-0.5, 0.5)
         # r = random.random()
         since = int(decimal.Decimal(time.time()))
-        since -= 30
+        since -= 75
         print("since", since)
         i = 0
         aggr_last_mid_mkt = 0
@@ -213,22 +213,10 @@ class GraphFrame(wx.Frame):
         # self.ymin_control = BoundControlBox(self.panel, -1, "Y min", 0)
         # self.ymax_control = BoundControlBox(self.panel, -1, "Y max", 100)
         
-        self.pause_button = wx.Button(self.panel, -1, "Pause")
-        self.Bind(wx.EVT_BUTTON, self.on_pause_button, self.pause_button)
-        self.Bind(wx.EVT_UPDATE_UI, self.on_update_pause_button, self.pause_button)
+        # self.pause_button = wx.Button(self.panel, -1, "Pause")
+        # self.Bind(wx.EVT_BUTTON, self.on_pause_button, self.pause_button)
+        # self.Bind(wx.EVT_UPDATE_UI, self.on_update_pause_button, self.pause_button)
         
-        self.cb_grid = wx.CheckBox(self.panel, -1, 
-            "Show Grid",
-            style=wx.ALIGN_RIGHT)
-        self.Bind(wx.EVT_CHECKBOX, self.on_cb_grid, self.cb_grid)
-        self.cb_grid.SetValue(True)
-        
-        self.cb_xlab = wx.CheckBox(self.panel, -1, 
-            "Show X labels",
-            style=wx.ALIGN_RIGHT)
-        self.Bind(wx.EVT_CHECKBOX, self.on_cb_xlab, self.cb_xlab)        
-        self.cb_xlab.SetValue(True)
-
         # self.manual_text = wx.TextCtrl(self.panel, -1, 
         #     size=(80,-1),
         #     value=str("initval"),
@@ -243,14 +231,10 @@ class GraphFrame(wx.Frame):
         self.Bind(wx.EVT_LISTBOX, self.onListBox, self.lst)
         
         self.hbox1 = wx.BoxSizer(wx.HORIZONTAL)
-        self.hbox1.Add(self.pause_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
-        self.hbox1.AddSpacer(20)
-        self.hbox1.Add(self.cb_grid, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
-        self.hbox1.AddSpacer(10)
-        self.hbox1.Add(self.cb_xlab, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        # self.hbox1.Add(self.pause_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         # self.hbox1.AddSpacer(20)
         # self.hbox1.Add(self.manual_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
-        self.hbox1.AddSpacer(20)
+        # self.hbox1.AddSpacer(20)
         self.hbox1.Add(self.lst, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         
         self.hbox2 = wx.BoxSizer(wx.HORIZONTAL)
@@ -340,7 +324,7 @@ class GraphFrame(wx.Frame):
         # so just passing the flag into the first statement won't
         # work.
         #
-        if self.cb_grid.IsChecked():
+        if True:
             self.axes.grid(True, color='white')
         else:
             self.axes.grid(False)
@@ -350,26 +334,20 @@ class GraphFrame(wx.Frame):
         # iterate, and setp already handles this.
         #  
         pylab.setp(self.axes.get_xticklabels(), 
-            visible=self.cb_xlab.IsChecked())
+            visible=True)
         
         self.plot_data.set_xdata(np.arange(len(self.data)))
         self.plot_data.set_ydata(np.array(self.data))
         
         self.canvas.draw()
     
-    def on_pause_button(self, event):
-        self.paused = not self.paused
+    # def on_pause_button(self, event):
+    #     self.paused = not self.paused
     
-    def on_update_pause_button(self, event):
-        label = "Resume" if self.paused else "Pause"
-        self.pause_button.SetLabel(label)
+    # def on_update_pause_button(self, event):
+    #     label = "Resume" if self.paused else "Pause"
+    #     self.pause_button.SetLabel(label)
     
-    def on_cb_grid(self, event):
-        self.draw_plot()
-    
-    def on_cb_xlab(self, event):
-        self.draw_plot()
-
     def on_update_manual_text(self, event):
         print("on_update_manual_text")
 
