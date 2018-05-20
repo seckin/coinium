@@ -228,6 +228,19 @@ class GraphFrame(wx.Frame):
             style=wx.ALIGN_RIGHT)
         self.Bind(wx.EVT_CHECKBOX, self.on_cb_xlab, self.cb_xlab)        
         self.cb_xlab.SetValue(True)
+
+        # self.manual_text = wx.TextCtrl(self.panel, -1, 
+        #     size=(80,-1),
+        #     value=str("initval"),
+        #     style=wx.TE_PROCESS_ENTER)
+        # # self.Bind(wx.EVT_UPDATE_UI, self.on_update_manual_text, self.manual_text)
+        # self.Bind(wx.EVT_TEXT_ENTER, self.on_text_enter, self.manual_text)
+
+        languages = ['ETH: 50% BTC: 50% XRP: 0%', \
+                     'ETH: 20% BTC: 20% XRP: 60%', \
+                     'ETH: 30% BTC: 30% XRP: 40%']
+        self.lst = wx.ListBox(self.panel, size = (220,-1), choices = languages, style = wx.LB_SINGLE)
+        self.Bind(wx.EVT_LISTBOX, self.onListBox, self.lst)
         
         self.hbox1 = wx.BoxSizer(wx.HORIZONTAL)
         self.hbox1.Add(self.pause_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
@@ -235,6 +248,10 @@ class GraphFrame(wx.Frame):
         self.hbox1.Add(self.cb_grid, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(10)
         self.hbox1.Add(self.cb_xlab, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        # self.hbox1.AddSpacer(20)
+        # self.hbox1.Add(self.manual_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.AddSpacer(20)
+        self.hbox1.Add(self.lst, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         
         self.hbox2 = wx.BoxSizer(wx.HORIZONTAL)
         # self.hbox2.Add(self.xmin_control, border=5, flag=wx.ALL)
@@ -352,6 +369,16 @@ class GraphFrame(wx.Frame):
     
     def on_cb_xlab(self, event):
         self.draw_plot()
+
+    def on_update_manual_text(self, event):
+        print("on_update_manual_text")
+
+    def on_text_enter(self, event):
+        print("on_text_enter")
+
+    def onListBox(self, event):
+      print( "Current selection: \
+         "+event.GetEventObject().GetStringSelection()+"\n")
     
     def on_save_plot(self, event):
         file_choices = "PNG (*.png)|*.png"
