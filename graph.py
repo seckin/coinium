@@ -229,6 +229,9 @@ class GraphFrame(wx.Frame):
                      'ETH: 30% BTC: 30% XRP: 40%']
         self.lst = wx.ListBox(self.panel, size = (220,-1), choices = languages, style = wx.LB_SINGLE)
         self.Bind(wx.EVT_LISTBOX, self.onListBox, self.lst)
+
+        self.update_graph_button = wx.Button(self.panel, -1, "Update Graph")
+        self.Bind(wx.EVT_BUTTON, self.on_update_graph_button, self.update_graph_button)
         
         self.hbox1 = wx.BoxSizer(wx.HORIZONTAL)
         # self.hbox1.Add(self.pause_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
@@ -236,6 +239,8 @@ class GraphFrame(wx.Frame):
         # self.hbox1.Add(self.manual_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         # self.hbox1.AddSpacer(20)
         self.hbox1.Add(self.lst, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.AddSpacer(20)
+        self.hbox1.Add(self.update_graph_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         
         self.hbox2 = wx.BoxSizer(wx.HORIZONTAL)
         # self.hbox2.Add(self.xmin_control, border=5, flag=wx.ALL)
@@ -347,6 +352,10 @@ class GraphFrame(wx.Frame):
     # def on_update_pause_button(self, event):
     #     label = "Resume" if self.paused else "Pause"
     #     self.pause_button.SetLabel(label)
+
+    def on_update_graph_button(self, event):
+        print( "Update Graph pressed for: \
+         "+self.lst.GetStringSelection()+"\n")
     
     def on_update_manual_text(self, event):
         print("on_update_manual_text")
