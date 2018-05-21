@@ -10,25 +10,6 @@ import time
 import json
 import requests
 
-# api_token = 'your_api_token'
-# api_url_base = 'http://104.131.139.250/api.php/'
-# headers = {'Content-Type': 'application/json',
-#            'Authorization': 'Bearer {0}'.format(api_token)}
-
-
-# api_url = '{0}Persons'.format(api_url_base)
-
-# response = requests.get(api_url, headers=headers)
-
-# if response.status_code == 200:
-#     val = json.loads(response.content.decode('utf-8'))
-# else:
-#     val = None
-
-# print("val", val)
-# print("person:", val['Persons']['records'][0])
-
-
 pairs = []
 pair_pcts = []
 pair_first_vals = []
@@ -156,10 +137,29 @@ class GraphFrame(wx.Frame):
         self.init_plot()
         self.canvas = FigCanvas(self.panel, -1, self.fig)
 
-        languages = ['ETH: 50% BTC: 50% XRP: 0%', \
-                     'ETH: 20% BTC: 20% XRP: 60%', \
-                     'ETH: 30% BTC: 30% XRP: 40%']
-        self.lst = wx.ListBox(self.panel, size = (220,-1), choices = languages, style = wx.LB_SINGLE)
+        api_token = 'your_api_token'
+        api_url_base = 'http://104.131.139.250/api.php/'
+        headers = {'Content-Type': 'application/json',
+                   'Authorization': 'Bearer {0}'.format(api_token)}
+        api_url = '{0}Distributions'.format(api_url_base)
+        response = requests.get(api_url, headers=headers)
+        if response.status_code == 200:
+            val = json.loads(response.content.decode('utf-8'))
+        else:
+            val = None
+        print("val", val)
+        print("first distribution:", val['Distributions']['records'][0])
+
+        # distributions = ['ETH: 50% BTC: 50% XRP: 0%', \
+        #              'ETH: 20% BTC: 20% XRP: 60%', \
+        #              'ETH: 30% BTC: 30% XRP: 40%']
+        distributions = []
+        for dist in val['Distributions']['records']:
+            strval = "BTC: " + str(dist[1]) + "% "
+            strval += "ETH: " + str(dist[2]) + "% "
+            strval += "XRP: " + str(dist[3]) + "%"
+            distributions.append(strval)
+        self.lst = wx.ListBox(self.panel, size = (220,-1), choices = distributions, style = wx.LB_SINGLE)
         self.Bind(wx.EVT_LISTBOX, self.onListBox, self.lst)
 
         self.update_graph_button = wx.Button(self.panel, -1, "Update Graph")
@@ -287,11 +287,28 @@ class GraphFrame(wx.Frame):
          "+event.GetEventObject().GetStringSelection()+"\n")
 
     def on_add_distribution_button(self, event):
-        print("adding new distribution btc:", self.btc_input_box.GetValue())
-        strval = "ETH: " + self.eth_input_box.GetValue() + "% "
-        strval += "BTC: " + self.btc_input_box.GetValue() + "% "
-        strval += "XRP: " + self.xrp_input_box.GetValue() + "%"
+        ethval = int(self.eth_input_box.GetValue())
+        btcval = int(self.btc_input_box.GetValue())
+        xrpval = int(self.xrp_input_box.GetValue())
+        if ethval + btcval + xrpval != 100:
+            print(str(ethval + btcval + xrpval) + "doesn't add up to 100")
+            return
+        strval = "ETH: " + str(ethval) + "% "
+        strval += "BTC: " + str(btcval) + "% "
+        strval += "XRP: " + str(xrpval) + "%"
+        print("adding new distribution:", strval)
         self.lst.Append(strval)
+        api_token = 'your_api_token'
+        api_url_base = 'http://104.131.139.250/api.php/'
+        headers = {'Content-Type': 'application/json',
+                   'Authorization': 'Bearer {0}'.format(api_token)}
+        api_url = '{0}Distributions'.format(api_url_base)
+        response = requests.post(api_url, headers=headers, data = {"btc":btcval, "xrp":xrpval, "eth":ethval})
+        if response.status_code == 200:
+            val = json.loads(response.content.decode('utf-8'))
+            print("server response:", val)
+        else:
+            val = None
 
     def on_save_plot(self, event):
         file_choices = "PNG (*.png)|*.png"
