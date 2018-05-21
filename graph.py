@@ -165,34 +165,53 @@ class GraphFrame(wx.Frame):
         self.update_graph_button = wx.Button(self.panel, -1, "Update Graph")
         self.Bind(wx.EVT_BUTTON, self.on_update_graph_button, self.update_graph_button)
 
-        self.btc_text = wx.StaticText(self.panel, -1, label="BTC:", size = (35,20))
-        self.btc_input_box = wx.TextCtrl(self.panel,size = (30,20))
-        self.eth_text = wx.StaticText(self.panel, -1, label="ETH:", size = (35,20))
-        self.eth_input_box = wx.TextCtrl(self.panel,size = (30,20))
-        self.xrp_text = wx.StaticText(self.panel, -1, label="XRP:", size = (35,20))
-        self.xrp_input_box = wx.TextCtrl(self.panel,size = (30,20))
-
-        self.add_distribution_button = wx.Button(self.panel, -1, "Add New Distribution")
-        self.Bind(wx.EVT_BUTTON, self.on_add_distribution_button, self.add_distribution_button)
+        self.modify_btc_text = wx.StaticText(self.panel, -1, label="BTC:", size = (35,20))
+        self.modify_btc_input_box = wx.TextCtrl(self.panel,size = (30,20))
+        self.modify_eth_text = wx.StaticText(self.panel, -1, label="ETH:", size = (35,20))
+        self.modify_eth_input_box = wx.TextCtrl(self.panel,size = (30,20))
+        self.modify_xrp_text = wx.StaticText(self.panel, -1, label="XRP:", size = (35,20))
+        self.modify_xrp_input_box = wx.TextCtrl(self.panel,size = (30,20))
+        self.modify_distribution_button = wx.Button(self.panel, -1, "Modify Distribution")
+        self.Bind(wx.EVT_BUTTON, self.on_modify_distribution_button, self.modify_distribution_button)
         
         self.hbox1 = wx.BoxSizer(wx.HORIZONTAL)
         self.hbox1.Add(self.lst, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(2)
         self.hbox1.Add(self.update_graph_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(15)
-        self.hbox1.Add(self.btc_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.Add(self.modify_btc_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(2)
-        self.hbox1.Add(self.btc_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
-        self.hbox1.Add(self.eth_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.Add(self.modify_btc_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.Add(self.modify_eth_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(2)
-        self.hbox1.Add(self.eth_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
-        self.hbox1.Add(self.xrp_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.Add(self.modify_eth_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.Add(self.modify_xrp_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(2)
-        self.hbox1.Add(self.xrp_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.Add(self.modify_xrp_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(5)
-        self.hbox1.Add(self.add_distribution_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.Add(self.modify_distribution_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        
+        self.btc_text = wx.StaticText(self.panel, -1, label="BTC:", size = (35,20))
+        self.btc_input_box = wx.TextCtrl(self.panel,size = (30,20))
+        self.eth_text = wx.StaticText(self.panel, -1, label="ETH:", size = (35,20))
+        self.eth_input_box = wx.TextCtrl(self.panel,size = (30,20))
+        self.xrp_text = wx.StaticText(self.panel, -1, label="XRP:", size = (35,20))
+        self.xrp_input_box = wx.TextCtrl(self.panel,size = (30,20))
+        self.add_distribution_button = wx.Button(self.panel, -1, "Add New Distribution")
+        self.Bind(wx.EVT_BUTTON, self.on_add_distribution_button, self.add_distribution_button)
         
         self.hbox2 = wx.BoxSizer(wx.HORIZONTAL)
+        self.hbox2.Add(self.btc_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox2.AddSpacer(2)
+        self.hbox2.Add(self.btc_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox2.Add(self.eth_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox2.AddSpacer(2)
+        self.hbox2.Add(self.eth_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox2.Add(self.xrp_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox2.AddSpacer(2)
+        self.hbox2.Add(self.xrp_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox2.AddSpacer(5)
+        self.hbox2.Add(self.add_distribution_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox2.AddSpacer(24)
         
         self.vbox = wx.BoxSizer(wx.VERTICAL)
@@ -285,6 +304,14 @@ class GraphFrame(wx.Frame):
     def onListBox(self, event):
       print( "Current selection: \
          "+event.GetEventObject().GetStringSelection()+"\n")
+      strval = event.GetEventObject().GetStringSelection()
+      strs = strval.split(":")
+      btc_pct = int(strs[1].split("%")[0])
+      eth_pct = int(strs[2].split("%")[0])
+      xrp_pct = int(strs[3].split("%")[0])
+      self.modify_btc_input_box.SetValue(str(btc_pct))
+      self.modify_eth_input_box.SetValue(str(eth_pct))
+      self.modify_xrp_input_box.SetValue(str(xrp_pct))
 
     def on_add_distribution_button(self, event):
         ethval = int(self.eth_input_box.GetValue())
@@ -293,8 +320,8 @@ class GraphFrame(wx.Frame):
         if ethval + btcval + xrpval != 100:
             print(str(ethval + btcval + xrpval) + "doesn't add up to 100")
             return
-        strval = "ETH: " + str(ethval) + "% "
-        strval += "BTC: " + str(btcval) + "% "
+        strval = "BTC: " + str(btcval) + "% "
+        strval += "ETH: " + str(ethval) + "% "
         strval += "XRP: " + str(xrpval) + "%"
         print("adding new distribution:", strval)
         self.lst.Append(strval)
@@ -309,6 +336,23 @@ class GraphFrame(wx.Frame):
             print("server response:", val)
         else:
             val = None
+
+    def on_modify_distribution_button(self, event):
+        print("on_modify_distribution_button pressed")
+        cnt = self.lst.GetCount()
+        for i in range(cnt):
+            if self.lst.IsSelected(i):
+                ethval = int(self.modify_eth_input_box.GetValue())
+                btcval = int(self.modify_btc_input_box.GetValue())
+                xrpval = int(self.modify_xrp_input_box.GetValue())
+                if ethval + btcval + xrpval != 100:
+                    print(str(ethval + btcval + xrpval) + "doesn't add up to 100")
+                    return
+                strval = "BTC: " + str(btcval) + "% "
+                strval += "ETH: " + str(ethval) + "% "
+                strval += "XRP: " + str(xrpval) + "%"
+                print("updating distribution to:", strval)
+                self.lst.SetString(i, strval)
 
     def on_save_plot(self, event):
         file_choices = "PNG (*.png)|*.png"
