@@ -1,0 +1,6 @@
+OK - populate distribution table from the backend via rest api
+OK - add new distributions to the backend via rest api
+- display the graph chosen from the list
+- make a distributable windows app
+- make a distributable mac app
+- buy the domain
