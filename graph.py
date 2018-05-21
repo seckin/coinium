@@ -79,7 +79,7 @@ class RateVisualizer(object):
         # delta = random.uniform(-0.5, 0.5)
         # r = random.random()
         since = int(decimal.Decimal(time.time()))
-        since -= 75
+        since -= 250
         print("since", since)
         i = 0
         aggr_last_mid_mkt = 0
@@ -164,11 +164,33 @@ class GraphFrame(wx.Frame):
 
         self.update_graph_button = wx.Button(self.panel, -1, "Update Graph")
         self.Bind(wx.EVT_BUTTON, self.on_update_graph_button, self.update_graph_button)
+
+        self.btc_text = wx.StaticText(self.panel, -1, label="BTC:", size = (35,20))
+        self.btc_input_box = wx.TextCtrl(self.panel,size = (30,20))
+        self.eth_text = wx.StaticText(self.panel, -1, label="ETH:", size = (35,20))
+        self.eth_input_box = wx.TextCtrl(self.panel,size = (30,20))
+        self.xrp_text = wx.StaticText(self.panel, -1, label="XRP:", size = (35,20))
+        self.xrp_input_box = wx.TextCtrl(self.panel,size = (30,20))
+
+        self.add_distribution_button = wx.Button(self.panel, -1, "Add New Distribution")
+        self.Bind(wx.EVT_BUTTON, self.on_add_distribution_button, self.add_distribution_button)
         
         self.hbox1 = wx.BoxSizer(wx.HORIZONTAL)
         self.hbox1.Add(self.lst, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
-        self.hbox1.AddSpacer(20)
+        self.hbox1.AddSpacer(2)
         self.hbox1.Add(self.update_graph_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.AddSpacer(15)
+        self.hbox1.Add(self.btc_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.AddSpacer(2)
+        self.hbox1.Add(self.btc_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.Add(self.eth_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.AddSpacer(2)
+        self.hbox1.Add(self.eth_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.Add(self.xrp_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.AddSpacer(2)
+        self.hbox1.Add(self.xrp_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.AddSpacer(5)
+        self.hbox1.Add(self.add_distribution_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         
         self.hbox2 = wx.BoxSizer(wx.HORIZONTAL)
         self.hbox2.AddSpacer(24)
@@ -263,7 +285,14 @@ class GraphFrame(wx.Frame):
     def onListBox(self, event):
       print( "Current selection: \
          "+event.GetEventObject().GetStringSelection()+"\n")
-    
+
+    def on_add_distribution_button(self, event):
+        print("adding new distribution btc:", self.btc_input_box.GetValue())
+        strval = "ETH: " + self.eth_input_box.GetValue() + "% "
+        strval += "BTC: " + self.btc_input_box.GetValue() + "% "
+        strval += "XRP: " + self.xrp_input_box.GetValue() + "%"
+        self.lst.Append(strval)
+
     def on_save_plot(self, event):
         file_choices = "PNG (*.png)|*.png"
         
