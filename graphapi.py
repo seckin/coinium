@@ -48,7 +48,7 @@ def hello():
             print("start_from_timestamp", start_from_timestamp)
 
             until = int(decimal.Decimal(time.time()))
-            iteration_time = 1526765528
+            iteration_time = 1527031271
             print("iteration_time", iteration_time)
             print("until", until)
             print("")
@@ -65,12 +65,13 @@ def hello():
 
                     j = len(spreads) - 1
                     while spreads[j]["timestamp"] > iteration_time:
+                        # print('spreads[j]["timestamp"]', spreads[j]["timestamp"], " iteration_time", iteration_time)
                         j -= 1
                     print("iteration_time", iteration_time)
                     print('found spread: spreads[j]["timestamp"] = ', spreads[j]["timestamp"])
                     print("spread:", spreads[j])
                     start_from_timestamp = spreads[j]["timestamp"]
-                    start_from_timestamp -= 200 # hack: so that one coin doesn't make another coin fastforward
+                    start_from_timestamp -= 500 # hack: so that one coin doesn't make another coin fastforward
 
                     bid = float(spreads[j]["bestbid"])
                     ask = float(spreads[j]["bestask"])

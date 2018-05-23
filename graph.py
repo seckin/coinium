@@ -374,10 +374,22 @@ class GraphFrame(wx.Frame):
         # if paused do not add data, but still redraw the plot
         # (to respond to scale modifications, grid change, etc.)
         #
-        if not self.paused:
-            #self.data.append(self.datagen.next())
-            self.data.append(self.rate_visualizer.next())
+        # if not self.paused:
+        #     #self.data.append(self.datagen.next())
+        #     self.data.append(self.rate_visualizer.next())
         
+        headers = {'Content-Type': 'application/json'}
+        response = requests.get("http://104.131.139.250:5000/", headers=headers)
+        if response.status_code == 200:
+            graphvals = json.loads(response.content.decode('utf-8'))
+        else:
+            graphvals = None
+        
+        self.data = []
+        for val_and_timestamp in graphvals:
+            self.data.append(val_and_timestamp[1])
+        print("displaying ", len(self.data), " values")
+
         self.draw_plot()
     
     def on_exit(self, event):
