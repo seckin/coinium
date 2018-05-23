@@ -10,6 +10,8 @@ import time
 import json
 import requests
 
+global app, pairs, pair_pcts, pair_first_vals
+
 pairs = []
 pair_pcts = []
 pair_first_vals = []
@@ -26,36 +28,11 @@ pair_first_vals = []
 
 # start with this list id:
 global list_id
+global app
 list_id = 1
 
-def update_pair_distributions(list_id):
-    print("update_pair_distributions called")
-    headers = {'Content-Type': 'application/json'}
-    response = requests.get("http://104.131.139.250/api.php/ListHasDistribution?filter=list_id,eq," + str(list_id), headers=headers)
-    if response.status_code == 200:
-        list_has_distributions = json.loads(response.content.decode('utf-8'))
-    else:
-        list_has_distributions = None
 
-    # get the distribution id of the first distribution(of the list with id = list_id)
-    distribution_id = list_has_distributions["ListHasDistribution"]["records"][0][2]
 
-    headers = {'Content-Type': 'application/json'}
-    response = requests.get("http://104.131.139.250/api.php/Distributions?filter=id,eq," + str(distribution_id), headers=headers)
-    if response.status_code == 200:
-        distributions = json.loads(response.content.decode('utf-8'))
-    else:
-        distributions = None
-
-    distribution_record = distributions["Distributions"]["records"][0]
-    pair_pcts = [distribution_record[1] / 100.0, distribution_record[2] / 100.0, distribution_record[3] / 100.0]
-    pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
-    pair_first_vals = [-1, -1, -1]
-    print("pairs", pairs)
-    print("pair_pcts", pair_pcts)
-    print("")
-
-update_pair_distributions(list_id)
 
 # pairs = ['XETHZUSD', 'XXRPZUSD', 'XXBTZUSD']
 # pair_pcts = [0.5, 0.3, 0.2]
@@ -182,6 +159,17 @@ class GraphFrame(wx.Frame):
         print("val", val)
         print("first distribution:", val['Distributions']['records'][0])
 
+        first_dist = val['Distributions']['records'][0]
+        tmp_pair_pcts = [first_dist[1] / 100.0, first_dist[2] / 100.0, first_dist[3] / 100.0]
+        tmp_pairs = ["XXBTZUSD", "XETHZUSD", "XXRPZUSD"]
+        title_str = ""
+        print("here11")
+        for i in range(len(tmp_pairs)):
+            print("here12")
+            title_str += str(tmp_pairs[i]) + ": " + str(tmp_pair_pcts[i] * 100) + "%, "
+        self.axes.set_title(title_str, size=12)
+        print("here13", title_str)
+
         # distributions = ['ETH: 50% BTC: 50% XRP: 0%', \
         #              'ETH: 20% BTC: 20% XRP: 60%', \
         #              'ETH: 30% BTC: 30% XRP: 40%']
@@ -266,6 +254,7 @@ class GraphFrame(wx.Frame):
         self.statusbar = self.CreateStatusBar()
 
     def init_plot(self):
+        global pairs, pair_pcts
         self.dpi = 100
         self.fig = Figure((3.0, 3.0), dpi=self.dpi)
 
@@ -340,22 +329,58 @@ class GraphFrame(wx.Frame):
     def on_update_graph_button(self, event):
         print( "Update Graph pressed for: \
          "+self.lst.GetStringSelection()+"\n")
+
+    def update_pair_distributions(self, list_id):
+        global app, pairs, pair_pcts, pair_first_vals
+        print("update_pair_distributions called")
+        headers = {'Content-Type': 'application/json'}
+        response = requests.get("http://104.131.139.250/api.php/ListHasDistribution?filter=list_id,eq," + str(list_id), headers=headers)
+        if response.status_code == 200:
+            list_has_distributions = json.loads(response.content.decode('utf-8'))
+        else:
+            list_has_distributions = None
+
+        # get the distribution id of the first distribution(of the list with id = list_id)
+        distribution_id = list_has_distributions["ListHasDistribution"]["records"][0][2]
+
+        headers = {'Content-Type': 'application/json'}
+        response = requests.get("http://104.131.139.250/api.php/Distributions?filter=id,eq," + str(distribution_id), headers=headers)
+        if response.status_code == 200:
+            distributions = json.loads(response.content.decode('utf-8'))
+        else:
+            distributions = None
+
+        distribution_record = distributions["Distributions"]["records"][0]
+        pair_pcts = [distribution_record[1] / 100.0, distribution_record[2] / 100.0, distribution_record[3] / 100.0]
+        pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
+        pair_first_vals = [-1, -1, -1]
+        print("pairs", pairs)
+        print("pair_pcts", pair_pcts)
+        print("")
     
     def onListBox(self, event):
-      global list_id
-      print( "Current selection: \
-         "+event.GetEventObject().GetStringSelection()+"\n")
-      strval = event.GetEventObject().GetStringSelection()
-      strs = strval.split(":")
-      list_id = int(strs[0].split("#")[1].split(" ")[0])
-      print("list_id updated to:", list_id)
-      update_pair_distributions(list_id)
-      btc_pct = int(strs[1].split("%")[0])
-      eth_pct = int(strs[2].split("%")[0])
-      xrp_pct = int(strs[3].split("%")[0])
-      self.modify_btc_input_box.SetValue(str(btc_pct))
-      self.modify_eth_input_box.SetValue(str(eth_pct))
-      self.modify_xrp_input_box.SetValue(str(xrp_pct))
+        global list_id
+        global app, pairs, pair_pcts, pair_first_vals
+        print( "Current selection: \
+            "+event.GetEventObject().GetStringSelection()+"\n")
+        strval = event.GetEventObject().GetStringSelection()
+        strs = strval.split(":")
+        list_id = int(strs[0].split("#")[1].split(" ")[0])
+        print("list_id updated to:", list_id)
+        self.update_pair_distributions(list_id)
+        title_str = ""
+        print("here1")
+        for i in range(len(pairs)):
+            print("here2")
+            title_str += str(pairs[i]) + ": " + str(pair_pcts[i] * 100) + "%, "
+        print("here3", title_str)
+        self.axes.set_title(title_str, size=12)
+        btc_pct = int(strs[1].split("%")[0])
+        eth_pct = int(strs[2].split("%")[0])
+        xrp_pct = int(strs[3].split("%")[0])
+        self.modify_btc_input_box.SetValue(str(btc_pct))
+        self.modify_eth_input_box.SetValue(str(eth_pct))
+        self.modify_xrp_input_box.SetValue(str(xrp_pct))
 
     def on_add_distribution_button(self, event):
         ethval = int(self.eth_input_box.GetValue())
@@ -471,4 +496,5 @@ if __name__ == '__main__':
     app.frame.Show()
     app.frame.SetSize((800, 800))
     app.MainLoop()
+    # update_pair_distributions(list_id)
 
