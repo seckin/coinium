@@ -201,6 +201,10 @@ class GraphFrame(wx.Frame):
         self.modify_xrp_input_box = wx.TextCtrl(self.panel,size = (30,20))
         self.modify_distribution_button = wx.Button(self.panel, -1, "Rebalance Portfolio")
         self.Bind(wx.EVT_BUTTON, self.on_modify_distribution_button, self.modify_distribution_button)
+
+        self.interval_choice_text = wx.StaticText(self.panel, -1, label="Interval:", size = (55,20))
+        self.choice = wx.Choice(self.panel,choices = ["30 secs", "5 mins", "2 hours", "1 day"])
+        self.choice.Bind(wx.EVT_CHOICE, self.OnChoice)
         
         self.hbox1 = wx.BoxSizer(wx.HORIZONTAL)
         self.hbox1.Add(self.lst, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
@@ -218,6 +222,10 @@ class GraphFrame(wx.Frame):
         self.hbox1.Add(self.modify_xrp_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(5)
         self.hbox1.Add(self.modify_distribution_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.AddSpacer(25)
+        self.hbox1.Add(self.interval_choice_text, border=5, flag=wx.ALL | wx.ALIGN_TOP)
+        self.hbox1.AddSpacer(2)
+        self.hbox1.Add(self.choice, border=5, flag=wx.ALL | wx.ALIGN_TOP)
         
         self.btc_text = wx.StaticText(self.panel, -1, label="BTC:", size = (35,20))
         self.btc_input_box = wx.TextCtrl(self.panel,size = (30,20))
@@ -325,6 +333,10 @@ class GraphFrame(wx.Frame):
         self.plot_data.set_ydata(np.array(self.data))
         
         self.canvas.draw()
+
+    def OnChoice(self, event):
+        print("self.choice.GetSelection()", self.choice.GetSelection())
+        print("choice updated to", self.choice.GetString(self.choice.GetSelection()))
     
     def on_update_graph_button(self, event):
         print( "Update Graph pressed for: \
@@ -458,8 +470,18 @@ class GraphFrame(wx.Frame):
         #     #self.data.append(self.datagen.next())
         #     self.data.append(self.rate_visualizer.next())
 
+        selection = self.choice.GetSelection()
+        selected_int_str = self.choice.GetString(selection) #["30 secs", "5 mins", "2 hours", "1 day"])
+        if selected_int_str == "30 secs":
+            interval_in_secs = 30
+        elif selected_int_str == "5 mins":
+            interval_in_secs = 300
+        elif selected_int_str == "2 hours":
+            interval_in_secs = 7200
+        elif selected_int_str == "1 day":
+            interval_in_secs = 86400
         headers = {'Content-Type': 'application/json'}
-        api_url = "http://104.131.139.250:5000/?list_id=" + str(list_id)
+        api_url = "http://104.131.139.250:5000/?list_id=" + str(list_id) + "&interval_in_secs=" + str(interval_in_secs)
         print("api_url:", api_url)
         response = requests.get(api_url, headers=headers)
         if response.status_code == 200:
@@ -494,7 +516,7 @@ if __name__ == '__main__':
     app = wx.App()
     app.frame = GraphFrame()
     app.frame.Show()
-    app.frame.SetSize((800, 800))
+    app.frame.SetSize((1000, 800))
     app.MainLoop()
     # update_pair_distributions(list_id)
 

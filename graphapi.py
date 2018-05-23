@@ -12,6 +12,12 @@ app = Flask(__name__)
 def hello():
     #return "<h1 style='color:blue'>Hello There!</h1>"
     list_id = request.args.get('list_id')
+    interval_in_secs = request.args.get('interval_in_secs')
+    if not interval_in_secs:
+        interval_in_secs = 30
+    else:
+        interval_in_secs = int(interval_in_secs)
+    print("interval_in_secs", interval_in_secs)
     connection = pymysql.connect(host='localhost',
                                  user='root',
                                  password='co1n23im',
@@ -51,7 +57,7 @@ def hello():
             print("start_from_timestamp", start_from_timestamp)
 
             until = int(decimal.Decimal(time.time()))
-            iteration_time = 1527048777
+            iteration_time = 1527116686
             print("iteration_time", iteration_time)
             print("until", until)
             print("")
@@ -68,7 +74,7 @@ def hello():
 
                     j = len(spreads) - 1
                     while spreads[j]["timestamp"] > iteration_time:
-                        print('spreads[j]["timestamp"]', spreads[j]["timestamp"], " iteration_time", iteration_time)
+                        # print('spreads[j]["timestamp"]', spreads[j]["timestamp"], " iteration_time", iteration_time)
                         j -= 1
                     print("iteration_time", iteration_time)
                     print('found spread: spreads[j]["timestamp"] = ', spreads[j]["timestamp"])
@@ -88,7 +94,7 @@ def hello():
                     aggr_appreciation_in_pct += pair_pcts[i] * appreciation_in_pct
                     i += 1
                 aggr_appreciation_in_pcts.append([iteration_time, aggr_appreciation_in_pct])
-                iteration_time += 30
+                iteration_time += interval_in_secs
 
             return str(aggr_appreciation_in_pcts)
             # return str(list)

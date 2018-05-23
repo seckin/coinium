@@ -6,15 +6,26 @@ OK - make a distributable windows app - any app
 OK - subscription[userid, list id, amount in dollars invested, created at]
 OK - display the graph chosen from the list, update it every 5 seconds
 OK - buy the domain
-- write the names and percentages of the assets at the top
-- hiveos-like payment-accepting functionality for individual portfolios. using https://www.coinpayments.net/merchant-tools
-- display portfolio's total invested dollar amount at the top of the graph
 
-- display names of the lists
+OK - write the names and percentages of the assets at the top
+- coin,timestamp index on spreads
+
+- let the intervals be selectable: 30 seconds, 5 mins, 2 hours, 1 day
+- display names and performances of the lists
     - "seckin's list, +20% since inception
        50% ETH ...
        ahmet's list, +15% since inception
        50% BTC ..."
+- hiveos-like payment-accepting functionality for individual portfolios. using https://www.coinpayments.net/merchant-tools
+- send 0.01 eth to test the payment functionality
+- display portfolio's total invested dollar amount at the top of the graph
+
+
 
 - a single aggregate pool that's managed on kraken that's the combination of all portfolios
 - make a distributable mac app
+- arayuzun takilmasi - async cekmek sonuclari
+- seedcamp
+- max'e yaz
+- distributable app:
+    https://fernandofreitasalves.com/distributing-python-apps-windows-desktops/
