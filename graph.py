@@ -162,7 +162,7 @@ class GraphFrame(wx.Frame):
         self.lst = wx.ListBox(self.panel, size = (220,-1), choices = distributions, style = wx.LB_SINGLE)
         self.Bind(wx.EVT_LISTBOX, self.onListBox, self.lst)
 
-        self.update_graph_button = wx.Button(self.panel, -1, "Update Graph")
+        self.update_graph_button = wx.Button(self.panel, -1, "View Graph")
         self.Bind(wx.EVT_BUTTON, self.on_update_graph_button, self.update_graph_button)
 
         self.modify_btc_text = wx.StaticText(self.panel, -1, label="BTC:", size = (35,20))
@@ -171,7 +171,7 @@ class GraphFrame(wx.Frame):
         self.modify_eth_input_box = wx.TextCtrl(self.panel,size = (30,20))
         self.modify_xrp_text = wx.StaticText(self.panel, -1, label="XRP:", size = (35,20))
         self.modify_xrp_input_box = wx.TextCtrl(self.panel,size = (30,20))
-        self.modify_distribution_button = wx.Button(self.panel, -1, "Modify Distribution")
+        self.modify_distribution_button = wx.Button(self.panel, -1, "Rebalance Portfolio")
         self.Bind(wx.EVT_BUTTON, self.on_modify_distribution_button, self.modify_distribution_button)
         
         self.hbox1 = wx.BoxSizer(wx.HORIZONTAL)
@@ -197,7 +197,7 @@ class GraphFrame(wx.Frame):
         self.eth_input_box = wx.TextCtrl(self.panel,size = (30,20))
         self.xrp_text = wx.StaticText(self.panel, -1, label="XRP:", size = (35,20))
         self.xrp_input_box = wx.TextCtrl(self.panel,size = (30,20))
-        self.add_distribution_button = wx.Button(self.panel, -1, "Add New Distribution")
+        self.add_distribution_button = wx.Button(self.panel, -1, "Add New Portfolio")
         self.Bind(wx.EVT_BUTTON, self.on_add_distribution_button, self.add_distribution_button)
         
         self.hbox2 = wx.BoxSizer(wx.HORIZONTAL)
@@ -253,12 +253,12 @@ class GraphFrame(wx.Frame):
         """
         print("self.data", self.data)
         if xmax_control_auto or self.xmax_control.is_auto():
-            xmax = len(self.data) if len(self.data) > 250 else 250
+            xmax = len(self.data) if len(self.data) > 75 else 75
         else:
             xmax = int(self.xmax_control.manual_value())
             
         if xmin_control_auto or self.xmin_control.is_auto():
-            xmin = xmax - 250
+            xmin = xmax - 75
         else:
             xmin = int(self.xmin_control.manual_value())
 
