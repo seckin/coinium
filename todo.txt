@@ -3,18 +3,18 @@ OK - add new distributions to the backend via rest api
 OK - put the new list creation to the bottom
 OK - put list modification functionality to the right of the listbox
 OK - make a distributable windows app - any app
+OK - subscription[userid, list id, amount in dollars invested, created at]
+OK - display the graph chosen from the list, update it every 5 seconds
+OK - buy the domain
+- write the names and percentages of the assets at the top
+- hiveos-like payment-accepting functionality for individual portfolios. using https://www.coinpayments.net/merchant-tools
+- display portfolio's total invested dollar amount at the top of the graph
 
 - display names of the lists
     - "seckin's list, +20% since inception
        50% ETH ...
        ahmet's list, +15% since inception
        50% BTC ..."
-OK - subscription[userid, list id, amount in dollars invested, created at]
-OK - display the graph chosen from the list, update it every 5 seconds
-OK - buy the domain
 
-- hiveos-like payment-accepting functionality for individual portfolios. using https://www.coinpayments.net/merchant-tools
-- display portfolio's total invested dollar amount at the top of the graph
 - a single aggregate pool that's managed on kraken that's the combination of all portfolios
-
 - make a distributable mac app
