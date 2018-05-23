@@ -46,6 +46,17 @@ tables:
 	) ENGINE=InnoDB;
 
 
+	CREATE TABLE IF NOT EXISTS Subscription (
+	  id INT(11) NOT NULL AUTO_INCREMENT,
+	  user_id INT(11) NOT NULL,
+	  list_id INT(11) NOT NULL,
+	  dollar_amount DOUBLE NOT NULL,
+	  timestamp INT(11) NOT NULL,
+	  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	  PRIMARY KEY (id)
+	) ENGINE=InnoDB;
+
+
 
 	INSERT INTO Lists (`name`) VALUES ("seckin's list");
 	INSERT INTO Distributions (`btc`,`eth`,`xrp`) VALUES (30, 30, 40);

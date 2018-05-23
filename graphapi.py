@@ -42,7 +42,7 @@ def hello():
 
             pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
             #pair_pcts = [0.30, 0.30, 0.40]
-            pair_pcts = [list_has_distributions[0]["btc"], list_has_distributions[0]["eth"], list_has_distributions[0]["xrp"]]
+            pair_pcts = [list_has_distributions[0]["btc"] / 100.0, list_has_distributions[0]["eth"] / 100.0, list_has_distributions[0]["xrp"] / 100.0]
             pair_first_vals = [-1, -1, -1]
             aggr_appreciation_in_pcts = []
             print("list['created_at']", list['created_at'])

@@ -9,9 +9,9 @@ OK - make a distributable windows app - any app
        50% ETH ...
        ahmet's list, +15% since inception
        50% BTC ..."
-- subscription[userid, list id, amount in dollars invested, created at]
+OK - subscription[userid, list id, amount in dollars invested, created at]
 OK - display the graph chosen from the list, update it every 5 seconds
-- buy the domain
+OK - buy the domain
 
 - hiveos-like payment-accepting functionality for individual portfolios. using https://www.coinpayments.net/merchant-tools
 - display portfolio's total invested dollar amount at the top of the graph
