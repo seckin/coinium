@@ -10,7 +10,7 @@ OK - make a distributable windows app - any app
        ahmet's list, +15% since inception
        50% BTC ..."
 - subscription[userid, list id, amount in dollars invested, created at]
-- display the graph chosen from the list, update it every 5 seconds
+OK - display the graph chosen from the list, update it every 5 seconds
 - buy the domain
 
 - hiveos-like payment-accepting functionality for individual portfolios. using https://www.coinpayments.net/merchant-tools

@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 import pymysql
 import pymysql.cursors
 import decimal
@@ -10,6 +11,7 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
     #return "<h1 style='color:blue'>Hello There!</h1>"
+    list_id = request.args.get('list_id')
     connection = pymysql.connect(host='localhost',
                                  user='root',
                                  password='co1n23im',
@@ -18,7 +20,7 @@ def hello():
                                  cursorclass=pymysql.cursors.DictCursor)
     try:
         with connection.cursor() as cursor:
-            list_id = 1
+            #list_id = 1
             sql = "SELECT * FROM Lists WHERE `id`=%s"
             # sql = "SELECT * FROM `ListHasDistribution` WHERE `list_id`=%s"
             cursor.execute(sql, (list_id,))
@@ -38,8 +40,9 @@ def hello():
             #    since = int(decimal.Decimal(time.time()))
             # since -= 30
 
-            pairs = ['XETHZUSD', 'XXRPZUSD','XXBTZUSD']
-            pair_pcts = [0.30, 0.30, 0.40]
+            pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
+            #pair_pcts = [0.30, 0.30, 0.40]
+            pair_pcts = [list_has_distributions[0]["btc"], list_has_distributions[0]["eth"], list_has_distributions[0]["xrp"]]
             pair_first_vals = [-1, -1, -1]
             aggr_appreciation_in_pcts = []
             print("list['created_at']", list['created_at'])
@@ -48,7 +51,7 @@ def hello():
             print("start_from_timestamp", start_from_timestamp)
 
             until = int(decimal.Decimal(time.time()))
-            iteration_time = 1527031271
+            iteration_time = 1527040683
             print("iteration_time", iteration_time)
             print("until", until)
             print("")
@@ -65,7 +68,7 @@ def hello():
 
                     j = len(spreads) - 1
                     while spreads[j]["timestamp"] > iteration_time:
-                        # print('spreads[j]["timestamp"]', spreads[j]["timestamp"], " iteration_time", iteration_time)
+                        print('spreads[j]["timestamp"]', spreads[j]["timestamp"], " iteration_time", iteration_time)
                         j -= 1
                     print("iteration_time", iteration_time)
                     print('found spread: spreads[j]["timestamp"] = ', spreads[j]["timestamp"])

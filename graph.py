@@ -14,18 +14,49 @@ pairs = []
 pair_pcts = []
 pair_first_vals = []
 
-f = open("./assets.txt", "r")
-while 1:
-    line = f.readline()
-    if len(line) == 0:
-        break
-    pair, pct = line.split(" ")
-    pairs.append(pair)
-    pair_pcts.append(float(pct))
-    pair_first_vals.append(-1)
+# f = open("./assets.txt", "r")
+# while 1:
+#     line = f.readline()
+#     if len(line) == 0:
+#         break
+#     pair, pct = line.split(" ")
+#     pairs.append(pair)
+#     pair_pcts.append(float(pct))
+#     pair_first_vals.append(-1)
 
-print("pairs", pairs)
-print("pair_pcts", pair_pcts)
+# start with this list id:
+global list_id
+list_id = 1
+
+def update_pair_distributions(list_id):
+    print("update_pair_distributions called")
+    headers = {'Content-Type': 'application/json'}
+    response = requests.get("http://104.131.139.250/api.php/ListHasDistribution?filter=list_id,eq," + str(list_id), headers=headers)
+    if response.status_code == 200:
+        list_has_distributions = json.loads(response.content.decode('utf-8'))
+    else:
+        list_has_distributions = None
+
+    # get the distribution id of the first distribution(of the list with id = list_id)
+    distribution_id = list_has_distributions["ListHasDistribution"]["records"][0][2]
+
+    headers = {'Content-Type': 'application/json'}
+    response = requests.get("http://104.131.139.250/api.php/Distributions?filter=id,eq," + str(distribution_id), headers=headers)
+    if response.status_code == 200:
+        distributions = json.loads(response.content.decode('utf-8'))
+    else:
+        distributions = None
+
+    distribution_record = distributions["Distributions"]["records"][0]
+    pair_pcts = [distribution_record[1] / 100.0, distribution_record[2] / 100.0, distribution_record[3] / 100.0]
+    pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
+    pair_first_vals = [-1, -1, -1]
+    print("pairs", pairs)
+    print("pair_pcts", pair_pcts)
+    print("")
+
+update_pair_distributions(list_id)
+
 # pairs = ['XETHZUSD', 'XXRPZUSD', 'XXBTZUSD']
 # pair_pcts = [0.5, 0.3, 0.2]
 # pair_first_vals = [-1, -1, -1]
@@ -59,28 +90,29 @@ class RateVisualizer(object):
     def _recalc_data(self):
         # delta = random.uniform(-0.5, 0.5)
         # r = random.random()
-        since = int(decimal.Decimal(time.time()))
-        since -= 250
-        print("since", since)
-        i = 0
-        aggr_last_mid_mkt = 0
-        for pair in pairs:
-            print("pair", pair)
-            ret = k.query_public('Spread', data = {'pair': pair, 'since': since})
-            print("ret", ret)
-            bid = float(ret['result'][pair][-1][1])
-            ask = float(ret['result'][pair][-1][2])
-            last_mid_mkt = (bid + ask) / 2
-            print("last_mid_mkt", last_mid_mkt)
-            if pair_first_vals[i] == -1:
-                pair_first_vals[i] = last_mid_mkt
-            last_mid_mkt = last_mid_mkt / pair_first_vals[i]
-            print("last_mid_mkt", last_mid_mkt)
-            print("")
-            aggr_last_mid_mkt += pair_pcts[i] * last_mid_mkt
-            i += 1
+        # since = int(decimal.Decimal(time.time()))
+        # since -= 250
+        # print("since", since)
+        # i = 0
+        # aggr_last_mid_mkt = 0
+        # for pair in pairs:
+        #     print("pair", pair)
+        #     ret = k.query_public('Spread', data = {'pair': pair, 'since': since})
+        #     print("ret", ret)
+        #     bid = float(ret['result'][pair][-1][1])
+        #     ask = float(ret['result'][pair][-1][2])
+        #     last_mid_mkt = (bid + ask) / 2
+        #     print("last_mid_mkt", last_mid_mkt)
+        #     if pair_first_vals[i] == -1:
+        #         pair_first_vals[i] = last_mid_mkt
+        #     last_mid_mkt = last_mid_mkt / pair_first_vals[i]
+        #     print("last_mid_mkt", last_mid_mkt)
+        #     print("")
+        #     aggr_last_mid_mkt += pair_pcts[i] * last_mid_mkt
+        #     i += 1
 
-        self.data = aggr_last_mid_mkt
+        # self.data = aggr_last_mid_mkt
+        pass
 
 class BoundControlBox(wx.Panel):
     """ A static box with a couple of radio buttons and a text
@@ -155,10 +187,18 @@ class GraphFrame(wx.Frame):
         #              'ETH: 30% BTC: 30% XRP: 40%']
         distributions = []
         for dist in val['Distributions']['records']:
-            strval = "BTC: " + str(dist[1]) + "% "
-            strval += "ETH: " + str(dist[2]) + "% "
-            strval += "XRP: " + str(dist[3]) + "%"
-            distributions.append(strval)
+            api_url = "http://104.131.139.250/api.php/ListHasDistribution?filter=distribution_id,eq," + str(dist[0])
+            response = requests.get(api_url, headers=headers)
+            if response.status_code == 200:
+                val = json.loads(response.content.decode('utf-8'))
+                print("val", val)
+            else:
+                val = None
+            if val and len(val["ListHasDistribution"]["records"]):
+                strval = "list#" + str(val["ListHasDistribution"]["records"][0][1]) + " BTC: " + str(dist[1]) + "% "
+                strval += "ETH: " + str(dist[2]) + "% "
+                strval += "XRP: " + str(dist[3]) + "%"
+                distributions.append(strval)
         self.lst = wx.ListBox(self.panel, size = (220,-1), choices = distributions, style = wx.LB_SINGLE)
         self.Bind(wx.EVT_LISTBOX, self.onListBox, self.lst)
 
@@ -302,10 +342,14 @@ class GraphFrame(wx.Frame):
          "+self.lst.GetStringSelection()+"\n")
     
     def onListBox(self, event):
+      global list_id
       print( "Current selection: \
          "+event.GetEventObject().GetStringSelection()+"\n")
       strval = event.GetEventObject().GetStringSelection()
       strs = strval.split(":")
+      list_id = int(strs[0].split("#")[1].split(" ")[0])
+      print("list_id updated to:", list_id)
+      update_pair_distributions(list_id)
       btc_pct = int(strs[1].split("%")[0])
       eth_pct = int(strs[2].split("%")[0])
       xrp_pct = int(strs[3].split("%")[0])
@@ -320,11 +364,6 @@ class GraphFrame(wx.Frame):
         if ethval + btcval + xrpval != 100:
             print(str(ethval + btcval + xrpval) + "doesn't add up to 100")
             return
-        strval = "BTC: " + str(btcval) + "% "
-        strval += "ETH: " + str(ethval) + "% "
-        strval += "XRP: " + str(xrpval) + "%"
-        print("adding new distribution:", strval)
-        self.lst.Append(strval)
         api_token = 'your_api_token'
         api_url_base = 'http://104.131.139.250/api.php/'
         headers = {'Content-Type': 'application/json',
@@ -333,7 +372,22 @@ class GraphFrame(wx.Frame):
         response = requests.post(api_url, headers=headers, data = {"btc":btcval, "xrp":xrpval, "eth":ethval})
         if response.status_code == 200:
             val = json.loads(response.content.decode('utf-8'))
-            print("server response:", val)
+            print("distribution creation server response:", val)
+            api_url = '{0}Lists'.format(api_url_base)
+            response = requests.post(api_url, headers=headers, data = {"name":"list with dist#" + str(val)})
+            if response.status_code == 200:
+                val2 = json.loads(response.content.decode('utf-8'))
+                print("list creation server response:", val2)
+                strval = "list#" + str(val2) + " BTC: " + str(btcval) + "% "
+                strval += "ETH: " + str(ethval) + "% "
+                strval += "XRP: " + str(xrpval) + "%"
+                print("adding new list to listbox:", strval)
+                self.lst.Append(strval)
+                api_url = '{0}ListHasDistribution'.format(api_url_base)
+                response = requests.post(api_url, headers=headers, data = {"list_id":val2, "distribution_id":val, "timestamp": int(time.time())})
+                if response.status_code == 200:
+                    val3 = json.loads(response.content.decode('utf-8'))
+                    print("ListHasDistribution creation server response:", val3)
         else:
             val = None
 
@@ -371,20 +425,23 @@ class GraphFrame(wx.Frame):
             self.flash_status_message("Saved to %s" % path)
     
     def on_redraw_timer(self, event):
+        global list_id
         # if paused do not add data, but still redraw the plot
         # (to respond to scale modifications, grid change, etc.)
         #
         # if not self.paused:
         #     #self.data.append(self.datagen.next())
         #     self.data.append(self.rate_visualizer.next())
-        
+
         headers = {'Content-Type': 'application/json'}
-        response = requests.get("http://104.131.139.250:5000/", headers=headers)
+        api_url = "http://104.131.139.250:5000/?list_id=" + str(list_id)
+        print("api_url:", api_url)
+        response = requests.get(api_url, headers=headers)
         if response.status_code == 200:
             graphvals = json.loads(response.content.decode('utf-8'))
         else:
             graphvals = None
-        
+
         self.data = []
         for val_and_timestamp in graphvals:
             self.data.append(val_and_timestamp[1])
