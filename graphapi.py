@@ -75,15 +75,8 @@ def hello():
                 i = 0
                 aggr_appreciation_in_pct = 0
                 for pair in pairs:
-                    print("pair", pair)
+                    # print("pair", pair)
 
-                    # sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
-                    # cursor.execute(sql, (pair, start_from_timestamp,))
-                    # spreads = cursor.fetchall()
-                    # print("for coin ", pair, " found ", len(spreads), " spreads")
-
-                    # j = len(spreads) - 1
-                    #spreads_idx_for_pair[pair] = len(spreads_for_pair[pair]) - 1
                     while spreads_idx_for_pair[pair] < len(spreads_for_pair[pair]) - 1 and spreads_for_pair[pair][spreads_idx_for_pair[pair]]["timestamp"] <= iteration_time:
                         spreads_idx_for_pair[pair] += 1
 
@@ -93,29 +86,26 @@ def hello():
                         spreads_idx_for_pair[pair] -= 1
 
                     j = spreads_idx_for_pair[pair]
-                    print("iteration_time", iteration_time)
-                    print('found spread: spreads[j]["timestamp"] = ', spreads_for_pair[pair][j]["timestamp"])
-                    print("spread:", spreads_for_pair[pair][j])
+                    # print("iteration_time", iteration_time)
+                    # print('found spread: spreads[j]["timestamp"] = ', spreads_for_pair[pair][j]["timestamp"])
+                    # print("spread:", spreads_for_pair[pair][j])
                     start_from_timestamp = spreads_for_pair[pair][j]["timestamp"]
-                    # start_from_timestamp -= 500 # hack: so that one coin doesn't make another coin fastforward
 
                     bid = float(spreads_for_pair[pair][j]["bestbid"])
                     ask = float(spreads_for_pair[pair][j]["bestask"])
                     last_mid_mkt = (bid + ask) / 2
-                    print("last_mid_mkt", last_mid_mkt)
+                    # print("last_mid_mkt", last_mid_mkt)
                     if pair_first_vals[i] == -1:
                         pair_first_vals[i] = last_mid_mkt
                     appreciation_in_pct = last_mid_mkt / pair_first_vals[i]
-                    print("appreciation_in_pct", appreciation_in_pct)
-                    print("")
+                    # print("appreciation_in_pct", appreciation_in_pct)
+                    # print("")
                     aggr_appreciation_in_pct += pair_pcts[i] * appreciation_in_pct
                     i += 1
                 aggr_appreciation_in_pcts.append([iteration_time, aggr_appreciation_in_pct])
                 iteration_time += interval_in_secs
 
             return str(aggr_appreciation_in_pcts)
-            # return str(list)
-            # return str(list) + str(list_has_distributions) + str(spreads)
     finally:
         connection.close()
 
