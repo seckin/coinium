@@ -10,6 +10,231 @@ import time
 import json
 import requests
 
+import urllib.request, urllib.parse, urllib.error
+import urllib.request, urllib.error, urllib.parse
+import hmac
+import hashlib
+import json
+from collections import namedtuple
+
+
+
+def _json_hook(d): 
+    aaa = namedtuple('X', list(d.keys()))(*list(d.values()))
+    # print("aaa", aaa)
+    return aaa
+
+def pObject(data): 
+    return json.loads(data.decode('utf-8'), object_hook=_json_hook).result
+
+
+class CryptoPayments():
+
+        
+    url = 'https://www.coinpayments.net/api.php'
+    
+
+    def __init__(self, publicKey, privateKey, ipn_url):
+        self.publicKey = publicKey
+        self.privateKey = privateKey
+        self.ipn_url = ipn_url
+        self.format = 'json'
+        self.version = 1
+
+    def createHmac(self, **params):
+        """ Generate an HMAC based upon the url arguments/parameters
+            
+            We generate the encoded url here and return it to Request because
+            the hmac on both sides depends upon the order of the parameters, any
+            change in the order and the hmacs wouldn't match
+        """
+        encoded = urllib.parse.urlencode(params).encode('utf-8')
+        return encoded, hmac.new(bytearray(self.privateKey, 'utf-8'), encoded, hashlib.sha512).hexdigest()
+
+    def Request(self, request_method, **params):
+        """The basic request that all API calls use
+
+            the parameters are joined in the actual api methods so the parameter
+            strings can be passed and merged inside those methods instead of the 
+            request method. The final encoded URL and HMAC are generated here
+        """
+        encoded, sig = self.createHmac(**params)
+
+        headers = {'hmac': sig}
+
+        if request_method == 'get':
+            req = urllib.request.Request(url, headers=headers)
+        elif request_method == 'post':
+            headers['Content-Type'] = 'application/x-www-form-urlencoded'
+            req = urllib.request.Request(self.url, data=encoded, headers=headers)
+
+        try:
+            response      = urllib.request.urlopen(req)
+            status_code   = response.getcode()
+            response_body = response.read()
+        except urllib.error.HTTPError as e:
+            status_code   = e.getcode()
+            response_body = e.read()
+
+        # print("response_body", response_body)
+        return pObject(response_body)
+
+
+
+    def createTransaction(self, params={}):
+        """ Creates a transaction to give to the purchaser
+            https://www.coinpayments.net/apidoc-create-transaction
+        """
+        params.update({'cmd':'create_transaction',
+                       'ipn_url':self.ipn_url,
+                       'key':self.publicKey,
+                       'version': self.version,
+                       'format': self.format}) 
+        return self.Request('post', **params)
+
+
+    
+    def getBasicInfo(self, params={}):
+        """Gets merchant info based on API key (callee)
+           https://www.coinpayments.net/apidoc-get-basic-info
+        """
+        params.update({'cmd':'get_basic_info',
+                       'key':self.publicKey,
+                       'version': self.version,
+                       'format': self.format})
+        return self.Request('post', **params)
+
+
+
+    def rates(self, params={}):
+        """Gets current rates for currencies
+           https://www.coinpayments.net/apidoc-rates 
+        """
+        params.update({'cmd':'rates',
+                       'key':self.publicKey,
+                       'version': self.version,
+                       'format': self.format})
+        return self.Request('post', **params)
+
+
+
+    def balances(self, params={}):
+        """Get current wallet balances
+            https://www.coinpayments.net/apidoc-balances
+        """
+        params.update({'cmd':'balances',
+                       'key':self.publicKey,
+                       'version': self.version,
+                       'format': self.format})
+        return self.Request('post', **params)
+
+
+    def getDepositAddress(self, params={}):
+        """Get address for personal deposit use
+           https://www.coinpayments.net/apidoc-get-deposit-address
+        """
+        params.update({'cmd':'get_deposit_address',
+                       'key':self.publicKey,
+                       'version': self.version,
+                       'format': self.format})
+        return self.Request('post', **params)
+
+
+    def getCallbackAddress(self, params={}):
+        """Get a callback address to recieve info about address status
+           https://www.coinpayments.net/apidoc-get-callback-address 
+        """
+        params.update({'cmd':'get_callback_address',
+                       'ipn_url':self.ipn_url,
+                       'key':self.publicKey,
+                       'version': self.version,
+                       'format': self.format})
+        return self.Request('post', **params)
+
+    def createTransfer(self, params={}):
+        """Not really sure why this function exists to be honest, it transfers
+            coins from your addresses to another account on coinpayments using
+            merchant ID
+           https://www.coinpayments.net/apidoc-create-transfer
+        """
+        params.update({'cmd':'create_transfer',
+                       'key':self.publicKey,
+                       'version': self.version,
+                       'format': self.format})
+        return self.Request('post', **params)
+
+    def createWithdrawal(self, params={}):
+        """Withdraw or masswithdraw(NOT RECOMMENDED) coins to a specified address,
+        optionally set a IPN when complete.
+            https://www.coinpayments.net/apidoc-create-withdrawal
+        """
+        params.update({'cmd':'create_withdrawal',
+                        'key':self.publicKey,
+                        'version': self.version,
+                        'format': self.format})
+        return self.Request('post', **params)
+
+
+    
+    def convertCoins(self, params={}):
+        """Convert your balances from one currency to another
+            https://www.coinpayments.net/apidoc-convert 
+        """
+        params.update({'cmd':'convert',
+                        'key':self.publicKey,
+                        'version': self.version,
+                        'format': self.format})
+        return self.Request('post', **params)
+
+    def getWithdrawalHistory(self, params={}):
+        """Get list of recent withdrawals (1-100max)
+            https://www.coinpayments.net/apidoc-get-withdrawal-history 
+        """
+        params.update({'cmd':'get_withdrawal_history',
+                        'key':self.publicKey,
+                        'version': self.version,
+                        'format': self.format})
+        return self.Request('post', **params)
+
+    def getWithdrawalInfo(self, params={}):
+        """Get information about a specific withdrawal based on withdrawal ID
+            https://www.coinpayments.net/apidoc-get-withdrawal-info
+        """
+        params.update({'cmd':'get_withdrawal_info',
+                        'key':self.publicKey,
+                        'version': self.version,
+                        'format': self.format})
+        return self.Request('post', **params)
+
+
+    def getConversionInfo(self, params={}):
+        """Get information about a specific withdrawal based on withdrawal ID
+            https://www.coinpayments.net/apidoc-get-conversion-info
+        """
+        params.update({'cmd':'get_conversion_info',
+                        'key':self.publicKey,
+                        'version': self.version,
+                        'format': self.format})
+        return self.Request('post', **params)
+
+
+
+
+    def validate_mac(uuid, price, currency, test_hash):
+        to_check = YOUR_API_KEY + '_' + uuid + '_' + str(int(price*100)) + currency
+        computed_hash = hashlib.sha256(to_check).hexdigest()
+        return (computed_hash == test_hash)
+
+
+
+
+
+
+
+
+
+
+
 global app, pairs, pair_pcts, pair_first_vals
 
 pairs = []
@@ -202,6 +427,11 @@ class GraphFrame(wx.Frame):
         self.modify_distribution_button = wx.Button(self.panel, -1, "Rebalance Portfolio")
         self.Bind(wx.EVT_BUTTON, self.on_modify_distribution_button, self.modify_distribution_button)
 
+        self.add_usd_label = wx.StaticText(self.panel, -1, label="Add $:", size = (35,20))
+        self.add_usd_input_box = wx.TextCtrl(self.panel,size = (30,20))
+        self.add_usd_button = wx.Button(self.panel, -1, "Checkout")
+        self.Bind(wx.EVT_BUTTON, self.on_add_usd_button, self.add_usd_button)
+        
         self.interval_choice_text = wx.StaticText(self.panel, -1, label="Interval:", size = (55,20))
         self.choice = wx.Choice(self.panel,choices = ["30 secs", "5 mins", "2 hours", "1 day"])
         self.choice.Bind(wx.EVT_CHOICE, self.OnChoice)
@@ -249,11 +479,20 @@ class GraphFrame(wx.Frame):
         self.hbox2.AddSpacer(5)
         self.hbox2.Add(self.add_distribution_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox2.AddSpacer(24)
+
+        self.hbox3 = wx.BoxSizer(wx.HORIZONTAL)
+        self.hbox3.Add(self.add_usd_label, border=5, flag=wx.ALL | wx.ALIGN_TOP)
+        self.hbox3.AddSpacer(2)
+        self.hbox3.Add(self.add_usd_input_box, border=5, flag=wx.ALL | wx.ALIGN_TOP)
+        self.hbox3.AddSpacer(2)
+        self.hbox3.Add(self.add_usd_button, border=5, flag=wx.ALL | wx.ALIGN_TOP)
+        self.hbox3.AddSpacer(2)
         
         self.vbox = wx.BoxSizer(wx.VERTICAL)
         self.vbox.Add(self.canvas, 1, flag=wx.LEFT | wx.TOP | wx.GROW)        
         self.vbox.Add(self.hbox1, 0, flag=wx.ALIGN_LEFT | wx.TOP)
         self.vbox.Add(self.hbox2, 0, flag=wx.ALIGN_LEFT | wx.TOP)
+        self.vbox.Add(self.hbox3, 0, flag=wx.ALIGN_RIGHT | wx.TOP)
         
         self.panel.SetSizer(self.vbox)
         self.vbox.Fit(self)
@@ -444,6 +683,30 @@ class GraphFrame(wx.Frame):
                 strval += "XRP: " + str(xrpval) + "%"
                 print("updating distribution to:", strval)
                 self.lst.SetString(i, strval)
+
+    def on_add_usd_button(self, event):
+        dollar_val = int(self.add_usd_input_box.GetValue())
+
+        API_KEY     = '27a57faea6cd75f262aca37e0d73b5f3aa48782e090d3af34e0fcf635e10520a'
+        API_SECRET  = '23bEc67d3690Ed1d03813a47D21aFe3283163a598986c604612F5A7616F84232'
+        IPN_URL = 'http://104.131.139.250:5000/?list_id='
+
+        ## Parameters for your call, these are defined in the CoinPayments API Docs
+        ## https://www.coinpayments.net/apidoc
+        post_params = {
+            'amount' : dollar_val,
+            'currency1' : 'USD',
+            'currency2' : 'BTC'
+        }
+
+        client = CryptoPayments(API_KEY, API_SECRET, IPN_URL)
+
+        transaction = client.createTransaction(post_params)
+
+        print("transaction", transaction)
+        #Prints out transaction details
+        print("transaction.amount", transaction.amount)
+        print("transaction.address", transaction.address)
 
     def on_save_plot(self, event):
         file_choices = "PNG (*.png)|*.png"
