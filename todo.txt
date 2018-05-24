@@ -20,7 +20,7 @@ OK - write the names and percentages of the assets at the top
 - send 0.01 eth to test the payment functionality
 - display portfolio's total invested dollar amount at the top of the graph
 
-
+- ozan'a: sf'teysen ziyaretinize gelmek isterim
 
 - a single aggregate pool that's managed on kraken that's the combination of all portfolios
 - make a distributable mac app

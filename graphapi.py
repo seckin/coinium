@@ -57,33 +57,50 @@ def hello():
             print("start_from_timestamp", start_from_timestamp)
 
             until = int(decimal.Decimal(time.time()))
-            iteration_time = 1527116686
+            iteration_time = 1527016686
             print("iteration_time", iteration_time)
             print("until", until)
             print("")
+
+            spreads_for_pair = dict()
+            spreads_idx_for_pair = dict()
+            for pair in pairs:
+                sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
+                cursor.execute(sql, (pair, start_from_timestamp,))
+                spreads = cursor.fetchall()
+                spreads_for_pair[pair] = spreads
+                spreads_idx_for_pair[pair] = len(spreads) - 1
+                print("for coin ", pair, " found ", len(spreads), " spreads")
             while iteration_time < until:
                 i = 0
                 aggr_appreciation_in_pct = 0
                 for pair in pairs:
                     print("pair", pair)
 
-                    sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
-                    cursor.execute(sql, (pair, start_from_timestamp,))
-                    spreads = cursor.fetchall()
-                    print("for coin ", pair, " found ", len(spreads), " spreads")
+                    # sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
+                    # cursor.execute(sql, (pair, start_from_timestamp,))
+                    # spreads = cursor.fetchall()
+                    # print("for coin ", pair, " found ", len(spreads), " spreads")
 
-                    j = len(spreads) - 1
-                    while spreads[j]["timestamp"] > iteration_time:
+                    # j = len(spreads) - 1
+                    #spreads_idx_for_pair[pair] = len(spreads_for_pair[pair]) - 1
+                    while spreads_idx_for_pair[pair] < len(spreads_for_pair[pair]) - 1 and spreads_for_pair[pair][spreads_idx_for_pair[pair]]["timestamp"] <= iteration_time:
+                        spreads_idx_for_pair[pair] += 1
+
+                    while spreads_idx_for_pair[pair] > 0 and spreads_for_pair[pair][spreads_idx_for_pair[pair]]["timestamp"] > iteration_time:
                         # print('spreads[j]["timestamp"]', spreads[j]["timestamp"], " iteration_time", iteration_time)
-                        j -= 1
-                    print("iteration_time", iteration_time)
-                    print('found spread: spreads[j]["timestamp"] = ', spreads[j]["timestamp"])
-                    print("spread:", spreads[j])
-                    start_from_timestamp = spreads[j]["timestamp"]
-                    start_from_timestamp -= 500 # hack: so that one coin doesn't make another coin fastforward
+                        # j -= 1
+                        spreads_idx_for_pair[pair] -= 1
 
-                    bid = float(spreads[j]["bestbid"])
-                    ask = float(spreads[j]["bestask"])
+                    j = spreads_idx_for_pair[pair]
+                    print("iteration_time", iteration_time)
+                    print('found spread: spreads[j]["timestamp"] = ', spreads_for_pair[pair][j]["timestamp"])
+                    print("spread:", spreads_for_pair[pair][j])
+                    start_from_timestamp = spreads_for_pair[pair][j]["timestamp"]
+                    # start_from_timestamp -= 500 # hack: so that one coin doesn't make another coin fastforward
+
+                    bid = float(spreads_for_pair[pair][j]["bestbid"])
+                    ask = float(spreads_for_pair[pair][j]["bestask"])
                     last_mid_mkt = (bid + ask) / 2
                     print("last_mid_mkt", last_mid_mkt)
                     if pair_first_vals[i] == -1:
