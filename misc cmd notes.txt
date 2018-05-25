@@ -53,10 +53,11 @@ tables:
 	  dollar_amount DOUBLE NOT NULL,
 	  timestamp INT(11) NOT NULL,
 	  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	  approved INT(5),
 	  PRIMARY KEY (id)
 	) ENGINE=InnoDB;
 
-
+	ALTER TABLE Subscription ADD COLUMN approved INT(5) AFTER timestamp;
 
 	INSERT INTO Lists (`name`) VALUES ("seckin's list");
 	INSERT INTO Distributions (`btc`,`eth`,`xrp`) VALUES (30, 30, 40);

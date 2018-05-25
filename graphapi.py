@@ -57,7 +57,7 @@ def hello():
             print("start_from_timestamp", start_from_timestamp)
 
             until = int(decimal.Decimal(time.time()))
-            iteration_time = 1527016686
+            iteration_time = 1527288373
             print("iteration_time", iteration_time)
             print("until", until)
             print("")
@@ -66,7 +66,7 @@ def hello():
             spreads_idx_for_pair = dict()
             for pair in pairs:
                 sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
-                cursor.execute(sql, (pair, start_from_timestamp,))
+                cursor.execute(sql, (pair, max(start_from_timestamp, iteration_time - 100),))
                 spreads = cursor.fetchall()
                 spreads_for_pair[pair] = spreads
                 spreads_idx_for_pair[pair] = len(spreads) - 1

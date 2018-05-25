@@ -362,8 +362,8 @@ class GraphFrame(wx.Frame):
         self.create_main_panel()
         
         self.redraw_timer = wx.Timer(self)
-        self.Bind(wx.EVT_TIMER, self.on_redraw_timer, self.redraw_timer)        
-        self.redraw_timer.Start(5000)
+        self.Bind(wx.EVT_TIMER, self.on_redraw_timer, self.redraw_timer)
+        self.redraw_timer.Start(1000)
 
     def create_menu(self):
         self.menubar = wx.MenuBar()
@@ -698,31 +698,48 @@ class GraphFrame(wx.Frame):
                 self.lst.SetString(i, strval)
 
     def on_add_usd_button(self, event):
-        dollar_val = int(self.add_usd_input_box.GetValue())
+        # dollar_val = int(self.add_usd_input_box.GetValue())
 
-        API_KEY     = '27a57faea6cd75f262aca37e0d73b5f3aa48782e090d3af34e0fcf635e10520a'
-        API_SECRET  = '23bEc67d3690Ed1d03813a47D21aFe3283163a598986c604612F5A7616F84232'
-        IPN_URL = 'http://104.131.139.250:5000/?list_id='
+        # API_KEY     = '27a57faea6cd75f262aca37e0d73b5f3aa48782e090d3af34e0fcf635e10520a'
+        # API_SECRET  = '23bEc67d3690Ed1d03813a47D21aFe3283163a598986c604612F5A7616F84232'
+        # IPN_URL = 'http://104.131.139.250:5000/?list_id='
 
-        ## Parameters for your call, these are defined in the CoinPayments API Docs
-        ## https://www.coinpayments.net/apidoc
-        post_params = {
-            'amount' : dollar_val,
-            'currency1' : 'USD',
-            'currency2' : 'BTC'
-        }
+        # ## Parameters for your call, these are defined in the CoinPayments API Docs
+        # ## https://www.coinpayments.net/apidoc
+        # post_params = {
+        #     'amount' : dollar_val,
+        #     'currency1' : 'USD',
+        #     'currency2' : 'BTC'
+        # }
 
-        client = CryptoPayments(API_KEY, API_SECRET, IPN_URL)
+        # client = CryptoPayments(API_KEY, API_SECRET, IPN_URL)
 
-        transaction = client.createTransaction(post_params)
+        # transaction = client.createTransaction(post_params)
 
-        print("transaction", transaction)
-        #Prints out transaction details
-        print("transaction.amount", transaction.amount)
-        print("transaction.address", transaction.address)
+        # print("transaction", transaction)
+        # #Prints out transaction details
+        # print("transaction.amount", transaction.amount)
+        # print("transaction.address", transaction.address)
+
+        api_token = 'your_api_token'
+        api_url_base = 'http://104.131.139.250/api.php/'
+        headers = {'Content-Type': 'application/json',
+                   'Authorization': 'Bearer {0}'.format(api_token)}
+        api_url = '{0}Subscription'.format(api_url_base)
+        response = requests.post(api_url, headers=headers, data = {"list_id":list_id, "user_id":1, "dollar_amount":float(self.add_usd_input_box.GetValue()), "timestamp": int(time.time()), "approved": 0})
+        if response.status_code == 200:
+            subscription_val = json.loads(response.content.decode('utf-8'))
+        else:
+            subscription_val = None
 
         dialog = MyBrowser(None, -1)
-        dialog.browser.LoadURL("https://www.coinpayments.net/index.php?cmd=_pay&reset=1&merchant=e3e3958eff15be8c85dcbe83c3803da4&item_name=desc&invoice=123&currency=USD&amountf=10.00000000&quantity=1&allow_quantity=0&want_shipping=0&allow_extra=0&")
+        item_name = urllib.parse.quote("Fund for Coinium Account. Invoice #" + str(subscription_val))
+        dollar_amount = str(float(self.add_usd_input_box.GetValue()))
+        # invoice_name = str(123)
+        invoice_name = urllib.parse.quote("Coinium Invoice #" + str(subscription_val))
+        link = "https://www.coinpayments.net/index.php?cmd=_pay&reset=1&merchant=e3e3958eff15be8c85dcbe83c3803da4&item_name=" + item_name + "&invoice=" + invoice_name + "&currency=USD&amountf=" + dollar_amount + "&quantity=1&allow_quantity=0&want_shipping=0&allow_extra=0&"
+        print("link", link)
+        dialog.browser.LoadURL(link)
         dialog.Show()
 
     def on_save_plot(self, event):
