@@ -10,57 +10,18 @@ import time
 import json
 import requests
 
-
-
-
-import wx
 import wx.html
 import webbrowser
 import wx.html2
 
-
-class MyBrowser(wx.Dialog): 
-  def __init__(self, *args, **kwds): 
-    wx.Dialog.__init__(self, *args, **kwds) 
-    sizer = wx.BoxSizer(wx.VERTICAL) 
-    self.browser = wx.html2.WebView.New(self) 
-    sizer.Add(self.browser, 1, wx.EXPAND, 10) 
-    self.SetSizer(sizer) 
-    self.SetSize((700, 700)) 
-
-
-class HtmlPopupTransientWindow(wx.PopupTransientWindow):
-    def __init__(self, parent, style, html_body_content, bgcolor, size):
-        wx.PopupTransientWindow.__init__(self, parent, style)
-        panel = wx.Panel(self)
-        panel.SetBackgroundColour(bgcolor)
-
-        html_window = self.HtmlWindow(panel, wx.ID_ANY, size=size)
-        html_window.SetPage('<body bgcolor="' + bgcolor + '">' + html_body_content + '</body>')
-        print("html_body_content", html_body_content)
-
-        link = "https://www.coinpayments.net/index.php?cmd=_pay&reset=1&merchant=e3e3958eff15be8c85dcbe83c3803da4&item_name=desc&invoice=123&currency=USD&amountf=10.00000000&quantity=1&allow_quantity=0&want_shipping=0&allow_extra=0&"
-        print("link", link)
-        webview = wx.html2.WebView.New()
-        webview.LoadURL(link)
-
-        sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer.Add(html_window, 0, wx.ALL, 5)
-        panel.SetSizer(sizer)
-
-        sizer.Fit(panel)
-        sizer.Fit(self)
-        self.Layout()
-
-    class HtmlWindow(wx.html.HtmlWindow):
-        def OnLinkClicked(self, link):
-            # get a hold of the PopupTransientWindow to close it
-            self.GetParent().GetParent().Dismiss()
-            # webbrowser.open(link.GetHref())
-            
-
-
-
+class MyBrowser(wx.Dialog):
+  def __init__(self, *args, **kwds):
+    wx.Dialog.__init__(self, *args, **kwds)
+    sizer = wx.BoxSizer(wx.VERTICAL)
+    self.browser = wx.html2.WebView.New(self)
+    sizer.Add(self.browser, 1, wx.EXPAND, 10)
+    self.SetSizer(sizer)
+    self.SetSize((700, 700))
 
 
 import urllib.request, urllib.parse, urllib.error
@@ -760,11 +721,6 @@ class GraphFrame(wx.Frame):
         print("transaction.amount", transaction.amount)
         print("transaction.address", transaction.address)
 
-        htmlbody = "<a href='https://www.coinpayments.net/index.php?cmd=_pay&reset=1&merchant=e3e3958eff15be8c85dcbe83c3803da4&item_name=desc&invoice=123&currency=USD&amountf=10.00000000&quantity=1&allow_quantity=0&want_shipping=0&allow_extra=0&'>purchase link</a>"
-        # html = wx.html.HtmlWindow(self.panel)
-        # html.LoadPage(htmlbody)
-        # html_tr_window = HtmlPopupTransientWindow(self.panel, wx.BORDER_NONE, htmlbody, "orange", (600, 600))
-        # html_tr_window.Popup()
         dialog = MyBrowser(None, -1)
         dialog.browser.LoadURL("https://www.coinpayments.net/index.php?cmd=_pay&reset=1&merchant=e3e3958eff15be8c85dcbe83c3803da4&item_name=desc&invoice=123&currency=USD&amountf=10.00000000&quantity=1&allow_quantity=0&want_shipping=0&allow_extra=0&")
         dialog.Show()
@@ -842,6 +798,3 @@ if __name__ == '__main__':
     app.frame.Show()
     app.frame.SetSize((1000, 800))
     app.MainLoop()
-    # update_pair_distributions(list_id)
-    # window = HtmlPopupTransientWindow()
-
