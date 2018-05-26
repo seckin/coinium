@@ -11,9 +11,19 @@ Usage:
 #ez_setup.use_setuptools()
 
 from setuptools import setup
+APP_NAME = "Coinium"
 OPTIONS = {
     'argv_emulation': True,
-    'iconfile': 'coinium.icns'
+    'iconfile': '/Users/seckin/coinium/admin/coinium',
+    'plist': {
+        'CFBundleName': APP_NAME,
+        'CFBundleDisplayName': APP_NAME,
+        'CFBundleGetInfoString': "Coinium Portfolio Management",
+        'CFBundleIdentifier': "app.coinium.osx.coinium",
+        'CFBundleVersion': "0.1.0",
+        'CFBundleShortVersionString': "0.1.0",
+        'NSHumanReadableCopyright': u"Copyright © 2018, Seckin Can Sahin, All Rights Reserved"
+    }
 }
 setup(
     app=["graph.py"],
