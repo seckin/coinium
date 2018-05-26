@@ -59,11 +59,11 @@ xmax_control_auto = True
 class RateVisualizer(object):
     def __init__(self, init=-1):
         self.data = self.init = init
-        
+
     def next(self):
         self._recalc_data()
         return self.data
-    
+
     def _recalc_data(self):
         pass
 
@@ -74,12 +74,12 @@ class BoundControlBox(wx.Panel):
     """
     def __init__(self, parent, ID, label, initval):
         wx.Panel.__init__(self, parent, ID)
-        
+
         self.value = initval
-        
+
         box = wx.StaticBox(self, -1, label)
         sizer = wx.StaticBoxSizer(box, wx.VERTICAL)
-        
+
         self.SetSizer(sizer)
         sizer.Fit(self)
 
@@ -87,35 +87,35 @@ class GraphFrame(wx.Frame):
     """ The main frame of the application
     """
     title = 'Demo coinium'
-    
+
     def __init__(self):
         wx.Frame.__init__(self, None, -1, self.title, pos = wx.Point(50,50))#size = wx.Size(200, 200))
 
         self.modify_boxes_visible = False
         self.add_boxes_visible = False
-        
+
         self.rate_visualizer = RateVisualizer()
         self.data = [self.rate_visualizer.next()]
         self.paused = False
-        
+
         self.create_menu()
         self.create_status_bar()
         self.create_main_panel()
-        
+
         self.redraw_timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.on_redraw_timer, self.redraw_timer)
         self.redraw_timer.Start(2500)
 
     def create_menu(self):
         self.menubar = wx.MenuBar()
-        
+
         menu_file = wx.Menu()
         m_expt = menu_file.Append(-1, "&Save plot\tCtrl-S", "Save plot to file")
         self.Bind(wx.EVT_MENU, self.on_save_plot, m_expt)
         menu_file.AppendSeparator()
         m_exit = menu_file.Append(-1, "E&xit\tCtrl-X", "Exit")
         self.Bind(wx.EVT_MENU, self.on_exit, m_exit)
-                
+
         self.menubar.Append(menu_file, "&File")
         self.SetMenuBar(self.menubar)
 
@@ -142,9 +142,7 @@ class GraphFrame(wx.Frame):
         tmp_pair_pcts = [first_dist[1] / 100.0, first_dist[2] / 100.0, first_dist[3] / 100.0]
         tmp_pairs = ["XXBTZUSD", "XETHZUSD", "XXRPZUSD"]
         title_str = ""
-        print("here11")
         for i in range(len(tmp_pairs)):
-            print("here12")
             title_str += str(tmp_pairs[i]) + ": " + str(tmp_pair_pcts[i] * 100) + "%, "
         self.axes.set_title(title_str, size=12)
 
@@ -152,11 +150,7 @@ class GraphFrame(wx.Frame):
             verticalalignment='bottom', horizontalalignment='right',
             transform=self.axes.transAxes,
             color='lightblue', fontsize=13)
-        print("here13", title_str)
 
-        # distributions = ['ETH: 50% BTC: 50% XRP: 0%', \
-        #              'ETH: 20% BTC: 20% XRP: 60%', \
-        #              'ETH: 30% BTC: 30% XRP: 40%']
         distributions = []
         for dist in val['Distributions']['records']:
             api_url = "http://104.131.139.250/api.php/ListHasDistribution?filter=distribution_id,eq," + str(dist[0])
@@ -192,7 +186,7 @@ class GraphFrame(wx.Frame):
         self.add_usd_input_box = wx.TextCtrl(self.panel,size = (30,20))
         self.add_usd_button = wx.Button(self.panel, -1, "Checkout")
         self.Bind(wx.EVT_BUTTON, self.on_add_usd_button, self.add_usd_button)
-        
+
         self.interval_choice_text = wx.StaticText(self.panel, -1, label="Interval:", size = (55,20))
         self.choice = wx.Choice(self.panel,choices = ["30 secs", "5 mins", "2 hours", "1 day"])
         self.choice.Bind(wx.EVT_CHOICE, self.OnChoice)
@@ -201,7 +195,7 @@ class GraphFrame(wx.Frame):
         self.hbox0.Add(self.interval_choice_text, border=5, flag=wx.ALL | wx.ALIGN_TOP | wx.ALIGN_RIGHT)
         self.hbox0.AddSpacer(2)
         self.hbox0.Add(self.choice, border=5, flag=wx.ALL | wx.ALIGN_TOP)
-        
+
         self.hbox1 = wx.BoxSizer(wx.HORIZONTAL)
         self.hbox1.Add(self.lst, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(15)
@@ -230,7 +224,7 @@ class GraphFrame(wx.Frame):
         self.modify_xrp_text.Hide()
         self.submit_distribution_modification_button.Hide()
         self.cancel_distribution_modification_button.Hide()
-        
+
         self.btc_text = wx.StaticText(self.panel, -1, label="BTC:", size = (35,20))
         self.btc_input_box = wx.TextCtrl(self.panel,size = (30,20))
         self.eth_text = wx.StaticText(self.panel, -1, label="ETH:", size = (35,20))
@@ -251,7 +245,7 @@ class GraphFrame(wx.Frame):
         self.xrp_text.Hide()
         self.submit_new_distribution_button.Hide()
         self.cancel_new_distribution_button.Hide()
-        
+
         self.hbox2 = wx.BoxSizer(wx.HORIZONTAL)
         self.hbox2.Add(self.btc_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox2.AddSpacer(2)
@@ -277,18 +271,18 @@ class GraphFrame(wx.Frame):
         self.hbox3.AddSpacer(2)
         self.hbox3.Add(self.add_usd_button, border=5, flag=wx.ALL | wx.ALIGN_TOP)
         self.hbox3.AddSpacer(2)
-        
+
         self.vbox = wx.BoxSizer(wx.VERTICAL)
-        self.vbox.Add(self.canvas, 1, flag=wx.LEFT | wx.TOP | wx.GROW)        
+        self.vbox.Add(self.canvas, 1, flag=wx.LEFT | wx.TOP | wx.GROW)
         self.vbox.Add(self.hbox0, 0, flag=wx.ALIGN_RIGHT | wx.TOP)
         self.vbox.Add(self.hbox1, 0, flag=wx.ALIGN_LEFT | wx.TOP)
         self.vbox.Add(self.hbox2, 0, flag=wx.ALIGN_LEFT | wx.TOP)
         self.vbox.Add(self.hbox3, 0, flag=wx.ALIGN_RIGHT | wx.TOP)
-        
+
         self.panel.SetSizer(self.vbox)
         self.vbox.Fit(self)
         self.vbox.Layout()
-    
+
     def create_status_bar(self):
         self.statusbar = self.CreateStatusBar()
 
@@ -303,7 +297,7 @@ class GraphFrame(wx.Frame):
         for i in range(len(pairs)):
             title_str += str(pairs[i]) + ": " + str(pair_pcts[i] * 100) + "%, "
         self.axes.set_title(title_str, size=12)
-        
+
         pylab.setp(self.axes.get_xticklabels(), fontsize=8)
         pylab.setp(self.axes.get_yticklabels(), fontsize=8)
 
@@ -324,7 +318,7 @@ class GraphFrame(wx.Frame):
             xmax = len(self.data) if len(self.data) > 75 else 75
         else:
             xmax = int(self.xmax_control.manual_value())
-            
+
         if xmin_control_auto or self.xmin_control.is_auto():
             xmin = xmax - 75
         else:
@@ -334,7 +328,7 @@ class GraphFrame(wx.Frame):
             ymin = min(self.data) * (1.0 - 0.0004) #- (max(self.data) - 1.0) * 2
         else:
             ymin = int(self.ymin_control.manual_value())
-        
+
         if ymax_control_auto or self.ymax_control.is_auto():
             ymax = max(self.data) * (1.0 + 0.0004) #+ (max(self.data) - 1.0) * 2
         else:
@@ -342,7 +336,7 @@ class GraphFrame(wx.Frame):
 
         self.axes.set_xbound(lower=xmin, upper=xmax)
         self.axes.set_ybound(lower=ymin, upper=ymax)
-        
+
         # anecdote: axes.grid assumes b=True if any other flag is
         # given even if b is set to False.
         # so just passing the flag into the first statement won't
@@ -364,17 +358,15 @@ class GraphFrame(wx.Frame):
         #  
         pylab.setp(self.axes.get_xticklabels(), 
             visible=True)
-        
+
         self.plot_data.set_xdata(np.arange(len(self.data)))
         self.plot_data.set_ydata(np.array(self.data))
-        
+
         self.canvas.draw()
 
     def onListBoxUnfocused(self, event):
         print("onListBoxUnfocused")
         focused_elem = wx.Window.FindFocus()
-        print("focused_elem", focused_elem)
-        print("self.lst", self.lst)
         if focused_elem != self.lst and \
            focused_elem != self.modify_eth_input_box and \
            focused_elem != self.modify_btc_input_box and \
@@ -423,7 +415,7 @@ class GraphFrame(wx.Frame):
         print("pairs", pairs)
         print("pair_pcts", pair_pcts)
         print("")
-    
+
     def onListBox(self, event):
         global list_id
         global app, pairs, pair_pcts, pair_first_vals
@@ -442,11 +434,8 @@ class GraphFrame(wx.Frame):
         print("list_id updated to:", list_id)
         self.update_pair_distributions(list_id)
         title_str = ""
-        print("here1")
         for i in range(len(pairs)):
-            print("here2")
             title_str += str(pairs[i]) + ": " + str(pair_pcts[i] * 100) + "%, "
-        print("here3", title_str)
         self.axes.set_title(title_str, size=12)
         btc_pct = int(strs[1].split("%")[0])
         eth_pct = int(strs[2].split("%")[0])
@@ -642,7 +631,7 @@ class GraphFrame(wx.Frame):
 
     def on_save_plot(self, event):
         file_choices = "PNG (*.png)|*.png"
-        
+
         dlg = wx.FileDialog(
             self, 
             message="Save plot as...",
@@ -650,12 +639,12 @@ class GraphFrame(wx.Frame):
             defaultFile="coinium plot.png",
             wildcard=file_choices,
             style=wx.FD_SAVE)
-        
+
         if dlg.ShowModal() == wx.ID_OK:
             path = dlg.GetPath()
             self.canvas.print_figure(path, dpi=self.dpi)
             self.flash_status_message("Saved to %s" % path)
-    
+
     def on_redraw_timer(self, event):
         global list_id
         # if paused do not add data, but still redraw the plot
@@ -690,10 +679,10 @@ class GraphFrame(wx.Frame):
         print("displaying ", len(self.data), " values")
 
         self.draw_plot()
-    
+
     def on_exit(self, event):
         self.Destroy()
-    
+
     def flash_status_message(self, msg, flash_len_ms=1500):
         self.statusbar.SetStatusText(msg)
         self.timeroff = wx.Timer(self)
@@ -702,7 +691,7 @@ class GraphFrame(wx.Frame):
             self.on_flash_status_off, 
             self.timeroff)
         self.timeroff.Start(flash_len_ms, oneShot=True)
-    
+
     def on_flash_status_off(self, event):
         self.statusbar.SetStatusText('')
 
