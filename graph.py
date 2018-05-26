@@ -103,7 +103,7 @@ class GraphFrame(wx.Frame):
         
         self.redraw_timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.on_redraw_timer, self.redraw_timer)
-        self.redraw_timer.Start(1000)
+        self.redraw_timer.Start(2500)
 
     def create_menu(self):
         self.menubar = wx.MenuBar()
