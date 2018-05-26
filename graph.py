@@ -353,6 +353,11 @@ class GraphFrame(wx.Frame):
         else:
             self.axes.grid(False)
 
+        print("calling annotate")
+        self.axes.annotate('annotate', xy=(1, 1.0), xytext=(40, 1.0), arrowprops=dict(facecolor='black', shrink=0.05))
+        self.axes.text(2, 1, r'an equation: $E=mc^2$', fontsize=15)
+
+
         # Using setp here is convenient, because get_xticklabels
         # returns a list over which one needs to explicitly 
         # iterate, and setp already handles this.
