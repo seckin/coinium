@@ -183,10 +183,10 @@ class GraphFrame(wx.Frame):
             title_str += str(tmp_pairs[i]) + ": " + str(tmp_pair_pcts[i] * 100) + "%, "
         self.axes.set_title(title_str, size=12)
 
-        self.axes.text(0.98, 0.03, 'by http://coinium.app',
+        self.axes.text(0.64, 0.03, 'by http://coinium.app',
             verticalalignment='bottom', horizontalalignment='right',
             transform=self.axes.transAxes,
-            color='white', fontsize=13)
+            color='lightblue', fontsize=13)
         print("here13", title_str)
 
         # distributions = ['ETH: 50% BTC: 50% XRP: 0%', \
@@ -213,11 +213,11 @@ class GraphFrame(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.on_update_graph_button, self.update_graph_button)
 
         self.modify_btc_text = wx.StaticText(self.panel, -1, label="BTC:", size = (35,20))
-        self.modify_btc_input_box = wx.TextCtrl(self.panel,size = (30,20))
+        self.modify_btc_input_box = wx.TextCtrl(self.panel,size = (40,20))
         self.modify_eth_text = wx.StaticText(self.panel, -1, label="ETH:", size = (35,20))
-        self.modify_eth_input_box = wx.TextCtrl(self.panel,size = (30,20))
+        self.modify_eth_input_box = wx.TextCtrl(self.panel,size = (40,20))
         self.modify_xrp_text = wx.StaticText(self.panel, -1, label="XRP:", size = (35,20))
-        self.modify_xrp_input_box = wx.TextCtrl(self.panel,size = (30,20))
+        self.modify_xrp_input_box = wx.TextCtrl(self.panel,size = (40,20))
         self.modify_distribution_button = wx.Button(self.panel, -1, "Rebalance Portfolio")
         self.Bind(wx.EVT_BUTTON, self.on_modify_distribution_button, self.modify_distribution_button)
 
@@ -431,8 +431,8 @@ class GraphFrame(wx.Frame):
         ethval = int(self.eth_input_box.GetValue())
         btcval = int(self.btc_input_box.GetValue())
         xrpval = int(self.xrp_input_box.GetValue())
-        if ethval + btcval + xrpval != 100:
-            print(str(ethval + btcval + xrpval) + "doesn't add up to 100")
+        if abs(ethval) + abs(btcval) + abs(xrpval) != 100:
+            print(str(ethval) + " " + str(btcval) + " " + str(xrpval) + " absolute values don't add up to 100")
             return
         api_token = 'your_api_token'
         api_url_base = 'http://104.131.139.250/api.php/'
@@ -464,15 +464,62 @@ class GraphFrame(wx.Frame):
     def on_modify_distribution_button(self, event):
         print("on_modify_distribution_button pressed")
         cnt = self.lst.GetCount()
+        ethval = int(self.modify_eth_input_box.GetValue())
+        btcval = int(self.modify_btc_input_box.GetValue())
+        xrpval = int(self.modify_xrp_input_box.GetValue())
+        if abs(ethval) + abs(btcval) + abs(xrpval) != 100:
+            print(str(ethval) + " " + str(btcval) + " " + str(xrpval) + " absolute values don't add up to 100")
+            return
         for i in range(cnt):
             if self.lst.IsSelected(i):
-                ethval = int(self.modify_eth_input_box.GetValue())
-                btcval = int(self.modify_btc_input_box.GetValue())
-                xrpval = int(self.modify_xrp_input_box.GetValue())
-                if ethval + btcval + xrpval != 100:
-                    print(str(ethval + btcval + xrpval) + "doesn't add up to 100")
-                    return
-                strval = "BTC: " + str(btcval) + "% "
+                strval = self.lst.GetStringSelection()
+        strs = strval.split(":")
+        list_id = int(strs[0].split("#")[1].split(" ")[0])
+        print("list_id:", list_id)
+
+
+
+        headers = {'Content-Type': 'application/json'}
+        response = requests.get("http://104.131.139.250/api.php/ListHasDistribution?filter=list_id,eq," + str(list_id), headers=headers)
+        if response.status_code == 200:
+            list_has_distributions = json.loads(response.content.decode('utf-8'))
+        else:
+            list_has_distributions = None
+
+        if not list_has_distributions:
+            print("not list_has_distributions")
+            return
+        # get the distribution id of the first distribution(of the list with id = list_id)
+        distribution_id = list_has_distributions["ListHasDistribution"]["records"][0][2]
+        print("distribution_id", distribution_id)
+
+
+        api_token = 'your_api_token'
+        api_url_base = 'http://104.131.139.250/api.php/'
+        headers = {'Content-Type': 'application/json',
+                   'Authorization': 'Bearer {0}'.format(api_token)}
+        api_url = '{0}Distributions/{1}'.format(api_url_base, distribution_id)
+        response = requests.put(api_url, headers=headers, data = {"btc":btcval, "xrp":xrpval, "eth":ethval})
+        if response.status_code == 200:
+            num_distributions_affected = json.loads(response.content.decode('utf-8'))
+            print("num_distributions_affected", num_distributions_affected)
+        else:
+            print("couldn't update distribution")
+
+
+        # to test:
+        # headers = {'Content-Type': 'application/json'}
+        # response = requests.get("http://104.131.139.250/api.php/Distributions?filter=id,eq," + str(distribution_id), headers=headers)
+        # if response.status_code == 200:
+        #     distributions = json.loads(response.content.decode('utf-8'))
+        # else:
+        #     distributions = None
+        # print("distributions returned:", distributions)
+
+
+        for i in range(cnt):
+            if self.lst.IsSelected(i):
+                strval = "list#" + str(list_id) + " BTC: " + str(btcval) + "% "
                 strval += "ETH: " + str(ethval) + "% "
                 strval += "XRP: " + str(xrpval) + "%"
                 print("updating distribution to:", strval)
