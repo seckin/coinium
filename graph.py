@@ -32,27 +32,11 @@ pairs = []
 pair_pcts = []
 pair_first_vals = []
 
-# f = open("./assets.txt", "r")
-# while 1:
-#     line = f.readline()
-#     if len(line) == 0:
-#         break
-#     pair, pct = line.split(" ")
-#     pairs.append(pair)
-#     pair_pcts.append(float(pct))
-#     pair_first_vals.append(-1)
-
 # start with this list id:
 global list_id
 global app
 list_id = 1
 
-
-
-
-# pairs = ['XETHZUSD', 'XXRPZUSD', 'XXBTZUSD']
-# pair_pcts = [0.5, 0.3, 0.2]
-# pair_first_vals = [-1, -1, -1]
 k = krakenex.API()
 
 # The recommended way to use wx with mpl is with the WXAgg
@@ -81,30 +65,6 @@ class RateVisualizer(object):
         return self.data
     
     def _recalc_data(self):
-        # delta = random.uniform(-0.5, 0.5)
-        # r = random.random()
-        # since = int(decimal.Decimal(time.time()))
-        # since -= 250
-        # print("since", since)
-        # i = 0
-        # aggr_last_mid_mkt = 0
-        # for pair in pairs:
-        #     print("pair", pair)
-        #     ret = k.query_public('Spread', data = {'pair': pair, 'since': since})
-        #     print("ret", ret)
-        #     bid = float(ret['result'][pair][-1][1])
-        #     ask = float(ret['result'][pair][-1][2])
-        #     last_mid_mkt = (bid + ask) / 2
-        #     print("last_mid_mkt", last_mid_mkt)
-        #     if pair_first_vals[i] == -1:
-        #         pair_first_vals[i] = last_mid_mkt
-        #     last_mid_mkt = last_mid_mkt / pair_first_vals[i]
-        #     print("last_mid_mkt", last_mid_mkt)
-        #     print("")
-        #     aggr_last_mid_mkt += pair_pcts[i] * last_mid_mkt
-        #     i += 1
-
-        # self.data = aggr_last_mid_mkt
         pass
 
 class BoundControlBox(wx.Panel):
@@ -555,7 +515,7 @@ class GraphFrame(wx.Frame):
             self, 
             message="Save plot as...",
             defaultDir=os.getcwd(),
-            defaultFile="plot.png",
+            defaultFile="coinium plot.png",
             wildcard=file_choices,
             style=wx.FD_SAVE)
         
