@@ -89,18 +89,25 @@ def hello():
                     # print("iteration_time", iteration_time)
                     # print('found spread: spreads[j]["timestamp"] = ', spreads_for_pair[pair][j]["timestamp"])
                     # print("spread:", spreads_for_pair[pair][j])
-                    start_from_timestamp = spreads_for_pair[pair][j]["timestamp"]
+                    if j < len(spreads_for_pair[pair]):
+                        start_from_timestamp = spreads_for_pair[pair][j]["timestamp"]
 
-                    bid = float(spreads_for_pair[pair][j]["bestbid"])
-                    ask = float(spreads_for_pair[pair][j]["bestask"])
-                    last_mid_mkt = (bid + ask) / 2
-                    # print("last_mid_mkt", last_mid_mkt)
-                    if pair_first_vals[i] == -1:
-                        pair_first_vals[i] = last_mid_mkt
-                    appreciation_in_pct = last_mid_mkt / pair_first_vals[i]
-                    # print("appreciation_in_pct", appreciation_in_pct)
-                    # print("")
-                    aggr_appreciation_in_pct += pair_pcts[i] * appreciation_in_pct
+                        bid = float(spreads_for_pair[pair][j]["bestbid"])
+                        ask = float(spreads_for_pair[pair][j]["bestask"])
+                        last_mid_mkt = (bid + ask) / 2
+                        # print("last_mid_mkt", last_mid_mkt)
+                        if pair_first_vals[i] == -1:
+                            pair_first_vals[i] = last_mid_mkt
+                        appreciation_in_pct = last_mid_mkt / pair_first_vals[i]
+                        # print("appreciation_in_pct", appreciation_in_pct)
+                        # print("")
+                    else:
+                        appreciation_in_pct = 1.0
+                    if pair_pcts[i] >= 0:
+                        aggr_appreciation_in_pct += pair_pcts[i] * appreciation_in_pct
+                    else:
+                        aggr_appreciation_in_pct -= abs(pair_pcts[i]) * (appreciation_in_pct - 1.0)
+                        aggr_appreciation_in_pct += abs(pair_pcts[i]) * 1.0
                     i += 1
                 aggr_appreciation_in_pcts.append([iteration_time, aggr_appreciation_in_pct])
                 iteration_time += interval_in_secs
