@@ -90,6 +90,8 @@ class GraphFrame(wx.Frame):
     
     def __init__(self):
         wx.Frame.__init__(self, None, -1, self.title, pos = wx.Point(50,50))#size = wx.Size(200, 200))
+
+        self.modify_boxes_visible = False
         
         self.rate_visualizer = RateVisualizer()
         self.data = [self.rate_visualizer.next()]
@@ -170,9 +172,7 @@ class GraphFrame(wx.Frame):
                 distributions.append(strval)
         self.lst = wx.ListBox(self.panel, size = (220,-1), choices = distributions, style = wx.LB_SINGLE)
         self.Bind(wx.EVT_LISTBOX, self.onListBox, self.lst)
-
-        self.update_graph_button = wx.Button(self.panel, -1, "View Graph")
-        self.Bind(wx.EVT_BUTTON, self.on_update_graph_button, self.update_graph_button)
+        self.lst.Bind(wx.EVT_KILL_FOCUS, self.onListBoxUnfocused)
 
         self.modify_btc_text = wx.StaticText(self.panel, -1, label="BTC:", size = (35,20))
         self.modify_btc_input_box = wx.TextCtrl(self.panel,size = (40,20))
@@ -180,8 +180,12 @@ class GraphFrame(wx.Frame):
         self.modify_eth_input_box = wx.TextCtrl(self.panel,size = (40,20))
         self.modify_xrp_text = wx.StaticText(self.panel, -1, label="XRP:", size = (35,20))
         self.modify_xrp_input_box = wx.TextCtrl(self.panel,size = (40,20))
-        self.modify_distribution_button = wx.Button(self.panel, -1, "Rebalance Portfolio")
+        self.modify_distribution_button = wx.Button(self.panel, -1, "Edit Portfolio")
         self.Bind(wx.EVT_BUTTON, self.on_modify_distribution_button, self.modify_distribution_button)
+        self.submit_distribution_modification_button = wx.Button(self.panel, -1, "Submit")
+        self.Bind(wx.EVT_BUTTON, self.on_submit_distribution_modification_button, self.submit_distribution_modification_button)
+        self.cancel_distribution_modification_button = wx.Button(self.panel, -1, "Cancel")
+        self.Bind(wx.EVT_BUTTON, self.on_cancel_distribution_modification_button, self.cancel_distribution_modification_button)
 
         self.add_usd_label = wx.StaticText(self.panel, -1, label="Add USD:", size = (65,20))
         self.add_usd_input_box = wx.TextCtrl(self.panel,size = (30,20))
@@ -191,11 +195,14 @@ class GraphFrame(wx.Frame):
         self.interval_choice_text = wx.StaticText(self.panel, -1, label="Interval:", size = (55,20))
         self.choice = wx.Choice(self.panel,choices = ["30 secs", "5 mins", "2 hours", "1 day"])
         self.choice.Bind(wx.EVT_CHOICE, self.OnChoice)
+
+        self.hbox0 = wx.BoxSizer(wx.HORIZONTAL)
+        self.hbox0.Add(self.interval_choice_text, border=5, flag=wx.ALL | wx.ALIGN_TOP | wx.ALIGN_RIGHT)
+        self.hbox0.AddSpacer(2)
+        self.hbox0.Add(self.choice, border=5, flag=wx.ALL | wx.ALIGN_TOP)
         
         self.hbox1 = wx.BoxSizer(wx.HORIZONTAL)
         self.hbox1.Add(self.lst, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
-        self.hbox1.AddSpacer(2)
-        self.hbox1.Add(self.update_graph_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(15)
         self.hbox1.Add(self.modify_btc_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(2)
@@ -208,10 +215,20 @@ class GraphFrame(wx.Frame):
         self.hbox1.Add(self.modify_xrp_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(5)
         self.hbox1.Add(self.modify_distribution_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.AddSpacer(5)
+        self.hbox1.Add(self.submit_distribution_modification_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox1.AddSpacer(5)
+        self.hbox1.Add(self.cancel_distribution_modification_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(25)
-        self.hbox1.Add(self.interval_choice_text, border=5, flag=wx.ALL | wx.ALIGN_TOP)
-        self.hbox1.AddSpacer(2)
-        self.hbox1.Add(self.choice, border=5, flag=wx.ALL | wx.ALIGN_TOP)
+        self.modify_distribution_button.Hide()
+        self.modify_eth_input_box.Hide()
+        self.modify_btc_input_box.Hide()
+        self.modify_xrp_input_box.Hide()
+        self.modify_btc_text.Hide()
+        self.modify_eth_text.Hide()
+        self.modify_xrp_text.Hide()
+        self.submit_distribution_modification_button.Hide()
+        self.cancel_distribution_modification_button.Hide()
         
         self.btc_text = wx.StaticText(self.panel, -1, label="BTC:", size = (35,20))
         self.btc_input_box = wx.TextCtrl(self.panel,size = (30,20))
@@ -246,12 +263,14 @@ class GraphFrame(wx.Frame):
         
         self.vbox = wx.BoxSizer(wx.VERTICAL)
         self.vbox.Add(self.canvas, 1, flag=wx.LEFT | wx.TOP | wx.GROW)        
+        self.vbox.Add(self.hbox0, 0, flag=wx.ALIGN_RIGHT | wx.TOP)
         self.vbox.Add(self.hbox1, 0, flag=wx.ALIGN_LEFT | wx.TOP)
         self.vbox.Add(self.hbox2, 0, flag=wx.ALIGN_LEFT | wx.TOP)
         self.vbox.Add(self.hbox3, 0, flag=wx.ALIGN_RIGHT | wx.TOP)
         
         self.panel.SetSizer(self.vbox)
         self.vbox.Fit(self)
+        self.vbox.Layout()
     
     def create_status_bar(self):
         self.statusbar = self.CreateStatusBar()
@@ -283,7 +302,7 @@ class GraphFrame(wx.Frame):
     def draw_plot(self):
         """ Redraws the plot
         """
-        print("self.data", self.data)
+        # print("self.data", self.data)
         if xmax_control_auto or self.xmax_control.is_auto():
             xmax = len(self.data) if len(self.data) > 75 else 75
         else:
@@ -329,13 +348,31 @@ class GraphFrame(wx.Frame):
         
         self.canvas.draw()
 
+    def onListBoxUnfocused(self, event):
+        print("onListBoxUnfocused")
+        focused_elem = wx.Window.FindFocus()
+        print("focused_elem", focused_elem)
+        print("self.lst", self.lst)
+        if focused_elem != self.lst and \
+           focused_elem != self.modify_eth_input_box and \
+           focused_elem != self.modify_btc_input_box and \
+           focused_elem != self.modify_xrp_input_box and \
+           focused_elem != self.submit_distribution_modification_button:
+            self.modify_eth_input_box.Hide()
+            self.modify_btc_input_box.Hide()
+            self.modify_xrp_input_box.Hide()
+            self.modify_btc_text.Hide()
+            self.modify_eth_text.Hide()
+            self.modify_xrp_text.Hide()
+            self.modify_boxes_visible = False
+            self.submit_distribution_modification_button.Hide()
+            self.cancel_distribution_modification_button.Hide()
+        self.modify_distribution_button.Hide()
+        self.vbox.Layout()
+
     def OnChoice(self, event):
         print("self.choice.GetSelection()", self.choice.GetSelection())
         print("choice updated to", self.choice.GetString(self.choice.GetSelection()))
-    
-    def on_update_graph_button(self, event):
-        print( "Update Graph pressed for: \
-         "+self.lst.GetStringSelection()+"\n")
 
     def update_pair_distributions(self, list_id):
         global app, pairs, pair_pcts, pair_first_vals
@@ -370,6 +407,13 @@ class GraphFrame(wx.Frame):
         global app, pairs, pair_pcts, pair_first_vals
         print( "Current selection: \
             "+event.GetEventObject().GetStringSelection()+"\n")
+        print("calling self.modify_distribution_button.Show()")
+        if self.modify_boxes_visible:
+            self.modify_distribution_button.Hide()
+        else:
+            self.modify_distribution_button.Show()
+        self.vbox.Layout()
+
         strval = event.GetEventObject().GetStringSelection()
         strs = strval.split(":")
         list_id = int(strs[0].split("#")[1].split(" ")[0])
@@ -425,6 +469,35 @@ class GraphFrame(wx.Frame):
 
     def on_modify_distribution_button(self, event):
         print("on_modify_distribution_button pressed")
+        self.modify_eth_input_box.Show()
+        self.modify_btc_input_box.Show()
+        self.modify_xrp_input_box.Show()
+        self.modify_btc_text.Show()
+        self.modify_eth_text.Show()
+        self.modify_xrp_text.Show()
+        self.submit_distribution_modification_button.Show()
+        self.cancel_distribution_modification_button.Show()
+        self.modify_boxes_visible = True
+        self.vbox.Layout()
+
+    def hide_all_modification_boxes_except_edit_button(self):
+        self.modify_eth_input_box.Hide()
+        self.modify_btc_input_box.Hide()
+        self.modify_xrp_input_box.Hide()
+        self.modify_btc_text.Hide()
+        self.modify_eth_text.Hide()
+        self.modify_xrp_text.Hide()
+        self.submit_distribution_modification_button.Hide()
+        self.cancel_distribution_modification_button.Hide()
+        self.modify_distribution_button.Show()
+        self.modify_boxes_visible = False
+        self.vbox.Layout()
+
+    def on_cancel_distribution_modification_button(self, event):
+        print("on_cancel_distribution_modification_button pressed")
+        self.hide_all_modification_boxes_except_edit_button()
+
+    def on_submit_distribution_modification_button(self, event):
         cnt = self.lst.GetCount()
         ethval = int(self.modify_eth_input_box.GetValue())
         btcval = int(self.modify_btc_input_box.GetValue())
@@ -432,6 +505,9 @@ class GraphFrame(wx.Frame):
         if abs(ethval) + abs(btcval) + abs(xrpval) != 100:
             print(str(ethval) + " " + str(btcval) + " " + str(xrpval) + " absolute values don't add up to 100")
             return
+
+        self.hide_all_modification_boxes_except_edit_button()
+
         for i in range(cnt):
             if self.lst.IsSelected(i):
                 strval = self.lst.GetStringSelection()
