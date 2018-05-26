@@ -182,6 +182,11 @@ class GraphFrame(wx.Frame):
             print("here12")
             title_str += str(tmp_pairs[i]) + ": " + str(tmp_pair_pcts[i] * 100) + "%, "
         self.axes.set_title(title_str, size=12)
+
+        self.axes.text(0.98, 0.03, 'by http://coinium.app',
+            verticalalignment='bottom', horizontalalignment='right',
+            transform=self.axes.transAxes,
+            color='white', fontsize=13)
         print("here13", title_str)
 
         # distributions = ['ETH: 50% BTC: 50% XRP: 0%', \
