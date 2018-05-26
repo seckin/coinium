@@ -14,6 +14,8 @@ import wx.html
 import webbrowser
 import wx.html2
 
+import urllib
+
 class MyBrowser(wx.Dialog):
   def __init__(self, *args, **kwds):
     wx.Dialog.__init__(self, *args, **kwds)
@@ -21,7 +23,7 @@ class MyBrowser(wx.Dialog):
     self.browser = wx.html2.WebView.New(self)
     sizer.Add(self.browser, 1, wx.EXPAND, 10)
     self.SetSizer(sizer)
-    self.SetSize((700, 700))
+    self.SetSize((700, 1000))
 
 
 global app, pairs, pair_pcts, pair_first_vals
@@ -221,7 +223,7 @@ class GraphFrame(wx.Frame):
         self.modify_distribution_button = wx.Button(self.panel, -1, "Rebalance Portfolio")
         self.Bind(wx.EVT_BUTTON, self.on_modify_distribution_button, self.modify_distribution_button)
 
-        self.add_usd_label = wx.StaticText(self.panel, -1, label="Add $:", size = (35,20))
+        self.add_usd_label = wx.StaticText(self.panel, -1, label="Add USD:", size = (65,20))
         self.add_usd_input_box = wx.TextCtrl(self.panel,size = (30,20))
         self.add_usd_button = wx.Button(self.panel, -1, "Checkout")
         self.Bind(wx.EVT_BUTTON, self.on_add_usd_button, self.add_usd_button)
