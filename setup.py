@@ -7,11 +7,16 @@ via ez_setup.
 Usage:
     python setup.py py2app
 """
-import ez_setup
-ez_setup.use_setuptools()
+#import ez_setup
+#ez_setup.use_setuptools()
 
 from setuptools import setup
+OPTIONS = {
+    'argv_emulation': True,
+    'iconfile': 'coinium.icns'
+}
 setup(
     app=["graph.py"],
-setup_requires=["py2app"],
+    options={'py2app': OPTIONS},
+    setup_requires=["py2app"],
 )
