@@ -92,6 +92,7 @@ class GraphFrame(wx.Frame):
         wx.Frame.__init__(self, None, -1, self.title, pos = wx.Point(50,50))#size = wx.Size(200, 200))
 
         self.modify_boxes_visible = False
+        self.add_boxes_visible = False
         
         self.rate_visualizer = RateVisualizer()
         self.data = [self.rate_visualizer.next()]
@@ -238,6 +239,18 @@ class GraphFrame(wx.Frame):
         self.xrp_input_box = wx.TextCtrl(self.panel,size = (30,20))
         self.add_distribution_button = wx.Button(self.panel, -1, "Add New Portfolio")
         self.Bind(wx.EVT_BUTTON, self.on_add_distribution_button, self.add_distribution_button)
+        self.submit_new_distribution_button = wx.Button(self.panel, -1, "Submit")
+        self.Bind(wx.EVT_BUTTON, self.on_submit_new_distribution_button, self.submit_new_distribution_button)
+        self.cancel_new_distribution_button = wx.Button(self.panel, -1, "Cancel")
+        self.Bind(wx.EVT_BUTTON, self.on_cancel_new_distribution_button, self.cancel_new_distribution_button)
+        self.eth_input_box.Hide()
+        self.btc_input_box.Hide()
+        self.xrp_input_box.Hide()
+        self.btc_text.Hide()
+        self.eth_text.Hide()
+        self.xrp_text.Hide()
+        self.submit_new_distribution_button.Hide()
+        self.cancel_new_distribution_button.Hide()
         
         self.hbox2 = wx.BoxSizer(wx.HORIZONTAL)
         self.hbox2.Add(self.btc_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
@@ -251,6 +264,10 @@ class GraphFrame(wx.Frame):
         self.hbox2.Add(self.xrp_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox2.AddSpacer(5)
         self.hbox2.Add(self.add_distribution_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox2.AddSpacer(5)
+        self.hbox2.Add(self.submit_new_distribution_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
+        self.hbox2.AddSpacer(5)
+        self.hbox2.Add(self.cancel_new_distribution_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox2.AddSpacer(24)
 
         self.hbox3 = wx.BoxSizer(wx.HORIZONTAL)
@@ -434,12 +451,46 @@ class GraphFrame(wx.Frame):
         self.modify_xrp_input_box.SetValue(str(xrp_pct))
 
     def on_add_distribution_button(self, event):
+        print("on_add_distribution_button pressed")
+        self.eth_input_box.Show()
+        self.btc_input_box.Show()
+        self.xrp_input_box.Show()
+        self.btc_text.Show()
+        self.eth_text.Show()
+        self.xrp_text.Show()
+        self.add_distribution_button.Hide()
+        self.submit_new_distribution_button.Show()
+        self.cancel_new_distribution_button.Show()
+        self.add_boxes_visible = True
+        self.vbox.Layout()
+
+    def hide_all_add_boxes_except_add_new_pv_button(self):
+        self.eth_input_box.Hide()
+        self.btc_input_box.Hide()
+        self.xrp_input_box.Hide()
+        self.btc_text.Hide()
+        self.eth_text.Hide()
+        self.xrp_text.Hide()
+        self.add_distribution_button.Show()
+        self.submit_new_distribution_button.Hide()
+        self.cancel_new_distribution_button.Hide()
+        self.add_boxes_visible = False
+        self.vbox.Layout()
+
+    def on_cancel_new_distribution_button(self, event):
+        print("on_cancel_new_distribution_button pressed")
+        self.hide_all_add_boxes_except_add_new_pv_button()
+
+    def on_submit_new_distribution_button(self, event):
         ethval = int(self.eth_input_box.GetValue())
         btcval = int(self.btc_input_box.GetValue())
         xrpval = int(self.xrp_input_box.GetValue())
         if abs(ethval) + abs(btcval) + abs(xrpval) != 100:
             print(str(ethval) + " " + str(btcval) + " " + str(xrpval) + " absolute values don't add up to 100")
             return
+
+        self.hide_all_add_boxes_except_add_new_pv_button()
+
         api_token = 'your_api_token'
         api_url_base = 'http://104.131.139.250/api.php/'
         headers = {'Content-Type': 'application/json',
