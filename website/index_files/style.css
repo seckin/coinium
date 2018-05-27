@@ -665,7 +665,7 @@ html, body {
     width: 24px;
     height: 16px;
     opacity: .2;
-    background: url(./img/cd-arrow.svg) no-repeat center center;
+    background: url(/index_files/cdarrow.svg) no-repeat center center;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     -webkit-transition: opacity .2s;
