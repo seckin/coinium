@@ -16,6 +16,10 @@ import wx.html2
 
 import urllib
 
+from requests_futures.sessions import FuturesSession
+
+session = FuturesSession()
+
 class MyBrowser(wx.Dialog):
   def __init__(self, *args, **kwds):
     wx.Dialog.__init__(self, *args, **kwds)
@@ -146,7 +150,7 @@ class GraphFrame(wx.Frame):
             title_str += str(tmp_pairs[i]) + ": " + str(tmp_pair_pcts[i] * 100) + "%, "
         self.axes.set_title(title_str, size=12)
 
-        self.axes.text(0.64, 0.03, 'by http://coinium.app',
+        self.axes.text(0.64, 0.03, 'http://coinium.app',
             verticalalignment='bottom', horizontalalignment='right',
             transform=self.axes.transAxes,
             color='lightblue', fontsize=13)
@@ -305,7 +309,7 @@ class GraphFrame(wx.Frame):
         # to the plotted line series
         #
         self.plot_data = self.axes.plot(
-            self.data, 
+            self.data,
             linewidth=1,
             color=(1, 1, 0),
             )[0]
@@ -349,8 +353,7 @@ class GraphFrame(wx.Frame):
 
         print("calling annotate")
         self.axes.annotate('annotate', xy=(1, 1.0), xytext=(40, 1.0), arrowprops=dict(facecolor='black', shrink=0.05))
-        self.axes.text(2, 1, r'an equation: $E=mc^2$', fontsize=15)
-
+        # self.axes.text(2, 1, r'an equation: $E=mc^2$', fontsize=15)
 
         # Using setp here is convenient, because get_xticklabels
         # returns a list over which one needs to explicitly 
@@ -645,6 +648,9 @@ class GraphFrame(wx.Frame):
             self.canvas.print_figure(path, dpi=self.dpi)
             self.flash_status_message("Saved to %s" % path)
 
+    def bg_cb(self, sess, resp):
+        resp.data = resp.json()
+
     def on_redraw_timer(self, event):
         global list_id
         # if paused do not add data, but still redraw the plot
@@ -667,7 +673,9 @@ class GraphFrame(wx.Frame):
         headers = {'Content-Type': 'application/json'}
         api_url = "http://104.131.139.250:5000/?list_id=" + str(list_id) + "&interval_in_secs=" + str(interval_in_secs)
         print("api_url:", api_url)
-        response = requests.get(api_url, headers=headers)
+        future = session.get(api_url, background_callback=self.bg_cb)
+        response = future.result()
+        # response = requests.get(api_url, headers=headers)
         if response.status_code == 200:
             graphvals = json.loads(response.content.decode('utf-8'))
         else:
