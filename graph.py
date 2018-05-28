@@ -27,7 +27,7 @@ class MyBrowser(wx.Dialog):
     self.browser = wx.html2.WebView.New(self)
     sizer.Add(self.browser, 1, wx.EXPAND, 10)
     self.SetSizer(sizer)
-    self.SetSize((700, 1000))
+    self.SetSize((700, 800))
 
 
 global app, pairs, pair_pcts, pair_first_vals
@@ -319,7 +319,7 @@ class GraphFrame(wx.Frame):
         """
         # print("self.data", self.data)
         if xmax_control_auto or self.xmax_control.is_auto():
-            xmax = len(self.data) if len(self.data) > 75 else 75
+            xmax = len(self.data)# if len(self.data) > 75 else 75
         else:
             xmax = int(self.xmax_control.manual_value())
 
@@ -340,6 +340,8 @@ class GraphFrame(wx.Frame):
 
         self.axes.set_xbound(lower=xmin, upper=xmax)
         self.axes.set_ybound(lower=ymin, upper=ymax)
+        print("ymin", ymin, "ymax", ymax)
+        print("xmin", xmin, "xmax", xmax)
 
         # anecdote: axes.grid assumes b=True if any other flag is
         # given even if b is set to False.
@@ -352,14 +354,45 @@ class GraphFrame(wx.Frame):
             self.axes.grid(False)
 
         print("calling annotate")
-        self.axes.annotate('annotate', xy=(1, 1.0), xytext=(40, 1.0), arrowprops=dict(facecolor='black', shrink=0.05))
+        # self.axes.annotate('annotate', xy=(1, 1.0), xytext=(40, 1.0), arrowprops=dict(facecolor='black', shrink=0.05))
+        # self.axes.annotate('Now', xy=(xmax, ymin), xytext=(xmax, (ymin + ymax) / 2.0), arrowprops=dict(facecolor='black', shrink=0.05))
         # self.axes.text(2, 1, r'an equation: $E=mc^2$', fontsize=15)
 
         # Using setp here is convenient, because get_xticklabels
         # returns a list over which one needs to explicitly 
         # iterate, and setp already handles this.
         #  
-        pylab.setp(self.axes.get_xticklabels(), 
+        lst = self.axes.get_xticklabels()
+        # setp_xlabels = []
+        i = 0
+        text = lst[0].get_text()
+        interval_in_secs = self.get_interval_in_secs_chosen()
+        for x in lst:
+            # x.set_text(str((0 if x.get_text() == '' else float(x.get_text().replace("−","-"))) - xmax) + "s ago")
+            val = (i - len(lst) + 1) * 10 * interval_in_secs
+            absval = abs(val)
+            strval = ""
+            if int(absval / 3600) > 0:
+                strval += str(int(absval / 3600)) + "h "
+                absval = absval % 3600
+            if int(absval / 60) > 0:
+                strval += str(int(absval / 60)) + "m "
+                absval = absval % 60
+            if absval > 0:
+                strval += str(int(absval)) + "s"
+
+            if strval == "":
+                result_strval = ""
+            else:
+                if i == len(lst) - 2:
+                    result_strval = "<" + str(strval) + " ago"
+                else:
+                    result_strval = str(strval) + " ago"
+            x.set_text(result_strval)
+            # setp_xlabels.append(x)
+            i+=1
+        self.axes.set_xticklabels(lst)
+        pylab.setp(lst,
             visible=True)
 
         self.plot_data.set_xdata(np.arange(len(self.data)))
@@ -651,15 +684,7 @@ class GraphFrame(wx.Frame):
     def bg_cb(self, sess, resp):
         resp.data = resp.json()
 
-    def on_redraw_timer(self, event):
-        global list_id
-        # if paused do not add data, but still redraw the plot
-        # (to respond to scale modifications, grid change, etc.)
-        #
-        # if not self.paused:
-        #     #self.data.append(self.datagen.next())
-        #     self.data.append(self.rate_visualizer.next())
-
+    def get_interval_in_secs_chosen(self):
         selection = self.choice.GetSelection()
         selected_int_str = self.choice.GetString(selection) #["30 secs", "5 mins", "2 hours", "1 day"])
         if selected_int_str == "30 secs":
@@ -670,6 +695,17 @@ class GraphFrame(wx.Frame):
             interval_in_secs = 7200
         elif selected_int_str == "1 day":
             interval_in_secs = 86400
+        return interval_in_secs
+
+    def on_redraw_timer(self, event):
+        global list_id
+        # if paused do not add data, but still redraw the plot
+        # (to respond to scale modifications, grid change, etc.)
+        #
+        # if not self.paused:
+        #     #self.data.append(self.datagen.next())
+        #     self.data.append(self.rate_visualizer.next())
+        interval_in_secs = self.get_interval_in_secs_chosen()
         headers = {'Content-Type': 'application/json'}
         api_url = "http://104.131.139.250:5000/?list_id=" + str(list_id) + "&interval_in_secs=" + str(interval_in_secs)
         print("api_url:", api_url)
