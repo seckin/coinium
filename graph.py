@@ -43,9 +43,7 @@ list_id = 1
 
 k = krakenex.API()
 
-# The recommended way to use wx with mpl is with the WXAgg
-# backend.
-#
+# The recommended way to use wx with mpl is with the WXAgg backend.
 import matplotlib
 matplotlib.use('WXAgg')
 from matplotlib.figure import Figure
@@ -90,7 +88,7 @@ class BoundControlBox(wx.Panel):
 class GraphFrame(wx.Frame):
     """ The main frame of the application
     """
-    title = 'Demo coinium'
+    title = 'Coinium Portfolio Manager'
 
     def __init__(self):
         wx.Frame.__init__(self, None, -1, self.title, pos = wx.Point(50,50))#size = wx.Size(200, 200))
@@ -130,7 +128,7 @@ class GraphFrame(wx.Frame):
         self.canvas = FigCanvas(self.panel, -1, self.fig)
 
         api_token = 'your_api_token'
-        api_url_base = 'http://104.131.139.250/api.php/'
+        api_url_base = 'https://coinium.app/api.php/'
         headers = {'Content-Type': 'application/json',
                    'Authorization': 'Bearer {0}'.format(api_token)}
         api_url = '{0}Distributions'.format(api_url_base)
@@ -157,7 +155,7 @@ class GraphFrame(wx.Frame):
 
         distributions = []
         for dist in val['Distributions']['records']:
-            api_url = "http://104.131.139.250/api.php/ListHasDistribution?filter=distribution_id,eq," + str(dist[0])
+            api_url = "https://coinium.app/api.php/ListHasDistribution?filter=distribution_id,eq," + str(dist[0])
             response = requests.get(api_url, headers=headers)
             if response.status_code == 200:
                 val = json.loads(response.content.decode('utf-8'))
@@ -305,9 +303,7 @@ class GraphFrame(wx.Frame):
         pylab.setp(self.axes.get_xticklabels(), fontsize=8)
         pylab.setp(self.axes.get_yticklabels(), fontsize=8)
 
-        # plot the data as a line series, and save the reference 
-        # to the plotted line series
-        #
+        # plot the data as a line series, and save the reference to the plotted line series
         self.plot_data = self.axes.plot(
             self.data,
             linewidth=1,
@@ -329,19 +325,19 @@ class GraphFrame(wx.Frame):
             xmin = int(self.xmin_control.manual_value())
 
         if ymin_control_auto or self.ymin_control.is_auto():
-            ymin = min(self.data) * (1.0 - 0.0004) #- (max(self.data) - 1.0) * 2
+            ymin = min(self.data[-75:-1]) * (1.0 - 0.004) #- (max(self.data) - 1.0) * 2
         else:
             ymin = int(self.ymin_control.manual_value())
 
         if ymax_control_auto or self.ymax_control.is_auto():
-            ymax = max(self.data) * (1.0 + 0.0004) #+ (max(self.data) - 1.0) * 2
+            ymax = max(self.data[-75:-1]) * (1.0 + 0.004) #+ (max(self.data) - 1.0) * 2
         else:
             ymax = int(self.ymax_control.manual_value())
 
         self.axes.set_xbound(lower=xmin, upper=xmax)
         self.axes.set_ybound(lower=ymin, upper=ymax)
-        print("ymin", ymin, "ymax", ymax)
-        print("xmin", xmin, "xmax", xmax)
+        # print("ymin", ymin, "ymax", ymax)
+        # print("xmin", xmin, "xmax", xmax)
 
         # anecdote: axes.grid assumes b=True if any other flag is
         # given even if b is set to False.
@@ -428,7 +424,7 @@ class GraphFrame(wx.Frame):
         global app, pairs, pair_pcts, pair_first_vals
         print("update_pair_distributions called")
         headers = {'Content-Type': 'application/json'}
-        response = requests.get("http://104.131.139.250/api.php/ListHasDistribution?filter=list_id,eq," + str(list_id), headers=headers)
+        response = requests.get("https://coinium.app/api.php/ListHasDistribution?filter=list_id,eq," + str(list_id), headers=headers)
         if response.status_code == 200:
             list_has_distributions = json.loads(response.content.decode('utf-8'))
         else:
@@ -438,7 +434,7 @@ class GraphFrame(wx.Frame):
         distribution_id = list_has_distributions["ListHasDistribution"]["records"][0][2]
 
         headers = {'Content-Type': 'application/json'}
-        response = requests.get("http://104.131.139.250/api.php/Distributions?filter=id,eq," + str(distribution_id), headers=headers)
+        response = requests.get("https://coinium.app/api.php/Distributions?filter=id,eq," + str(distribution_id), headers=headers)
         if response.status_code == 200:
             distributions = json.loads(response.content.decode('utf-8'))
         else:
@@ -522,7 +518,7 @@ class GraphFrame(wx.Frame):
         self.hide_all_add_boxes_except_add_new_pv_button()
 
         api_token = 'your_api_token'
-        api_url_base = 'http://104.131.139.250/api.php/'
+        api_url_base = 'https://coinium.app/api.php/'
         headers = {'Content-Type': 'application/json',
                    'Authorization': 'Bearer {0}'.format(api_token)}
         api_url = '{0}Distributions'.format(api_url_base)
@@ -599,7 +595,7 @@ class GraphFrame(wx.Frame):
 
 
         headers = {'Content-Type': 'application/json'}
-        response = requests.get("http://104.131.139.250/api.php/ListHasDistribution?filter=list_id,eq," + str(list_id), headers=headers)
+        response = requests.get("https://coinium.app/api.php/ListHasDistribution?filter=list_id,eq," + str(list_id), headers=headers)
         if response.status_code == 200:
             list_has_distributions = json.loads(response.content.decode('utf-8'))
         else:
@@ -614,7 +610,7 @@ class GraphFrame(wx.Frame):
 
 
         api_token = 'your_api_token'
-        api_url_base = 'http://104.131.139.250/api.php/'
+        api_url_base = 'https://coinium.app/api.php/'
         headers = {'Content-Type': 'application/json',
                    'Authorization': 'Bearer {0}'.format(api_token)}
         api_url = '{0}Distributions/{1}'.format(api_url_base, distribution_id)
@@ -628,7 +624,7 @@ class GraphFrame(wx.Frame):
 
         # to test:
         # headers = {'Content-Type': 'application/json'}
-        # response = requests.get("http://104.131.139.250/api.php/Distributions?filter=id,eq," + str(distribution_id), headers=headers)
+        # response = requests.get("https://coinium.app/api.php/Distributions?filter=id,eq," + str(distribution_id), headers=headers)
         # if response.status_code == 200:
         #     distributions = json.loads(response.content.decode('utf-8'))
         # else:
@@ -646,7 +642,7 @@ class GraphFrame(wx.Frame):
 
     def on_add_usd_button(self, event):
         api_token = 'your_api_token'
-        api_url_base = 'http://104.131.139.250/api.php/'
+        api_url_base = 'https://coinium.app/api.php/'
         headers = {'Content-Type': 'application/json',
                    'Authorization': 'Bearer {0}'.format(api_token)}
         api_url = '{0}Subscription'.format(api_url_base)
