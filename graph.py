@@ -167,10 +167,27 @@ class GraphFrame(wx.Frame):
                 strval += "ETH: " + str(dist[2]) + "% "
                 strval += "XRP: " + str(dist[3]) + "%"
                 distributions.append(strval)
+
+        # portfolio list
         self.lst = wx.ListBox(self.panel, size = (220,600), choices = distributions, style = wx.LB_SINGLE)
         self.Bind(wx.EVT_LISTBOX, self.onListBox, self.lst)
         self.lst.Bind(wx.EVT_KILL_FOCUS, self.onListBoxUnfocused)
+        self.portfolio_list_text = wx.StaticText(self.panel, -1, label="Portfolio List", size = (85,15))
+        self.vbox4 = wx.BoxSizer(wx.VERTICAL)
+        self.vbox4.Add(self.portfolio_list_text, border=5, flag=wx.ALL | wx.ALIGN_LEFT)
+        self.vbox4.AddSpacer(0)
+        self.vbox4.Add(self.lst, border=5, flag=wx.ALL | wx.ALIGN_LEFT)
 
+        # interval choice
+        self.interval_choice_text = wx.StaticText(self.panel, -1, label="Interval:", size = (55,20))
+        self.choice = wx.Choice(self.panel,choices = ["30 secs", "5 mins", "2 hours", "1 day"])
+        self.choice.Bind(wx.EVT_CHOICE, self.OnChoice)
+        self.hbox0 = wx.BoxSizer(wx.HORIZONTAL)
+        self.hbox0.Add(self.interval_choice_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL | wx.ALIGN_RIGHT)
+        self.hbox0.AddSpacer(2)
+        self.hbox0.Add(self.choice, border=5, flag=wx.ALL | wx.ALIGN_TOP)
+
+        # edit portfolio
         self.modify_btc_text = wx.StaticText(self.panel, -1, label="BTC:", size = (35,20))
         self.modify_btc_input_box = wx.TextCtrl(self.panel,size = (35,20))
         self.modify_eth_text = wx.StaticText(self.panel, -1, label="ETH:", size = (35,20))
@@ -183,29 +200,17 @@ class GraphFrame(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.on_submit_distribution_modification_button, self.submit_distribution_modification_button)
         self.cancel_distribution_modification_button = wx.Button(self.panel, -1, "Cancel")
         self.Bind(wx.EVT_BUTTON, self.on_cancel_distribution_modification_button, self.cancel_distribution_modification_button)
-
-        self.add_usd_label = wx.StaticText(self.panel, -1, label="Add USD:", size = (65,20))
-        self.add_usd_input_box = wx.TextCtrl(self.panel,size = (30,20))
-        self.add_usd_button = wx.Button(self.panel, -1, "Checkout")
-        self.Bind(wx.EVT_BUTTON, self.on_add_usd_button, self.add_usd_button)
-
-        self.interval_choice_text = wx.StaticText(self.panel, -1, label="Interval:", size = (55,20))
-        self.choice = wx.Choice(self.panel,choices = ["30 secs", "5 mins", "2 hours", "1 day"])
-        self.choice.Bind(wx.EVT_CHOICE, self.OnChoice)
-        self.portfolio_list_text = wx.StaticText(self.panel, -1, label="Portfolio List", size = (85,15))
-
-        self.vbox4 = wx.BoxSizer(wx.VERTICAL)
-        self.vbox4.Add(self.portfolio_list_text, border=5, flag=wx.ALL | wx.ALIGN_LEFT)
-        self.vbox4.AddSpacer(0)
-        self.vbox4.Add(self.lst, border=5, flag=wx.ALL | wx.ALIGN_LEFT)
-
-        self.hbox0 = wx.BoxSizer(wx.HORIZONTAL)
-        self.hbox0.Add(self.interval_choice_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL | wx.ALIGN_RIGHT)
-        self.hbox0.AddSpacer(2)
-        self.hbox0.Add(self.choice, border=5, flag=wx.ALL | wx.ALIGN_TOP)
-
+        self.modify_distribution_button.Hide()
+        self.modify_eth_input_box.Hide()
+        self.modify_btc_input_box.Hide()
+        self.modify_xrp_input_box.Hide()
+        self.modify_btc_text.Hide()
+        self.modify_eth_text.Hide()
+        self.modify_xrp_text.Hide()
+        self.submit_distribution_modification_button.Hide()
+        self.cancel_distribution_modification_button.Hide()
+        # edit portfolio placing
         self.hbox2 = wx.BoxSizer(wx.HORIZONTAL)
-        # self.hbox2.AddSpacer(15)
         self.hbox2.Add(self.modify_btc_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox2.AddSpacer(2)
         self.hbox2.Add(self.modify_btc_input_box, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
@@ -222,16 +227,8 @@ class GraphFrame(wx.Frame):
         self.hbox2.AddSpacer(5)
         self.hbox2.Add(self.cancel_distribution_modification_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox2.AddSpacer(25)
-        self.modify_distribution_button.Hide()
-        self.modify_eth_input_box.Hide()
-        self.modify_btc_input_box.Hide()
-        self.modify_xrp_input_box.Hide()
-        self.modify_btc_text.Hide()
-        self.modify_eth_text.Hide()
-        self.modify_xrp_text.Hide()
-        self.submit_distribution_modification_button.Hide()
-        self.cancel_distribution_modification_button.Hide()
 
+        # add portfolio buttons
         self.btc_text = wx.StaticText(self.panel, -1, label="BTC:", size = (35,20))
         self.btc_input_box = wx.TextCtrl(self.panel,size = (35,20))
         self.eth_text = wx.StaticText(self.panel, -1, label="ETH:", size = (35,20))
@@ -252,7 +249,7 @@ class GraphFrame(wx.Frame):
         self.xrp_text.Hide()
         self.submit_new_distribution_button.Hide()
         self.cancel_new_distribution_button.Hide()
-
+        # add portfolio placing
         self.hbox1 = wx.BoxSizer(wx.HORIZONTAL)
         self.hbox1.Add(self.btc_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(2)
@@ -271,12 +268,17 @@ class GraphFrame(wx.Frame):
         self.hbox1.Add(self.cancel_new_distribution_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(24)
 
+        # add usd
+        self.add_usd_label = wx.StaticText(self.panel, -1, label="Add USD:", size = (65,20))
+        self.add_usd_input_box = wx.TextCtrl(self.panel,size = (30,20))
+        self.add_usd_button = wx.Button(self.panel, -1, "Checkout")
+        self.Bind(wx.EVT_BUTTON, self.on_add_usd_button, self.add_usd_button)
         self.hbox3 = wx.BoxSizer(wx.HORIZONTAL)
-        self.hbox3.Add(self.add_usd_label, border=5, flag=wx.ALL | wx.ALIGN_TOP)
+        self.hbox3.Add(self.add_usd_label, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
         self.hbox3.AddSpacer(2)
-        self.hbox3.Add(self.add_usd_input_box, border=5, flag=wx.ALL | wx.ALIGN_TOP)
+        self.hbox3.Add(self.add_usd_input_box, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
         self.hbox3.AddSpacer(2)
-        self.hbox3.Add(self.add_usd_button, border=5, flag=wx.ALL | wx.ALIGN_TOP)
+        self.hbox3.Add(self.add_usd_button, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
         self.hbox3.AddSpacer(2)
 
         self.vbox5 = wx.BoxSizer(wx.VERTICAL)
