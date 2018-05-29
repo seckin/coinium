@@ -13,6 +13,7 @@ import requests
 import wx.html
 import webbrowser
 import wx.html2
+import wx.richtext
 
 import urllib
 
@@ -169,7 +170,7 @@ class GraphFrame(wx.Frame):
                 distributions.append(strval)
 
         # portfolio list
-        self.lst = wx.ListBox(self.panel, size = (220,600), choices = distributions, style = wx.LB_SINGLE)
+        self.lst = wx.ListBox(self.panel, size = (260,600), choices = distributions, style = wx.LB_SINGLE)
         self.Bind(wx.EVT_LISTBOX, self.onListBox, self.lst)
         self.lst.Bind(wx.EVT_KILL_FOCUS, self.onListBoxUnfocused)
         self.portfolio_list_text = wx.StaticText(self.panel, -1, label="Portfolio List", size = (85,15))
