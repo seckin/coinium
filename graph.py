@@ -269,6 +269,29 @@ class GraphFrame(wx.Frame):
         self.hbox1.Add(self.cancel_new_distribution_button, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL)
         self.hbox1.AddSpacer(24)
 
+        # Current prices
+        self.current_prices = wx.StaticText(self.panel, -1, label="Current prices:", size = (95,20))
+        self.btc_price_text_name = wx.StaticText(self.panel, -1, label="BTC:", size = (35,20))
+        self.btc_price_text = wx.StaticText(self.panel, -1, label="$...", size = (75,20))
+        self.eth_price_text_name = wx.StaticText(self.panel, -1, label="ETH:", size = (35,20))
+        self.eth_price_text = wx.StaticText(self.panel, -1, label="$...", size = (75,20))
+        self.xrp_price_text_name = wx.StaticText(self.panel, -1, label="XRP:", size = (35,20))
+        self.xrp_price_text = wx.StaticText(self.panel, -1, label="$...", size = (75,20))
+        self.hbox4 = wx.BoxSizer(wx.HORIZONTAL)
+        self.hbox4.Add(self.current_prices, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
+        self.hbox5 = wx.BoxSizer(wx.HORIZONTAL)
+        self.hbox5.Add(self.btc_price_text_name, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
+        self.hbox5.AddSpacer(2)
+        self.hbox5.Add(self.btc_price_text, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
+        self.hbox6 = wx.BoxSizer(wx.HORIZONTAL)
+        self.hbox6.Add(self.eth_price_text_name, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
+        self.hbox6.AddSpacer(2)
+        self.hbox6.Add(self.eth_price_text, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
+        self.hbox7 = wx.BoxSizer(wx.HORIZONTAL)
+        self.hbox7.Add(self.xrp_price_text_name, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
+        self.hbox7.AddSpacer(2)
+        self.hbox7.Add(self.xrp_price_text, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
+
         # add usd
         self.add_usd_label = wx.StaticText(self.panel, -1, label="Add USD:", size = (65,20))
         self.add_usd_input_box = wx.TextCtrl(self.panel,size = (30,20))
@@ -287,14 +310,18 @@ class GraphFrame(wx.Frame):
         self.vbox5.Add(self.hbox0, 0, flag=wx.ALIGN_RIGHT | wx.TOP)
         self.vbox5.Add(self.hbox1, 0, flag=wx.ALIGN_LEFT | wx.TOP)
         self.vbox5.Add(self.hbox2, 0, flag=wx.ALIGN_LEFT | wx.TOP)
+        self.vbox5.Add(self.hbox4, 0, flag=wx.ALIGN_LEFT | wx.TOP)
+        self.vbox5.Add(self.hbox5, 0, flag=wx.ALIGN_LEFT | wx.TOP)
+        self.vbox5.Add(self.hbox6, 0, flag=wx.ALIGN_LEFT | wx.TOP)
+        self.vbox5.Add(self.hbox7, 0, flag=wx.ALIGN_LEFT | wx.TOP)
         self.vbox5.Add(self.hbox3, 0, flag=wx.ALIGN_RIGHT | wx.TOP)
 
-        self.hbox6 = wx.BoxSizer(wx.HORIZONTAL)
-        self.hbox6.Add(self.vbox4, 0, flag=wx.ALIGN_LEFT | wx.TOP)
-        self.hbox6.Add(self.vbox5, 1, flag=wx.ALIGN_RIGHT | wx.BOTTOM)
-        self.panel.SetSizer(self.hbox6)
-        self.hbox6.Fit(self)
-        self.hbox6.Layout()
+        self.hbox10 = wx.BoxSizer(wx.HORIZONTAL)
+        self.hbox10.Add(self.vbox4, 0, flag=wx.ALIGN_LEFT | wx.TOP)
+        self.hbox10.Add(self.vbox5, 1, flag=wx.ALIGN_RIGHT | wx.BOTTOM)
+        self.panel.SetSizer(self.hbox10)
+        self.hbox10.Fit(self)
+        self.hbox10.Layout()
 
         # self.vbox5.Fit(self)
         # self.vbox5.Layout()
@@ -429,7 +456,7 @@ class GraphFrame(wx.Frame):
             self.submit_distribution_modification_button.Hide()
             self.cancel_distribution_modification_button.Hide()
         self.modify_distribution_button.Hide()
-        self.hbox6.Layout()
+        self.hbox10.Layout()
 
     def OnChoice(self, event):
         print("self.choice.GetSelection()", self.choice.GetSelection())
@@ -473,7 +500,7 @@ class GraphFrame(wx.Frame):
             self.modify_distribution_button.Hide()
         else:
             self.modify_distribution_button.Show()
-        self.hbox6.Layout()
+        self.hbox10.Layout()
 
         strval = event.GetEventObject().GetStringSelection()
         strs = strval.split(":")
@@ -503,7 +530,7 @@ class GraphFrame(wx.Frame):
         self.submit_new_distribution_button.Show()
         self.cancel_new_distribution_button.Show()
         self.add_boxes_visible = True
-        self.hbox6.Layout()
+        self.hbox10.Layout()
 
     def hide_all_add_boxes_except_add_new_pv_button(self):
         self.eth_input_box.Hide()
@@ -516,7 +543,7 @@ class GraphFrame(wx.Frame):
         self.submit_new_distribution_button.Hide()
         self.cancel_new_distribution_button.Hide()
         self.add_boxes_visible = False
-        self.hbox6.Layout()
+        self.hbox10.Layout()
 
     def on_cancel_new_distribution_button(self, event):
         print("on_cancel_new_distribution_button pressed")
@@ -570,7 +597,7 @@ class GraphFrame(wx.Frame):
         self.submit_distribution_modification_button.Show()
         self.cancel_distribution_modification_button.Show()
         self.modify_boxes_visible = True
-        self.hbox6.Layout()
+        self.hbox10.Layout()
 
     def hide_all_modification_boxes_except_edit_button(self):
         self.modify_eth_input_box.Hide()
@@ -583,7 +610,7 @@ class GraphFrame(wx.Frame):
         self.cancel_distribution_modification_button.Hide()
         self.modify_distribution_button.Show()
         self.modify_boxes_visible = False
-        self.hbox6.Layout()
+        self.hbox10.Layout()
 
     def on_cancel_distribution_modification_button(self, event):
         print("on_cancel_distribution_modification_button pressed")
@@ -708,6 +735,53 @@ class GraphFrame(wx.Frame):
             interval_in_secs = 86400
         return interval_in_secs
 
+    def update_current_prices(self):
+        headers = {'Content-Type': 'application/json'}
+        timestamp = int(time.time())
+        timestamp -= 250
+        api_url = "http://104.131.139.250/api.php/Spreads?filter=timestamp,gt," + str(timestamp)
+        print("update_current_prices api_url:", api_url)
+        future = session.get(api_url, background_callback=self.bg_cb)
+        response = future.result()
+        # response = requests.get(api_url, headers=headers)
+        if response.status_code == 200:
+            retval = json.loads(response.content.decode('utf-8'))
+        else:
+            retval = None
+
+        if retval:
+            latest_prices = retval["Spreads"]["records"]
+            #btc
+            i = len(latest_prices) - 1
+            while i > 0:
+                if latest_prices[i][1] == "XXBTZUSD":
+                    break
+                else:
+                    i -= 1
+            mid_mkt = (latest_prices[i][2] + latest_prices[i][3]) / 2.0
+            self.btc_price_text.SetLabel("$" + str(round(mid_mkt, 2)))
+
+            #eth
+            i = len(latest_prices) - 1
+            while i > 0:
+                if latest_prices[i][1] == "XETHZUSD":
+                    break
+                else:
+                    i -= 1
+            mid_mkt = (latest_prices[i][2] + latest_prices[i][3]) / 2.0
+            self.eth_price_text.SetLabel("$" + str(round(mid_mkt, 2)))
+
+            #xrp
+            i = len(latest_prices) - 1
+            while i > 0:
+                if latest_prices[i][1] == "XXRPZUSD":
+                    break
+                else:
+                    i -= 1
+            mid_mkt = (latest_prices[i][2] + latest_prices[i][3]) / 2.0
+            self.xrp_price_text.SetLabel("$" + str(round(mid_mkt, 2)))
+
+
     def on_redraw_timer(self, event):
         global list_id
         # if paused do not add data, but still redraw the plot
@@ -732,6 +806,8 @@ class GraphFrame(wx.Frame):
         for val_and_timestamp in graphvals:
             self.data.append(val_and_timestamp[1])
         print("displaying ", len(self.data), " values")
+
+        self.update_current_prices()
 
         self.draw_plot()
 
