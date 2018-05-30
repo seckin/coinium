@@ -547,7 +547,6 @@ class GraphFrame(wx.Frame):
         self.modify_xrp_input_box.SetValue(str(xrp_pct))
 
     def on_add_distribution_button(self, event):
-        print("on_add_distribution_button pressed")
         self.eth_input_box.Show()
         self.btc_input_box.Show()
         self.xrp_input_box.Show()
@@ -574,7 +573,6 @@ class GraphFrame(wx.Frame):
         self.hbox10.Layout()
 
     def on_cancel_new_distribution_button(self, event):
-        print("on_cancel_new_distribution_button pressed")
         self.hide_all_add_boxes_except_add_new_pv_button()
 
     def on_submit_new_distribution_button(self, event):
@@ -615,7 +613,6 @@ class GraphFrame(wx.Frame):
             val = None
 
     def on_modify_distribution_button(self, event):
-        print("on_modify_distribution_button pressed")
         self.modify_eth_input_box.Show()
         self.modify_btc_input_box.Show()
         self.modify_xrp_input_box.Show()
@@ -641,7 +638,6 @@ class GraphFrame(wx.Frame):
         self.hbox10.Layout()
 
     def on_cancel_distribution_modification_button(self, event):
-        print("on_cancel_distribution_modification_button pressed")
         self.hide_all_modification_boxes_except_edit_button()
 
     def on_submit_distribution_modification_button(self, event):
