@@ -107,7 +107,7 @@ class GraphFrame(wx.Frame):
 
         self.redraw_timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.on_redraw_timer, self.redraw_timer)
-        self.redraw_timer.Start(2500)
+        self.redraw_timer.Start(10000)
 
     def create_menu(self):
         self.menubar = wx.MenuBar()
@@ -305,6 +305,20 @@ class GraphFrame(wx.Frame):
         self.hbox6.Add(self.last_24_hours_eth_price_text, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
         self.hbox7.AddSpacer(12)
         self.hbox7.Add(self.last_24_hours_xrp_price_text, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
+
+        # last week
+        self.last_week_prices = wx.StaticText(self.panel, -1, label="Last week", size = (95,20))
+        self.last_week_btc_price_text = wx.StaticText(self.panel, -1, label="...", size = (75,20))
+        self.last_week_eth_price_text = wx.StaticText(self.panel, -1, label="...", size = (75,20))
+        self.last_week_xrp_price_text = wx.StaticText(self.panel, -1, label="...", size = (75,20))
+        self.hbox4.AddSpacer(20)
+        self.hbox4.Add(self.last_week_prices, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
+        self.hbox5.AddSpacer(37)
+        self.hbox5.Add(self.last_week_btc_price_text, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
+        self.hbox6.AddSpacer(37)
+        self.hbox6.Add(self.last_week_eth_price_text, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
+        self.hbox7.AddSpacer(37)
+        self.hbox7.Add(self.last_week_xrp_price_text, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
 
         # add usd
         self.add_usd_label = wx.StaticText(self.panel, -1, label="Add USD:", size = (65,20))
@@ -795,6 +809,7 @@ class GraphFrame(wx.Frame):
             xrp_mid_mkt = (latest_prices[i][2] + latest_prices[i][3]) / 2.0
             self.xrp_price_text.SetLabel("$" + str(round(xrp_mid_mkt, 4)))
 
+            # last 24 hours
             headers = {'Content-Type': 'application/json'}
             timestamp = int(time.time())
             timestamp -= (24 * 60 * 60)
@@ -807,7 +822,6 @@ class GraphFrame(wx.Frame):
                 retval = json.loads(response.content.decode('utf-8'))
             else:
                 retval = None
-
             if retval:
                 last_24_hour_prices = retval["Spreads"]["records"]
                 #btc
@@ -842,6 +856,54 @@ class GraphFrame(wx.Frame):
                 xrp_24_hour_mid_mkt = (last_24_hour_prices[i][2] + last_24_hour_prices[i][3]) / 2.0
                 self.last_24_hours_xrp_price_text.SetLabel(("+" if xrp_mid_mkt > xrp_24_hour_mid_mkt else "") + \
                     str(round(100.0 * (xrp_mid_mkt / xrp_24_hour_mid_mkt) - 100.0, 1)) + "%")
+
+            # last week
+            headers = {'Content-Type': 'application/json'}
+            timestamp = int(time.time())
+            timestamp -= (7 * 24 * 60 * 60)
+            api_url = "http://104.131.139.250/api.php/Spreads?filter=timestamp,gt," + str(timestamp)
+            print("update_24_hour_prices api_url:", api_url)
+            future = session.get(api_url, background_callback=self.bg_cb)
+            response = future.result()
+            # response = requests.get(api_url, headers=headers)
+            if response.status_code == 200:
+                retval = json.loads(response.content.decode('utf-8'))
+            else:
+                retval = None
+            if retval:
+                last_week_prices = retval["Spreads"]["records"]
+                #btc
+                i = 0
+                while i < len(last_week_prices):
+                    if last_week_prices[i][1] == "XXBTZUSD":
+                        break
+                    else:
+                        i += 1
+                btc_week_mid_mkt = (last_week_prices[i][2] + last_week_prices[i][3]) / 2.0
+                self.last_week_btc_price_text.SetLabel(("+" if btc_mid_mkt > btc_week_mid_mkt else "") + \
+                    str(round(100.0 * (btc_mid_mkt / btc_week_mid_mkt) - 100.0, 1)) + "%")
+
+                #eth
+                i = 0
+                while i < len(last_week_prices):
+                    if last_week_prices[i][1] == "XETHZUSD":
+                        break
+                    else:
+                        i += 1
+                eth_week_mid_mkt = (last_week_prices[i][2] + last_week_prices[i][3]) / 2.0
+                self.last_week_eth_price_text.SetLabel(("+" if eth_mid_mkt > eth_week_mid_mkt else "") + \
+                    str(round(100.0 * (eth_mid_mkt / eth_week_mid_mkt) - 100.0, 1)) + "%")
+
+                #xrp
+                i = 0
+                while i < len(last_week_prices):
+                    if last_week_prices[i][1] == "XXRPZUSD":
+                        break
+                    else:
+                        i += 1
+                xrp_week_mid_mkt = (last_week_prices[i][2] + last_week_prices[i][3]) / 2.0
+                self.last_week_xrp_price_text.SetLabel(("+" if xrp_mid_mkt > xrp_week_mid_mkt else "") + \
+                    str(round(100.0 * (xrp_mid_mkt / xrp_week_mid_mkt) - 100.0, 1)) + "%")
 
 
     def on_redraw_timer(self, event):
