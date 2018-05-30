@@ -169,12 +169,22 @@ class GraphFrame(wx.Frame):
                 strval += "XRP: " + str(dist[3]) + "%"
                 distributions.append(strval)
 
+        # logo & text
+        png = wx.Image("/Users/seckin/coinium/coinium.png", wx.BITMAP_TYPE_ANY).Rescale(50, 50).ConvertToBitmap()
+        self.coinium_image = wx.StaticBitmap(self.panel, -1, png, (10, 5), (png.GetWidth(), png.GetHeight()))
         # portfolio list
         self.lst = wx.ListBox(self.panel, size = (260,600), choices = distributions, style = wx.LB_SINGLE)
         self.Bind(wx.EVT_LISTBOX, self.onListBox, self.lst)
         self.lst.Bind(wx.EVT_KILL_FOCUS, self.onListBoxUnfocused)
+        self.coinium_text = wx.StaticText(self.panel, -1, label="Coinium", size = (150,50))
+        self.coinium_text.SetLabelMarkup("<span foreground='blue' size='30720' font_weight='ultrabold'>Coinium</span>")
         self.portfolio_list_text = wx.StaticText(self.panel, -1, label="Portfolio List", size = (85,15))
+        # adding logo, text and portfolio list
+        self.hbox11 = wx.BoxSizer(wx.HORIZONTAL)
+        self.hbox11.Add(self.coinium_image, border=5, flag=wx.ALL | wx.ALIGN_LEFT)
+        self.hbox11.Add(self.coinium_text, border=5, flag=wx.ALL | wx.ALIGN_LEFT)
         self.vbox4 = wx.BoxSizer(wx.VERTICAL)
+        self.vbox4.Add(self.hbox11, border=5, flag=wx.ALL | wx.ALIGN_LEFT)
         self.vbox4.Add(self.portfolio_list_text, border=5, flag=wx.ALL | wx.ALIGN_LEFT)
         self.vbox4.AddSpacer(0)
         self.vbox4.Add(self.lst, border=5, flag=wx.ALL | wx.ALIGN_LEFT)
