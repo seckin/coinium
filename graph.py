@@ -827,7 +827,7 @@ class GraphFrame(wx.Frame):
             headers = {'Content-Type': 'application/json'}
             timestamp = int(time.time())
             timestamp -= (24 * 60 * 60)
-            api_url = "http://104.131.139.250/api.php/Spreads?filter=timestamp,gt," + str(timestamp)
+            api_url = "http://104.131.139.250/api.php/Spreads?filter=timestamp,bt," + str(timestamp) + "," + str(timestamp + 250)
             print("update_24_hour_prices api_url:", api_url)
             future = session.get(api_url, background_callback=self.bg_cb)
             response = future.result()
@@ -875,7 +875,7 @@ class GraphFrame(wx.Frame):
             headers = {'Content-Type': 'application/json'}
             timestamp = int(time.time())
             timestamp -= (7 * 24 * 60 * 60)
-            api_url = "http://104.131.139.250/api.php/Spreads?filter=timestamp,gt," + str(timestamp)
+            api_url = "http://104.131.139.250/api.php/Spreads?filter=timestamp,bt," + str(timestamp) + "," + str(timestamp + 250)
             print("update_24_hour_prices api_url:", api_url)
             future = session.get(api_url, background_callback=self.bg_cb)
             response = future.result()
