@@ -336,20 +336,28 @@ class GraphFrame(wx.Frame):
         self.vbox5 = wx.BoxSizer(wx.VERTICAL)
         self.vbox5.Add(self.canvas, 1, flag=wx.ALIGN_LEFT | wx.TOP | wx.GROW)
         self.vbox5.Add(self.hbox0, 0, flag=wx.ALIGN_RIGHT | wx.TOP)
-        self.vbox5.Add(self.hbox1, 0, flag=wx.ALIGN_LEFT | wx.TOP)
-        self.vbox5.Add(self.hbox2, 0, flag=wx.ALIGN_LEFT | wx.TOP)
         self.vbox5.Add(self.hbox4, 0, flag=wx.ALIGN_LEFT | wx.TOP)
         self.vbox5.Add(self.hbox5, 0, flag=wx.ALIGN_LEFT | wx.TOP)
         self.vbox5.Add(self.hbox6, 0, flag=wx.ALIGN_LEFT | wx.TOP)
         self.vbox5.Add(self.hbox7, 0, flag=wx.ALIGN_LEFT | wx.TOP)
-        self.vbox5.Add(self.hbox3, 0, flag=wx.ALIGN_RIGHT | wx.TOP)
 
-        self.hbox10 = wx.BoxSizer(wx.HORIZONTAL)
-        self.hbox10.Add(self.vbox4, 0, flag=wx.ALIGN_LEFT | wx.TOP)
-        self.hbox10.Add(self.vbox5, 1, flag=wx.ALIGN_RIGHT | wx.BOTTOM)
-        self.panel.SetSizer(self.hbox10)
-        self.hbox10.Fit(self)
-        self.hbox10.Layout()
+        self.hbox8 = wx.BoxSizer(wx.HORIZONTAL)
+        self.hbox8.Add(self.vbox4, 0, flag=wx.ALIGN_LEFT | wx.TOP | wx.GROW)
+        self.hbox8.Add(self.vbox5, 1, flag=wx.ALIGN_RIGHT | wx.BOTTOM)
+
+        self.vbox9 = wx.BoxSizer(wx.VERTICAL)
+        self.vbox9.Add(self.hbox1, 1, flag=wx.ALIGN_LEFT | wx.TOP)
+        self.vbox9.Add(self.hbox2, 1, flag=wx.ALIGN_LEFT | wx.BOTTOM)
+        self.vbox9.Add(self.hbox3, 1, flag=wx.ALIGN_RIGHT | wx.BOTTOM)
+
+        self.vbox6 = wx.BoxSizer(wx.VERTICAL)
+        self.vbox6.Add(self.hbox8, 0, flag=wx.ALIGN_LEFT | wx.TOP | wx.GROW)
+        self.vbox6.Add(self.vbox9, 0, flag=wx.ALIGN_LEFT | wx.TOP | wx.GROW)
+
+        # self.vbox6 = wx.BoxSizer(wx.VERTICAL)
+        self.panel.SetSizer(self.vbox6)
+        self.vbox6.Fit(self)
+        self.vbox6.Layout()
 
         # self.vbox5.Fit(self)
         # self.vbox5.Layout()
@@ -484,7 +492,7 @@ class GraphFrame(wx.Frame):
             self.submit_distribution_modification_button.Hide()
             self.cancel_distribution_modification_button.Hide()
         self.modify_distribution_button.Hide()
-        self.hbox10.Layout()
+        self.vbox6.Layout()
 
     def OnChoice(self, event):
         print("self.choice.GetSelection()", self.choice.GetSelection())
@@ -528,7 +536,7 @@ class GraphFrame(wx.Frame):
             self.modify_distribution_button.Hide()
         else:
             self.modify_distribution_button.Show()
-        self.hbox10.Layout()
+        self.vbox6.Layout()
 
         strval = event.GetEventObject().GetStringSelection()
         strs = strval.split(":")
@@ -557,7 +565,7 @@ class GraphFrame(wx.Frame):
         self.submit_new_distribution_button.Show()
         self.cancel_new_distribution_button.Show()
         self.add_boxes_visible = True
-        self.hbox10.Layout()
+        self.vbox6.Layout()
 
     def hide_all_add_boxes_except_add_new_pv_button(self):
         self.eth_input_box.Hide()
@@ -570,7 +578,7 @@ class GraphFrame(wx.Frame):
         self.submit_new_distribution_button.Hide()
         self.cancel_new_distribution_button.Hide()
         self.add_boxes_visible = False
-        self.hbox10.Layout()
+        self.vbox6.Layout()
 
     def on_cancel_new_distribution_button(self, event):
         self.hide_all_add_boxes_except_add_new_pv_button()
@@ -622,7 +630,7 @@ class GraphFrame(wx.Frame):
         self.submit_distribution_modification_button.Show()
         self.cancel_distribution_modification_button.Show()
         self.modify_boxes_visible = True
-        self.hbox10.Layout()
+        self.vbox6.Layout()
 
     def hide_all_modification_boxes_except_edit_button(self):
         self.modify_eth_input_box.Hide()
@@ -635,7 +643,7 @@ class GraphFrame(wx.Frame):
         self.cancel_distribution_modification_button.Hide()
         self.modify_distribution_button.Show()
         self.modify_boxes_visible = False
-        self.hbox10.Layout()
+        self.vbox6.Layout()
 
     def on_cancel_distribution_modification_button(self, event):
         self.hide_all_modification_boxes_except_edit_button()
