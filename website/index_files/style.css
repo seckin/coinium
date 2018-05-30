@@ -193,8 +193,9 @@ html, body {
 }
 .cd-header #cd-logo img {
     display: block;
-    width: 60px;
-    height: 18px
+    width: 45px;
+    height: 45px;
+    margin-top: -15px;
 }
 .cd-header #cd-action {
     display: inline-block;
@@ -482,7 +483,7 @@ html, body {
     }
 }
 .cd-image-container {
-    max-width: 226px;
+    // max-width: 226px;
     margin: 0 auto;
     padding-top: 50px
 }
@@ -618,6 +619,7 @@ html, body {
     bottom: -38px
 }
 .cd-image-wrapper {
+    display: inline-block !important;
     position: relative;
     overflow: hidden;
     z-index: 2
@@ -719,4 +721,42 @@ html, body {
     width: 0;
     background-color: #f58780;
     display: none
+}
+
+@media only screen and (min-width: 1070px) {
+    .image1 {
+        margin-left: -200px;
+        margin-top: 60px;
+        max-width: 300px;
+    }
+    .image-wrapper1 {
+        width:480px;
+        height:390px;
+    }
+    .image-wrapper1 img {
+        height:310px;
+    }
+
+    .image2 {
+        margin-left: -200px;
+        margin-top: 40px;
+    }
+    .image-wrapper2 {
+        width:480px;
+        height:390px;
+    }
+
+    .image3 {
+        margin-left: -70px;
+        margin-top: 50px;
+    }
+    .image-wrapper3 {
+        width:480px;
+        height:390px;
+    }
+    .image-wrapper3 img {
+        width: 200px;
+        height: 300px;
+        max-width: 240px;
+    }
 }
