@@ -124,6 +124,7 @@ class GraphFrame(wx.Frame):
 
     def create_main_panel(self):
         self.panel = wx.Panel(self)
+        self.panel.SetBackgroundColour((255,255,255))
 
         self.init_plot()
         self.canvas = FigCanvas(self.panel, -1, self.fig)
@@ -173,7 +174,7 @@ class GraphFrame(wx.Frame):
         png = wx.Image("/Users/seckin/coinium/coinium.png", wx.BITMAP_TYPE_ANY).Rescale(50, 50).ConvertToBitmap()
         self.coinium_image = wx.StaticBitmap(self.panel, -1, png, (10, 5), (png.GetWidth(), png.GetHeight()))
         # portfolio list
-        self.lst = wx.ListBox(self.panel, size = (260,600), choices = distributions, style = wx.LB_SINGLE)
+        self.lst = wx.ListBox(self.panel, size = (260,500), choices = distributions, style = wx.LB_SINGLE)
         self.Bind(wx.EVT_LISTBOX, self.onListBox, self.lst)
         self.lst.Bind(wx.EVT_KILL_FOCUS, self.onListBoxUnfocused)
         self.coinium_text = wx.StaticText(self.panel, -1, label="Coinium", size = (150,50))
@@ -288,6 +289,7 @@ class GraphFrame(wx.Frame):
         self.xrp_price_text_name = wx.StaticText(self.panel, -1, label="XRP:", size = (35,20))
         self.xrp_price_text = wx.StaticText(self.panel, -1, label="...", size = (75,20))
         self.hbox4 = wx.BoxSizer(wx.HORIZONTAL)
+        self.hbox4.AddSpacer(45)
         self.hbox4.Add(self.current_prices, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
         self.hbox5 = wx.BoxSizer(wx.HORIZONTAL)
         self.hbox5.Add(self.btc_price_text_name, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
@@ -307,13 +309,13 @@ class GraphFrame(wx.Frame):
         self.last_24_hours_btc_price_text = wx.StaticText(self.panel, -1, label="...", size = (75,20))
         self.last_24_hours_eth_price_text = wx.StaticText(self.panel, -1, label="...", size = (75,20))
         self.last_24_hours_xrp_price_text = wx.StaticText(self.panel, -1, label="...", size = (75,20))
-        self.hbox4.AddSpacer(34)
+        self.hbox4.AddSpacer(20)
         self.hbox4.Add(self.last_24_hours_prices, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
-        self.hbox5.AddSpacer(12)
+        self.hbox5.AddSpacer(40)
         self.hbox5.Add(self.last_24_hours_btc_price_text, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
-        self.hbox6.AddSpacer(12)
+        self.hbox6.AddSpacer(40)
         self.hbox6.Add(self.last_24_hours_eth_price_text, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
-        self.hbox7.AddSpacer(12)
+        self.hbox7.AddSpacer(40)
         self.hbox7.Add(self.last_24_hours_xrp_price_text, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
 
         # last week
@@ -323,11 +325,11 @@ class GraphFrame(wx.Frame):
         self.last_week_xrp_price_text = wx.StaticText(self.panel, -1, label="...", size = (75,20))
         self.hbox4.AddSpacer(20)
         self.hbox4.Add(self.last_week_prices, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
-        self.hbox5.AddSpacer(37)
+        self.hbox5.AddSpacer(40)
         self.hbox5.Add(self.last_week_btc_price_text, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
-        self.hbox6.AddSpacer(37)
+        self.hbox6.AddSpacer(40)
         self.hbox6.Add(self.last_week_eth_price_text, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
-        self.hbox7.AddSpacer(37)
+        self.hbox7.AddSpacer(40)
         self.hbox7.Add(self.last_week_xrp_price_text, border=5, flag=wx.ALL | wx.ALIGN_BOTTOM)
 
         # add usd
@@ -838,6 +840,7 @@ class GraphFrame(wx.Frame):
                 retval = None
             if retval:
                 last_24_hour_prices = retval["Spreads"]["records"]
+                print("last_24_hour_prices", last_24_hour_prices)
                 #btc
                 i = 0
                 while i < len(last_24_hour_prices):
