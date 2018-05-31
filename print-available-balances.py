@@ -61,3 +61,18 @@ for k, v in balance.items():
         print(k, s)
 
 print("total_coin_val", total_coin_val)
+
+for k, v in balance.items():
+    # convert to string for printing
+    if v == D('0'):
+        s = '0'
+    else:
+        s = str(v)
+    # remove trailing zeros (remnant of being decimal)
+    s = s.rstrip('0').rstrip('.') if '.' in s else s
+    #
+    if k != "USD":
+        val = new_mid_mkt_vals[k] * float(s)
+        print(k, s, "price:", new_mid_mkt_vals[k], "total $ val:", val, "% of total coin holdings:", 100.0 * (val / total_coin_val))
+    else:
+        print(k, s)
