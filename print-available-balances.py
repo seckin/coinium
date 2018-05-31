@@ -12,6 +12,13 @@ orders = k.query_private('OpenOrders')
 balance = balance['result']
 orders = orders['result']
 
+print("balance", balance)
+coins = ['XXBT', 'XETH', 'XXRP']
+for coin in coins:
+    if coin not in balance.keys():
+        balance[coin] = 0.0
+print("updated balance", balance)
+
 newbalance = dict()
 mid_mkt_vals = dict()
 new_mid_mkt_vals = dict()
@@ -36,6 +43,7 @@ for currency in balance:
         new_mid_mkt_vals[newname] = float(D(mid_mkt_vals[currency]))
 balance = newbalance
 
+total_coin_val = 0.0
 for k, v in balance.items():
     # convert to string for printing
     if v == D('0'):
@@ -46,6 +54,10 @@ for k, v in balance.items():
     s = s.rstrip('0').rstrip('.') if '.' in s else s
     #
     if k != "USD":
-        print(k, s, "price:", new_mid_mkt_vals[k], "total $ val:", new_mid_mkt_vals[k] * float(s))
+        val = new_mid_mkt_vals[k] * float(s)
+        print(k, s, "price:", new_mid_mkt_vals[k], "total $ val:", val)
+        total_coin_val += val
     else:
         print(k, s)
+
+print("total_coin_val", total_coin_val)
