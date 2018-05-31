@@ -2,6 +2,12 @@ import krakenex
 
 from decimal import Decimal as D
 import pprint
+import krakenex
+import decimal
+import time
+import pymysql
+import pymysql.cursors
+
 
 k = krakenex.API()
 k.load_key('kraken.key')
@@ -76,3 +82,87 @@ for k, v in balance.items():
         print(k, s, "price:", new_mid_mkt_vals[k], "total $ val:", val, "% of total coin holdings:", 100.0 * (val / total_coin_val))
     else:
         print(k, s)
+
+
+
+connection = pymysql.connect(host='localhost',
+                             user='root',
+                             password='co1n23im',
+                             db='coinim',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
+
+
+try:
+    with connection.cursor() as cursor:
+        # Read a single record
+        sql = "SELECT * FROM `Lists`"
+        cursor.execute(sql, ())
+        lists = cursor.fetchall()
+        print("lists", lists)
+        for list in lists:
+            # get the latest distribution for the list
+            sql = "SELECT * FROM `ListHasDistribution` WHERE `list_id`=%s order by created_at desc limit 1"
+            cursor.execute(sql, (list["id"],))
+            list_has_distribution = cursor.fetchall()
+            print("list_has_distribution", list_has_distribution)
+            if len(list_has_distribution):
+                list_has_distribution = list_has_distribution[0]
+            else:
+                print("list_has_distribution not found. skipping list.")
+                continue
+            sql = "SELECT * FROM `Distributions` WHERE `id`=%s"
+            cursor.execute(sql, (list_has_distribution["distribution_id"],))
+            distributions = cursor.fetchall()
+            if len(distributions):
+                latest_distribution_of_list = distributions[0]
+            else:
+                print("distributions not found. skipping list.")
+                continue
+            
+            # get all approved subscriptions of this list
+            sql = "SELECT * FROM `Subscription` WHERE approved = 1 and `list_id`=%s"
+            cursor.execute(sql, (list["id"],))
+            subscriptions_of_list = cursor.fetchall()
+            print("subscriptions_of_list", subscriptions_of_list)
+            total_holding_amounts_for_list = dict()
+            total_holding_amounts_for_list["btc"] = list["kraken_btc"]
+            total_holding_amounts_for_list["eth"] = list["kraken_eth"]
+            total_holding_amounts_for_list["xrp"] = list["kraken_xrp"]
+            total_holding_amounts_for_list["zcash"] = 0
+            for subscription in subscriptions_of_list:
+                print("subscription", subscription)
+                if subscription["kraken_processed"] == 0:
+                    print("kraken_processed is zero. updating to 1")
+                    sql = "UPDATE `Subscription` SET kraken_processed=1 WHERE `id`=%s"
+                    cursor.execute(sql, (subscription["id"],))
+                    connection.commit()
+                    total_holding_amounts_for_list["btc"] += subscription["kraken_btc"]
+                    total_holding_amounts_for_list["eth"] += subscription["kraken_eth"]
+                    total_holding_amounts_for_list["xrp"] += subscription["kraken_xrp"]
+                    total_holding_amounts_for_list["zcash"] += subscription["kraken_zcash"]
+                else:
+                    print("kraken_processed not zero")
+            for key in total_holding_amounts_for_list.keys():
+                print("holding ", key, " amount:", total_holding_amounts_for_list[key])
+            total_coin_val_for_list = dict()
+            total_coin_val_for_list["btc"] = new_mid_mkt_vals["XBT"] * total_holding_amounts_for_list["btc"]
+            total_coin_val_for_list["eth"] = new_mid_mkt_vals["ETH"] * total_holding_amounts_for_list["eth"]
+            total_coin_val_for_list["xrp"] = new_mid_mkt_vals["XRP"] * total_holding_amounts_for_list["xrp"]
+            total_coin_val_for_list["zcash"] = new_mid_mkt_vals["ZEC"] * total_holding_amounts_for_list["zcash"]
+            total_coin_val_in_usd = total_coin_val_for_list["btc"] + \
+                                    total_coin_val_for_list["eth"] + \
+                                    total_coin_val_for_list["xrp"] + \
+                                    total_coin_val_for_list["zcash"]
+            print("total_coin_val_in_usd", total_coin_val_in_usd)
+            print("current percentage holdings for list#", list["id"])
+            print("btc $", total_coin_val_for_list["btc"], " pct:", 100.0 * (0.0 if total_coin_val_for_list["btc"] == 0 else total_coin_val_for_list["btc"] / total_coin_val_in_usd))
+            print("eth $", total_coin_val_for_list["eth"], " pct:", 100.0 * (0.0 if total_coin_val_for_list["eth"] == 0 else total_coin_val_for_list["eth"] / total_coin_val_in_usd))
+            print("xrp $", total_coin_val_for_list["xrp"], " pct:", 100.0 * (0.0 if total_coin_val_for_list["xrp"] == 0 else total_coin_val_for_list["xrp"] / total_coin_val_in_usd))
+            print("zcash $", total_coin_val_for_list["zcash"], " pct:", 100.0 * (0.0 if total_coin_val_for_list["xrp"] == 0 else total_coin_val_for_list["zcash"] / total_coin_val_in_usd))
+            print("")
+            print("final pct holding should be = latest_distribution_of_list: ", latest_distribution_of_list)
+
+
+finally:
+    connection.close()

@@ -58,6 +58,15 @@ tables:
 	) ENGINE=InnoDB;
 
 	ALTER TABLE Subscription ADD COLUMN approved INT(5) AFTER timestamp;
+	ALTER TABLE Subscription ADD COLUMN kraken_btc DOUBLE DEFAULT 0 AFTER approved;
+	ALTER TABLE Subscription ADD COLUMN kraken_eth DOUBLE DEFAULT 0 AFTER kraken_btc;
+	ALTER TABLE Subscription ADD COLUMN kraken_xrp DOUBLE DEFAULT 0 AFTER kraken_eth;
+	ALTER TABLE Subscription ADD COLUMN kraken_zcash DOUBLE DEFAULT 0 AFTER kraken_xrp;
+	ALTER TABLE Subscription ADD COLUMN kraken_processed DOUBLE DEFAULT 0 AFTER kraken_zcash;
+
+	ALTER TABLE Lists ADD COLUMN kraken_btc DOUBLE DEFAULT 0 AFTER name;
+	ALTER TABLE Lists ADD COLUMN kraken_eth DOUBLE DEFAULT 0 AFTER kraken_btc;
+	ALTER TABLE Lists ADD COLUMN kraken_xrp DOUBLE DEFAULT 0 AFTER kraken_eth;
 
 	INSERT INTO Lists (`name`) VALUES ("seckin's list");
 	INSERT INTO Distributions (`btc`,`eth`,`xrp`) VALUES (30, 30, 40);
