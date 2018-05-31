@@ -71,6 +71,8 @@ def hello():
                 spreads_for_pair[pair] = spreads
                 spreads_idx_for_pair[pair] = len(spreads) - 1
                 print("for coin ", pair, " found ", len(spreads), " spreads")
+            while (until - iteration_time) / interval_in_secs > 80:
+                iteration_time += interval_in_secs
             while iteration_time < until:
                 i = 0
                 aggr_appreciation_in_pct = 0
