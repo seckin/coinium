@@ -162,6 +162,14 @@ try:
             print("zcash $", total_coin_val_for_list["zcash"], " pct:", 100.0 * (0.0 if total_coin_val_for_list["xrp"] == 0 else total_coin_val_for_list["zcash"] / total_coin_val_in_usd))
             print("")
             print("final pct holding should be = latest_distribution_of_list: ", latest_distribution_of_list)
+            print("final btc pct:", latest_distribution_of_list["btc"])
+            print("final eth pct:", latest_distribution_of_list["eth"])
+            print("final xrp pct:", latest_distribution_of_list["xrp"])
+
+            print("\n\n")
+            print("=============================================")
+            print("\n\n")
+
 
 
 finally:

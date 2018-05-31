@@ -8,6 +8,13 @@ OK - display the graph chosen from the list, update it every 5 seconds
 OK - buy the domain
 
 OK - write the names and percentages of the assets at the top
+
+eksikler:
+    paradan pay almak ve api ile rebalance etmek
+    graph'ta rebalance'lari annotate etmek ve rebalance sonrasi tum graph'i guncellememek
+    short'lu portfolyolara yatirim kabul etmeyip uyari gostermek
+
+
 - coin,timestamp index on spreads
 
 - let the intervals be selectable: 30 seconds, 5 mins, 2 hours, 1 day

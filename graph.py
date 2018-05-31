@@ -107,7 +107,7 @@ class GraphFrame(wx.Frame):
 
         self.redraw_timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.on_redraw_timer, self.redraw_timer)
-        self.redraw_timer.Start(10000)
+        self.redraw_timer.Start(1500)
 
     def create_menu(self):
         self.menubar = wx.MenuBar()
@@ -936,6 +936,7 @@ class GraphFrame(wx.Frame):
         headers = {'Content-Type': 'application/json'}
         api_url = "http://104.131.139.250:5000/?list_id=" + str(list_id) + "&interval_in_secs=" + str(interval_in_secs)
         print("api_url:", api_url)
+        t1 = time.time()
         future = session.get(api_url, background_callback=self.bg_cb)
         response = future.result()
         # response = requests.get(api_url, headers=headers)
@@ -943,6 +944,8 @@ class GraphFrame(wx.Frame):
             graphvals = json.loads(response.content.decode('utf-8'))
         else:
             graphvals = None
+        t2 = time.time()
+        print("t2 - t1:", t2 - t1)
 
         self.data = []
         for val_and_timestamp in graphvals:
