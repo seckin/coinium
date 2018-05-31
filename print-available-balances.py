@@ -1,30 +1,13 @@
-#!/usr/bin/env python
-
-# This file is part of krakenex.
-# Licensed under the Simplified BSD license. See `examples/LICENSE.txt`.
-
-# Get balance available for trading/withdrawal (not on orders).
-#
-# NOTE: Assumes regular orders. Margin positions are not taken into account!
-#
-# FIXME: Also shows how current krakenex usage has too much sugar.
-
 import krakenex
 
 from decimal import Decimal as D
 import pprint
-import decimal
-import time
 
 k = krakenex.API()
 k.load_key('kraken.key')
 
 balance = k.query_private('Balance')
 orders = k.query_private('OpenOrders')
-
-# since = int(decimal.Decimal(time.time()))
-# since -= 30
-
 
 balance = balance['result']
 orders = orders['result']
