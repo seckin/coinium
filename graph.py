@@ -439,7 +439,7 @@ class GraphFrame(wx.Frame):
         else:
             self.axes.grid(False)
 
-        print("calling annotate")
+        # print("calling annotate")
         # self.axes.annotate('annotate', xy=(1, 1.0), xytext=(40, 1.0), arrowprops=dict(facecolor='black', shrink=0.05))
         # self.axes.annotate('Now', xy=(xmax, ymin), xytext=(xmax, (ymin + ymax) / 2.0), arrowprops=dict(facecolor='black', shrink=0.05))
         # self.axes.text(2, 1, r'an equation: $E=mc^2$', fontsize=15)
@@ -465,15 +465,15 @@ class GraphFrame(wx.Frame):
                 strval += str(int(absval / 60)) + "m "
                 absval = absval % 60
             if absval > 0:
-                strval += str(int(absval)) + "s"
+                strval += str(int(absval)) + "s "
 
             if strval == "":
                 result_strval = ""
             else:
                 if i == len(lst) - 2:
-                    result_strval = "<" + str(strval) + " ago"
+                    result_strval = "<" + str(strval) + "ago"
                 else:
-                    result_strval = str(strval) + " ago"
+                    result_strval = str(strval) + "ago"
             x.set_text(result_strval)
             # setp_xlabels.append(x)
             i+=1
@@ -782,7 +782,7 @@ class GraphFrame(wx.Frame):
     def update_current_prices(self):
         headers = {'Content-Type': 'application/json'}
         timestamp = int(time.time())
-        timestamp -= 250
+        timestamp -= 7500
         api_url = "http://104.131.139.250/api.php/Spreads?filter=timestamp,gt," + str(timestamp)
         print("update_current_prices api_url:", api_url)
         future = session.get(api_url, background_callback=self.bg_cb)
@@ -795,6 +795,7 @@ class GraphFrame(wx.Frame):
 
         if retval:
             latest_prices = retval["Spreads"]["records"]
+            # print("latest_prices", latest_prices)
             #btc
             i = len(latest_prices) - 1
             while i > 0:
@@ -830,7 +831,7 @@ class GraphFrame(wx.Frame):
             timestamp = int(time.time())
             timestamp -= (24 * 60 * 60)
             api_url = "http://104.131.139.250/api.php/Spreads?filter=timestamp,bt," + str(timestamp) + "," + str(timestamp + 250)
-            print("update_24_hour_prices api_url:", api_url)
+            # print("update_24_hour_prices api_url:", api_url)
             future = session.get(api_url, background_callback=self.bg_cb)
             response = future.result()
             # response = requests.get(api_url, headers=headers)
@@ -840,7 +841,7 @@ class GraphFrame(wx.Frame):
                 retval = None
             if retval:
                 last_24_hour_prices = retval["Spreads"]["records"]
-                print("last_24_hour_prices", last_24_hour_prices)
+                # print("last_24_hour_prices", last_24_hour_prices)
                 #btc
                 i = 0
                 while i < len(last_24_hour_prices):
@@ -879,7 +880,7 @@ class GraphFrame(wx.Frame):
             timestamp = int(time.time())
             timestamp -= (7 * 24 * 60 * 60)
             api_url = "http://104.131.139.250/api.php/Spreads?filter=timestamp,bt," + str(timestamp) + "," + str(timestamp + 250)
-            print("update_24_hour_prices api_url:", api_url)
+            # print("update_24_hour_prices api_url:", api_url)
             future = session.get(api_url, background_callback=self.bg_cb)
             response = future.result()
             # response = requests.get(api_url, headers=headers)
