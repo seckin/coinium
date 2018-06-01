@@ -156,7 +156,8 @@ try:
             total_coin_val_in_usd = total_coin_val_for_list["btc"] + \
                                     total_coin_val_for_list["eth"] + \
                                     total_coin_val_for_list["xrp"] + \
-                                    total_coin_val_for_list["zcash"]
+                                    total_coin_val_for_list["zcash"] + \
+                                    float(balance["USD"])
             print("total_coin_val_in_usd", total_coin_val_in_usd)
             print("current percentage holdings for list#", list["id"])
             print("btc $", total_coin_val_for_list["btc"], " pct:", 100.0 * (0.0 if total_coin_val_for_list["btc"] == 0 else total_coin_val_for_list["btc"] / total_coin_val_in_usd))
