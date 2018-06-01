@@ -23,7 +23,8 @@ OPTIONS = {
         'CFBundleVersion': "0.1.0",
         'CFBundleShortVersionString': "0.1.0",
         'NSHumanReadableCopyright': u"Copyright © 2018, Seckin Can Sahin, All Rights Reserved"
-    }
+    },
+    'includes': 'wx.adv,wx.html,wx.xml'
 }
 setup(
     app=["graph.py"],
