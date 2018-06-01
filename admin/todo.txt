@@ -14,6 +14,10 @@ eksikler:
     graph'ta rebalance'lari annotate etmek ve rebalance sonrasi tum graph'i guncellememek
     short'lu portfolyolara yatirim kabul etmeyip uyari gostermek
 
+gerekenler:
+    - solid production software
+    - money managers on the platform
+    - signups
 
 - coin,timestamp index on spreads
 
