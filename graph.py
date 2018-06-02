@@ -21,7 +21,7 @@ from requests_futures.sessions import FuturesSession
 
 session = FuturesSession()
 bufsize = 1
-output_file = open("/Users/seckin/coinium/output.txt", 'w', bufsize)
+# output_file = open("/Users/seckin/coinium/output.txt", 'w', bufsize)
 
 class MyBrowser(wx.Dialog):
   def __init__(self, *args, **kwds):
@@ -141,8 +141,8 @@ class GraphFrame(wx.Frame):
             val = json.loads(response.content.decode('utf-8'))
         else:
             val = None
-        output_file.write("val" + str(val) + "\n")
-        output_file.write("first distribution:" +str(val['Distributions']['records'][0]) + "\n")
+        # output_file.write("val" + str(val) + "\n")
+        # output_file.write("first distribution:" +str(val['Distributions']['records'][0]) + "\n")
 
         first_dist = val['Distributions']['records'][0]
         tmp_pair_pcts = [first_dist[1] / 100.0, first_dist[2] / 100.0, first_dist[3] / 100.0]
@@ -163,7 +163,7 @@ class GraphFrame(wx.Frame):
             response = requests.get(api_url, headers=headers)
             if response.status_code == 200:
                 val = json.loads(response.content.decode('utf-8'))
-                output_file.write("val" + str(val) + "\n")
+                # output_file.write("val" + str(val) + "\n")
             else:
                 val = None
             if val and len(val["ListHasDistribution"]["records"]):
@@ -489,7 +489,7 @@ class GraphFrame(wx.Frame):
         self.canvas.draw()
 
     def onListBoxUnfocused(self, event):
-        output_file.write("onListBoxUnfocused" + "\n")
+        # output_file.write("onListBoxUnfocused" + "\n")
         # focused_elem = wx.Window.FindFocus()
         # if focused_elem != self.lst and \
         #    focused_elem != self.modify_eth_input_box and \
@@ -507,14 +507,16 @@ class GraphFrame(wx.Frame):
         #     self.cancel_distribution_modification_button.Hide()
         # self.modify_distribution_button.Hide()
         # self.vbox6.Layout()
+        pass
 
     def OnChoice(self, event):
-        output_file.write("self.choice.GetSelection()" + str(self.choice.GetSelection()) + "\n")
-        output_file.write("choice updated to" + str(self.choice.GetString(self.choice.GetSelection())) + "\n")
+        # output_file.write("self.choice.GetSelection()" + str(self.choice.GetSelection()) + "\n")
+        # output_file.write("choice updated to" + str(self.choice.GetString(self.choice.GetSelection())) + "\n")
+        pass
 
     def update_pair_distributions(self, list_id):
         global app, pairs, pair_pcts, pair_first_vals
-        output_file.write("update_pair_distributions called" + "\n")
+        # output_file.write("update_pair_distributions called" + "\n")
         headers = {'Content-Type': 'application/json'}
         response = requests.get("http://104.131.139.250/api.php/ListHasDistribution?filter=list_id,eq," + str(list_id), headers=headers)
         if response.status_code == 200:
@@ -536,15 +538,15 @@ class GraphFrame(wx.Frame):
         pair_pcts = [distribution_record[1] / 100.0, distribution_record[2] / 100.0, distribution_record[3] / 100.0]
         pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
         pair_first_vals = [-1, -1, -1]
-        output_file.write("pairs" +str(pairs) + "\n")
-        output_file.write("pair_pcts" + str(pair_pcts) + "\n")
-        output_file.write("" + "\n")
+        # output_file.write("pairs" +str(pairs) + "\n")
+        # output_file.write("pair_pcts" + str(pair_pcts) + "\n")
+        # output_file.write("" + "\n")
 
     def onListBox(self, event):
         global list_id
         global app, pairs, pair_pcts, pair_first_vals
-        output_file.write( "Current selection:  \
-            "+event.GetEventObject().GetStringSelection() + "\n")
+        # output_file.write( "Current selection:  \
+        #     "+event.GetEventObject().GetStringSelection() + "\n")
         # output_file.write("calling self.modify_distribution_button.Show()" + "\n")
         # if self.modify_boxes_visible:
         #     self.modify_distribution_button.Hide()
@@ -555,7 +557,7 @@ class GraphFrame(wx.Frame):
         strval = event.GetEventObject().GetStringSelection()
         strs = strval.split(":")
         list_id = int(strs[0].split("#")[1].split(" ")[0])
-        output_file.write("list_id updated to:" +str(list_id) + "\n")
+        # output_file.write("list_id updated to:" +str(list_id) + "\n")
         self.update_pair_distributions(list_id)
         title_str = ""
         for i in range(len(pairs)):
@@ -602,7 +604,7 @@ class GraphFrame(wx.Frame):
         btcval = int(self.btc_input_box.GetValue())
         xrpval = int(self.xrp_input_box.GetValue())
         if abs(ethval) + abs(btcval) + abs(xrpval) != 100:
-            output_file.write(str(ethval) + " " + str(btcval) + " " + str(xrpval) + " absolute values don't add up to 100" + "\n")
+            # output_file.write(str(ethval) + " " + str(btcval) + " " + str(xrpval) + " absolute values don't add up to 100" + "\n")
             return
 
         self.hide_all_add_boxes_except_add_new_pv_button()
@@ -615,22 +617,22 @@ class GraphFrame(wx.Frame):
         response = requests.post(api_url, headers=headers, data = {"btc":btcval, "xrp":xrpval, "eth":ethval})
         if response.status_code == 200:
             val = json.loads(response.content.decode('utf-8'))
-            output_file.write("distribution creation server response:", str(val) + "\n")
+            # output_file.write("distribution creation server response:", str(val) + "\n")
             api_url = '{0}Lists'.format(api_url_base)
             response = requests.post(api_url, headers=headers, data = {"name":"list with dist#" + str(val)})
             if response.status_code == 200:
                 val2 = json.loads(response.content.decode('utf-8'))
-                output_file.write("list creation server response:" + str(val2) + "\n")
+                # output_file.write("list creation server response:" + str(val2) + "\n")
                 strval = "list#" + str(val2) + " BTC: " + str(btcval) + "% "
                 strval += "ETH: " + str(ethval) + "% "
                 strval += "XRP: " + str(xrpval) + "%"
-                output_file.write("adding new list to listbox:" + str(strval) + "\n")
+                # output_file.write("adding new list to listbox:" + str(strval) + "\n")
                 self.lst.Append(strval)
                 api_url = '{0}ListHasDistribution'.format(api_url_base)
                 response = requests.post(api_url, headers=headers, data = {"list_id":val2, "distribution_id":val, "timestamp": int(time.time())})
                 if response.status_code == 200:
                     val3 = json.loads(response.content.decode('utf-8'))
-                    output_file.write("ListHasDistribution creation server response:" + str(val3) + "\n")
+                    # output_file.write("ListHasDistribution creation server response:" + str(val3) + "\n")
         else:
             val = None
 
@@ -670,7 +672,7 @@ class GraphFrame(wx.Frame):
         btcval = int(self.modify_btc_input_box.GetValue())
         xrpval = int(self.modify_xrp_input_box.GetValue())
         if abs(ethval) + abs(btcval) + abs(xrpval) != 100:
-            output_file.write(str(ethval) + " " + str(btcval) + " " + str(xrpval) + " absolute values don't add up to 100" + "\n")
+            # output_file.write(str(ethval) + " " + str(btcval) + " " + str(xrpval) + " absolute values don't add up to 100" + "\n")
             return
 
         self.hide_all_modification_boxes_except_edit_button()
@@ -680,7 +682,7 @@ class GraphFrame(wx.Frame):
                 strval = self.lst.GetStringSelection()
         strs = strval.split(":")
         list_id = int(strs[0].split("#")[1].split(" ")[0])
-        output_file.write("list_id:"+ str(list_id) + "\n")
+        # output_file.write("list_id:"+ str(list_id) + "\n")
 
 
 
@@ -692,11 +694,11 @@ class GraphFrame(wx.Frame):
             list_has_distributions = None
 
         if not list_has_distributions:
-            output_file.write("not list_has_distributions" + "\n")
+            # output_file.write("not list_has_distributions" + "\n")
             return
         # get the distribution id of the first distribution(of the list with id = list_id)
         distribution_id = list_has_distributions["ListHasDistribution"]["records"][0][2]
-        output_file.write("distribution_id" + str(distribution_id) + "\n")
+        # output_file.write("distribution_id" + str(distribution_id) + "\n")
 
 
         api_token = 'your_api_token'
@@ -707,10 +709,10 @@ class GraphFrame(wx.Frame):
         response = requests.put(api_url, headers=headers, data = {"btc":btcval, "xrp":xrpval, "eth":ethval})
         if response.status_code == 200:
             num_distributions_affected = json.loads(response.content.decode('utf-8'))
-            output_file.write("num_distributions_affected" + str(num_distributions_affected) + "\n")
+            # output_file.write("num_distributions_affected" + str(num_distributions_affected) + "\n")
         else:
-            output_file.write("couldn't update distribution" + "\n")
-
+            # output_file.write("couldn't update distribution" + "\n")
+            pass
 
         # to test:
         # headers = {'Content-Type': 'application/json'}
@@ -727,7 +729,7 @@ class GraphFrame(wx.Frame):
                 strval = "list#" + str(list_id) + " BTC: " + str(btcval) + "% "
                 strval += "ETH: " + str(ethval) + "% "
                 strval += "XRP: " + str(xrpval) + "%"
-                output_file.write("updating distribution to:" + str(strval) + "\n")
+                # output_file.write("updating distribution to:" + str(strval) + "\n")
                 self.lst.SetString(i, strval)
 
     def on_add_usd_button(self, event):
@@ -747,7 +749,7 @@ class GraphFrame(wx.Frame):
         dollar_amount = str(float(self.add_usd_input_box.GetValue()))
         invoice_name = urllib.parse.quote("Coinium Invoice #" + str(subscription_val))
         link = "https://www.coinpayments.net/index.php?cmd=_pay&reset=1&merchant=e3e3958eff15be8c85dcbe83c3803da4&item_name=" + item_name + "&invoice=" + invoice_name + "&currency=USD&amountf=" + dollar_amount + "&quantity=1&allow_quantity=0&want_shipping=0&allow_extra=0&"
-        output_file.write("link" + str(link) + "\n")
+        # output_file.write("link" + str(link) + "\n")
         dialog.browser.LoadURL(link)
         dialog.Show()
 
@@ -788,7 +790,7 @@ class GraphFrame(wx.Frame):
         timestamp = int(time.time())
         timestamp -= 7500
         api_url = "http://104.131.139.250/api.php/Spreads?filter=timestamp,gt," + str(timestamp)
-        output_file.write("update_current_prices api_url:" + str(api_url) + "\n")
+        # output_file.write("update_current_prices api_url:" + str(api_url) + "\n")
         future = session.get(api_url, background_callback=self.bg_cb)
         response = future.result()
         # response = requests.get(api_url, headers=headers)
@@ -939,7 +941,7 @@ class GraphFrame(wx.Frame):
         interval_in_secs = self.get_interval_in_secs_chosen()
         headers = {'Content-Type': 'application/json'}
         api_url = "http://104.131.139.250:5000/?list_id=" + str(list_id) + "&interval_in_secs=" + str(interval_in_secs)
-        output_file.write("api_url:" + api_url + "\n")
+        # output_file.write("api_url:" + api_url + "\n")
         t1 = time.time()
         future = session.get(api_url, background_callback=self.bg_cb)
         response = future.result()
@@ -949,12 +951,12 @@ class GraphFrame(wx.Frame):
         else:
             graphvals = None
         t2 = time.time()
-        output_file.write("t2 - t1:" + str(t2 - t1) + "\n")
+        # output_file.write("t2 - t1:" + str(t2 - t1) + "\n")
 
         self.data = []
         for val_and_timestamp in graphvals:
             self.data.append(val_and_timestamp[1])
-        output_file.write("displaying " + str(len(self.data)) + " values" + "\n")
+        # output_file.write("displaying " + str(len(self.data)) + " values" + "\n")
 
         self.update_current_prices()
 
