@@ -1,6 +1,5 @@
 build/
 dist/
-obfuscated_graph.py
 output.txt
 pyobfuscate/
 website/index_files/download/
