@@ -23,6 +23,7 @@ session = FuturesSession()
 bufsize = 1
 # output_file = open("/Users/seckin/coinium/output.txt", 'w', bufsize)
 
+
 class MyBrowser(wx.Dialog):
   def __init__(self, *args, **kwds):
     wx.Dialog.__init__(self, *args, **kwds)
@@ -55,6 +56,18 @@ from matplotlib.backends.backend_wxagg import \
     NavigationToolbar2WxAgg as NavigationToolbar
 import numpy as np
 import pylab
+
+
+
+# import matplotlib.pyplot as plt
+fig = matplotlib.pyplot.figure()
+ax = fig.add_subplot(111)
+print (type(ax))
+b = type(ax)
+import matplotlib.axes
+issubclass(b, matplotlib.axes.SubplotBase)
+
+
 
 ymin_control_auto = True
 ymax_control_auto = True
