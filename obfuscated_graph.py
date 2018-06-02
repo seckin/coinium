@@ -23,217 +23,216 @@ IiiIII111iI = FuturesSession ( )
 IiII = 1
 # output_file = open("/Users/seckin/coinium/output.txt", 'w', bufsize)
 if 28 - 28: Ii11111i * iiI1i1
-class i1I1ii1II1iII ( wx . Dialog ) :
+if 46 - 46: Ooo0OO0oOO * Ii * I1ii11iIi11i
+class o0o ( wx . Dialog ) :
  def __init__ ( self , * args , ** kwds ) :
   wx . Dialog . __init__ ( self , * args , ** kwds )
-  oooO0oo0oOOOO = wx . BoxSizer ( wx . VERTICAL )
+  OOO0o0o = wx . BoxSizer ( wx . VERTICAL )
   self . browser = wx . html2 . WebView . New ( self )
-  oooO0oo0oOOOO . Add ( self . browser , 1 , wx . EXPAND , 10 )
-  self . SetSizer ( oooO0oo0oOOOO )
+  OOO0o0o . Add ( self . browser , 1 , wx . EXPAND , 10 )
+  self . SetSizer ( OOO0o0o )
   self . SetSize ( ( 700 , 800 ) )
-  if 53 - 53: o0oo0o / Oo + o0oo0o / iiI1i1 * OoooooooOO + Ii11111i
-  if 71 - 71: OOooOOo * Ii11111i . OOooOOo / o0oo0o
-global iIi , OOoO , OOo , Ii1IIii11
-if 55 - 55: iIii1I11I1II1 - I1IiiI . Ii1I * iiI1i1 * i1IIi / iIii1I11I1II1
-OOoO = [ ]
-OOo = [ ]
-Ii1IIii11 = [ ]
-if 79 - 79: oO0o + o0oo0o . Oo * iiI1i1 % I11i . I1IiiI
-if 94 - 94: Ii11111i * Ii1I / iiI1i1 . i1IIi * Ii11111i
-global iiiii11iII1
-global iIi
-iiiii11iII1 = 1
-if 54 - 54: Oo . Oo / iIii1I11I1II1 / I11i + oO0o / o0oOOo0O0Ooo
-I1i1I = krakenex . API ( )
-if 72 - 72: Oo0Ooo % OOooOOo . I1IiiI / I11i * I1IiiI
-if 31 - 31: II111iiii + OoO0O00 . o0oo0o
+  if 40 - 40: I1IiiI / O0 % Ii + O0 * i1IIi
+  if 27 - 27: iiI1i1 * OoooooooOO + I11i * Ii - i11iIiiIii - Ii11111i
+global IiiiIiI1iIiI1 , ooo0Oo0 , oo , O0Oooo00
+if 87 - 87: i1IIi / Ii1I . OoO0O00 * OoooooooOO - iiI1i1 * Ii
+ooo0Oo0 = [ ]
+oo = [ ]
+O0Oooo00 = [ ]
+if 82 - 82: I11i . Ooo0OO0oOO / iiI1i1 % II111iiii % iIii1I11I1II1 % iiI1i1
+if 86 - 86: OoOoOO00 % I1IiiI
+global ooIiII1I1i1i1ii
+global IiiiIiI1iIiI1
+ooIiII1I1i1i1ii = 1
+if 44 - 44: oO0o / Oo0Ooo - II111iiii - i11iIiiIii % Ooo0OO0oOO
+O0OoOoo00o = krakenex . API ( )
+if 31 - 31: II111iiii + OoO0O00 . Ooo0OO0oOO
+if 68 - 68: I1IiiI - i11iIiiIii - OoO0O00 / OOooOOo - OoO0O00 + i1IIi
 import matplotlib
 matplotlib . use ( 'WXAgg' )
 from matplotlib . figure import Figure
 from matplotlib . backends . backend_wxagg import FigureCanvasWxAgg as FigCanvas , NavigationToolbar2WxAgg as NavigationToolbar
-if 68 - 68: I1IiiI - i11iIiiIii - OoO0O00 / OOooOOo - OoO0O00 + i1IIi
 if 48 - 48: OoooooooOO % o0oOOo0O0Ooo . I1IiiI - Ii1I % i1IIi % OoooooooOO
+if 3 - 3: Ii11111i + O0
 import numpy as np
 import pylab
-if 3 - 3: Ii11111i + O0
-I1Ii = True
-o0oOo0Ooo0O = True
-OO00O0O0O00Oo = True
-IIIiiiiiIii = True
-if 70 - 70: OoO0O00 . OoO0O00 - OoO0O00 / I1ii11iIi11i * OOooOOo
-class OoO000 ( object ) :
+if 42 - 42: OOooOOo / i1IIi + i11iIiiIii - Ii1I
+oo0Ooo0 = True
+I1I11I1I1I = True
+OooO0OO = True
+iiiIi = True
+if 24 - 24: O0 % o0oOOo0O0Ooo + i1IIi + Ooo0OO0oOO + I1ii11iIi11i
+class OOoO000O0OO ( object ) :
  def __init__ ( self , init = - 1 ) :
   self . data = self . init = init
-  if 42 - 42: oO0o - i1IIi / i11iIiiIii + OOooOOo + OoO0O00
+  if 23 - 23: i11iIiiIii + I1IiiI
  def next ( self ) :
   self . _recalc_data ( )
   return self . data
-  if 17 - 17: oO0o . Oo0Ooo . I1ii11iIi11i
+  if 68 - 68: OoOoOO00 . oO0o . i11iIiiIii
  def _recalc_data ( self ) :
   pass
-  if 3 - 3: OoOoOO00 . Oo0Ooo . I1IiiI / Ii1I
-class IiiiI1II1I1 ( wx . Panel ) :
+  if 40 - 40: oO0o . OoOoOO00 . Oo0Ooo . i1IIi
+class I11iii ( wx . Panel ) :
  def __init__ ( self , parent , ID , label , initval ) :
-  if 95 - 95: OoooooooOO . iIii1I11I1II1
-  if 67 - 67: OOooOOo / OoooooooOO % I11i - iIii1I11I1II1
-  if 82 - 82: i11iIiiIii . OOooOOo / Oo0Ooo * O0 % oO0o % iIii1I11I1II1
-  if 78 - 78: iIii1I11I1II1 - Ii1I * OoO0O00 + o0oOOo0O0Ooo + Ii11111i + Ii11111i
+  if 54 - 54: OOooOOo + OOooOOo % Ooo0OO0oOO % i11iIiiIii / iIii1I11I1II1 . OOooOOo
+  if 57 - 57: Ii1I % OoooooooOO
+  if 61 - 61: Ii11111i . iIii1I11I1II1 * I1IiiI . Ii % Oo0Ooo
+  if 72 - 72: OOooOOo
   wx . Panel . __init__ ( self , parent , ID )
-  if 11 - 11: Ii11111i - OoO0O00 % Oo % Ii11111i / OoOoOO00 - OoO0O00
+  if 63 - 63: Ii1I
   self . value = initval
-  if 74 - 74: Ii11111i * O0
-  oOOo0oo = wx . StaticBox ( self , - 1 , label )
-  oooO0oo0oOOOO = wx . StaticBoxSizer ( oOOo0oo , wx . VERTICAL )
-  if 80 - 80: I11i * i11iIiiIii / o0oo0o
-  self . SetSizer ( oooO0oo0oOOOO )
-  oooO0oo0oOOOO . Fit ( self )
-  if 9 - 9: Ii1I + oO0o % Ii1I + i1IIi . OOooOOo
-class III1i1i ( wx . Frame ) :
+  if 86 - 86: Ii . I1IiiI % Oo0Ooo + o0oOOo0O0Ooo
+  Ii1I11I11i1 = wx . StaticBox ( self , - 1 , label )
+  OOO0o0o = wx . StaticBoxSizer ( Ii1I11I11i1 , wx . VERTICAL )
+  if 54 - 54: I11i + iiI1i1 / Ii11111i
+  self . SetSizer ( OOO0o0o )
+  OOO0o0o . Fit ( self )
+  if 9 - 9: OoOoOO00 / Oo0Ooo - iiI1i1 . i1IIi / I1IiiI % iiI1i1
+class o0 ( wx . Frame ) :
  title = 'Coinium Portfolio Manager'
+ if 9 - 9: Ii1I + oO0o % Ii1I + i1IIi . OOooOOo
+ if 31 - 31: o0oOOo0O0Ooo + I11i + I11i / II111iiii
  if 26 - 26: OoooooooOO
- if 12 - 12: OoooooooOO % OoOoOO00 / Oo % o0oOOo0O0Ooo
- if 29 - 29: OoooooooOO
  def __init__ ( self ) :
   wx . Frame . __init__ ( self , None , - 1 , self . title , pos = wx . Point ( 50 , 50 ) )
-  if 23 - 23: o0oOOo0O0Ooo . II111iiii
+  if 12 - 12: OoooooooOO % OoOoOO00 / Ii % o0oOOo0O0Ooo
   self . modify_boxes_visible = False
   self . add_boxes_visible = False
-  if 98 - 98: iIii1I11I1II1 % OoOoOO00 * I1ii11iIi11i * OoOoOO00
-  self . rate_visualizer = OoO000 ( )
+  if 29 - 29: OoooooooOO
+  self . rate_visualizer = OOoO000O0OO ( )
   self . data = [ self . rate_visualizer . next ( ) ]
   self . paused = False
-  if 45 - 45: o0oo0o . OoOoOO00
+  if 23 - 23: o0oOOo0O0Ooo . II111iiii
   self . create_menu ( )
   self . create_status_bar ( )
   self . create_main_panel ( )
-  if 83 - 83: oO0o . iIii1I11I1II1 . I1ii11iIi11i
+  if 98 - 98: iIii1I11I1II1 % OoOoOO00 * I1ii11iIi11i * OoOoOO00
   self . redraw_timer = wx . Timer ( self )
   self . Bind ( wx . EVT_TIMER , self . on_redraw_timer , self . redraw_timer )
   self . redraw_timer . Start ( 1500 )
-  if 31 - 31: Ii1I . Ii1I - o0oOOo0O0Ooo / OoO0O00 + Oo * I1IiiI
+  if 45 - 45: Ooo0OO0oOO . OoOoOO00
  def create_menu ( self ) :
   self . menubar = wx . MenuBar ( )
-  if 63 - 63: o0oo0o % i1IIi / OoooooooOO - OoooooooOO
-  iIii11I = wx . Menu ( )
-  OOO0OOO00oo = iIii11I . Append ( - 1 , "&Save plot\tCtrl-S" , "Save plot to file" )
-  self . Bind ( wx . EVT_MENU , self . on_save_plot , OOO0OOO00oo )
-  iIii11I . AppendSeparator ( )
-  Iii111II = iIii11I . Append ( - 1 , "E&xit\tCtrl-X" , "Exit" )
-  self . Bind ( wx . EVT_MENU , self . on_exit , Iii111II )
-  if 9 - 9: OoO0O00
-  self . menubar . Append ( iIii11I , "&File" )
+  if 83 - 83: oO0o . iIii1I11I1II1 . I1ii11iIi11i
+  I1I = wx . Menu ( )
+  oOO00oOO = I1I . Append ( - 1 , "&Save plot\tCtrl-S" , "Save plot to file" )
+  self . Bind ( wx . EVT_MENU , self . on_save_plot , oOO00oOO )
+  I1I . AppendSeparator ( )
+  OoOo = I1I . Append ( - 1 , "E&xit\tCtrl-X" , "Exit" )
+  self . Bind ( wx . EVT_MENU , self . on_exit , OoOo )
+  if 18 - 18: i11iIiiIii
+  self . menubar . Append ( I1I , "&File" )
   self . SetMenuBar ( self . menubar )
-  if 33 - 33: Oo . Ii11111i
+  if 46 - 46: i1IIi / I11i % OOooOOo + Ooo0OO0oOO
  def create_main_panel ( self ) :
   self . panel = wx . Panel ( self )
   self . panel . SetBackgroundColour ( ( 255 , 255 , 255 ) )
-  if 58 - 58: OOooOOo * i11iIiiIii / OoOoOO00 % o0oo0o - I1ii11iIi11i / oO0o
+  if 79 - 79: Ooo0OO0oOO - o0oOOo0O0Ooo + Ooo0OO0oOO - Ii11111i
   self . init_plot ( )
   self . canvas = FigCanvas ( self . panel , - 1 , self . fig )
-  if 50 - 50: I1IiiI
-  Ii1i11IIii1I = 'your_api_token'
-  OOOoO0O0o = 'http://104.131.139.250/api.php/'
-  O0o0Ooo = { 'Content-Type' : 'application/json' ,
- 'Authorization' : 'Bearer {0}' . format ( Ii1i11IIii1I ) }
-  O00 = '{0}Distributions' . format ( OOOoO0O0o )
-  iI1Ii11iII1 = requests . get ( O00 , headers = O0o0Ooo )
-  if iI1Ii11iII1 . status_code == 200 :
-   Oo0O0O0ooO0O = json . loads ( iI1Ii11iII1 . content . decode ( 'utf-8' ) )
+  if 8 - 8: I1IiiI
+  Oo000 = 'your_api_token'
+  ooii11I = 'http://104.131.139.250/api.php/'
+  Ooo0OO0oOOii11i1 = { 'Content-Type' : 'application/json' ,
+ 'Authorization' : 'Bearer {0}' . format ( Oo000 ) }
+  IIIii1II1II = '{0}Distributions' . format ( ooii11I )
+  i1I1iI = requests . get ( IIIii1II1II , headers = Ooo0OO0oOOii11i1 )
+  if i1I1iI . status_code == 200 :
+   oo0OooOOo0 = json . loads ( i1I1iI . content . decode ( 'utf-8' ) )
   else :
-   Oo0O0O0ooO0O = None
-   if 15 - 15: I1ii11iIi11i + OoOoOO00 - OoooooooOO / OOooOOo
-   if 58 - 58: i11iIiiIii % I11i
-   if 71 - 71: OOooOOo + Oo % i11iIiiIii + I1ii11iIi11i - iiI1i1
-  oO0OOoO0 = Oo0O0O0ooO0O [ 'Distributions' ] [ 'records' ] [ 0 ]
-  I111Ii111 = [ oO0OOoO0 [ 1 ] / 100.0 , oO0OOoO0 [ 2 ] / 100.0 , oO0OOoO0 [ 3 ] / 100.0 ]
-  i111IiI1I = [ "XXBTZUSD" , "XETHZUSD" , "XXRPZUSD" ]
-  O0iII = ""
-  for o0 in range ( len ( i111IiI1I ) ) :
-   O0iII += str ( i111IiI1I [ o0 ] ) + ": " + str ( I111Ii111 [ o0 ] * 100 ) + "%, "
-  self . axes . set_title ( O0iII , size = 12 )
-  if 62 - 62: iIii1I11I1II1 * OoOoOO00
+   oo0OooOOo0 = None
+   if 92 - 92: Ii11111i . I11i + o0oOOo0O0Ooo
+   if 28 - 28: i1IIi * Oo0Ooo - o0oOOo0O0Ooo * iiI1i1 * Ii1I / OoO0O00
+   if 94 - 94: II111iiii % I1ii11iIi11i / OoOoOO00 * iIii1I11I1II1
+  oOOoo0Oo = oo0OooOOo0 [ 'Distributions' ] [ 'records' ] [ 0 ]
+  o00OO00OoO = [ oOOoo0Oo [ 1 ] / 100.0 , oOOoo0Oo [ 2 ] / 100.0 , oOOoo0Oo [ 3 ] / 100.0 ]
+  OOOO0OOoO0O0 = [ "XXBTZUSD" , "XETHZUSD" , "XXRPZUSD" ]
+  O0Oo000ooO00 = ""
+  for oO0 in range ( len ( OOOO0OOoO0O0 ) ) :
+   O0Oo000ooO00 += str ( OOOO0OOoO0O0 [ oO0 ] ) + ": " + str ( o00OO00OoO [ oO0 ] * 100 ) + "%, "
+  self . axes . set_title ( O0Oo000ooO00 , size = 12 )
+  if 45 - 45: i11iIiiIii * II111iiii % iIii1I11I1II1 + I1ii11iIi11i - Ii1I
   self . axes . text ( 0.64 , 0.03 , 'http://coinium.app' ,
  verticalalignment = 'bottom' , horizontalalignment = 'right' ,
  transform = self . axes . transAxes ,
  color = 'lightblue' , fontsize = 13 )
-  if 26 - 26: Ii11111i . o0oo0o
-  oOOOOo0 = [ ]
-  for iiII1i1 in Oo0O0O0ooO0O [ 'Distributions' ] [ 'records' ] :
-   O00 = "http://104.131.139.250/api.php/ListHasDistribution?filter=distribution_id,eq," + str ( iiII1i1 [ 0 ] )
-   iI1Ii11iII1 = requests . get ( O00 , headers = O0o0Ooo )
-   if iI1Ii11iII1 . status_code == 200 :
-    Oo0O0O0ooO0O = json . loads ( iI1Ii11iII1 . content . decode ( 'utf-8' ) )
-    if 66 - 66: OOooOOo - I11i
+  if 17 - 17: iiI1i1
+  ooOooo000oOO = [ ]
+  for Oo0oOOo in oo0OooOOo0 [ 'Distributions' ] [ 'records' ] :
+   IIIii1II1II = "http://104.131.139.250/api.php/ListHasDistribution?filter=distribution_id,eq," + str ( Oo0oOOo [ 0 ] )
+   i1I1iI = requests . get ( IIIii1II1II , headers = Ooo0OO0oOOii11i1 )
+   if i1I1iI . status_code == 200 :
+    oo0OooOOo0 = json . loads ( i1I1iI . content . decode ( 'utf-8' ) )
+    if 58 - 58: II111iiii * OOooOOo * I1ii11iIi11i / OOooOOo
    else :
-    Oo0O0O0ooO0O = None
-   if Oo0O0O0ooO0O and len ( Oo0O0O0ooO0O [ "ListHasDistribution" ] [ "records" ] ) :
-    I1i1III = "list#" + str ( Oo0O0O0ooO0O [ "ListHasDistribution" ] [ "records" ] [ 0 ] [ 1 ] ) + " BTC: " + str ( iiII1i1 [ 1 ] ) + "% "
-    I1i1III += "ETH: " + str ( iiII1i1 [ 2 ] ) + "% "
-    I1i1III += "XRP: " + str ( iiII1i1 [ 3 ] ) + "%"
-    oOOOOo0 . append ( I1i1III )
-    if 63 - 63: OOooOOo % oO0o * oO0o * OoO0O00 / I1ii11iIi11i
-    if 74 - 74: II111iiii
-  oO0 = wx . Image ( "/Users/seckin/coinium/coinium.png" , wx . BITMAP_TYPE_ANY ) . Rescale ( 50 , 50 ) . ConvertToBitmap ( )
-  self . coinium_image = wx . StaticBitmap ( self . panel , - 1 , oO0 , ( 10 , 5 ) , ( oO0 . GetWidth ( ) , oO0 . GetHeight ( ) ) )
-  if 54 - 54: II111iiii % OoOoOO00 % I11i % iIii1I11I1II1 + iIii1I11I1II1 * Oo
-  self . lst = wx . ListBox ( self . panel , size = ( 260 , 500 ) , choices = oOOOOo0 , style = wx . LB_SINGLE )
+    oo0OooOOo0 = None
+   if oo0OooOOo0 and len ( oo0OooOOo0 [ "ListHasDistribution" ] [ "records" ] ) :
+    oO0o0OOOO = "list#" + str ( oo0OooOOo0 [ "ListHasDistribution" ] [ "records" ] [ 0 ] [ 1 ] ) + " BTC: " + str ( Oo0oOOo [ 1 ] ) + "% "
+    oO0o0OOOO += "ETH: " + str ( Oo0oOOo [ 2 ] ) + "% "
+    oO0o0OOOO += "XRP: " + str ( Oo0oOOo [ 3 ] ) + "%"
+    ooOooo000oOO . append ( oO0o0OOOO )
+    if 68 - 68: Ii11111i - Ooo0OO0oOO - I1IiiI - I1ii11iIi11i + I11i
+    if 10 - 10: OoooooooOO % iIii1I11I1II1
+    if 54 - 54: Ooo0OO0oOO - II111iiii % OoOoOO00 % I11i % iIii1I11I1II1 + Ii
+    if 15 - 15: I11i * Ii * Oo0Ooo % i11iIiiIii % OoOoOO00 - OOooOOo
+    if 68 - 68: Ooo0OO0oOO % i1IIi . iiI1i1 . I1ii11iIi11i
+  self . lst = wx . ListBox ( self . panel , size = ( 260 , 500 ) , choices = ooOooo000oOO , style = wx . LB_SINGLE )
   self . Bind ( wx . EVT_LISTBOX , self . onListBox , self . lst )
   self . lst . Bind ( wx . EVT_KILL_FOCUS , self . onListBoxUnfocused )
   self . coinium_text = wx . StaticText ( self . panel , - 1 , label = "Coinium" , size = ( 150 , 50 ) )
   self . coinium_text . SetLabelMarkup ( "<span foreground='blue' size='30720' font_weight='ultrabold'>Coinium</span>" )
   self . portfolio_list_text = wx . StaticText ( self . panel , - 1 , label = "Portfolio List" , size = ( 85 , 15 ) )
-  if 87 - 87: Oo * Oo0Ooo % i11iIiiIii % OoOoOO00 - OOooOOo
+  if 92 - 92: Ii11111i . Ooo0OO0oOO
   self . hbox11 = wx . BoxSizer ( wx . HORIZONTAL )
-  self . hbox11 . Add ( self . coinium_image , border = 5 , flag = wx . ALL | wx . ALIGN_LEFT )
+  if 31 - 31: Ooo0OO0oOO . OoOoOO00 / O0
   self . hbox11 . Add ( self . coinium_text , border = 5 , flag = wx . ALL | wx . ALIGN_LEFT )
   self . vbox4 = wx . BoxSizer ( wx . VERTICAL )
   self . vbox4 . Add ( self . hbox11 , border = 5 , flag = wx . ALL | wx . ALIGN_LEFT )
   self . vbox4 . Add ( self . portfolio_list_text , border = 5 , flag = wx . ALL | wx . ALIGN_LEFT )
   self . vbox4 . AddSpacer ( 0 )
   self . vbox4 . Add ( self . lst , border = 5 , flag = wx . ALL | wx . ALIGN_LEFT )
-  if 68 - 68: o0oo0o % i1IIi . iiI1i1 . I1ii11iIi11i
-  if 92 - 92: Ii11111i . o0oo0o
+  if 89 - 89: OoOoOO00
+  if 68 - 68: OoO0O00 * OoooooooOO % O0 + OoO0O00 + Ii
   self . interval_choice_text = wx . StaticText ( self . panel , - 1 , label = "Interval:" , size = ( 55 , 20 ) )
   self . choice = wx . Choice ( self . panel , choices = [ "30 secs" , "5 mins" , "2 hours" , "1 day" ] )
+  self . choice . SetSelection ( 1 )
   self . choice . Bind ( wx . EVT_CHOICE , self . OnChoice )
   self . hbox0 = wx . BoxSizer ( wx . HORIZONTAL )
   self . hbox0 . Add ( self . interval_choice_text , border = 5 , flag = wx . ALL | wx . ALIGN_CENTER_VERTICAL | wx . ALIGN_RIGHT )
   self . hbox0 . AddSpacer ( 2 )
   self . hbox0 . Add ( self . choice , border = 5 , flag = wx . ALL | wx . ALIGN_TOP )
-  if 31 - 31: o0oo0o . OoOoOO00 / O0
-  if 89 - 89: OoOoOO00
-  if 68 - 68: OoO0O00 * OoooooooOO % O0 + OoO0O00 + Oo
-  if 4 - 4: Oo + O0 * OOooOOo
+  if 4 - 4: Ii + O0 * OOooOOo
   if 55 - 55: Oo0Ooo + iIii1I11I1II1 / OoOoOO00 * oO0o - i11iIiiIii - Ii1I
   if 25 - 25: I1ii11iIi11i
-  if 7 - 7: i1IIi / I1IiiI * o0oo0o . iiI1i1 . iIii1I11I1II1
+  if 7 - 7: i1IIi / I1IiiI * Ooo0OO0oOO . iiI1i1 . iIii1I11I1II1
   if 13 - 13: OOooOOo / i11iIiiIii
   if 2 - 2: I1IiiI / O0 / o0oOOo0O0Ooo % OoOoOO00 % Ii1I
   if 52 - 52: o0oOOo0O0Ooo
   if 95 - 95: Ii1I
-  if 87 - 87: Oo + OoOoOO00 . OOooOOo + OoOoOO00
+  if 87 - 87: Ii + OoOoOO00 . OOooOOo + OoOoOO00
   if 91 - 91: O0
   if 61 - 61: II111iiii
-  if 64 - 64: Oo / OoOoOO00 - O0 - I11i
+  if 64 - 64: Ii / OoOoOO00 - O0 - I11i
   if 86 - 86: I11i % OoOoOO00 / I1IiiI / OoOoOO00
   if 42 - 42: OoO0O00
-  if 67 - 67: o0oo0o . Ii11111i . O0
+  if 67 - 67: Ooo0OO0oOO . Ii11111i . O0
   if 10 - 10: I1ii11iIi11i % I1ii11iIi11i - iIii1I11I1II1 / OOooOOo + Ii1I
   if 87 - 87: oO0o * I1ii11iIi11i + OOooOOo / iIii1I11I1II1 / Ii11111i
-  if 37 - 37: Ii11111i - Oo * oO0o % i11iIiiIii - o0oo0o
+  if 37 - 37: Ii11111i - Ii * oO0o % i11iIiiIii - Ooo0OO0oOO
   if 83 - 83: I11i / I1IiiI
   if 34 - 34: iiI1i1
   if 57 - 57: oO0o . I11i . i1IIi
-  self . hbox2 = wx . BoxSizer ( wx . HORIZONTAL )
   if 42 - 42: I11i + I1ii11iIi11i % O0
   if 6 - 6: oO0o
   if 68 - 68: OoOoOO00 - OoO0O00
+  self . hbox2 = wx . BoxSizer ( wx . HORIZONTAL )
   if 28 - 28: OoO0O00 . OOooOOo / OOooOOo + Oo0Ooo . I1ii11iIi11i
   if 1 - 1: iIii1I11I1II1 / II111iiii
   if 33 - 33: I11i
   if 18 - 18: o0oOOo0O0Ooo % Ii11111i * O0
   if 87 - 87: i11iIiiIii
-  if 93 - 93: I1ii11iIi11i - OoO0O00 % i11iIiiIii . Ii11111i / Ii11111i - o0oo0o
+  if 93 - 93: I1ii11iIi11i - OoO0O00 % i11iIiiIii . Ii11111i / Ii11111i - Ooo0OO0oOO
   if 9 - 9: I1ii11iIi11i / Oo0Ooo - I1IiiI / OoooooooOO / iIii1I11I1II1 - o0oOOo0O0Ooo
   if 91 - 91: Ii11111i % i1IIi % iIii1I11I1II1
   if 20 - 20: OOooOOo % Ii1I / Ii1I + Ii1I
@@ -243,6 +242,9 @@ class III1i1i ( wx . Frame ) :
   if 48 - 48: O0
   if 11 - 11: I11i + OoooooooOO - OoO0O00 / o0oOOo0O0Ooo + Oo0Ooo . II111iiii
   if 41 - 41: Ii1I - O0 - O0
+  if 68 - 68: OOooOOo % Ooo0OO0oOO
+  if 88 - 88: iIii1I11I1II1 - Ii + OOooOOo
+  if 40 - 40: I1IiiI * Ii1I + OOooOOo % Ii11111i
   self . btc_text = wx . StaticText ( self . panel , - 1 , label = "BTC:" , size = ( 35 , 20 ) )
   self . btc_input_box = wx . TextCtrl ( self . panel , size = ( 35 , 20 ) )
   self . eth_text = wx . StaticText ( self . panel , - 1 , label = "ETH:" , size = ( 35 , 20 ) )
@@ -263,7 +265,7 @@ class III1i1i ( wx . Frame ) :
   self . xrp_text . Hide ( )
   self . submit_new_distribution_button . Hide ( )
   self . cancel_new_distribution_button . Hide ( )
-  if 68 - 68: OOooOOo % o0oo0o
+  if 74 - 74: oO0o - Oo0Ooo + OoooooooOO + Ooo0OO0oOO / OoOoOO00
   self . hbox1 = wx . BoxSizer ( wx . HORIZONTAL )
   self . hbox1 . Add ( self . btc_text , border = 5 , flag = wx . ALL | wx . ALIGN_CENTER_VERTICAL )
   self . hbox1 . AddSpacer ( 2 )
@@ -281,8 +283,8 @@ class III1i1i ( wx . Frame ) :
   self . hbox1 . AddSpacer ( 5 )
   self . hbox1 . Add ( self . cancel_new_distribution_button , border = 5 , flag = wx . ALL | wx . ALIGN_CENTER_VERTICAL )
   self . hbox1 . AddSpacer ( 24 )
-  if 88 - 88: iIii1I11I1II1 - Oo + OOooOOo
-  if 40 - 40: I1IiiI * Ii1I + OOooOOo % Ii11111i
+  if 23 - 23: O0
+  if 85 - 85: Ii1I
   self . current_prices = wx . StaticText ( self . panel , - 1 , label = "Current prices" , size = ( 95 , 20 ) )
   self . btc_price_text_name = wx . StaticText ( self . panel , - 1 , label = "BTC:" , size = ( 35 , 20 ) )
   self . btc_price_text = wx . StaticText ( self . panel , - 1 , label = "..." , size = ( 75 , 20 ) )
@@ -305,8 +307,8 @@ class III1i1i ( wx . Frame ) :
   self . hbox7 . Add ( self . xrp_price_text_name , border = 5 , flag = wx . ALL | wx . ALIGN_BOTTOM )
   self . hbox7 . AddSpacer ( 2 )
   self . hbox7 . Add ( self . xrp_price_text , border = 5 , flag = wx . ALL | wx . ALIGN_BOTTOM )
-  if 74 - 74: oO0o - Oo0Ooo + OoooooooOO + o0oo0o / OoOoOO00
-  if 23 - 23: O0
+  if 84 - 84: I1IiiI . iIii1I11I1II1 % OoooooooOO + Ii1I % OoooooooOO % OoO0O00
+  if 42 - 42: OoO0O00 / I11i / o0oOOo0O0Ooo + Ii11111i / OoOoOO00
   self . last_24_hours_prices = wx . StaticText ( self . panel , - 1 , label = "Last 24 hours" , size = ( 95 , 20 ) )
   self . last_24_hours_btc_price_text = wx . StaticText ( self . panel , - 1 , label = "..." , size = ( 75 , 20 ) )
   self . last_24_hours_eth_price_text = wx . StaticText ( self . panel , - 1 , label = "..." , size = ( 75 , 20 ) )
@@ -319,8 +321,8 @@ class III1i1i ( wx . Frame ) :
   self . hbox6 . Add ( self . last_24_hours_eth_price_text , border = 5 , flag = wx . ALL | wx . ALIGN_BOTTOM )
   self . hbox7 . AddSpacer ( 40 )
   self . hbox7 . Add ( self . last_24_hours_xrp_price_text , border = 5 , flag = wx . ALL | wx . ALIGN_BOTTOM )
-  if 85 - 85: Ii1I
-  if 84 - 84: I1IiiI . iIii1I11I1II1 % OoooooooOO + Ii1I % OoooooooOO % OoO0O00
+  if 84 - 84: Ii * II111iiii + Oo0Ooo
+  if 53 - 53: Ii11111i % II111iiii . iiI1i1 - iIii1I11I1II1 - iiI1i1 * II111iiii
   self . last_week_prices = wx . StaticText ( self . panel , - 1 , label = "Last week" , size = ( 95 , 20 ) )
   self . last_week_btc_price_text = wx . StaticText ( self . panel , - 1 , label = "..." , size = ( 75 , 20 ) )
   self . last_week_eth_price_text = wx . StaticText ( self . panel , - 1 , label = "..." , size = ( 75 , 20 ) )
@@ -333,20 +335,20 @@ class III1i1i ( wx . Frame ) :
   self . hbox6 . Add ( self . last_week_eth_price_text , border = 5 , flag = wx . ALL | wx . ALIGN_BOTTOM )
   self . hbox7 . AddSpacer ( 40 )
   self . hbox7 . Add ( self . last_week_xrp_price_text , border = 5 , flag = wx . ALL | wx . ALIGN_BOTTOM )
-  if 42 - 42: OoO0O00 / I11i / o0oOOo0O0Ooo + Ii11111i / OoOoOO00
-  if 84 - 84: Oo * II111iiii + Oo0Ooo
-  if 53 - 53: Ii11111i % II111iiii . iiI1i1 - iIii1I11I1II1 - iiI1i1 * II111iiii
   if 77 - 77: iIii1I11I1II1 * OoO0O00
   if 95 - 95: I1IiiI + i11iIiiIii
-  if 6 - 6: Oo / i11iIiiIii + Ii11111i * oO0o
-  self . hbox3 = wx . BoxSizer ( wx . HORIZONTAL )
+  if 6 - 6: Ii / i11iIiiIii + Ii11111i * oO0o
   if 80 - 80: II111iiii
   if 83 - 83: I11i . i11iIiiIii + II111iiii . o0oOOo0O0Ooo * I11i
   if 53 - 53: II111iiii
+  self . hbox3 = wx . BoxSizer ( wx . HORIZONTAL )
   if 31 - 31: OoO0O00
-  if 80 - 80: o0oo0o . i11iIiiIii - o0oOOo0O0Ooo
+  if 80 - 80: Ooo0OO0oOO . i11iIiiIii - o0oOOo0O0Ooo
   if 25 - 25: OoO0O00
   if 62 - 62: OOooOOo + O0
+  if 98 - 98: o0oOOo0O0Ooo
+  if 51 - 51: Oo0Ooo - oO0o + II111iiii * Ii1I . I11i + oO0o
+  if 78 - 78: i11iIiiIii / Ii11111i - Ii1I / OOooOOo + oO0o
   self . vbox5 = wx . BoxSizer ( wx . VERTICAL )
   self . vbox5 . Add ( self . canvas , 1 , flag = wx . ALIGN_LEFT | wx . TOP | wx . GROW )
   self . vbox5 . Add ( self . hbox0 , 0 , flag = wx . ALIGN_RIGHT | wx . TOP )
@@ -354,141 +356,143 @@ class III1i1i ( wx . Frame ) :
   self . vbox5 . Add ( self . hbox5 , 0 , flag = wx . ALIGN_LEFT | wx . TOP )
   self . vbox5 . Add ( self . hbox6 , 0 , flag = wx . ALIGN_LEFT | wx . TOP )
   self . vbox5 . Add ( self . hbox7 , 0 , flag = wx . ALIGN_LEFT | wx . TOP )
-  if 98 - 98: o0oOOo0O0Ooo
+  if 82 - 82: Ii1I
   self . hbox8 = wx . BoxSizer ( wx . HORIZONTAL )
   self . hbox8 . Add ( self . vbox4 , 0 , flag = wx . ALIGN_LEFT | wx . TOP | wx . GROW )
   self . hbox8 . Add ( self . vbox5 , 1 , flag = wx . ALIGN_RIGHT | wx . BOTTOM )
-  if 51 - 51: Oo0Ooo - oO0o + II111iiii * Ii1I . I11i + oO0o
+  if 46 - 46: OoooooooOO . i11iIiiIii
   self . vbox9 = wx . BoxSizer ( wx . VERTICAL )
   self . vbox9 . Add ( self . hbox1 , 1 , flag = wx . ALIGN_LEFT | wx . TOP )
   self . vbox9 . Add ( self . hbox2 , 1 , flag = wx . ALIGN_LEFT | wx . BOTTOM )
   self . vbox9 . Add ( self . hbox3 , 1 , flag = wx . ALIGN_RIGHT | wx . BOTTOM )
-  if 78 - 78: i11iIiiIii / Ii11111i - Ii1I / OOooOOo + oO0o
+  if 94 - 94: o0oOOo0O0Ooo * Ii1I / Oo0Ooo / Ii1I
   self . vbox6 = wx . BoxSizer ( wx . VERTICAL )
   self . vbox6 . Add ( self . hbox8 , 0 , flag = wx . ALIGN_LEFT | wx . TOP | wx . GROW )
   self . vbox6 . Add ( self . vbox9 , 0 , flag = wx . ALIGN_LEFT | wx . TOP | wx . GROW )
-  if 82 - 82: Ii1I
-  if 46 - 46: OoooooooOO . i11iIiiIii
+  if 87 - 87: Oo0Ooo . iiI1i1
+  if 75 - 75: Ii + OoOoOO00 + o0oOOo0O0Ooo * I11i % oO0o . Ii11111i
   self . panel . SetSizer ( self . vbox6 )
   self . vbox6 . Fit ( self )
   self . vbox6 . Layout ( )
-  if 94 - 94: o0oOOo0O0Ooo * Ii1I / Oo0Ooo / Ii1I
-  if 87 - 87: Oo0Ooo . iiI1i1
-  if 75 - 75: Oo + OoOoOO00 + o0oOOo0O0Ooo * I11i % oO0o . Ii11111i
   if 55 - 55: OOooOOo . I1IiiI
   if 61 - 61: Oo0Ooo % iiI1i1 . Oo0Ooo
+  if 100 - 100: Ooo0OO0oOO * O0
+  if 64 - 64: OOooOOo % iIii1I11I1II1 * oO0o
+  if 79 - 79: O0
  def create_status_bar ( self ) :
   self . statusbar = self . CreateStatusBar ( )
-  if 100 - 100: o0oo0o * O0
+  if 78 - 78: I1ii11iIi11i + OOooOOo - Ooo0OO0oOO
  def init_plot ( self ) :
-  global OOoO , OOo
+  global ooo0Oo0 , oo
   self . dpi = 100
   self . fig = Figure ( ( 3.0 , 3.0 ) , dpi = self . dpi )
-  if 64 - 64: OOooOOo % iIii1I11I1II1 * oO0o
+  if 38 - 38: o0oOOo0O0Ooo - oO0o + iIii1I11I1II1 / OoOoOO00 % Oo0Ooo
   self . axes = self . fig . add_subplot ( 111 )
-  self . axes . set_axis_bgcolor ( 'gray' )
-  O0iII = ""
-  for o0 in range ( len ( OOoO ) ) :
-   O0iII += str ( OOoO [ o0 ] ) + ": " + str ( OOo [ o0 ] * 100 ) + "%, "
-  self . axes . set_title ( O0iII , size = 12 )
-  if 79 - 79: O0
+  self . axes . set_facecolor ( 'gray' )
+  O0Oo000ooO00 = ""
+  for oO0 in range ( len ( ooo0Oo0 ) ) :
+   O0Oo000ooO00 += str ( ooo0Oo0 [ oO0 ] ) + ": " + str ( oo [ oO0 ] * 100 ) + "%, "
+  self . axes . set_title ( O0Oo000ooO00 , size = 12 )
+  if 57 - 57: OoO0O00 / Ii
   pylab . setp ( self . axes . get_xticklabels ( ) , fontsize = 8 )
   pylab . setp ( self . axes . get_yticklabels ( ) , fontsize = 8 )
-  if 78 - 78: I1ii11iIi11i + OOooOOo - o0oo0o
-  if 38 - 38: o0oOOo0O0Ooo - oO0o + iIii1I11I1II1 / OoOoOO00 % Oo0Ooo
+  if 29 - 29: iIii1I11I1II1 + OoOoOO00 * OoO0O00 * OOooOOo . I1IiiI * I1IiiI
+  if 7 - 7: iiI1i1 * Ooo0OO0oOO % Ii1I - o0oOOo0O0Ooo
   self . plot_data = self . axes . plot (
  self . data ,
  linewidth = 1 ,
  color = ( 1 , 1 , 0 ) ,
  ) [ 0 ]
-  if 57 - 57: OoO0O00 / Oo
+  if 13 - 13: Ii1I . i11iIiiIii
  def draw_plot ( self ) :
-  if 29 - 29: iIii1I11I1II1 + OoOoOO00 * OoO0O00 * OOooOOo . I1IiiI * I1IiiI
-  if IIIiiiiiIii or self . xmax_control . is_auto ( ) :
-   if 7 - 7: iiI1i1 * o0oo0o % Ii1I - o0oOOo0O0Ooo
-   if 13 - 13: Ii1I . i11iIiiIii
-   oOOoo00O00o = len ( self . data )
+  if 56 - 56: I1ii11iIi11i % O0 - I1IiiI
+  if iiiIi or self . xmax_control . is_auto ( ) :
+   if 100 - 100: Ii1I - O0 % oO0o * OOooOOo + I1IiiI
+   if 88 - 88: OoooooooOO - OoO0O00 * O0 * OoooooooOO . OoooooooOO
+   I111iI = len ( self . data )
   else :
-   oOOoo00O00o = int ( self . xmax_control . manual_value ( ) )
-   if 98 - 98: OOooOOo + iiI1i1 + oO0o % OoooooooOO
-  if OO00O0O0O00Oo or self . xmin_control . is_auto ( ) :
-   oooooo0O000o = oOOoo00O00o - 75
+   I111iI = int ( self . xmax_control . manual_value ( ) )
+   if 56 - 56: I1IiiI
+  if OooO0OO or self . xmin_control . is_auto ( ) :
+   O0oO = I111iI - 75
   else :
-   oooooo0O000o = int ( self . xmin_control . manual_value ( ) )
-   if 64 - 64: I1IiiI . o0oOOo0O0Ooo - o0oo0o / OoooooooOO
-  if I1Ii or self . ymin_control . is_auto ( ) :
-   O0O0ooOOO = min ( self . data [ - 75 : - 1 ] ) * ( 1.0 - 0.004 )
+   O0oO = int ( self . xmin_control . manual_value ( ) )
+   if 73 - 73: I1ii11iIi11i * i11iIiiIii % oO0o . I1ii11iIi11i
+  if oo0Ooo0 or self . ymin_control . is_auto ( ) :
+   OOOOo0 = min ( self . data [ - 75 : - 1 ] ) * ( 1.0 - 0.004 )
   else :
-   O0O0ooOOO = int ( self . ymin_control . manual_value ( ) )
-   if 77 - 77: OoOoOO00 - II111iiii - Oo
-  if o0oOo0Ooo0O or self . ymax_control . is_auto ( ) :
-   IiiiIIiIi1 = max ( self . data [ - 75 : - 1 ] ) * ( 1.0 + 0.004 )
+   OOOOo0 = int ( self . ymin_control . manual_value ( ) )
+   if 49 - 49: II111iiii % O0 . OoOoOO00 + oO0o / I1IiiI
+  if I1I11I1I1I or self . ymax_control . is_auto ( ) :
+   O0oOOoOooooO = max ( self . data [ - 75 : - 1 ] ) * ( 1.0 + 0.004 )
   else :
-   IiiiIIiIi1 = int ( self . ymax_control . manual_value ( ) )
-   if 74 - 74: iIii1I11I1II1 * I1ii11iIi11i + OoOoOO00 / i1IIi / II111iiii . Oo0Ooo
-  self . axes . set_xbound ( lower = oooooo0O000o , upper = oOOoo00O00o )
-  self . axes . set_ybound ( lower = O0O0ooOOO , upper = IiiiIIiIi1 )
-  if 62 - 62: OoooooooOO * I1IiiI
+   O0oOOoOooooO = int ( self . ymax_control . manual_value ( ) )
+   if 62 - 62: OoooooooOO * I1IiiI
+  self . axes . set_xbound ( lower = O0oO , upper = I111iI )
+  self . axes . set_ybound ( lower = OOOOo0 , upper = O0oOOoOooooO )
   if 58 - 58: OoOoOO00 % o0oOOo0O0Ooo
-  if 50 - 50: o0oo0o . o0oOOo0O0Ooo
+  if 50 - 50: Ooo0OO0oOO . o0oOOo0O0Ooo
   if 97 - 97: O0 + OoOoOO00
   if 89 - 89: o0oOOo0O0Ooo + OoO0O00 * I11i * Ii1I
   if 37 - 37: OoooooooOO - O0 - o0oOOo0O0Ooo
   if 77 - 77: OOooOOo * iIii1I11I1II1
   if 98 - 98: I1IiiI % Ii1I * OoooooooOO
+  if 51 - 51: iIii1I11I1II1 . OoOoOO00 / oO0o + o0oOOo0O0Ooo
   if True :
    self . axes . grid ( True , color = 'white' )
   else :
    self . axes . grid ( False )
-   if 51 - 51: iIii1I11I1II1 . OoOoOO00 / oO0o + o0oOOo0O0Ooo
-   if 33 - 33: Oo . II111iiii % Ii11111i + o0oOOo0O0Ooo
+   if 33 - 33: Ii . II111iiii % Ii11111i + o0oOOo0O0Ooo
    if 71 - 71: Oo0Ooo % OOooOOo
-   if 98 - 98: I11i % i11iIiiIii % Oo + Ii1I
+   if 98 - 98: I11i % i11iIiiIii % Ii + Ii1I
    if 78 - 78: I1ii11iIi11i % oO0o / Ii11111i - iIii1I11I1II1
-   if 69 - 69: o0oo0o
+   if 69 - 69: Ooo0OO0oOO
    if 11 - 11: I1IiiI
    if 16 - 16: Ii1I + iiI1i1 * O0 % i1IIi . I1IiiI
    if 67 - 67: OoooooooOO / I1IiiI * Ii1I + I11i
-   if 65 - 65: OoooooooOO - I1ii11iIi11i / Oo / II111iiii / i1IIi
-  o00oo0 = self . axes . get_xticklabels ( )
-  if 38 - 38: Oo % II111iiii % I11i / OoO0O00 + OoOoOO00 / i1IIi
-  o0 = 0
-  OoOOo0OOoO = o00oo0 [ 0 ] . get_text ( )
-  ooO0O00Oo0o = self . get_interval_in_secs_chosen ( )
-  for OOO in o00oo0 :
-   if 73 - 73: OoooooooOO * OoooooooOO * Oo * OoOoOO00 + Oo * o0oo0o
-   Oo0O0O0ooO0O = ( o0 - len ( o00oo0 ) + 1 ) * 10 * ooO0O00Oo0o
-   oo0o0OO0 = abs ( Oo0O0O0ooO0O )
-   I1i1III = ""
-   if int ( oo0o0OO0 / 3600 ) > 0 :
-    I1i1III += str ( int ( oo0o0OO0 / 3600 ) ) + "h "
-    oo0o0OO0 = oo0o0OO0 % 3600
-   if int ( oo0o0OO0 / 60 ) > 0 :
-    I1i1III += str ( int ( oo0o0OO0 / 60 ) ) + "m "
-    oo0o0OO0 = oo0o0OO0 % 60
-   if oo0o0OO0 > 0 :
-    I1i1III += str ( int ( oo0o0OO0 ) ) + "s "
-    if 86 - 86: iIii1I11I1II1 / OoOoOO00 . II111iiii
-   if I1i1III == "" :
-    II1i111Ii1i = ""
+   if 65 - 65: OoooooooOO - I1ii11iIi11i / Ii / II111iiii / i1IIi
+   if 71 - 71: Ooo0OO0oOO + Ii1I
+  iI1111ii1I = self . axes . get_xticklabels ( )
+  if 45 - 45: i1IIi + o0oOOo0O0Ooo
+  oO0 = 0
+  OOO = iI1111ii1I [ 0 ] . get_text ( )
+  IIiI1i1i = self . get_interval_in_secs_chosen ( )
+  for O00Oo0 in iI1111ii1I :
+   if 33 - 33: O0 * o0oOOo0O0Ooo - Ooo0OO0oOO % Ooo0OO0oOO
+   oo0OooOOo0 = ( oO0 - len ( iI1111ii1I ) + 1 ) * 10 * IIiI1i1i
+   I11I = abs ( oo0OooOOo0 )
+   oO0o0OOOO = ""
+   if int ( I11I / 3600 ) > 0 :
+    oO0o0OOOO += str ( int ( I11I / 3600 ) ) + "h "
+    I11I = I11I % 3600
+   if int ( I11I / 60 ) > 0 :
+    oO0o0OOOO += str ( int ( I11I / 60 ) ) + "m "
+    I11I = I11I % 60
+   if I11I > 0 :
+    oO0o0OOOO += str ( int ( I11I ) ) + "s "
+    if 50 - 50: Ooo0OO0oOO * i11iIiiIii * iIii1I11I1II1 - II111iiii * o0oOOo0O0Ooo * OoOoOO00
+   if oO0o0OOOO == "" :
+    OoooOoo = ""
    else :
-    if o0 == len ( o00oo0 ) - 2 :
-     II1i111Ii1i = "<" + str ( I1i1III ) + "ago"
+    if oO0 == len ( iI1111ii1I ) - 2 :
+     OoooOoo = "<" + str ( oO0o0OOOO ) + "ago"
     else :
-     II1i111Ii1i = str ( I1i1III ) + "ago"
-   OOO . set_text ( II1i111Ii1i )
-   if 15 - 15: II111iiii / i1IIi
-   o0 += 1
-  self . axes . set_xticklabels ( o00oo0 )
-  pylab . setp ( o00oo0 ,
+     OoooOoo = str ( oO0o0OOOO ) + "ago"
+   O00Oo0 . set_text ( OoooOoo )
+   if 74 - 74: Ii1I - iiI1i1 / Ii11111i * O0 - OOooOOo
+   oO0 += 1
+  self . axes . set_xticklabels ( iI1111ii1I )
+  pylab . setp ( iI1111ii1I ,
  visible = True )
-  if 76 - 76: I11i / OOooOOo . O0 % I1IiiI . o0oOOo0O0Ooo + iiI1i1
+  if 19 - 19: I1IiiI
   self . plot_data . set_xdata ( np . arange ( len ( self . data ) ) )
   self . plot_data . set_ydata ( np . array ( self . data ) )
-  if 71 - 71: o0oo0o . II111iiii
+  if 25 - 25: Ii1I / Ii
   self . canvas . draw ( )
-  if 62 - 62: OoooooooOO . I11i
+  if 31 - 31: OOooOOo . O0 % I1IiiI . o0oOOo0O0Ooo + iiI1i1
  def onListBoxUnfocused ( self , event ) :
+  if 71 - 71: Ooo0OO0oOO . II111iiii
+  if 62 - 62: OoooooooOO . I11i
   if 61 - 61: OoOoOO00 - OOooOOo - i1IIi
   if 25 - 25: O0 * I11i + I1ii11iIi11i . o0oOOo0O0Ooo . o0oOOo0O0Ooo
   if 58 - 58: I1IiiI
@@ -496,7 +500,7 @@ class III1i1i ( wx . Frame ) :
   if 59 - 59: o0oOOo0O0Ooo
   if 81 - 81: OoOoOO00 - OoOoOO00 . Ii11111i
   if 73 - 73: I11i % i11iIiiIii - I1IiiI
-  if 7 - 7: O0 * i11iIiiIii * Ii1I + Oo % OoO0O00 - Oo
+  if 7 - 7: O0 * i11iIiiIii * Ii1I + Ii % OoO0O00 - Ii
   if 39 - 39: Oo0Ooo * OOooOOo % OOooOOo - OoooooooOO + o0oOOo0O0Ooo - I11i
   if 23 - 23: i11iIiiIii
   if 30 - 30: o0oOOo0O0Ooo - i1IIi % II111iiii + I11i * iIii1I11I1II1
@@ -504,72 +508,70 @@ class III1i1i ( wx . Frame ) :
   if 4 - 4: i11iIiiIii % OoO0O00 % i1IIi / iiI1i1
   if 6 - 6: Ii11111i / I1IiiI % OOooOOo - I1IiiI
   if 31 - 31: OOooOOo
-  if 23 - 23: o0oo0o . iiI1i1
-  if 92 - 92: OoOoOO00 + o0oo0o * Ii1I % I1IiiI
-  if 42 - 42: Oo0Ooo
+  if 23 - 23: Ooo0OO0oOO . iiI1i1
   pass
-  if 76 - 76: I1IiiI * Ii11111i % o0oo0o
+  if 92 - 92: OoOoOO00 + Ooo0OO0oOO * Ii1I % I1IiiI
  def OnChoice ( self , event ) :
-  if 57 - 57: iIii1I11I1II1 - i1IIi / o0oo0o - O0 * OoooooooOO % II111iiii
-  if 68 - 68: OoooooooOO * I11i % OoOoOO00 - iiI1i1
+  if 42 - 42: Oo0Ooo
+  if 76 - 76: I1IiiI * Ii11111i % Ooo0OO0oOO
   pass
-  if 34 - 34: o0oo0o . iIii1I11I1II1 * OoOoOO00 * oO0o / o0oo0o / I1ii11iIi11i
+  if 57 - 57: iIii1I11I1II1 - i1IIi / Ooo0OO0oOO - O0 * OoooooooOO % II111iiii
  def update_pair_distributions ( self , list_id ) :
-  global iIi , OOoO , OOo , Ii1IIii11
-  if 78 - 78: Oo0Ooo - o0oOOo0O0Ooo / OoOoOO00
-  O0o0Ooo = { 'Content-Type' : 'application/json' }
-  iI1Ii11iII1 = requests . get ( "http://104.131.139.250/api.php/ListHasDistribution?filter=list_id,eq," + str ( list_id ) , headers = O0o0Ooo )
-  if iI1Ii11iII1 . status_code == 200 :
-   I11IIIi = json . loads ( iI1Ii11iII1 . content . decode ( 'utf-8' ) )
+  global IiiiIiI1iIiI1 , ooo0Oo0 , oo , O0Oooo00
+  if 68 - 68: OoooooooOO * I11i % OoOoOO00 - iiI1i1
+  Ooo0OO0oOOii11i1 = { 'Content-Type' : 'application/json' }
+  i1I1iI = requests . get ( "http://104.131.139.250/api.php/ListHasDistribution?filter=list_id,eq," + str ( list_id ) , headers = Ooo0OO0oOOii11i1 )
+  if i1I1iI . status_code == 200 :
+   I1 = json . loads ( i1I1iI . content . decode ( 'utf-8' ) )
   else :
-   I11IIIi = None
-   if 15 - 15: I1ii11iIi11i * OoO0O00
-   if 16 - 16: Ii11111i + OoOoOO00
-  O00OO = I11IIIi [ "ListHasDistribution" ] [ "records" ] [ 0 ] [ 2 ]
-  if 17 - 17: I11i / o0oo0o + oO0o - i11iIiiIii . Ii11111i
-  O0o0Ooo = { 'Content-Type' : 'application/json' }
-  iI1Ii11iII1 = requests . get ( "http://104.131.139.250/api.php/Distributions?filter=id,eq," + str ( O00OO ) , headers = O0o0Ooo )
-  if iI1Ii11iII1 . status_code == 200 :
-   oOOOOo0 = json . loads ( iI1Ii11iII1 . content . decode ( 'utf-8' ) )
+   I1 = None
+   if 97 - 97: Ii
+   if 48 - 48: i1IIi - Ooo0OO0oOO
+  OOOoOO = I1 [ "ListHasDistribution" ] [ "records" ] [ 0 ] [ 2 ]
+  if 10 - 10: Ii11111i + Oo0Ooo * I1ii11iIi11i + iIii1I11I1II1 / Ooo0OO0oOO / I1ii11iIi11i
+  Ooo0OO0oOOii11i1 = { 'Content-Type' : 'application/json' }
+  i1I1iI = requests . get ( "http://104.131.139.250/api.php/Distributions?filter=id,eq," + str ( OOOoOO ) , headers = Ooo0OO0oOOii11i1 )
+  if i1I1iI . status_code == 200 :
+   ooOooo000oOO = json . loads ( i1I1iI . content . decode ( 'utf-8' ) )
   else :
-   oOOOOo0 = None
-   if 95 - 95: OoO0O00 % i1IIi * i11iIiiIii % Oo0Ooo - oO0o
-  OOoOoOo = oOOOOo0 [ "Distributions" ] [ "records" ] [ 0 ]
-  OOo = [ OOoOoOo [ 1 ] / 100.0 , OOoOoOo [ 2 ] / 100.0 , OOoOoOo [ 3 ] / 100.0 ]
-  OOoO = [ 'XXBTZUSD' , 'XETHZUSD' , 'XXRPZUSD' ]
-  Ii1IIii11 = [ - 1 , - 1 , - 1 ]
-  if 98 - 98: Ii11111i
-  if 68 - 68: iIii1I11I1II1 * iIii1I11I1II1 . o0oOOo0O0Ooo / II111iiii % Oo0Ooo
-  if 38 - 38: Oo - OOooOOo / Ii11111i
-  if 66 - 66: O0 % I1ii11iIi11i + i11iIiiIii . OoOoOO00 / Ii1I + I1ii11iIi11i
+   ooOooo000oOO = None
+   if 42 - 42: I1IiiI
+  II1i11I = ooOooo000oOO [ "Distributions" ] [ "records" ] [ 0 ]
+  oo = [ II1i11I [ 1 ] / 100.0 , II1i11I [ 2 ] / 100.0 , II1i11I [ 3 ] / 100.0 ]
+  ooo0Oo0 = [ 'XXBTZUSD' , 'XETHZUSD' , 'XXRPZUSD' ]
+  O0Oooo00 = [ - 1 , - 1 , - 1 ]
+  if 50 - 50: OoooooooOO % I11i
+  if 49 - 49: oO0o - i11iIiiIii . Ooo0OO0oOO * Ii1I % Ii11111i + i1IIi
+  if 71 - 71: o0oOOo0O0Ooo
+  if 38 - 38: oO0o % OoOoOO00 + I1ii11iIi11i . i11iIiiIii
  def onListBox ( self , event ) :
-  global iiiii11iII1
-  global iIi , OOoO , OOo , Ii1IIii11
+  global ooIiII1I1i1i1ii
+  global IiiiIiI1iIiI1 , ooo0Oo0 , oo , O0Oooo00
+  if 53 - 53: i11iIiiIii * Ii11111i
+  if 68 - 68: iIii1I11I1II1 * iIii1I11I1II1 . o0oOOo0O0Ooo / II111iiii % Oo0Ooo
+  if 38 - 38: Ii - OOooOOo / Ii11111i
+  if 66 - 66: O0 % I1ii11iIi11i + i11iIiiIii . OoOoOO00 / Ii1I + I1ii11iIi11i
   if 86 - 86: o0oOOo0O0Ooo
   if 5 - 5: iiI1i1 * OoOoOO00
-  if 5 - 5: o0oo0o
-  if 90 - 90: o0oo0o . Oo / Ii1I - I11i
+  if 5 - 5: Ooo0OO0oOO
+  if 90 - 90: Ooo0OO0oOO . Ii / Ii1I - I11i
   if 40 - 40: OoooooooOO
-  if 25 - 25: iiI1i1 + Ii1I / Oo . o0oOOo0O0Ooo % O0 * OoO0O00
-  if 84 - 84: Oo % Ii1I + i11iIiiIii
-  if 28 - 28: Oo0Ooo + OoO0O00 * OOooOOo % oO0o . I11i % O0
-  if 16 - 16: I11i - iIii1I11I1II1 / I1IiiI . II111iiii + iIii1I11I1II1
-  I1i1III = event . GetEventObject ( ) . GetStringSelection ( )
-  iIiIiIiI = I1i1III . split ( ":" )
-  iiiii11iII1 = int ( iIiIiIiI [ 0 ] . split ( "#" ) [ 1 ] . split ( " " ) [ 0 ] )
-  if 30 - 30: o0oo0o . Oo * I1ii11iIi11i
-  self . update_pair_distributions ( iiiii11iII1 )
-  O0iII = ""
-  for o0 in range ( len ( OOoO ) ) :
-   O0iII += str ( OOoO [ o0 ] ) + ": " + str ( OOo [ o0 ] * 100 ) + "%, "
-  self . axes . set_title ( O0iII , size = 12 )
-  iiI = int ( iIiIiIiI [ 1 ] . split ( "%" ) [ 0 ] )
-  iIiiiII = int ( iIiIiIiI [ 2 ] . split ( "%" ) [ 0 ] )
-  i1iI1 = int ( iIiIiIiI [ 3 ] . split ( "%" ) [ 0 ] )
-  if 33 - 33: iiI1i1 % iIii1I11I1II1 * I1IiiI
-  if 95 - 95: Oo / Oo
-  if 30 - 30: I1ii11iIi11i + Oo0Ooo / Oo0Ooo % I1ii11iIi11i . I1ii11iIi11i
-  if 55 - 55: Oo - I11i + II111iiii + Ii11111i % Ii1I
+  oO0o0OOOO = event . GetEventObject ( ) . GetStringSelection ( )
+  I1i1i1 = oO0o0OOOO . split ( ":" )
+  ooIiII1I1i1i1ii = int ( I1i1i1 [ 0 ] . split ( "#" ) [ 1 ] . split ( " " ) [ 0 ] )
+  if 73 - 73: O0 * Ii11111i + Ii1I + Ii
+  self . update_pair_distributions ( ooIiII1I1i1i1ii )
+  O0Oo000ooO00 = ""
+  for oO0 in range ( len ( ooo0Oo0 ) ) :
+   O0Oo000ooO00 += str ( ooo0Oo0 [ oO0 ] ) + ": " + str ( oo [ oO0 ] * 100 ) + "%, "
+  self . axes . set_title ( O0Oo000ooO00 , size = 12 )
+  Iio0O0Oo = int ( I1i1i1 [ 1 ] . split ( "%" ) [ 0 ] )
+  Ooo0O0oooo = int ( I1i1i1 [ 2 ] . split ( "%" ) [ 0 ] )
+  iiI = int ( I1i1i1 [ 3 ] . split ( "%" ) [ 0 ] )
+  if 56 - 56: Oo0Ooo . I1ii11iIi11i . I1IiiI
+  if 39 - 39: O0 + Ooo0OO0oOO
+  if 91 - 91: OoooooooOO - iIii1I11I1II1 + OoOoOO00 / OoO0O00 . OoOoOO00 + O0
+  if 26 - 26: I1ii11iIi11i - OoooooooOO
  def on_add_distribution_button ( self , event ) :
   self . eth_input_box . Show ( )
   self . btc_input_box . Show ( )
@@ -582,7 +584,7 @@ class III1i1i ( wx . Frame ) :
   self . cancel_new_distribution_button . Show ( )
   self . add_boxes_visible = True
   self . vbox6 . Layout ( )
-  if 41 - 41: i1IIi - I11i - Ii1I
+  if 11 - 11: I1IiiI * oO0o
  def hide_all_add_boxes_except_add_new_pv_button ( self ) :
   self . eth_input_box . Hide ( )
   self . btc_input_box . Hide ( )
@@ -595,376 +597,377 @@ class III1i1i ( wx . Frame ) :
   self . cancel_new_distribution_button . Hide ( )
   self . add_boxes_visible = False
   self . vbox6 . Layout ( )
-  if 8 - 8: OoO0O00 + o0oo0o - o0oOOo0O0Ooo % Oo0Ooo % o0oOOo0O0Ooo * oO0o
+  if 81 - 81: Ii11111i + iiI1i1
  def on_cancel_new_distribution_button ( self , event ) :
   self . hide_all_add_boxes_except_add_new_pv_button ( )
-  if 9 - 9: Oo0Ooo - i11iIiiIii - OOooOOo * Ii1I + Oo
+  if 98 - 98: I1IiiI
  def on_submit_new_distribution_button ( self , event ) :
-  iIIII = int ( self . eth_input_box . GetValue ( ) )
-  iIIIiiI1i1i = int ( self . btc_input_box . GetValue ( ) )
-  iIII = int ( self . xrp_input_box . GetValue ( ) )
-  if abs ( iIIII ) + abs ( iIIIiiI1i1i ) + abs ( iIII ) != 100 :
-   if 70 - 70: Ii11111i / iIii1I11I1II1
+  o00o0 = int ( self . eth_input_box . GetValue ( ) )
+  II1I = int ( self . btc_input_box . GetValue ( ) )
+  II1I1I1Ii = int ( self . xrp_input_box . GetValue ( ) )
+  if abs ( o00o0 ) + abs ( II1I ) + abs ( II1I1I1Ii ) != 100 :
+   if 70 - 70: OoO0O00 % oO0o + OOooOOo / Ii1I % O0
    return
-   if 85 - 85: OoooooooOO % i1IIi * OoooooooOO / I1ii11iIi11i
+   if 100 - 100: o0oOOo0O0Ooo + OOooOOo * o0oOOo0O0Ooo
   self . hide_all_add_boxes_except_add_new_pv_button ( )
-  if 96 - 96: OoooooooOO + oO0o
-  Ii1i11IIii1I = 'your_api_token'
-  OOOoO0O0o = 'http://104.131.139.250/api.php/'
-  O0o0Ooo = { 'Content-Type' : 'application/json' ,
- 'Authorization' : 'Bearer {0}' . format ( Ii1i11IIii1I ) }
-  O00 = '{0}Distributions' . format ( OOOoO0O0o )
-  iI1Ii11iII1 = requests . post ( O00 , headers = O0o0Ooo , data = { "btc" : iIIIiiI1i1i , "xrp" : iIII , "eth" : iIIII } )
-  if iI1Ii11iII1 . status_code == 200 :
-   Oo0O0O0ooO0O = json . loads ( iI1Ii11iII1 . content . decode ( 'utf-8' ) )
-   if 44 - 44: oO0o
-   O00 = '{0}Lists' . format ( OOOoO0O0o )
-   iI1Ii11iII1 = requests . post ( O00 , headers = O0o0Ooo , data = { "name" : "list with dist#" + str ( Oo0O0O0ooO0O ) } )
-   if iI1Ii11iII1 . status_code == 200 :
-    I1i11i = json . loads ( iI1Ii11iII1 . content . decode ( 'utf-8' ) )
-    if 11 - 11: I1IiiI / II111iiii + o0oOOo0O0Ooo * I1ii11iIi11i - I1ii11iIi11i - I1IiiI
-    I1i1III = "list#" + str ( I1i11i ) + " BTC: " + str ( iIIIiiI1i1i ) + "% "
-    I1i1III += "ETH: " + str ( iIIII ) + "% "
-    I1i1III += "XRP: " + str ( iIII ) + "%"
-    if 85 - 85: I11i % oO0o / iIii1I11I1II1 . iIii1I11I1II1
-    self . lst . Append ( I1i1III )
-    O00 = '{0}ListHasDistribution' . format ( OOOoO0O0o )
-    iI1Ii11iII1 = requests . post ( O00 , headers = O0o0Ooo , data = { "list_id" : I1i11i , "distribution_id" : Oo0O0O0ooO0O , "timestamp" : int ( time . time ( ) ) } )
-    if iI1Ii11iII1 . status_code == 200 :
-     iIIiIiI1I1 = json . loads ( iI1Ii11iII1 . content . decode ( 'utf-8' ) )
-     if 56 - 56: I1IiiI . O0 + Oo0Ooo
+  if 80 - 80: o0oOOo0O0Ooo * O0 - Ii1I
+  Oo000 = 'your_api_token'
+  ooii11I = 'http://104.131.139.250/api.php/'
+  Ooo0OO0oOOii11i1 = { 'Content-Type' : 'application/json' ,
+ 'Authorization' : 'Bearer {0}' . format ( Oo000 ) }
+  IIIii1II1II = '{0}Distributions' . format ( ooii11I )
+  i1I1iI = requests . post ( IIIii1II1II , headers = Ooo0OO0oOOii11i1 , data = { "btc" : II1I , "xrp" : II1I1I1Ii , "eth" : o00o0 } )
+  if i1I1iI . status_code == 200 :
+   oo0OooOOo0 = json . loads ( i1I1iI . content . decode ( 'utf-8' ) )
+   if 66 - 66: i11iIiiIii - OOooOOo * Oo0Ooo
+   IIIii1II1II = '{0}Lists' . format ( ooii11I )
+   i1I1iI = requests . post ( IIIii1II1II , headers = Ooo0OO0oOOii11i1 , data = { "name" : "list with dist#" + str ( oo0OooOOo0 ) } )
+   if i1I1iI . status_code == 200 :
+    OooOOOO = json . loads ( i1I1iI . content . decode ( 'utf-8' ) )
+    if 45 - 45: I1ii11iIi11i % I1IiiI - i11iIiiIii
+    oO0o0OOOO = "list#" + str ( OooOOOO ) + " BTC: " + str ( II1I ) + "% "
+    oO0o0OOOO += "ETH: " + str ( o00o0 ) + "% "
+    oO0o0OOOO += "XRP: " + str ( II1I1I1Ii ) + "%"
+    if 11 - 11: iIii1I11I1II1 * iIii1I11I1II1 * I1IiiI
+    self . lst . Append ( oO0o0OOOO )
+    IIIii1II1II = '{0}ListHasDistribution' . format ( ooii11I )
+    i1I1iI = requests . post ( IIIii1II1II , headers = Ooo0OO0oOOii11i1 , data = { "list_id" : OooOOOO , "distribution_id" : oo0OooOOo0 , "timestamp" : int ( time . time ( ) ) } )
+    if i1I1iI . status_code == 200 :
+     iII1ii1 = json . loads ( i1I1iI . content . decode ( 'utf-8' ) )
+     if 12 - 12: OOooOOo - Ii . OoooooooOO / I1ii11iIi11i . i1IIi * OoO0O00
   else :
-   Oo0O0O0ooO0O = None
-   if 1 - 1: Ii11111i
+   oo0OooOOo0 = None
+   if 19 - 19: i11iIiiIii + OoooooooOO - Oo0Ooo - I11i
  def on_modify_distribution_button ( self , event ) :
+  if 21 - 21: O0 % iiI1i1 . I1IiiI / II111iiii + iiI1i1
+  if 53 - 53: oO0o - I1IiiI - oO0o * Ii11111i
+  if 71 - 71: O0 - iIii1I11I1II1
+  if 12 - 12: OOooOOo / o0oOOo0O0Ooo
+  if 42 - 42: Oo0Ooo
+  if 19 - 19: oO0o % I1ii11iIi11i * iIii1I11I1II1 + I1IiiI
+  if 46 - 46: Oo0Ooo
+  if 1 - 1: Ii11111i
   if 97 - 97: OOooOOo + Ii11111i + O0 + i11iIiiIii
   if 77 - 77: o0oOOo0O0Ooo / OoooooooOO
+  pass
   if 46 - 46: o0oOOo0O0Ooo % iIii1I11I1II1 . Ii11111i % Ii11111i + i11iIiiIii
-  if 72 - 72: iIii1I11I1II1 * Ii1I % Oo / OoO0O00
-  if 35 - 35: Oo + i1IIi % I1ii11iIi11i % I11i + oO0o
+ def hide_all_modification_boxes_except_edit_button ( self ) :
+  if 72 - 72: iIii1I11I1II1 * Ii1I % Ii / OoO0O00
+  if 35 - 35: Ii + i1IIi % I1ii11iIi11i % I11i + oO0o
   if 17 - 17: i1IIi
   if 21 - 21: Oo0Ooo
-  if 29 - 29: I11i / II111iiii / Oo * OOooOOo
-  if 10 - 10: o0oo0o % iiI1i1 * iiI1i1 . I11i / Ii1I % OOooOOo
+  if 29 - 29: I11i / II111iiii / Ii * OOooOOo
+  if 10 - 10: Ooo0OO0oOO % iiI1i1 * iiI1i1 . I11i / Ii1I % OOooOOo
   if 49 - 49: OoO0O00 / oO0o + O0 * o0oOOo0O0Ooo
-  pass
-  if 28 - 28: Oo + i11iIiiIii / I11i % OoOoOO00 % Oo0Ooo - O0
- def hide_all_modification_boxes_except_edit_button ( self ) :
+  if 28 - 28: Ii + i11iIiiIii / I11i % OoOoOO00 % Oo0Ooo - O0
   if 54 - 54: i1IIi + II111iiii
   if 83 - 83: I1ii11iIi11i - I1IiiI + OOooOOo
   if 5 - 5: Ii1I
-  if 46 - 46: iiI1i1
-  if 45 - 45: Oo
-  if 21 - 21: oO0o . o0oo0o . OOooOOo / Oo0Ooo / o0oo0o
-  if 17 - 17: OOooOOo / OOooOOo / I11i
-  if 1 - 1: i1IIi . i11iIiiIii % OOooOOo
-  if 82 - 82: iIii1I11I1II1 + Oo0Ooo . iIii1I11I1II1 % iiI1i1 / Ii1I . Ii1I
-  if 14 - 14: o0oOOo0O0Ooo . OOooOOo . I11i + OoooooooOO - OOooOOo + iiI1i1
-  if 9 - 9: Ii1I
   pass
-  if 59 - 59: I1IiiI * II111iiii . O0
+  if 46 - 46: iiI1i1
  def on_cancel_distribution_modification_button ( self , event ) :
   self . hide_all_modification_boxes_except_edit_button ( )
-  if 56 - 56: Ii1I - Ii11111i % I1IiiI - o0oOOo0O0Ooo
+  if 45 - 45: Ii
  def on_submit_distribution_modification_button ( self , event ) :
-  Oo00O = self . lst . GetCount ( )
-  iIIII = int ( self . modify_eth_input_box . GetValue ( ) )
-  iIIIiiI1i1i = int ( self . modify_btc_input_box . GetValue ( ) )
-  iIII = int ( self . modify_xrp_input_box . GetValue ( ) )
-  if abs ( iIIII ) + abs ( iIIIiiI1i1i ) + abs ( iIII ) != 100 :
-   if 12 - 12: o0oOOo0O0Ooo - Oo * o0oo0o
+  IIi = self . lst . GetCount ( )
+  o00o0 = int ( self . modify_eth_input_box . GetValue ( ) )
+  II1I = int ( self . modify_btc_input_box . GetValue ( ) )
+  II1I1I1Ii = int ( self . modify_xrp_input_box . GetValue ( ) )
+  if abs ( o00o0 ) + abs ( II1I ) + abs ( II1I1I1Ii ) != 100 :
+   if 94 - 94: II111iiii - Oo0Ooo
    return
-   if 14 - 14: Oo0Ooo - Ii1I % Ii1I * O0 . i11iIiiIii / O0
+   if 91 - 91: Oo0Ooo
   self . hide_all_modification_boxes_except_edit_button ( )
-  if 79 - 79: o0oOOo0O0Ooo - I11i + o0oOOo0O0Ooo . oO0o
-  for o0 in range ( Oo00O ) :
-   if self . lst . IsSelected ( o0 ) :
-    I1i1III = self . lst . GetStringSelection ( )
-  iIiIiIiI = I1i1III . split ( ":" )
-  iiiii11iII1 = int ( iIiIiIiI [ 0 ] . split ( "#" ) [ 1 ] . split ( " " ) [ 0 ] )
-  if 28 - 28: i1IIi - Ii11111i
-  if 54 - 54: Ii11111i - O0 % OOooOOo
-  if 73 - 73: O0 . OoOoOO00 + I1IiiI - I11i % I11i . I11i
-  if 17 - 17: Ii1I - OoooooooOO % Ii1I . iiI1i1 / i11iIiiIii % Ii11111i
-  O0o0Ooo = { 'Content-Type' : 'application/json' }
-  iI1Ii11iII1 = requests . get ( "http://104.131.139.250/api.php/ListHasDistribution?filter=list_id,eq," + str ( iiiii11iII1 ) , headers = O0o0Ooo )
-  if iI1Ii11iII1 . status_code == 200 :
-   I11IIIi = json . loads ( iI1Ii11iII1 . content . decode ( 'utf-8' ) )
+  if 31 - 31: OOooOOo / i11iIiiIii % iIii1I11I1II1 + OOooOOo / i11iIiiIii
+  for oO0 in range ( IIi ) :
+   if self . lst . IsSelected ( oO0 ) :
+    oO0o0OOOO = self . lst . GetStringSelection ( )
+  I1i1i1 = oO0o0OOOO . split ( ":" )
+  ooIiII1I1i1i1ii = int ( I1i1i1 [ 0 ] . split ( "#" ) [ 1 ] . split ( " " ) [ 0 ] )
+  if 70 - 70: OoO0O00 * O0 . I11i + I1IiiI . iiI1i1
+  if 14 - 14: iIii1I11I1II1 % iIii1I11I1II1 * i11iIiiIii - OoO0O00 - I11i
+  if 63 - 63: OoO0O00
+  if 69 - 69: iIii1I11I1II1 . I1ii11iIi11i % Ii + iIii1I11I1II1 / O0 / I1ii11iIi11i
+  Ooo0OO0oOOii11i1 = { 'Content-Type' : 'application/json' }
+  i1I1iI = requests . get ( "http://104.131.139.250/api.php/ListHasDistribution?filter=list_id,eq," + str ( ooIiII1I1i1i1ii ) , headers = Ooo0OO0oOOii11i1 )
+  if i1I1iI . status_code == 200 :
+   I1 = json . loads ( i1I1iI . content . decode ( 'utf-8' ) )
   else :
-   I11IIIi = None
-   if 28 - 28: I11i
-  if not I11IIIi :
-   if 58 - 58: OoOoOO00
+   I1 = None
+   if 61 - 61: OOooOOo % OOooOOo * o0oOOo0O0Ooo / o0oOOo0O0Ooo
+  if not I1 :
+   if 75 - 75: iiI1i1 . Ii
    return
-   if 37 - 37: Oo0Ooo - iIii1I11I1II1 / I1ii11iIi11i
-  O00OO = I11IIIi [ "ListHasDistribution" ] [ "records" ] [ 0 ] [ 2 ]
-  if 73 - 73: i11iIiiIii - iiI1i1
-  if 25 - 25: OoooooooOO + iiI1i1 * I1ii11iIi11i
-  if 92 - 92: I1IiiI + I11i + O0 / o0oOOo0O0Ooo + o0oo0o
-  Ii1i11IIii1I = 'your_api_token'
-  OOOoO0O0o = 'http://104.131.139.250/api.php/'
-  O0o0Ooo = { 'Content-Type' : 'application/json' ,
- 'Authorization' : 'Bearer {0}' . format ( Ii1i11IIii1I ) }
-  O00 = '{0}Distributions/{1}' . format ( OOOoO0O0o , O00OO )
-  iI1Ii11iII1 = requests . put ( O00 , headers = O0o0Ooo , data = { "btc" : iIIIiiI1i1i , "xrp" : iIII , "eth" : iIIII } )
-  if iI1Ii11iII1 . status_code == 200 :
-   I1iIi1iIiiIiI = json . loads ( iI1Ii11iII1 . content . decode ( 'utf-8' ) )
-   if 47 - 47: Ii1I + o0oo0o / i1IIi % i11iIiiIii
+   if 50 - 50: OoOoOO00
+  OOOoOO = I1 [ "ListHasDistribution" ] [ "records" ] [ 0 ] [ 2 ]
+  if 60 - 60: Ii * iIii1I11I1II1 * I1ii11iIi11i * Oo0Ooo
+  if 69 - 69: Ii1I * O0 . i11iIiiIii / Ii1I . o0oOOo0O0Ooo
+  if 63 - 63: I11i + o0oOOo0O0Ooo . II111iiii - I1IiiI
+  Oo000 = 'your_api_token'
+  ooii11I = 'http://104.131.139.250/api.php/'
+  Ooo0OO0oOOii11i1 = { 'Content-Type' : 'application/json' ,
+ 'Authorization' : 'Bearer {0}' . format ( Oo000 ) }
+  IIIii1II1II = '{0}Distributions/{1}' . format ( ooii11I , OOOoOO )
+  i1I1iI = requests . put ( IIIii1II1II , headers = Ooo0OO0oOOii11i1 , data = { "btc" : II1I , "xrp" : II1I1I1Ii , "eth" : o00o0 } )
+  if i1I1iI . status_code == 200 :
+   oOOO00o000o = json . loads ( i1I1iI . content . decode ( 'utf-8' ) )
+   if 9 - 9: oO0o + I11i / I11i
   else :
-   if 42 - 42: Ii11111i + iiI1i1
+   if 12 - 12: OoooooooOO % o0oOOo0O0Ooo * I11i % iIii1I11I1II1 / Ii1I
    pass
-   if 96 - 96: OOooOOo
-   if 85 - 85: o0oOOo0O0Ooo . OoOoOO00 / Oo . O0 % o0oo0o
-   if 90 - 90: Oo0Ooo % O0 * iIii1I11I1II1 . Ii11111i
-   if 8 - 8: Oo + II111iiii / Ii11111i / I11i
-   if 74 - 74: O0 / i1IIi
-   if 78 - 78: OoooooooOO . OoO0O00 + Oo - i1IIi
-   if 31 - 31: OoooooooOO . OOooOOo
-   if 83 - 83: Ii11111i . O0 / Oo0Ooo / OOooOOo - II111iiii
-   if 100 - 100: OoO0O00
-   if 46 - 46: OoOoOO00 / iIii1I11I1II1 % Ii11111i . iIii1I11I1II1 * Ii11111i
-   if 38 - 38: I1ii11iIi11i - Ii11111i / O0 . o0oo0o
-  for o0 in range ( Oo00O ) :
-   if self . lst . IsSelected ( o0 ) :
-    I1i1III = "list#" + str ( iiiii11iII1 ) + " BTC: " + str ( iIIIiiI1i1i ) + "% "
-    I1i1III += "ETH: " + str ( iIIII ) + "% "
-    I1i1III += "XRP: " + str ( iIII ) + "%"
-    if 45 - 45: o0oo0o
-    self . lst . SetString ( o0 , I1i1III )
-    if 83 - 83: OoOoOO00 . OoooooooOO
+   if 27 - 27: i11iIiiIii % II111iiii % I11i . O0 - Oo0Ooo + OoOoOO00
+   if 57 - 57: iIii1I11I1II1 / I11i - i1IIi
+   if 51 - 51: iiI1i1
+   if 25 - 25: OoooooooOO + iiI1i1 * I1ii11iIi11i
+   if 92 - 92: I1IiiI + I11i + O0 / o0oOOo0O0Ooo + Ooo0OO0oOO
+   if 18 - 18: Ii * OoOoOO00 . Ii11111i / I1ii11iIi11i / i11iIiiIii
+   if 21 - 21: oO0o / I1ii11iIi11i + Ii1I + OoooooooOO
+   if 91 - 91: i11iIiiIii / i1IIi + Ii11111i + Ii * i11iIiiIii
+   if 66 - 66: iIii1I11I1II1 % i1IIi - O0 + I11i * Ooo0OO0oOO . iiI1i1
+   if 52 - 52: Ii + O0 . Ii11111i . I1ii11iIi11i . OoO0O00
+   if 97 - 97: I1IiiI / Ii11111i
+  for oO0 in range ( IIi ) :
+   if self . lst . IsSelected ( oO0 ) :
+    oO0o0OOOO = "list#" + str ( ooIiII1I1i1i1ii ) + " BTC: " + str ( II1I ) + "% "
+    oO0o0OOOO += "ETH: " + str ( o00o0 ) + "% "
+    oO0o0OOOO += "XRP: " + str ( II1I1I1Ii ) + "%"
+    if 71 - 71: II111iiii / i1IIi . I1ii11iIi11i % OoooooooOO . OoOoOO00
+    self . lst . SetString ( oO0 , oO0o0OOOO )
+    if 41 - 41: i1IIi * II111iiii / OoooooooOO . OOooOOo
  def on_add_usd_button ( self , event ) :
-  Ii1i11IIii1I = 'your_api_token'
-  OOOoO0O0o = 'http://104.131.139.250/api.php/'
-  O0o0Ooo = { 'Content-Type' : 'application/json' ,
- 'Authorization' : 'Bearer {0}' . format ( Ii1i11IIii1I ) }
-  O00 = '{0}Subscription' . format ( OOOoO0O0o )
-  iI1Ii11iII1 = requests . post ( O00 , headers = O0o0Ooo , data = { "list_id" : iiiii11iII1 , "user_id" : 1 , "dollar_amount" : float ( self . add_usd_input_box . GetValue ( ) ) , "timestamp" : int ( time . time ( ) ) , "approved" : 0 } )
-  if iI1Ii11iII1 . status_code == 200 :
-   Oo0ooo = json . loads ( iI1Ii11iII1 . content . decode ( 'utf-8' ) )
+  Oo000 = 'your_api_token'
+  ooii11I = 'http://104.131.139.250/api.php/'
+  Ooo0OO0oOOii11i1 = { 'Content-Type' : 'application/json' ,
+ 'Authorization' : 'Bearer {0}' . format ( Oo000 ) }
+  IIIii1II1II = '{0}Subscription' . format ( ooii11I )
+  i1I1iI = requests . post ( IIIii1II1II , headers = Ooo0OO0oOOii11i1 , data = { "list_id" : ooIiII1I1i1i1ii , "user_id" : 1 , "dollar_amount" : float ( self . add_usd_input_box . GetValue ( ) ) , "timestamp" : int ( time . time ( ) ) , "approved" : 0 } )
+  if i1I1iI . status_code == 200 :
+   O0iII1 = json . loads ( i1I1iI . content . decode ( 'utf-8' ) )
   else :
-   Oo0ooo = None
-   if 28 - 28: oO0o . II111iiii / I1ii11iIi11i + II111iiii . OoooooooOO . iiI1i1
-  O000OOO0OOo = i1I1ii1II1iII ( None , - 1 )
-  i1i1I111iIi1 = urllib . parse . quote ( "Fund for Coinium Account. Invoice #" + str ( Oo0ooo ) )
-  oo00O00oO000o = str ( float ( self . add_usd_input_box . GetValue ( ) ) )
-  OOo00OoO = urllib . parse . quote ( "Coinium Invoice #" + str ( Oo0ooo ) )
-  iIi1 = "https://www.coinpayments.net/index.php?cmd=_pay&reset=1&merchant=e3e3958eff15be8c85dcbe83c3803da4&item_name=" + i1i1I111iIi1 + "&invoice=" + OOo00OoO + "&currency=USD&amountf=" + oo00O00oO000o + "&quantity=1&allow_quantity=0&want_shipping=0&allow_extra=0&"
-  if 21 - 21: I11i
-  O000OOO0OOo . browser . LoadURL ( iIi1 )
-  O000OOO0OOo . Show ( )
-  if 92 - 92: i11iIiiIii / o0oo0o - Ii11111i % Oo * o0oo0o + Oo0Ooo
+   O0iII1 = None
+   if 27 - 27: OoO0O00 . I11i + OoOoOO00 / iIii1I11I1II1 % Ii11111i . Ii
+  IIIIi1 = o0o ( None , - 1 )
+  iIi11iiIiI1I = urllib . parse . quote ( "Fund for Coinium Account. Invoice #" + str ( O0iII1 ) )
+  Iiii = str ( float ( self . add_usd_input_box . GetValue ( ) ) )
+  oooOOoooo = urllib . parse . quote ( "Coinium Invoice #" + str ( O0iII1 ) )
+  O0000OOO0 = "https://www.coinpayments.net/index.php?cmd=_pay&reset=1&merchant=e3e3958eff15be8c85dcbe83c3803da4&item_name=" + iIi11iiIiI1I + "&invoice=" + oooOOoooo + "&currency=USD&amountf=" + Iiii + "&quantity=1&allow_quantity=0&want_shipping=0&allow_extra=0&"
+  if 51 - 51: I1IiiI / iiI1i1 / Ii1I
+  IIIIi1 . browser . LoadURL ( O0000OOO0 )
+  IIIIi1 . Show ( )
+  if 6 - 6: Ii1I - Ii * OOooOOo . Ii11111i / O0 * Ii
  def on_save_plot ( self , event ) :
-  ii1 = "PNG (*.png)|*.png"
-  if 80 - 80: OoooooooOO - OOooOOo * Ii1I * I1ii11iIi11i / I1IiiI / OOooOOo
-  I1I11iI11iI1i = wx . FileDialog (
+  II11iI111i1 = "PNG (*.png)|*.png"
+  if 95 - 95: OoooooooOO - iiI1i1 * I1IiiI + OoOoOO00
+  iIi1 = wx . FileDialog (
  self ,
  message = "Save plot as..." ,
  defaultDir = os . getcwd ( ) ,
  defaultFile = "coinium plot.png" ,
- wildcard = ii1 ,
+ wildcard = II11iI111i1 ,
  style = wx . FD_SAVE )
-  if 75 - 75: OoooooooOO * iiI1i1
-  if I1I11iI11iI1i . ShowModal ( ) == wx . ID_OK :
-   I1Iiiiiii = I1I11iI11iI1i . GetPath ( )
-   self . canvas . print_figure ( I1Iiiiiii , dpi = self . dpi )
-   self . flash_status_message ( "Saved to %s" % I1Iiiiiii )
-   if 39 - 39: iiI1i1 * Oo0Ooo + iIii1I11I1II1 - iiI1i1 + OOooOOo
+  if 21 - 21: I11i
+  if iIi1 . ShowModal ( ) == wx . ID_OK :
+   OoO00 = iIi1 . GetPath ( )
+   self . canvas . print_figure ( OoO00 , dpi = self . dpi )
+   self . flash_status_message ( "Saved to %s" % OoO00 )
+   if 85 - 85: Oo0Ooo * Oo0Ooo * I1IiiI . OoooooooOO . Ii1I * Ii
  def bg_cb ( self , sess , resp ) :
   resp . data = resp . json ( )
-  if 69 - 69: O0
+  if 65 - 65: OOooOOo * Ooo0OO0oOO
  def get_interval_in_secs_chosen ( self ) :
-  o0ooO = self . choice . GetSelection ( )
-  OoOOOo0o0ooo = self . choice . GetString ( o0ooO )
-  if OoOOOo0o0ooo == "30 secs" :
-   ooO0O00Oo0o = 30
-  elif OoOOOo0o0ooo == "5 mins" :
-   ooO0O00Oo0o = 300
-  elif OoOOOo0o0ooo == "2 hours" :
-   ooO0O00Oo0o = 7200
-  elif OoOOOo0o0ooo == "1 day" :
-   ooO0O00Oo0o = 86400
-  return ooO0O00Oo0o
-  if 19 - 19: I11i % II111iiii / i11iIiiIii / Ii11111i - OoooooooOO
+  ooo0o000O = self . choice . GetSelection ( )
+  OO = self . choice . GetString ( ooo0o000O )
+  if OO == "30 secs" :
+   IIiI1i1i = 30
+  elif OO == "5 mins" :
+   IIiI1i1i = 300
+  elif OO == "2 hours" :
+   IIiI1i1i = 7200
+  elif OO == "1 day" :
+   IIiI1i1i = 86400
+   if 93 - 93: I1ii11iIi11i / iIii1I11I1II1 * i1IIi % OoooooooOO * O0 * I11i
+  return IIiI1i1i
+  if 64 - 64: II111iiii + O0 / iIii1I11I1II1 / Oo0Ooo . Ii % iiI1i1
  def update_current_prices ( self ) :
-  O0o0Ooo = { 'Content-Type' : 'application/json' }
-  iIIii = int ( time . time ( ) )
-  iIIii -= 7500
-  O00 = "http://104.131.139.250/api.php/Spreads?filter=timestamp,gt," + str ( iIIii )
-  if 18 - 18: Ii11111i . I1IiiI
-  iiIi1IIiI = IiiIII111iI . get ( O00 , background_callback = self . bg_cb )
-  iI1Ii11iII1 = iiIi1IIiI . result ( )
-  if 23 - 23: Ii1I . OOooOOo
-  if iI1Ii11iII1 . status_code == 200 :
-   i1II11II = json . loads ( iI1Ii11iII1 . content . decode ( 'utf-8' ) )
+  Ooo0OO0oOOii11i1 = { 'Content-Type' : 'application/json' }
+  iiI1I1ii = int ( time . time ( ) )
+  iiI1I1ii -= 7500
+  IIIii1II1II = "http://104.131.139.250/api.php/Spreads?filter=timestamp,gt," + str ( iiI1I1ii )
+  if 85 - 85: Ii / O0
+  iI1iIIIi1i = IiiIII111iI . get ( IIIii1II1II , background_callback = self . bg_cb )
+  i1I1iI = iI1iIIIi1i . result ( )
+  if 89 - 89: iIii1I11I1II1
+  if i1I1iI . status_code == 200 :
+   i11iiiiI1i = json . loads ( i1I1iI . content . decode ( 'utf-8' ) )
   else :
-   i1II11II = None
-   if 87 - 87: OoOoOO00 * o0oo0o . I11i
-  if i1II11II :
-   O0Oo0o000oO = i1II11II [ "Spreads" ] [ "records" ]
-   if 99 - 99: oO0o * II111iiii * o0oo0o
-   if 92 - 92: Oo0Ooo
-   o0 = len ( O0Oo0o000oO ) - 1
-   while o0 > 0 :
-    if O0Oo0o000oO [ o0 ] [ 1 ] == "XXBTZUSD" :
+   i11iiiiI1i = None
+   if 37 - 37: OOooOOo / OoooooooOO - i11iIiiIii
+  if i11iiiiI1i :
+   i1 = i11iiiiI1i [ "Spreads" ] [ "records" ]
+   if 31 - 31: OOooOOo + o0oOOo0O0Ooo . OoooooooOO
+   if 89 - 89: II111iiii + i1IIi + II111iiii
+   oO0 = len ( i1 ) - 1
+   while oO0 > 0 :
+    if i1 [ oO0 ] [ 1 ] == "XXBTZUSD" :
      break
     else :
-     o0 -= 1
-   iI11I = ( O0Oo0o000oO [ o0 ] [ 2 ] + O0Oo0o000oO [ o0 ] [ 3 ] ) / 2.0
-   self . btc_price_text . SetLabel ( "$" + str ( round ( iI11I , 4 ) ) )
-   if 53 - 53: iIii1I11I1II1 + Ii1I - o0oo0o
-   if 93 - 93: II111iiii . I1IiiI - Oo0Ooo + OoOoOO00
-   o0 = len ( O0Oo0o000oO ) - 1
-   while o0 > 0 :
-    if O0Oo0o000oO [ o0 ] [ 1 ] == "XETHZUSD" :
+     oO0 -= 1
+   IiII1II11I = ( i1 [ oO0 ] [ 2 ] + i1 [ oO0 ] [ 3 ] ) / 2.0
+   self . btc_price_text . SetLabel ( "$" + str ( round ( IiII1II11I , 4 ) ) )
+   if 54 - 54: iiI1i1 + O0 + I11i * Ooo0OO0oOO - OOooOOo % oO0o
+   if 13 - 13: Ii / Ii11111i * OoO0O00 . OoO0O00 * Ii
+   oO0 = len ( i1 ) - 1
+   while oO0 > 0 :
+    if i1 [ oO0 ] [ 1 ] == "XETHZUSD" :
      break
     else :
-     o0 -= 1
-   ooO0o = ( O0Oo0o000oO [ o0 ] [ 2 ] + O0Oo0o000oO [ o0 ] [ 3 ] ) / 2.0
-   self . eth_price_text . SetLabel ( "$" + str ( round ( ooO0o , 4 ) ) )
-   if 89 - 89: I11i / o0oo0o
+     oO0 -= 1
+   O00oO = ( i1 [ oO0 ] [ 2 ] + i1 [ oO0 ] [ 3 ] ) / 2.0
+   self . eth_price_text . SetLabel ( "$" + str ( round ( O00oO , 4 ) ) )
+   if 40 - 40: OoOoOO00 / iiI1i1
+   if 79 - 79: OoO0O00 - iIii1I11I1II1 + Ii1I - Ooo0OO0oOO
+   oO0 = len ( i1 ) - 1
+   while oO0 > 0 :
+    if i1 [ oO0 ] [ 1 ] == "XXRPZUSD" :
+     break
+    else :
+     oO0 -= 1
+   OoO = ( i1 [ oO0 ] [ 2 ] + i1 [ oO0 ] [ 3 ] ) / 2.0
+   self . xrp_price_text . SetLabel ( "$" + str ( round ( OoO , 4 ) ) )
+   if 35 - 35: OoOoOO00 + i11iIiiIii - II111iiii
+   if 15 - 15: i11iIiiIii % I1IiiI * I11i / Ooo0OO0oOO
+   Ooo0OO0oOOii11i1 = { 'Content-Type' : 'application/json' }
+   iiI1I1ii = int ( time . time ( ) )
+   iiI1I1ii -= ( 24 * 60 * 60 )
+   IIIii1II1II = "http://104.131.139.250/api.php/Spreads?filter=timestamp,bt," + str ( iiI1I1ii ) + "," + str ( iiI1I1ii + 7500 )
    if 90 - 90: Ii11111i
-   o0 = len ( O0Oo0o000oO ) - 1
-   while o0 > 0 :
-    if O0Oo0o000oO [ o0 ] [ 1 ] == "XXRPZUSD" :
-     break
-    else :
-     o0 -= 1
-   i1i1i1I = ( O0Oo0o000oO [ o0 ] [ 2 ] + O0Oo0o000oO [ o0 ] [ 3 ] ) / 2.0
-   self . xrp_price_text . SetLabel ( "$" + str ( round ( i1i1i1I , 4 ) ) )
-   if 83 - 83: oO0o + OoooooooOO
-   if 22 - 22: Ii1I % Ii11111i * OoooooooOO - o0oOOo0O0Ooo / iIii1I11I1II1
-   O0o0Ooo = { 'Content-Type' : 'application/json' }
-   iIIii = int ( time . time ( ) )
-   iIIii -= ( 24 * 60 * 60 )
-   O00 = "http://104.131.139.250/api.php/Spreads?filter=timestamp,bt," + str ( iIIii ) + "," + str ( iIIii + 7500 )
-   if 86 - 86: OoooooooOO . Ii11111i % OoOoOO00 / I11i * Ii11111i / o0oOOo0O0Ooo
-   iiIi1IIiI = IiiIII111iI . get ( O00 , background_callback = self . bg_cb )
-   iI1Ii11iII1 = iiIi1IIiI . result ( )
-   if 64 - 64: i11iIiiIii
-   if iI1Ii11iII1 . status_code == 200 :
-    i1II11II = json . loads ( iI1Ii11iII1 . content . decode ( 'utf-8' ) )
+   iI1iIIIi1i = IiiIII111iI . get ( IIIii1II1II , background_callback = self . bg_cb )
+   i1I1iI = iI1iIIIi1i . result ( )
+   if 31 - 31: OOooOOo + O0
+   if i1I1iI . status_code == 200 :
+    i11iiiiI1i = json . loads ( i1I1iI . content . decode ( 'utf-8' ) )
    else :
-    i1II11II = None
-   if i1II11II :
-    I1II = i1II11II [ "Spreads" ] [ "records" ]
-    if 17 - 17: OOooOOo % Oo0Ooo / I1ii11iIi11i . iiI1i1 * OOooOOo - II111iiii
-    if 41 - 41: Ii1I
-    o0 = 0
-    while o0 < len ( I1II ) :
-     if I1II [ o0 ] [ 1 ] == "XXBTZUSD" :
+    i11iiiiI1i = None
+   if i11iiiiI1i :
+    oO0oOOoo00000 = i11iiiiI1i [ "Spreads" ] [ "records" ]
+    if 52 - 52: I1IiiI
+    if 51 - 51: iiI1i1
+    oO0 = 0
+    while oO0 < len ( oO0oOOoo00000 ) :
+     if oO0oOOoo00000 [ oO0 ] [ 1 ] == "XXBTZUSD" :
       break
      else :
-      o0 += 1
-    oOOoo0o0OOOO = ( I1II [ o0 ] [ 2 ] + I1II [ o0 ] [ 3 ] ) / 2.0
-    self . last_24_hours_btc_price_text . SetLabel ( ( "+" if iI11I > oOOoo0o0OOOO else "" ) + str ( round ( 100.0 * ( iI11I / oOOoo0o0OOOO ) - 100.0 , 1 ) ) + "%" )
-    if 26 - 26: Ii11111i % iIii1I11I1II1 + o0oOOo0O0Ooo
-    if 67 - 67: oO0o + II111iiii - O0 . oO0o * II111iiii * I11i
-    if 90 - 90: Ii1I . iiI1i1
-    o0 = 0
-    while o0 < len ( I1II ) :
-     if I1II [ o0 ] [ 1 ] == "XETHZUSD" :
+      oO0 += 1
+    o00o = ( oO0oOOoo00000 [ oO0 ] [ 2 ] + oO0oOOoo00000 [ oO0 ] [ 3 ] ) / 2.0
+    self . last_24_hours_btc_price_text . SetLabel ( ( "+" if IiII1II11I > o00o else "" ) + str ( round ( 100.0 * ( IiII1II11I / o00o ) - 100.0 , 1 ) ) + "%" )
+    if 46 - 46: II111iiii % o0oOOo0O0Ooo % iIii1I11I1II1 - Oo0Ooo . OoooooooOO - iiI1i1
+    if 59 - 59: iiI1i1 . OOooOOo % II111iiii
+    if 39 - 39: I1ii11iIi11i
+    oO0 = 0
+    while oO0 < len ( oO0oOOoo00000 ) :
+     if oO0oOOoo00000 [ oO0 ] [ 1 ] == "XETHZUSD" :
       break
      else :
-      o0 += 1
-    OO00O0oOO = ( I1II [ o0 ] [ 2 ] + I1II [ o0 ] [ 3 ] ) / 2.0
-    self . last_24_hours_eth_price_text . SetLabel ( ( "+" if ooO0o > OO00O0oOO else "" ) + str ( round ( 100.0 * ( ooO0o / OO00O0oOO ) - 100.0 , 1 ) ) + "%" )
+      oO0 += 1
+    O0oOo00o0 = ( oO0oOOoo00000 [ oO0 ] [ 2 ] + oO0oOOoo00000 [ oO0 ] [ 3 ] ) / 2.0
+    self . last_24_hours_eth_price_text . SetLabel ( ( "+" if O00oO > O0oOo00o0 else "" ) + str ( round ( 100.0 * ( O00oO / O0oOo00o0 ) - 100.0 , 1 ) ) + "%" )
+    if 65 - 65: II111iiii . I1IiiI % oO0o * OoO0O00
+    if 38 - 38: OoOoOO00 / Ii11111i % Oo0Ooo
+    if 11 - 11: Ii11111i - oO0o + II111iiii - iIii1I11I1II1
+    oO0 = 0
+    while oO0 < len ( oO0oOOoo00000 ) :
+     if oO0oOOoo00000 [ oO0 ] [ 1 ] == "XXRPZUSD" :
+      break
+     else :
+      oO0 += 1
+    I1i11ii11 = ( oO0oOOoo00000 [ oO0 ] [ 2 ] + oO0oOOoo00000 [ oO0 ] [ 3 ] ) / 2.0
+    self . last_24_hours_xrp_price_text . SetLabel ( ( "+" if OoO > I1i11ii11 else "" ) + str ( round ( 100.0 * ( OoO / I1i11ii11 ) - 100.0 , 1 ) ) + "%" )
+    if 81 - 81: OOooOOo - I11i % Ii - OoO0O00 / Oo0Ooo
     if 4 - 4: OoooooooOO - i1IIi % Ii1I - OOooOOo * o0oOOo0O0Ooo
     if 85 - 85: OoooooooOO * iIii1I11I1II1 . Ii11111i / OoooooooOO % I1IiiI % O0
-    if 36 - 36: Ii1I / II111iiii / iiI1i1 / iiI1i1 + I1ii11iIi11i
-    o0 = 0
-    while o0 < len ( I1II ) :
-     if I1II [ o0 ] [ 1 ] == "XXRPZUSD" :
-      break
-     else :
-      o0 += 1
-    oO0Ooo0ooOO0 = ( I1II [ o0 ] [ 2 ] + I1II [ o0 ] [ 3 ] ) / 2.0
-    self . last_24_hours_xrp_price_text . SetLabel ( ( "+" if i1i1i1I > oO0Ooo0ooOO0 else "" ) + str ( round ( 100.0 * ( i1i1i1I / oO0Ooo0ooOO0 ) - 100.0 , 1 ) ) + "%" )
-    if 46 - 46: Ii1I % OoOoOO00
-    if 64 - 64: i11iIiiIii - II111iiii
-    if 77 - 77: OoOoOO00 % Ii1I
-   O0o0Ooo = { 'Content-Type' : 'application/json' }
-   iIIii = int ( time . time ( ) )
-   iIIii -= ( 7 * 24 * 60 * 60 )
-   O00 = "http://104.131.139.250/api.php/Spreads?filter=timestamp,bt," + str ( iIIii ) + "," + str ( iIIii + 250 )
-   if 9 - 9: OoO0O00 - Oo0Ooo * OoooooooOO . Oo0Ooo
-   iiIi1IIiI = IiiIII111iI . get ( O00 , background_callback = self . bg_cb )
-   iI1Ii11iII1 = iiIi1IIiI . result ( )
-   if 2 - 2: OoooooooOO % OOooOOo
-   if iI1Ii11iII1 . status_code == 200 :
-    i1II11II = json . loads ( iI1Ii11iII1 . content . decode ( 'utf-8' ) )
+   Ooo0OO0oOOii11i1 = { 'Content-Type' : 'application/json' }
+   iiI1I1ii = int ( time . time ( ) )
+   iiI1I1ii -= ( 7 * 24 * 60 * 60 )
+   IIIii1II1II = "http://104.131.139.250/api.php/Spreads?filter=timestamp,bt," + str ( iiI1I1ii ) + "," + str ( iiI1I1ii + 250 )
+   if 36 - 36: Ii1I / II111iiii / iiI1i1 / iiI1i1 + I1ii11iIi11i
+   iI1iIIIi1i = IiiIII111iI . get ( IIIii1II1II , background_callback = self . bg_cb )
+   i1I1iI = iI1iIIIi1i . result ( )
+   if 95 - 95: iiI1i1
+   if i1I1iI . status_code == 200 :
+    i11iiiiI1i = json . loads ( i1I1iI . content . decode ( 'utf-8' ) )
    else :
-    i1II11II = None
-   if i1II11II :
-    oOoOOo0oo0 = i1II11II [ "Spreads" ] [ "records" ]
-    if 60 - 60: Oo * o0oo0o + Oo0Ooo
-    o0 = 0
-    while o0 < len ( oOoOOo0oo0 ) :
-     if oOoOOo0oo0 [ o0 ] [ 1 ] == "XXBTZUSD" :
+    i11iiiiI1i = None
+   if i11iiiiI1i :
+    Ooo0oo = i11iiiiI1i [ "Spreads" ] [ "records" ]
+    if 41 - 41: OoOoOO00 * I11i / OoOoOO00 % oO0o
+    oO0 = 0
+    while oO0 < len ( Ooo0oo ) :
+     if Ooo0oo [ oO0 ] [ 1 ] == "XXBTZUSD" :
       break
      else :
-      o0 += 1
-    IIi1i1IiIIi1i = ( oOoOOo0oo0 [ o0 ] [ 2 ] + oOoOOo0oo0 [ o0 ] [ 3 ] ) / 2.0
-    self . last_week_btc_price_text . SetLabel ( ( "+" if iI11I > IIi1i1IiIIi1i else "" ) + str ( round ( 100.0 * ( iI11I / IIi1i1IiIIi1i ) - 100.0 , 1 ) ) + "%" )
-    if 54 - 54: Oo
-    if 67 - 67: OOooOOo . Oo0Ooo + OoOoOO00 - OoooooooOO
-    if 70 - 70: OOooOOo / II111iiii - iIii1I11I1II1 - Ii11111i
-    o0 = 0
-    while o0 < len ( oOoOOo0oo0 ) :
-     if oOoOOo0oo0 [ o0 ] [ 1 ] == "XETHZUSD" :
+      oO0 += 1
+    IioO0oOOO0Ooo = ( Ooo0oo [ oO0 ] [ 2 ] + Ooo0oo [ oO0 ] [ 3 ] ) / 2.0
+    self . last_week_btc_price_text . SetLabel ( ( "+" if IiII1II11I > IioO0oOOO0Ooo else "" ) + str ( round ( 100.0 * ( IiII1II11I / IioO0oOOO0Ooo ) - 100.0 , 1 ) ) + "%" )
+    if 38 - 38: I1IiiI
+    if 84 - 84: oO0o % i1IIi
+    if 70 - 70: Oo0Ooo . OoooooooOO - Ii11111i
+    oO0 = 0
+    while oO0 < len ( Ooo0oo ) :
+     if Ooo0oo [ oO0 ] [ 1 ] == "XETHZUSD" :
       break
      else :
-      o0 += 1
-    Iii = ( oOoOOo0oo0 [ o0 ] [ 2 ] + oOoOOo0oo0 [ o0 ] [ 3 ] ) / 2.0
-    self . last_week_eth_price_text . SetLabel ( ( "+" if ooO0o > Iii else "" ) + str ( round ( 100.0 * ( ooO0o / Iii ) - 100.0 , 1 ) ) + "%" )
-    if 20 - 20: o0oOOo0O0Ooo / i1IIi
-    if 71 - 71: OoOoOO00 . i1IIi
-    if 94 - 94: OOooOOo . o0oo0o
-    o0 = 0
-    while o0 < len ( oOoOOo0oo0 ) :
-     if oOoOOo0oo0 [ o0 ] [ 1 ] == "XXRPZUSD" :
+      oO0 += 1
+    iII11I1Ii1 = ( Ooo0oo [ oO0 ] [ 2 ] + Ooo0oo [ oO0 ] [ 3 ] ) / 2.0
+    self . last_week_eth_price_text . SetLabel ( ( "+" if O00oO > iII11I1Ii1 else "" ) + str ( round ( 100.0 * ( O00oO / iII11I1Ii1 ) - 100.0 , 1 ) ) + "%" )
+    if 92 - 92: I11i / I11i . I1ii11iIi11i
+    if 17 - 17: i11iIiiIii - II111iiii * o0oOOo0O0Ooo
+    if 5 - 5: OOooOOo - OOooOOo . Oo0Ooo + OoOoOO00 - OOooOOo . oO0o
+    oO0 = 0
+    while oO0 < len ( Ooo0oo ) :
+     if Ooo0oo [ oO0 ] [ 1 ] == "XXRPZUSD" :
       break
      else :
-      o0 += 1
-    OoO = ( oOoOOo0oo0 [ o0 ] [ 2 ] + oOoOOo0oo0 [ o0 ] [ 3 ] ) / 2.0
-    self . last_week_xrp_price_text . SetLabel ( ( "+" if i1i1i1I > OoO else "" ) + str ( round ( 100.0 * ( i1i1i1I / OoO ) - 100.0 , 1 ) ) + "%" )
-    if 73 - 73: II111iiii
-    if 24 - 24: OoOoOO00 / OoooooooOO . II111iiii . I1IiiI % O0 % Ii1I
-    if 5 - 5: OoooooooOO - OoO0O00 + iiI1i1 - Ii11111i . OoO0O00 / Oo
+      oO0 += 1
+    IiIi1i1ii = ( Ooo0oo [ oO0 ] [ 2 ] + Ooo0oo [ oO0 ] [ 3 ] ) / 2.0
+    self . last_week_xrp_price_text . SetLabel ( ( "+" if OoO > IiIi1i1ii else "" ) + str ( round ( 100.0 * ( OoO / IiIi1i1ii ) - 100.0 , 1 ) ) + "%" )
+    if 11 - 11: II111iiii / o0oOOo0O0Ooo
+    if 21 - 21: i11iIiiIii / i1IIi + I1IiiI * OOooOOo . Ooo0OO0oOO
+    if 84 - 84: O0 . I11i - II111iiii . Ii / II111iiii
  def on_redraw_timer ( self , event ) :
-  global iiiii11iII1
-  if 28 - 28: Ii1I * Ii1I - iIii1I11I1II1
-  if 70 - 70: o0oo0o
-  if 16 - 16: Ii11111i - OoooooooOO % Oo0Ooo
-  if 36 - 36: OOooOOo
-  if 84 - 84: o0oo0o . OoO0O00 . II111iiii . I11i / Ii1I % I1ii11iIi11i
-  if 57 - 57: I1IiiI % I11i - OOooOOo . I1IiiI / Oo0Ooo % Ii11111i
-  ooO0O00Oo0o = self . get_interval_in_secs_chosen ( )
-  O0o0Ooo = { 'Content-Type' : 'application/json' }
-  O00 = "http://104.131.139.250:5000/?list_id=" + str ( iiiii11iII1 ) + "&interval_in_secs=" + str ( ooO0O00Oo0o )
-  if 56 - 56: oO0o . Ii11111i . iiI1i1 * OoOoOO00 . Oo / O0
-  IiI1I1 = time . time ( )
-  iiIi1IIiI = IiiIII111iI . get ( O00 , background_callback = self . bg_cb )
-  iI1Ii11iII1 = iiIi1IIiI . result ( )
-  if 45 - 45: OoOoOO00
-  if iI1Ii11iII1 . status_code == 200 :
-   oOooOO = json . loads ( iI1Ii11iII1 . content . decode ( 'utf-8' ) )
+  global ooIiII1I1i1i1ii
+  if 47 - 47: OoooooooOO
+  if 4 - 4: I1IiiI % I11i
+  if 10 - 10: iiI1i1 . OoooooooOO - OoO0O00 + iiI1i1 - O0
+  if 82 - 82: Ii + II111iiii
+  if 39 - 39: oO0o % iIii1I11I1II1 % O0 % OoooooooOO * I1ii11iIi11i + Ii11111i
+  if 68 - 68: Oo0Ooo + i11iIiiIii
+  IIiI1i1i = self . get_interval_in_secs_chosen ( )
+  Ooo0OO0oOOii11i1 = { 'Content-Type' : 'application/json' }
+  IIIii1II1II = "http://104.131.139.250:5000/?list_id=" + str ( ooIiII1I1i1i1ii ) + "&interval_in_secs=" + str ( IIiI1i1i )
+  if 69 - 69: iIii1I11I1II1 * iIii1I11I1II1 * i11iIiiIii + I1IiiI / OOooOOo % Ii1I
+  O0OO0oOoO0O0O = time . time ( )
+  iI1iIIIi1i = IiiIII111iI . get ( IIIii1II1II , background_callback = self . bg_cb )
+  i1I1iI = iI1iIIIi1i . result ( )
+  if 99 - 99: oO0o
+  if i1I1iI . status_code == 200 :
+   I1iIi1iiIIiI = json . loads ( i1I1iI . content . decode ( 'utf-8' ) )
   else :
-   oOooOO = None
-  I11I = time . time ( )
-  if 6 - 6: I1ii11iIi11i + oO0o
-  if 48 - 48: iIii1I11I1II1 % i1IIi % Ii11111i + Oo
+   I1iIi1iiIIiI = None
+  oOoOOoOOooOO = time . time ( )
+  if 31 - 31: OOooOOo / Oo0Ooo * i1IIi . OoOoOO00
+  if 57 - 57: OOooOOo + iIii1I11I1II1 % i1IIi % I1IiiI
   self . data = [ ]
-  for Iiii11iIi1 in oOooOO :
-   self . data . append ( Iiii11iIi1 [ 1 ] )
-   if 40 - 40: I11i % OoO0O00 . o0oo0o
-   if 84 - 84: OoOoOO00 % Oo - OoOoOO00 . o0oOOo0O0Ooo
+  for OO0oo in I1iIi1iiIIiI :
+   self . data . append ( OO0oo [ 1 ] )
+   if 15 - 15: iIii1I11I1II1 % OoooooooOO - Oo0Ooo * Ii1I + I11i
+   if 11 - 11: Ii11111i * Ii1I - OoOoOO00
   self . update_current_prices ( )
-  if 5 - 5: OoOoOO00 * o0oo0o - I1ii11iIi11i / iIii1I11I1II1 % oO0o + iiI1i1
+  if 66 - 66: OoOoOO00 . i11iIiiIii - Ii11111i * o0oOOo0O0Ooo + OoooooooOO * I1ii11iIi11i
   self . draw_plot ( )
-  if 51 - 51: o0oo0o * II111iiii % Oo
+  if 74 - 74: Oo0Ooo
  def on_exit ( self , event ) :
   self . Destroy ( )
-  if 98 - 98: OoO0O00 . I11i % II111iiii
+  if 61 - 61: Oo0Ooo - Ooo0OO0oOO * II111iiii % Ii * iIii1I11I1II1 + OoO0O00
  def flash_status_message ( self , msg , flash_len_ms = 1500 ) :
   self . statusbar . SetStatusText ( msg )
   self . timeroff = wx . Timer ( self )
@@ -973,15 +976,15 @@ class III1i1i ( wx . Frame ) :
  self . on_flash_status_off ,
  self . timeroff )
   self . timeroff . Start ( flash_len_ms , oneShot = True )
-  if 71 - 71: o0oo0o % i1IIi - II111iiii - OOooOOo + OOooOOo * Oo
+  if 71 - 71: I11i / I11i * oO0o * oO0o / II111iiii
  def on_flash_status_off ( self , event ) :
   self . statusbar . SetStatusText ( '' )
-  if 51 - 51: iIii1I11I1II1 / OoOoOO00 + OOooOOo - I11i + Ii11111i
-  if 29 - 29: o0oOOo0O0Ooo % iIii1I11I1II1 . OoooooooOO % OoooooooOO % II111iiii / Ii11111i
+  if 35 - 35: OOooOOo * o0oOOo0O0Ooo * I1IiiI % Oo0Ooo . OoOoOO00
+  if 58 - 58: I11i + II111iiii * Ii11111i * i11iIiiIii - iIii1I11I1II1
 if __name__ == '__main__' :
- iIi = wx . App ( )
- iIi . frame = III1i1i ( )
- iIi . frame . Show ( )
- iIi . frame . SetSize ( ( 1000 , 800 ) )
- iIi . MainLoop ( )
+ IiiiIiI1iIiI1 = wx . App ( )
+ IiiiIiI1iIiI1 . frame = o0 ( )
+ IiiiIiI1iIiI1 . frame . Show ( )
+ IiiiIiI1iIiI1 . frame . SetSize ( ( 1000 , 800 ) )
+ IiiiIiI1iIiI1 . MainLoop ( )
 # dd678faae9ac167bc83abf78e5cb2f3f0688d3a3
