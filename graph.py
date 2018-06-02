@@ -399,7 +399,7 @@ class GraphFrame(wx.Frame):
         self.fig = Figure((3.0, 3.0), dpi=self.dpi)
 
         self.axes = self.fig.add_subplot(111)
-        self.axes.set_axis_bgcolor('gray')
+        self.axes.set_facecolor('gray')
         title_str = ""
         for i in range(len(pairs)):
             title_str += str(pairs[i]) + ": " + str(pair_pcts[i] * 100) + "%, "
