@@ -777,7 +777,6 @@ class GraphFrame(wx.Frame):
     def get_interval_in_secs_chosen(self):
         selection = self.choice.GetSelection()
         selected_int_str = self.choice.GetString(selection) #["30 secs", "5 mins", "2 hours", "1 day"])
-        interval_in_secs = 29
         if selected_int_str == "30 secs":
             interval_in_secs = 30
         elif selected_int_str == "5 mins":
@@ -786,7 +785,7 @@ class GraphFrame(wx.Frame):
             interval_in_secs = 7200
         elif selected_int_str == "1 day":
             interval_in_secs = 86400
-        print("interval_in_secs", interval_in_secs)
+        # print("interval_in_secs", interval_in_secs)
         return interval_in_secs
 
     def update_current_prices(self):
