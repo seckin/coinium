@@ -27,7 +27,7 @@ OPTIONS = {
     'includes': 'wx.adv,wx.html,wx.xml'
 }
 setup(
-    app=["graph.py"],
+    app=["obfuscated_graph.py"],
     options={'py2app': OPTIONS},
     setup_requires=["py2app"],
 )
