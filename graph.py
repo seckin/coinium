@@ -57,18 +57,6 @@ from matplotlib.backends.backend_wxagg import \
 import numpy as np
 import pylab
 
-
-
-# import matplotlib.pyplot as plt
-fig = matplotlib.pyplot.figure()
-ax = fig.add_subplot(111)
-print (type(ax))
-b = type(ax)
-import matplotlib.axes
-issubclass(b, matplotlib.axes.SubplotBase)
-
-
-
 ymin_control_auto = True
 ymax_control_auto = True
 xmin_control_auto = True
@@ -208,6 +196,7 @@ class GraphFrame(wx.Frame):
         # interval choice
         self.interval_choice_text = wx.StaticText(self.panel, -1, label="Interval:", size = (55,20))
         self.choice = wx.Choice(self.panel,choices = ["30 secs", "5 mins", "2 hours", "1 day"])
+        self.choice.SetSelection(1)
         self.choice.Bind(wx.EVT_CHOICE, self.OnChoice)
         self.hbox0 = wx.BoxSizer(wx.HORIZONTAL)
         self.hbox0.Add(self.interval_choice_text, border=5, flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL | wx.ALIGN_RIGHT)
