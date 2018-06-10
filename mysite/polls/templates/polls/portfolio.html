@@ -3,12 +3,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Highcharts Example</title>
 
-        <style type="text/css">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="https://getbootstrap.com/favicon.ico">
 
-        </style>
+        <title>Coinium Portfolio Manager</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'polls/bootstrap.min.css' %}" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="{% static 'polls/dashboard.css' %}" rel="stylesheet">
+        <style type="text/css">/* Chart.js */
+    @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
     </head>
     <body>
 <!-- 
@@ -23,7 +33,94 @@
 <script src="{% static 'polls/exporting.js' %}"></script>
 <script src="{% static 'polls/export-data.js' %}"></script>
 
-<div id="container" style="height: 400px"></div>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Coinium</a>
+      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Sign out</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-disc"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                  Ahmet's top coins <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-disc"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                  Jack's up and coming altcoins
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-disc"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                  Danielle's coins for August
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-disc"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+                  Ecem's best bet for 2019
+                </a>
+              </li>
+            </ul>
+
+            <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Saved reports</span>
+              <a class="d-flex align-items-center text-muted" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+              </a>
+            </h6> -->
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Ahmet's Top Coins Portfolio</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group mr-2">
+                <button class="btn btn-sm btn-outline-secondary">Share</button>
+                <button class="btn btn-sm btn-outline-secondary">Export</button>
+              </div>
+              <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                This week
+              </button>
+            </div>
+          </div>
+
+          <!-- <canvas class="my-4 chartjs-render-monitor" id="myChart" width="2280" height="962" style="display: block; height: 481px; width: 1140px;"></canvas> -->
+          <div id="container" style="height: 400px"></div>
+          <div style="height: 100px;"></div>
+          <div id="container2" style="min-width: 310px; max-width:600px; height: 400px; margin: 0 auto"></div>
+
+          <div style="height: 150px;"></div>
+          <h2>Tweets by Ahmet</h2>
+            <div class="table-responsive">
+                <div id="container3" style="min-width: 310px; max-width:600px; margin: 0 auto">
+                    <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">What happens when the founder and the hired CEO collide? Epic insight/hindsight <a href="https://twitter.com/johnsculley?ref_src=twsrc%5Etfw">@johnsculley</a> <a href="https://twitter.com/Apple?ref_src=twsrc%5Etfw">@apple</a> <a href="https://t.co/5RhEZ49tgN">https://t.co/5RhEZ49tgN</a></p>&mdash; steve blank (@sgblank) <a href="https://twitter.com/sgblank/status/861472361668722688?ref_src=twsrc%5Etfw">May 8, 2017</a></blockquote>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+
+                <div id="container4" style="min-width: 310px; max-width:600px; height: 400px; margin: 0 auto">
+                    <blockquote class="twitter-tweet" data-lang="en"><p lang="tr" dir="ltr">Saniyede 20 kere okunan Onedio icerigi <a href="https://t.co/4hr64KdCPQ">https://t.co/4hr64KdCPQ</a></p>&mdash; Seckin Can Sahin (@SeckinCanSahin) <a href="https://twitter.com/SeckinCanSahin/status/862316674762108930?ref_src=twsrc%5Etfw">May 10, 2017</a></blockquote>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Hi I think that EOS will 10x over the next month" data-url="https://coinium.app" data-via="SeckinCanSahin" data-hashtags="coiniumapp" data-related="" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        </main>
+      </div>
+    </div>
 
 
         <script type="text/javascript">
@@ -60,10 +157,6 @@ Highcharts.chart('container', {
     }]
 });
         </script>
-
-
-    <div id="container2" style="min-width: 310px; max-width:600px; height: 400px; margin: 0 auto"></div>
-
 
 
         <script type="text/javascript">
@@ -130,20 +223,6 @@ $.getJSON(
     }
 );
         </script>
-
-        <div id="container3" style="min-width: 310px; max-width:600px; margin: 0 auto">
-            <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">What happens when the founder and the hired CEO collide? Epic insight/hindsight <a href="https://twitter.com/johnsculley?ref_src=twsrc%5Etfw">@johnsculley</a> <a href="https://twitter.com/Apple?ref_src=twsrc%5Etfw">@apple</a> <a href="https://t.co/5RhEZ49tgN">https://t.co/5RhEZ49tgN</a></p>&mdash; steve blank (@sgblank) <a href="https://twitter.com/sgblank/status/861472361668722688?ref_src=twsrc%5Etfw">May 8, 2017</a></blockquote>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </div>
-
-        <div id="container4" style="min-width: 310px; max-width:600px; height: 400px; margin: 0 auto">
-            <blockquote class="twitter-tweet" data-lang="en"><p lang="tr" dir="ltr">Saniyede 20 kere okunan Onedio icerigi <a href="https://t.co/4hr64KdCPQ">https://t.co/4hr64KdCPQ</a></p>&mdash; Seckin Can Sahin (@SeckinCanSahin) <a href="https://twitter.com/SeckinCanSahin/status/862316674762108930?ref_src=twsrc%5Etfw">May 10, 2017</a></blockquote>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </div>
-
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Hi I think that EOS will 10x over the next month" data-url="https://coinium.app" data-via="SeckinCanSahin" data-hashtags="coiniumapp" data-related="" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
 
     </body>
 </html>
