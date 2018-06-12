@@ -3,3 +3,4 @@ dist/
 output.txt
 pyobfuscate/
 website/index_files/download/
+*.pyc

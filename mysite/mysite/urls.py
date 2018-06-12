@@ -22,6 +22,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.HomeView.as_view(), name='home'),
     path('polls/', include('polls.urls')),
+    path('accounts/', include('accounts.urls')),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/login'}, name='logout'),
     path('admin/', admin.site.urls),
