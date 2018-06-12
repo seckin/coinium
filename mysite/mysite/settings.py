@@ -124,3 +124,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/polls/1/portfolio/'
+
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@mg.coinium.app'
+EMAIL_HOST_PASSWORD = 'f9eef0463c164f0f0397dcc1c0884811-47317c98-c363a760'
+EMAIL_PORT = 587
