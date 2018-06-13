@@ -29,3 +29,4 @@ class Portfolio(models.Model):
     created_date = models.DateTimeField('date created')
     def __str__(self):
         return self.portfolio_name
+
