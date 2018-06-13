@@ -145,9 +145,9 @@ Highcharts.chart('container', {
         <script type="text/javascript">
 
 $(document).ready(function(){
-setTimeout(function(){ 
+// setTimeout(function(){ 
 $.getJSON(
-    'http://localhost:8000/polls/portfolio_perf.json',
+    '{% url 'polls:portfolio_perf' %}',
     // 'https://cdn.rawgit.com/highcharts/highcharts/057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/usdeur.json',
     function (data) {
       console.log("here1", data);
@@ -209,7 +209,7 @@ $.getJSON(
         });
     }
 );
- }, 3000);
+ // }, 3000);
 });
         </script>
 
