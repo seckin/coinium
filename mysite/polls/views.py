@@ -182,11 +182,50 @@ def profile(request, user_id):
     xrp_pct = round(100 * xrp_latest_val * total_xrp / total_pv_val, 2)
     xlm_pct = round(100 * xlm_latest_val * total_xlm / total_pv_val, 2)
 
+    #calculate investment amounts
+    investments_with_amts = []
+    for investment in investments:
+        connection = pymysql.connect(host='localhost',
+                                 user='root',
+                                 password='01990199',
+                                 db='coinium',
+                                 charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor)
+        try:
+            with connection.cursor() as cursor:
+                pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
+                spreads_for_pair = dict()
+                for pair in pairs:
+                    #sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
+                    sql = "select * from Spreads where coin = %s and created_at < %s order by created_at desc limit 1"
+                    cursor.execute(sql, (pair,investment.created_at))#'2018-06-13 18:17:12'))
+                    spreads = cursor.fetchall()
+                    spreads_for_pair[pair] = spreads
+                    print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
+
+                btc_latest_val_preceding_investment = float(spreads_for_pair[pairs[0]][0]["bestbid"])
+                eth_latest_val_preceding_investment = float(spreads_for_pair[pairs[1]][0]["bestbid"])
+                xrp_latest_val_preceding_investment = float(spreads_for_pair[pairs[2]][0]["bestbid"])
+                xlm_latest_val_preceding_investment = 0.5
+        finally:
+            connection.close()
+
+        amt = float(investment.btc_amt) * btc_latest_val_preceding_investment + \
+        float(investment.eth_amt) * eth_latest_val_preceding_investment + \
+        float(investment.xrp_amt) * xrp_latest_val_preceding_investment + \
+        float(investment.xlm_amt) * xlm_latest_val_preceding_investment
+        investments_with_amts.append([investment, amt])
+
     return render(request, 'polls/profile.html', {"user": user, "investments": investments, \
+        "investments_with_amts": investments_with_amts,\
         "total_btc": total_btc,\
         "total_eth": total_eth,\
         "total_xrp": total_xrp,\
         "total_xlm": total_xlm,\
+        "btc_latest_val": btc_latest_val,\
+        "eth_latest_val": eth_latest_val,\
+        "xrp_latest_val": xrp_latest_val,\
+        "xlm_latest_val": xlm_latest_val,\
         "btc_pct": btc_pct,\
         "eth_pct": eth_pct,\
         "xrp_pct": xrp_pct,\

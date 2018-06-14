@@ -68,7 +68,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle avatar pull-right" data-toggle="dropdown">
                         <img src="{% static 'polls/profile/mike.jpg' %}" alt="mike" class="img-avatar">
-                        <span class="hidden-small">Mike Smith<b class="caret"></b></span>
+                        <span class="hidden-small">{{user.username}}<b class="caret"></b></span>
                     </a>
                     <ul class="dropdown-menu pull-right">
                         <li><a href="#"><i class="fa fa-gear"></i>Account Settings</a>
@@ -97,7 +97,7 @@
 
                 <div class="header">
                     <div class="col-md-12">
-                        <h3 class="header-title">Mike's Profile</h3>
+                        <h3 class="header-title">{{user.username}}'s Profile</h3>
                         <p class="header-info">Overview and latest statistics</p>
                     </div>
                 </div>
@@ -200,7 +200,7 @@
                         <a href="#" class="panel-action"><i class="fa fa-filter"></i></a>
                         <a href="#" class="panel-action"><i class="fa fa-eye"></i></a>
                     </div> -->
-                                    <h3 class="panel-title">Latest Investments by Mike</h3>
+                                    <h3 class="panel-title">Latest Investments by {{user.username}}</h3>
                                 </div>
                                 <div class="panel-body">
                                     <table class="table table-hover">
@@ -213,7 +213,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {% for investment_with_amt in investments_with_amts %}
                                             <tr>
+                                                <td>#{{investment_with_amt.0.id}}</td>
+                                                <td>{{investment_with_amt.0.portfolio}}</td>
+                                                <td>${{investment_with_amt.1|floatformat:2}}</td>
+                                                <td><span class="label label-primary">ACTIVE</span>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                            <!-- <tr>
                                                 <td>#1249</td>
                                                 <td>Joe Walker's altcoins</td>
                                                 <td>$653</td>
@@ -254,7 +263,7 @@
                                                 <td>$948</td>
                                                 <td><span class="label label-primary">ACTIVE</span>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -263,7 +272,7 @@
                         <div class="col-md-6">
                             <div class="panel ">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Investments Made to Mark's portfolios</h3>
+                                    <h3 class="panel-title">Investments Made to {{user.username}}'s portfolios</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div id="dashboardRevenues" class="chart" style="padding: 0px; position: relative;"></div>
