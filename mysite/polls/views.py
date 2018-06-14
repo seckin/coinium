@@ -177,10 +177,10 @@ def profile(request, user_id):
                    xrp_latest_val * total_xrp + \
                    xlm_latest_val * total_xlm
 
-    btc_pct = round(100 * btc_latest_val * total_btc / total_pv_val, 3)
-    eth_pct = round(100 * eth_latest_val * total_eth / total_pv_val, 3)
-    xrp_pct = round(100 * xrp_latest_val * total_xrp / total_pv_val, 3)
-    xlm_pct = round(100 * xlm_latest_val * total_xlm / total_pv_val, 3)
+    btc_pct = round(100 * btc_latest_val * total_btc / total_pv_val, 2)
+    eth_pct = round(100 * eth_latest_val * total_eth / total_pv_val, 2)
+    xrp_pct = round(100 * xrp_latest_val * total_xrp / total_pv_val, 2)
+    xlm_pct = round(100 * xlm_latest_val * total_xlm / total_pv_val, 2)
 
     return render(request, 'polls/profile.html', {"user": user, "investments": investments, \
         "total_btc": total_btc,\
