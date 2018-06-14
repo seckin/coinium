@@ -11,5 +11,5 @@ urlpatterns = [
     path('<int:question_id>/vote/', views.vote, name='vote'),
     path('newportfolio/', views.newportfolio, name='newportfolio'),
     path('portfolio_perf.json', views.portfolio_perf, name='portfolio_perf'),
-    path('profile', views.profile, name='profile'),
+    path('profile/<int:user_id>', views.profile, name='profile'),
 ]

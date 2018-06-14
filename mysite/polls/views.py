@@ -4,8 +4,9 @@ from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 from django.views import generic
 from django.urls import reverse
+from django.contrib.auth.models import User
 
-from .models import Choice, Question, Portfolio
+from .models import Choice, Question, Portfolio, Investment
 from .forms import PortfolioForm
 import pymysql
 import pymysql.cursors
@@ -132,6 +133,62 @@ group by created_at div 100;"""
             connection.close()
     return JsonResponse({'error': 'Unsupported method'})
 
-def profile(request):
-    return render(request, 'polls/profile.html')
+def profile(request, user_id):
+    user = User.objects.get(pk=user_id)
+    investments = Investment.objects.filter(owner=user)
+    total_btc = 0.0
+    total_eth = 0.0
+    total_xrp = 0.0
+    total_xlm = 0.0
+    for investment in investments:
+        total_btc += float(investment.btc_amt)
+        total_eth += float(investment.eth_amt)
+        total_xrp += float(investment.xrp_amt)
+        total_xlm += float(investment.xlm_amt)
+
+    # get latest valuations
+    connection = pymysql.connect(host='localhost',
+                                 user='root',
+                                 password='01990199',
+                                 db='coinium',
+                                 charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    try:
+        with connection.cursor() as cursor:
+            pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
+            spreads_for_pair = dict()
+            for pair in pairs:
+                #sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
+                sql = "select * from Spreads where coin = %s order by created_at desc limit 1"
+                cursor.execute(sql, (pair,))
+                spreads = cursor.fetchall()
+                spreads_for_pair[pair] = spreads
+                print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
+
+            btc_latest_val = float(spreads_for_pair[pairs[0]][0]["bestbid"])
+            eth_latest_val = float(spreads_for_pair[pairs[1]][0]["bestbid"])
+            xrp_latest_val = float(spreads_for_pair[pairs[2]][0]["bestbid"])
+            xlm_latest_val = 0.5
+    finally:
+        connection.close()
+
+    total_pv_val = btc_latest_val * total_btc + \
+                   eth_latest_val * total_eth + \
+                   xrp_latest_val * total_xrp + \
+                   xlm_latest_val * total_xlm
+
+    btc_pct = round(100 * btc_latest_val * total_btc / total_pv_val, 3)
+    eth_pct = round(100 * eth_latest_val * total_eth / total_pv_val, 3)
+    xrp_pct = round(100 * xrp_latest_val * total_xrp / total_pv_val, 3)
+    xlm_pct = round(100 * xlm_latest_val * total_xlm / total_pv_val, 3)
+
+    return render(request, 'polls/profile.html', {"user": user, "investments": investments, \
+        "total_btc": total_btc,\
+        "total_eth": total_eth,\
+        "total_xrp": total_xrp,\
+        "total_xlm": total_xlm,\
+        "btc_pct": btc_pct,\
+        "eth_pct": eth_pct,\
+        "xrp_pct": xrp_pct,\
+        "xlm_pct": xlm_pct})
 
