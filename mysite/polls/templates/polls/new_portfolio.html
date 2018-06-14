@@ -1,19 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://getbootstrap.com/docs/4.0/examples/sign-in/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'polls/images/coinium.png' %}">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'polls/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'polls/signin.css' %}" rel="stylesheet">
+  </head>
+
 {% block content %}
-  <h2>New portfolio</h2>
-  <form method="post">
-    {% csrf_token %}
-      {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="display: none">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-      {% endfor %}
-    <button type="submit">Save</button>
-  </form>
+<body class="text-center">
+
+  {% if success == 1 %}
+  <div class="alert alert-success" style="position: fixed; top: 0px;">
+    <strong>Success!</strong> Saved portfolio: {{portfolio}}
+  </div>
+  {% endif %}
+
+  <div style="clear:both;">
+    <form method="post">
+      {% csrf_token %}
+      <h2>New portfolio</h2>
+        <label for="{{ form.portfolio_name.id_for_label }}">Portfolio name:</label><br>
+        <input type="text"
+         name="{{ form.portfolio_name.name }}"
+         id="{{ form.portfolio_name.id_for_label }}"
+         {% if form.portfolio_name.value != None %}value="{{ form.portfolio_name.value|stringformat:'s' }}"{% endif %}
+         maxlength="{{ form.portfolio_name.field.max_length }}"
+         class="form-control"
+         placeholder=""
+         {% if form.portfolio_name.field.required %}required{% endif %}>
+         <div style="margin:5px;"></div>
+
+         <label for="{{ form.btc_pct.id_for_label }}">Bitcoin percentage:</label><br>
+         <input type="number"
+         name="{{ form.btc_pct.name }}"
+         id="{{ form.btc_pct.id_for_label }}"
+         {% if form.btc_pct.value != None %}value="{{ form.btc_pct.value|stringformat:'s' }}"{% endif %}
+         maxlength="{{ form.btc_pct.field.max_length }}"
+         class="form-control"
+         placeholder=""
+         {% if form.btc_pct.field.required %}required{% endif %}>
+         <div style="margin:5px;"></div>
+
+         <label for="{{ form.eth_pct.id_for_label }}">Ethereum percentage:</label><br>
+         <input type="number"
+         name="{{ form.eth_pct.name }}"
+         id="{{ form.eth_pct.id_for_label }}"
+         {% if form.eth_pct.value != None %}value="{{ form.eth_pct.value|stringformat:'s' }}"{% endif %}
+         maxlength="{{ form.eth_pct.field.max_length }}"
+         class="form-control"
+         placeholder=""
+         {% if form.eth_pct.field.required %}required{% endif %}>
+         <div style="margin:5px;"></div>
+
+         <label for="{{ form.xrp_pct.id_for_label }}">Ripple percentage:</label><br>
+         <input type="number"
+         name="{{ form.xrp_pct.name }}"
+         id="{{ form.xrp_pct.id_for_label }}"
+         {% if form.xrp_pct.value != None %}value="{{ form.xrp_pct.value|stringformat:'s' }}"{% endif %}
+         maxlength="{{ form.xrp_pct.field.max_length }}"
+         class="form-control"
+         placeholder=""
+         {% if form.xrp_pct.field.required %}required{% endif %}>
+         <div style="margin:5px;"></div>
+
+         <label for="{{ form.xlm_pct.id_for_label }}">Stellar percentage:</label><br>
+         <input type="number"
+         name="{{ form.xlm_pct.name }}"
+         id="{{ form.xlm_pct.id_for_label }}"
+         {% if form.xlm_pct.value != None %}value="{{ form.xlm_pct.value|stringformat:'s' }}"{% endif %}
+         maxlength="{{ form.xlm_pct.field.max_length }}"
+         class="form-control"
+         placeholder=""
+         {% if form.xlm_pct.field.required %}required{% endif %}>
+         <div style="margin:15px;"></div>
+
+<!--          <label for="{{ form.created_date.id_for_label }}">Created date:</label><br>
+         <input type="text"
+         name="{{ form.created_date.name }}"
+         id="{{ form.created_date.id_for_label }}"
+         {% if form.created_date.value != None %}value="{{ form.created_date.value|stringformat:'s' }}"{% endif %}
+         maxlength="{{ form.created_date.field.max_length }}"
+         class="form-control"
+         placeholder=""
+         {% if form.created_date.field.required %}required{% endif %}>
+         <div style="margin:5px;"></div> -->
+         {% for error in form.created_date.errors %}
+            <p style="color: red">{{ error }}</p>
+         {% endfor %}
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+    </form>
+  </div>
+</body>
 {% endblock %}
+</html>

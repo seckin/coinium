@@ -60,16 +60,18 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 def newportfolio(request):
+    success = 0
+    portfolio = None
     if request.method == 'POST':
         form = PortfolioForm(request.POST)
         if form.is_valid():
             portfolio = form.save(commit=False)
             portfolio.owner = request.user
             portfolio.save()
-            return HttpResponse('Portfolio saved')
+            success = 1
     else:
         form = PortfolioForm()
-    return render(request, 'polls/new_portfolio.html', {'form': form})
+    return render(request, 'polls/new_portfolio.html', {'form': form, 'success': success, 'portfolio': portfolio})
 
 def portfolio_perf(request):
     if request.method == 'GET':

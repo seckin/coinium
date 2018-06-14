@@ -30,3 +30,9 @@ class Portfolio(models.Model):
     def __str__(self):
         return self.portfolio_name
 
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        if not self.id:
+            self.created_date = timezone.now()
+        return super(Portfolio, self).save(*args, **kwargs)
+
