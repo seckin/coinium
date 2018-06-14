@@ -36,3 +36,14 @@ class Portfolio(models.Model):
             self.created_date = timezone.now()
         return super(Portfolio, self).save(*args, **kwargs)
 
+class Investment(models.Model):
+    portfolio = models.ForeignKey(Portfolio, editable=False, on_delete=models.PROTECT)
+    owner = models.ForeignKey(User, editable=False, on_delete=models.PROTECT)
+    btc_amt = models.DecimalField(max_digits=11, decimal_places=6)
+    eth_amt = models.DecimalField(max_digits=11, decimal_places=6)
+    xrp_amt = models.DecimalField(max_digits=11, decimal_places=6)
+    xlm_amt = models.DecimalField(max_digits=11, decimal_places=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.portfolio.portfolio_name + " " + str(self.btc_amt) + " " + str(self.eth_amt) + " " + str(self.xrp_amt) + " " + str(self.xlm_amt)
