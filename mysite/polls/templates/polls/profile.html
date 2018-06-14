@@ -1,115 +1,129 @@
 {% load static %}
 <!DOCTYPE html>
 <!-- saved from url=(0033)http://arkadmin.around25.com/v18/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <title>ArkAdmin Theme</title>
-        <link rel="shortcut icon" href="http://arkadmin.around25.com/img/ico/favicon.png">
-        
-        <!-- CSS -->
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css">
-        <link href="{% static 'polls/profile/bootstrap.min.css' %}" rel="stylesheet">
-        <link href="{% static 'polls/profile/jasny-bootstrap.min.css' %}" rel="stylesheet">
-        <!--<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />-->
-        <link href="{% static 'polls/profile/font-awesome.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'polls/profile/daterangepicker-bs3.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'polls/profile/datepicker.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'polls/profile/select2.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'polls/profile/select2-bootstrap.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'polls/profile/uniform.default.min.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'polls/profile/prettify.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'polls/profile/fullcalendar.css' %}" rel="stylesheet">
-        <link href="{% static 'polls/profile/fullcalendar.print.css' %}" rel="stylesheet" media="print">
-        <link href="{% static 'polls/profile/jquery.dataTables.min.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'polls/profile/ark.css' %}" rel="stylesheet" type="text/css">
-        <script src="{% static 'polls/profile/jquery.min.js' %}"></script>
-        <script src="{% static 'polls/highcharts.js' %}"></script>
-        <script src="{% static 'polls/highcharts-3d.js' %}"></script>
+<html lang="en">
 
-        <!-- Remove this line on production-->
-        <link href="{% static 'polls/profile/examples.css' %}" rel="stylesheet" type="text/css">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ArkAdmin Theme</title>
+    <link rel="shortcut icon" href="http://arkadmin.around25.com/img/ico/favicon.png">
+
+    <!-- CSS -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css">
+    <link href="{% static 'polls/profile/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'polls/profile/jasny-bootstrap.min.css' %}" rel="stylesheet">
+    <!--<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />-->
+    <link href="{% static 'polls/profile/font-awesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'polls/profile/daterangepicker-bs3.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'polls/profile/datepicker.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'polls/profile/select2.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'polls/profile/select2-bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'polls/profile/uniform.default.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'polls/profile/prettify.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'polls/profile/fullcalendar.css' %}" rel="stylesheet">
+    <link href="{% static 'polls/profile/fullcalendar.print.css' %}" rel="stylesheet" media="print">
+    <link href="{% static 'polls/profile/jquery.dataTables.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'polls/profile/ark.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'polls/profile/jquery.min.js' %}"></script>
+    <script src="{% static 'polls/highcharts.js' %}"></script>
+    <script src="{% static 'polls/highcharts-3d.js' %}"></script>
+
+    <!-- Remove this line on production-->
+    <link href="{% static 'polls/profile/examples.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-    <style>.cke{visibility:hidden;}</style><script type="text/javascript" charset="UTF-8" src="{% static 'polls/profile/common.js' %}"></script><script type="text/javascript" charset="UTF-8" src="{% static 'polls/profile/util.js' %}"></script><script type="text/javascript" charset="UTF-8" src="{% static 'polls/profile/stats.js' %}"></script></head>
-    
-    <body class="cover">
+    <style>
+    .cke {
+        visibility: hidden;
+    }
+    </style>
+    <script type="text/javascript" charset="UTF-8" src="{% static 'polls/profile/common.js' %}"></script>
+    <script type="text/javascript" charset="UTF-8" src="{% static 'polls/profile/util.js' %}"></script>
+    <script type="text/javascript" charset="UTF-8" src="{% static 'polls/profile/stats.js' %}"></script>
+</head>
 
-        <div class="wrapper container">
-            <!-- HEAD NAV -->
-            <div class="navbar navbar-default navbar-static-top navbar-main" role="navigation">
-                
-                
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="visible-xs">
-                        <a href="#" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <i class="fa fa-bars"></i>
-                        </a>
-                    </li>
-                   
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle avatar pull-right" data-toggle="dropdown">
-                            <img src="{% static 'polls/profile/mike.jpg' %}" alt="mike" class="img-avatar">
-                            <span class="hidden-small">Mike Smith<b class="caret"></b></span>
-                        </a>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="#"><i class="fa fa-gear"></i>Account Settings</a></li>
-                            <li><a href="http://arkadmin.around25.com/v18/profile.html"><i class="fa fa-user"></i>View Profile</a></li>
-                            <li class="divider"></li>
-                            <li><a href="http://arkadmin.around25.com/v18/login.html"><i class="fa fa-sign-out"></i>Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
+<body class="cover">
 
-            </div>
-            <!-- END: HEAD NAV -->
-
-            <!-- BODY -->
-            <div class="body">
+    <div class="wrapper container">
+        <!-- HEAD NAV -->
+        <div class="navbar navbar-default navbar-static-top navbar-main" role="navigation">
 
 
-                <section class="content" style="min-height: 708px;">
-                    
-<!-- <ol class="breadcrumb">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="visible-xs">
+                    <a href="#" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle avatar pull-right" data-toggle="dropdown">
+                        <img src="{% static 'polls/profile/mike.jpg' %}" alt="mike" class="img-avatar">
+                        <span class="hidden-small">Mike Smith<b class="caret"></b></span>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="#"><i class="fa fa-gear"></i>Account Settings</a>
+                        </li>
+                        <li><a href="http://arkadmin.around25.com/v18/profile.html"><i class="fa fa-user"></i>View Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="http://arkadmin.around25.com/v18/login.html"><i class="fa fa-sign-out"></i>Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <!-- END: HEAD NAV -->
+
+        <!-- BODY -->
+        <div class="body">
+
+
+            <section class="content" style="min-height: 708px;">
+
+                <!-- <ol class="breadcrumb">
     <li class="active"><i class="fa fa-home fa-fw"></i> Home</li>
 </ol> -->
 
-<div class="header">
-    <div class="col-md-12">
-        <h3 class="header-title">Mike's Profile</h3>
-        <p class="header-info">Overview and latest statistics</p>
-    </div>
-</div>
+                <div class="header">
+                    <div class="col-md-12">
+                        <h3 class="header-title">Mike's Profile</h3>
+                        <p class="header-info">Overview and latest statistics</p>
+                    </div>
+                </div>
 
-<!-- CONTENT -->
-<div class="main-content">
+                <!-- CONTENT -->
+                <div class="main-content">
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel ">
-                <div class="panel-heading">
-                    <div class="panel-actions">
-                        <!-- <div id="reportrange" class="pull-right">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel ">
+                                <div class="panel-heading">
+                                    <div class="panel-actions">
+                                        <!-- <div id="reportrange" class="pull-right">
                             <i class="fa fa-calendar"></i>
                             <span>This month</span> <b class="caret"></b>
                         </div> -->
-                    </div>
-                    <h3 class="panel-title">Overall investment performance ({{investments|length}} investments)</h3>
-                </div>
-                <div class="panel-body">
-                    <div id="dashboardConversions" class="chart" style="padding: 0px; position: relative;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <!-- <div class="panel">
+                                    </div>
+                                    <h3 class="panel-title">Overall investment performance ({{investments|length}} investments)</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="dashboardConversions" class="chart" style="padding: 0px; position: relative;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- <div class="panel">
                 <div class="panel-body">
                     <ul class="col-md-12 stats">
                         <li class="stat col-md-3 col-sm-3 col-xs-6">
@@ -131,172 +145,201 @@
                     </ul>
                 </div>
             </div> -->
-            <div class="panel ">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Overview</h3>
-                </div>
-                <div class="panel-body">
-                    <div id="container" style="height: 400px"></div>
-                </div>
-                <script>
-console.log("here1");
-$(document).ready(function(){
-    console.log("here2");
-    Highcharts.chart('container', {
-        chart: {
-            type: 'pie',
-            options3d: {
-                enabled: true,
-                alpha: 45
-            }
-        },
-        title: {
-            text: 'Contents of all portfolios'
-        },
-        subtitle: {
-            text: ''
-        },
-        plotOptions: {
-            pie: {
-                innerSize: 100,
-                depth: 45
-            }
-        },
-        series: [{
-            name: 'Percentage',
-            data: [
-                ['Bitcoin: {{btc_pct}}%', {{btc_pct}}],
-                ['Ethereum: {{eth_pct}}%', {{eth_pct}}],
-                ['Ripple: {{xrp_pct}}%', {{xrp_pct}}],
-                ['Stellar: {{xlm_pct}}%', {{xlm_pct}}],
-            ]
-        }]
-    });
-});
-
-                </script>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel">
-                <div class="panel-heading">
-                    <!-- <div class="panel-actions">
+                            <div class="panel ">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Overview</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="container" style="height: 400px"></div>
+                                </div>
+                                <script>
+                                console.log("here1");
+                                $(document).ready(function() {
+                                    console.log("here2");
+                                    Highcharts.chart('container', {
+                                        chart: {
+                                            type: 'pie',
+                                            options3d: {
+                                                enabled: true,
+                                                alpha: 45
+                                            }
+                                        },
+                                        title: {
+                                            text: 'Contents of all portfolios'
+                                        },
+                                        subtitle: {
+                                            text: ''
+                                        },
+                                        plotOptions: {
+                                            pie: {
+                                                innerSize: 100,
+                                                depth: 45
+                                            }
+                                        },
+                                        series: [{
+                                            name: 'Percentage',
+                                            data: [
+                                                ['Bitcoin: {{btc_pct}}%', {
+                                                    {
+                                                        btc_pct
+                                                    }
+                                                }],
+                                                ['Ethereum: {{eth_pct}}%', {
+                                                    {
+                                                        eth_pct
+                                                    }
+                                                }],
+                                                ['Ripple: {{xrp_pct}}%', {
+                                                    {
+                                                        xrp_pct
+                                                    }
+                                                }],
+                                                ['Stellar: {{xlm_pct}}%', {
+                                                    {
+                                                        xlm_pct
+                                                    }
+                                                }],
+                                            ]
+                                        }]
+                                    });
+                                });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <!-- <div class="panel-actions">
                         <a href="#" class="panel-action"><i class="fa fa-gear"></i></a>
                         <a href="#" class="panel-action"><i class="fa fa-filter"></i></a>
                         <a href="#" class="panel-action"><i class="fa fa-eye"></i></a>
                     </div> -->
-                    <h3 class="panel-title">Latest Investments by Mike</h3>
+                                    <h3 class="panel-title">Latest Investments by Mike</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-4">ID</th>
+                                                <th class="col-md-4">Portfolio</th>
+                                                <th class="col-md-4">Value</th>
+                                                <th class="col-md-4">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>#1249</td>
+                                                <td>Joe Walker's altcoins</td>
+                                                <td>$653</td>
+                                                <td><span class="label label-primary">ACTIVE</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#1248</td>
+                                                <td>Zoe Hart's July list</td>
+                                                <td>$1,342</td>
+                                                <td><span class="label label-warning">PROCESSING</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#1247</td>
+                                                <td>Jack's top coins</td>
+                                                <td>$1,012</td>
+                                                <td><span class="label label-primary">ACTIVE</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#1246</td>
+                                                <td>Tim Butcher's best bets for 2019</td>
+                                                <td>$2,500</td>
+                                                <td><span class="label label-warning">PROCESSING</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#1245</td>
+                                                <td>Mark Smith's coins</td>
+                                                <td>$45</td>
+                                                <td><span class="label label-primary">ACTIVE</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>#1244</td>
+                                                <td>Dave Gibbs's up and coming coins</td>
+                                                <td>$948</td>
+                                                <td><span class="label label-primary">ACTIVE</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel ">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Investments Made to Mark's portfolios</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="dashboardRevenues" class="chart" style="padding: 0px; position: relative;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="panel-body">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th class="col-md-4">ID</th>
-                            <th class="col-md-4">Portfolio</th>
-                            <th class="col-md-4">Value</th>
-                            <th class="col-md-4">Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>#1249</td>
-                            <td>Joe Walker's altcoins</td>
-                            <td>$653</td>
-                            <td><span class="label label-primary">ACTIVE</span></td>
-                        </tr>
-                        <tr>
-                            <td>#1248</td>
-                            <td>Zoe Hart's July list</td>
-                            <td>$1,342</td>
-                            <td><span class="label label-warning">PROCESSING</span></td>
-                        </tr>
-                        <tr>
-                            <td>#1247</td>
-                            <td>Jack's top coins</td>
-                            <td>$1,012</td>
-                            <td><span class="label label-primary">ACTIVE</span></td>
-                        </tr>
-                        <tr>
-                            <td>#1246</td>
-                            <td>Tim Butcher's best bets for 2019</td>
-                            <td>$2,500</td>
-                            <td><span class="label label-warning">PROCESSING</span></td>
-                        </tr>
-                        <tr>
-                            <td>#1245</td>
-                            <td>Mark Smith's coins</td>
-                            <td>$45</td>
-                            <td><span class="label label-primary">ACTIVE</span></td>
-                        </tr>
-                        <tr>
-                            <td>#1244</td>
-                            <td>Dave Gibbs's up and coming coins</td>
-                            <td>$948</td>
-                            <td><span class="label label-primary">ACTIVE</span></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                <!-- END: CONTENT -->
+            </section>
         </div>
-        <div class="col-md-6">
-            <div class="panel ">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Investments Made to Mark's portfolios</h3>
-                </div>
-                <div class="panel-body">
-                    <div id="dashboardRevenues" class="chart" style="padding: 0px; position: relative;"></div>
-                </div>
-            </div>
-        </div>
+        <!-- END: BODY -->
     </div>
 
-</div>
-<!-- END: CONTENT -->
-                </section>
-            </div>
-            <!-- END: BODY -->
-        </div>
+    <!-- JS -->
+    <script async="" src="//www.google-analytics.com/analytics.js"></script>
 
-        <!-- JS -->
-        <script async="" src="//www.google-analytics.com/analytics.js"></script>
-        
-        <script src="{% static 'polls/profile/jquery-ui.min.js' %}"></script>
-        <script src="{% static 'polls/profile/jquery.uniform.min.js' %}"></script>
-        <script src="{% static 'polls/profile/bootstrap.min.js' %}"></script>
-        <script src="{% static 'polls/profile/jasny-bootstrap.min.js' %}"></script>
-        <script src="{% static 'polls/profile/jquery.autosize.min.js' %}"></script>
-        <script src="{% static 'polls/profile/moment.min.js' %}"></script>
-        <script src="{% static 'polls/profile/daterangepicker.js' %}"></script>
-        <script src="{% static 'polls/profile/bootstrap-datepicker.js' %}"></script>
-        <script src="{% static 'polls/profile/dropzone.min.js' %}"></script>
-        <script src="{% static 'polls/profile/jquery.easypiechart.min.js' %}"></script>
-        <script src="{% static 'polls/profile/jquery.flot.js' %}"></script>
-        <script src="{% static 'polls/profile/jquery.flot.pie.js' %}"></script>
-        <script src="{% static 'polls/profile/jquery.flot.stack.js' %}"></script>
-        <script src="{% static 'polls/profile/jquery.flot.resize.js' %}"></script>
-        <script src="{% static 'polls/profile/jquery.flot.time.js' %}"></script>
-        <script src="{% static 'polls/profile/jquery.flot.navigate.js' %}"></script>
-        <script src="{% static 'polls/profile/select2.min.js' %}"></script>
-        <script src="{% static 'polls/profile/fullcalendar.min.js' %}"></script>
-        <script src="{% static 'polls/profile/jquery.nestable.js' %}"></script>
-        <script src="{% static 'polls/profile/ckeditor.js' %}"></script>
-        <!-- <script src="{% static 'polls/profile/prettify.js' %}"></script> -->
-        <script src="{% static 'polls/profile/js' %}"></script>
-        <script src="{% static 'polls/profile/jquery.dataTables.min.js' %}"></script>
-        <script src="{% static 'polls/profile/ark.min.js' %}"></script>
+    <script src="{% static 'polls/profile/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'polls/profile/jquery.uniform.min.js' %}"></script>
+    <script src="{% static 'polls/profile/bootstrap.min.js' %}"></script>
+    <script src="{% static 'polls/profile/jasny-bootstrap.min.js' %}"></script>
+    <script src="{% static 'polls/profile/jquery.autosize.min.js' %}"></script>
+    <script src="{% static 'polls/profile/moment.min.js' %}"></script>
+    <script src="{% static 'polls/profile/daterangepicker.js' %}"></script>
+    <script src="{% static 'polls/profile/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'polls/profile/dropzone.min.js' %}"></script>
+    <script src="{% static 'polls/profile/jquery.easypiechart.min.js' %}"></script>
+    <script src="{% static 'polls/profile/jquery.flot.js' %}"></script>
+    <script src="{% static 'polls/profile/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'polls/profile/jquery.flot.stack.js' %}"></script>
+    <script src="{% static 'polls/profile/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'polls/profile/jquery.flot.time.js' %}"></script>
+    <script src="{% static 'polls/profile/jquery.flot.navigate.js' %}"></script>
+    <script src="{% static 'polls/profile/select2.min.js' %}"></script>
+    <script src="{% static 'polls/profile/fullcalendar.min.js' %}"></script>
+    <script src="{% static 'polls/profile/jquery.nestable.js' %}"></script>
+    <script src="{% static 'polls/profile/ckeditor.js' %}"></script>
+    <!-- <script src="{% static 'polls/profile/prettify.js' %}"></script> -->
+    <script src="{% static 'polls/profile/js' %}"></script>
+    <script src="{% static 'polls/profile/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'polls/profile/ark.min.js' %}"></script>
 
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-            ga('create', 'UA-972204-19', 'around25.com');
-            ga('send', 'pageview');
+    ga('create', 'UA-972204-19', 'around25.com');
+    ga('send', 'pageview');
+    </script>
 
-        </script>
+</body>
 
-</body></html>
+</html>
