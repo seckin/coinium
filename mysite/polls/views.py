@@ -103,7 +103,7 @@ def portfolio_perf(request):
                 for pair in pairs:
                     #sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
                     sql = """select round(avg((bestbid + bestask) / 2 ),3) as price, convert((min(created_at) div 100)*100, datetime) as time
-from Spreads where coin = %s and created_at >= '2018-05-19 04:12:14' AND created_at <= '2018-05-20 04:12:14'
+from Spreads where coin = %s and created_at >= '2018-05-19 04:12:14' AND created_at <= '2018-05-25 04:12:14'
 group by created_at div 100;"""
                     cursor.execute(sql, (pair,))
                     spreads = cursor.fetchall()
@@ -111,17 +111,21 @@ group by created_at div 100;"""
                     spreads_idx_for_pair[pair] = len(spreads) - 1
                     print("for coin ", pair, " found ", len(spreads), " spreads")
 
-                appreciations = [1.0]
+                tm = spreads_for_pair[pairs[0]][0]["time"]
+                tmstmp = round(time.mktime(tm.timetuple()) * 1000)
+                appreciations = [[tmstmp, 1.0]]
                 for i in range(1, len(spreads_for_pair[pairs[0]])):
                     appreciation = 0.0
                     for j in range(len(pairs)):
                         appreciation += pair_pcts[j] * (spreads_for_pair[pairs[j]][i]["price"] / spreads_for_pair[pairs[j]][0]["price"])
-                    appreciations.append(appreciation)
+                    tm = spreads_for_pair[pairs[0]][i]["time"]
+                    tmstmp = round(time.mktime(tm.timetuple()) * 1000)
+                    appreciations.append([tmstmp, appreciation])
 
-                tm = spreads_for_pair[pairs[0]][0]["time"]
-                tmstmp = round(time.mktime(tm.timetuple()) * 1000)
-                dct = {"pointStart":tmstmp,"pointInterval":60000,"dataLength":len(spreads_for_pair[pairs[0]]),"data":appreciations}
-                return JsonResponse(dct, safe=False)
+                # tm = spreads_for_pair[pairs[0]][0]["time"]
+                # tmstmp = round(time.mktime(tm.timetuple()) * 1000)
+                # dct = {"pointStart":tmstmp,"pointInterval":60000,"dataLength":len(spreads_for_pair[pairs[0]]),"data":appreciations}
+                return JsonResponse(appreciations, safe=False)
         finally:
             connection.close()
     return JsonResponse({'error': 'Unsupported method'})
