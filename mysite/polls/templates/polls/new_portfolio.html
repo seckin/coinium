@@ -42,7 +42,7 @@
          <div style="margin:5px;"></div>
 
          <label for="{{ form.btc_pct.id_for_label }}">Bitcoin percentage:</label><br>
-         <input type="number"
+         <input type="number" step="0.01"
          name="{{ form.btc_pct.name }}"
          id="{{ form.btc_pct.id_for_label }}"
          {% if form.btc_pct.value != None %}value="{{ form.btc_pct.value|stringformat:'s' }}"{% endif %}
@@ -53,7 +53,7 @@
          <div style="margin:5px;"></div>
 
          <label for="{{ form.eth_pct.id_for_label }}">Ethereum percentage:</label><br>
-         <input type="number"
+         <input type="number" step="0.01"
          name="{{ form.eth_pct.name }}"
          id="{{ form.eth_pct.id_for_label }}"
          {% if form.eth_pct.value != None %}value="{{ form.eth_pct.value|stringformat:'s' }}"{% endif %}
@@ -64,7 +64,7 @@
          <div style="margin:5px;"></div>
 
          <label for="{{ form.xrp_pct.id_for_label }}">Ripple percentage:</label><br>
-         <input type="number"
+         <input type="number" step="0.01"
          name="{{ form.xrp_pct.name }}"
          id="{{ form.xrp_pct.id_for_label }}"
          {% if form.xrp_pct.value != None %}value="{{ form.xrp_pct.value|stringformat:'s' }}"{% endif %}
@@ -75,7 +75,7 @@
          <div style="margin:5px;"></div>
 
          <label for="{{ form.xlm_pct.id_for_label }}">Stellar percentage:</label><br>
-         <input type="number"
+         <input type="number" step="0.01"
          name="{{ form.xlm_pct.name }}"
          id="{{ form.xlm_pct.id_for_label }}"
          {% if form.xlm_pct.value != None %}value="{{ form.xlm_pct.value|stringformat:'s' }}"{% endif %}
