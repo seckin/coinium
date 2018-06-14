@@ -1,8 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://getbootstrap.com/docs/4.0/examples/sign-in/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'polls/images/coinium.png' %}">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'polls/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'polls/signin.css' %}" rel="stylesheet">
+  </head>
+
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-      {% for field in form %}
+<body class="text-center">
+
+  <!-- <h2>Sign up</h2> -->
+  <form  class="form-signin" method="post">
+      {% csrf_token %}
+      <img class="mb-4" src="{% static 'polls/images/coinium.png' %}" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-bold">Coinium</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+<!-- {% for field in form %}
       <p>
         {{ field.label_tag }}<br>
         {{ field }}
@@ -13,7 +37,53 @@
           <p style="color: red">{{ error }}</p>
         {% endfor %}
       </p>
-      {% endfor %}
-    <button type="submit">Sign up</button>
+      {% endfor %} -->
+      <input type="text"
+       name="{{ form.username.name }}"
+       id="{{ form.username.id_for_label }}"
+       {% if form.username.value != None %}value="{{ form.username.value|stringformat:'s' }}"{% endif %}
+       maxlength="{{ form.username.field.max_length }}"
+       class="form-control"
+       placeholder="Username"
+       {% if form.username.field.required %}required{% endif %}>
+       <div style="margin:5px;"></div>
+
+      <input type="email"
+       name="{{ form.email.name }}"
+       id="{{ form.email.id_for_label }}"
+       {% if form.email.value != None %}value="{{ form.email.value|stringformat:'s' }}"{% endif %}
+       maxlength="{{ form.email.field.max_length }}"
+       class="form-control"
+       placeholder="Email"
+       style="border-radius: .25rem;"
+       {% if form.email.field.required %}required{% endif %}>
+        <div style="margin:5px;"></div>
+
+      <input type="password"
+       name="{{ form.password1.name }}"
+       id="{{ form.password1.id_for_label }}"
+       maxlength="{{ form.password1.field.max_length }}"
+       class="form-control"
+       placeholder="Password"
+       style="border-radius: .25rem;margin-bottom:5px;"
+       {% if form.password1.field.required %}required{% endif %}>
+       <!-- <div style="margin:5px;"></div> -->
+
+      <input type="password"
+       name="{{ form.password2.name }}"
+       id="{{ form.password2.id_for_label }}"
+       maxlength="{{ form.password2.field.max_length }}"
+       class="form-control"
+       placeholder="Password confirmation"
+       style="border-radius: .25rem;"
+       {% if form.password2.field.required %}required{% endif %}>
+       {% for error in form.password2.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+       <div style="margin:15px;"></div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    <p class="mt-5 mb-3 text-muted">© 2018 Coinium Inc.</p>
   </form>
+</body>
 {% endblock %}
+</html>

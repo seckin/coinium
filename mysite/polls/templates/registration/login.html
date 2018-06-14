@@ -27,8 +27,25 @@
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="id_username" class="sr-only">Username:</label> 
       <input type="text" name="username" class="form-control" placeholder="Username" id="id_username" maxlength="254" required="" autofocus="">
+      {% if form.username.help_text %}
+          <small style="display: none">{{ form.username.help_text }}</small>
+      {% endif %}
+      {% for error in form.username.errors %}
+          <p style="color: red">{{ error }}</p>
+      {% endfor %}
+      <div style="margin:5px;"></div>
       <label for="id_password" class="sr-only">Password:</label> 
-      <input type="password" name="password" class="form-control" placeholder="Password" id="id_password" required="">
+      <input type="password" name="password" class="form-control" placeholder="Password" id="id_password" required="" style="border-radius: .25rem;">
+      {% if form.password.help_text %}
+          <small style="display: none">{{ form.password.help_text }}</small>
+      {% endif %}
+      {% for error in form.password.errors %}
+          <p style="color: red">{{ error }}</p>
+      {% endfor %}
+      {% if form.errors %}
+        <p style="color: red">Username or password is wrong</p>
+      {% endif %}
+      <div style="margin:15px;"></div>
       <!-- <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
