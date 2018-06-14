@@ -132,3 +132,6 @@ group by created_at div 100;"""
             connection.close()
     return JsonResponse({'error': 'Unsupported method'})
 
+def profile(request):
+    return render(request, 'polls/profile.html')
+
