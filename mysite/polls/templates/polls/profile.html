@@ -179,26 +179,10 @@
                                         series: [{
                                             name: 'Percentage',
                                             data: [
-                                                ['Bitcoin: {{btc_pct}}%', {
-                                                    {
-                                                        btc_pct
-                                                    }
-                                                }],
-                                                ['Ethereum: {{eth_pct}}%', {
-                                                    {
-                                                        eth_pct
-                                                    }
-                                                }],
-                                                ['Ripple: {{xrp_pct}}%', {
-                                                    {
-                                                        xrp_pct
-                                                    }
-                                                }],
-                                                ['Stellar: {{xlm_pct}}%', {
-                                                    {
-                                                        xlm_pct
-                                                    }
-                                                }],
+                                                ['Bitcoin: {{btc_pct}}%', {{btc_pct}}],
+                                                ['Ethereum: {{eth_pct}}%', {{eth_pct}}],
+                                                ['Ripple: {{xrp_pct}}%', {{xrp_pct}}],
+                                                ['Stellar: {{xlm_pct}}%', {{xlm_pct}}],
                                             ]
                                         }]
                                     });
