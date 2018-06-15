@@ -217,53 +217,12 @@
                                             <tr>
                                                 <td>#{{investment_with_amt.0.id}}</td>
                                                 <td>{{investment_with_amt.0.portfolio}}</td>
-                                                <td>${{investment_with_amt.1|floatformat:2}}</td>
-                                                <td><span class="label label-primary">ACTIVE</span>
+                                                <td>${{investment_with_amt.0.original_amt}}</td>
+                                                <td>{% if investment_with_amt.0.is_active %}<span class="label label-primary">ACTIVE</span>{% endif %}
+                                                {% if investment_with_amt.0.is_active == False %}<span class="label label-warning">PROCESSING</span>{% endif %}
                                                 </td>
                                             </tr>
                                             {% endfor %}
-                                            <!-- <tr>
-                                                <td>#1249</td>
-                                                <td>Joe Walker's altcoins</td>
-                                                <td>$653</td>
-                                                <td><span class="label label-primary">ACTIVE</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>#1248</td>
-                                                <td>Zoe Hart's July list</td>
-                                                <td>$1,342</td>
-                                                <td><span class="label label-warning">PROCESSING</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>#1247</td>
-                                                <td>Jack's top coins</td>
-                                                <td>$1,012</td>
-                                                <td><span class="label label-primary">ACTIVE</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>#1246</td>
-                                                <td>Tim Butcher's best bets for 2019</td>
-                                                <td>$2,500</td>
-                                                <td><span class="label label-warning">PROCESSING</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>#1245</td>
-                                                <td>Mark Smith's coins</td>
-                                                <td>$45</td>
-                                                <td><span class="label label-primary">ACTIVE</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>#1244</td>
-                                                <td>Dave Gibbs's up and coming coins</td>
-                                                <td>$948</td>
-                                                <td><span class="label label-primary">ACTIVE</span>
-                                                </td>
-                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>

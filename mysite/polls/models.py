@@ -39,10 +39,12 @@ class Portfolio(models.Model):
 class Investment(models.Model):
     portfolio = models.ForeignKey(Portfolio, editable=False, on_delete=models.PROTECT)
     owner = models.ForeignKey(User, editable=False, on_delete=models.PROTECT)
+    original_amt = models.DecimalField(max_digits=10, decimal_places=2)
     btc_amt = models.DecimalField(max_digits=11, decimal_places=6)
     eth_amt = models.DecimalField(max_digits=11, decimal_places=6)
     xrp_amt = models.DecimalField(max_digits=11, decimal_places=6)
     xlm_amt = models.DecimalField(max_digits=11, decimal_places=6)
+    is_active = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):

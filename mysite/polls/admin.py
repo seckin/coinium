@@ -45,7 +45,7 @@ class InvestmentAdmin(admin.ModelAdmin):
     get_portfolio.short_description = 'Portfolio'
     get_portfolio.admin_order_field = 'portfolio__id'
     # inlines = [PortfolioInline]
-    list_display = ('owner', 'get_portfolio', 'btc_amt', 'eth_amt', 'xrp_amt', 'xlm_amt', "created_at", "updated_at")
+    list_display = ('owner', 'get_portfolio', 'original_amt', 'btc_amt', 'eth_amt', 'xrp_amt', 'xlm_amt', 'is_active', "created_at", "updated_at")
 
 
 admin.site.register(Question, QuestionAdmin)
