@@ -68,7 +68,7 @@
           </div>
         <div>
           <a href="{% url 'polls:newportfolio' %}">
-            <button class="btn btn-mid btn-secondary btn-block" style="position: absolute;bottom: 0;left: 0;" type="submit">Create Portfolio</button>
+            <button class="btn btn-mid btn-info btn-block" style="position: absolute;bottom: 0;left: 0;" type="submit">Create New Portfolio</button>
           </a>
         </div>
       </nav>
@@ -131,7 +131,7 @@ Highcharts.chart('container', {
         }
     },
     title: {
-        text: 'Contents of {{portfolio}} portfolio'
+        text: 'Contents of {{portfolio}}'
     },
     subtitle: {
         text: ''
@@ -259,8 +259,10 @@ $.getJSON(
           </div>
         </div>
         <script>
-            $("#mymodalbutton").click(function(){
-                console.log("mymodal clicked");
+            $("#mymodalbutton").click(function(event){
+                if (!$("#usd_amt_id").val()) {
+                    return false;
+                }
                 usd_amt = parseInt($("#usd_amt_id").val());
                 btc_amt = (usd_amt * parseFloat($("#values").attr("btc_pct")) / 100.0) / parseFloat($("#values").attr("btc_latest_val"));
                 btc_amt = btc_amt.toFixed(10);
