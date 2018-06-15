@@ -40,7 +40,40 @@ class ResultsView(generic.DetailView):
 def portfolio(request, pk):
     all_portfolios = Portfolio.objects.all()
     portfolio = Portfolio.objects.get(pk=pk)
-    return render(request, 'polls/portfolio.html', {'all_portfolios': all_portfolios, 'pk': pk, 'portfolio': portfolio})
+
+    # get latest valuations to embed in the page
+    connection = pymysql.connect(host='localhost',
+                                 user='root',
+                                 password='01990199',
+                                 db='coinium',
+                                 charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    try:
+        with connection.cursor() as cursor:
+            pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
+            spreads_for_pair = dict()
+            for pair in pairs:
+                #sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
+                sql = "select * from Spreads where coin = %s order by created_at desc limit 1"
+                cursor.execute(sql, (pair,))
+                spreads = cursor.fetchall()
+                spreads_for_pair[pair] = spreads
+                print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
+
+            btc_latest_val = float(spreads_for_pair[pairs[0]][0]["bestbid"])
+            eth_latest_val = float(spreads_for_pair[pairs[1]][0]["bestbid"])
+            xrp_latest_val = float(spreads_for_pair[pairs[2]][0]["bestbid"])
+            xlm_latest_val = 0.5
+    finally:
+        connection.close()
+    return render(request, 'polls/portfolio.html', {'all_portfolios': all_portfolios, \
+        'pk': pk,\
+        'portfolio': portfolio,\
+        'btc_latest_val': btc_latest_val,\
+        'eth_latest_val': eth_latest_val,\
+        'xrp_latest_val': xrp_latest_val,\
+        'xlm_latest_val': xlm_latest_val
+        })
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)

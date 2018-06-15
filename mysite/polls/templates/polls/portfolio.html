@@ -28,6 +28,7 @@
 <script src="../../code/modules/export-data.js"></script>
  -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="{% static 'polls/bootstrap.min.js' %}"></script>
 <script src="{% static 'polls/highcharts.js' %}"></script>
 <script src="{% static 'polls/highcharts-3d.js' %}"></script>
 <script src="{% static 'polls/exporting.js' %}"></script>
@@ -88,8 +89,9 @@
             </div> -->
             <div class="" style="">
               <label for="usr" style="float: left;font-size:30px;">$</label>
-              <input type="number" class="form-control" placeholder="50" id="usr" style="margin-left:5px;width: 100px;float: left;">
-              <button class="btn btn-mid btn-secondary " style="margin-left:5px;bottom: 0;left: 0;" type="submit">Invest</button>
+              <input type="number" id="usd_amt_id" class="form-control" placeholder="50" id="usr" style="margin-left:5px;width: 100px;float: left;">
+              <button class="btn btn-mid btn-info btn-secondary " id = "mymodalbutton" data-toggle="modal" data-target="#myModal" 
+                style="margin-left:5px;bottom: 0;left: 0;" type="submit">Invest</button>
             </div>
           </div>
 
@@ -161,8 +163,6 @@ $.getJSON(
     '{% url 'polls:portfolio_perf' %}',
     // 'https://cdn.rawgit.com/highcharts/highcharts/057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/usdeur.json',
     function (data) {
-      console.log("here1", data);
-      window.a = data;
         Highcharts.chart('container2', {
             chart: {
                 zoomType: 'x'
@@ -223,6 +223,63 @@ $.getJSON(
  // }, 3000);
 });
         </script>
+        <div id="values" style="visibility:hidden;"
+            btc_latest_val="{{btc_latest_val}}"
+            eth_latest_val="{{eth_latest_val}}"
+            xrp_latest_val="{{xrp_latest_val}}"
+            xlm_latest_val="{{xlm_latest_val}}"
+            btc_pct="{{portfolio.btc_pct}}"
+            eth_pct="{{portfolio.eth_pct}}"
+            xrp_pct="{{portfolio.xrp_pct}}"
+            xlm_pct="{{portfolio.xlm_pct}}"
+        ></div>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                
+                <h4 class="modal-title">Invest</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Bitcoin amount: <span id="btc_amt"></span></p>
+                <p>Ethereum amount: <span id="eth_amt"></span></p>
+                <p>Ripple amount: <span id="xrp_amt"></span></p>
+                <p>Stellar amount: <span id="xlm_amt"></span></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Approve Investment</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <script>
+            $("#mymodalbutton").click(function(){
+                console.log("mymodal clicked");
+                usd_amt = parseInt($("#usd_amt_id").val());
+                btc_amt = (usd_amt * parseFloat($("#values").attr("btc_pct")) / 100.0) / parseFloat($("#values").attr("btc_latest_val"));
+                btc_amt = btc_amt.toFixed(10);
+
+                eth_amt = (usd_amt * parseFloat($("#values").attr("eth_pct")) / 100.0) / parseFloat($("#values").attr("eth_latest_val"));
+                eth_amt = eth_amt.toFixed(10);
+
+                xrp_amt = (usd_amt * parseFloat($("#values").attr("xrp_pct")) / 100.0) / parseFloat($("#values").attr("xrp_latest_val"));
+                xrp_amt = xrp_amt.toFixed(10);
+
+                xlm_amt = (usd_amt * parseFloat($("#values").attr("xlm_pct")) / 100.0) / parseFloat($("#values").attr("xlm_latest_val"));
+                xlm_amt = xlm_amt.toFixed(10);
+                console.log("btc_amt:", btc_amt);
+                
+                $("#btc_amt").html(btc_amt);
+                $("#eth_amt").html(eth_amt);
+                $("#xrp_amt").html(xrp_amt);
+                $("#xlm_amt").html(xlm_amt);
+            });
+        </script>
     </body>
 </html>
