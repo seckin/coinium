@@ -74,6 +74,7 @@ def portfolio(request, pk):
     return render(request, 'polls/portfolio.html', {'all_portfolios': all_portfolios, \
         'pk': pk,\
         'portfolio': portfolio,\
+        'user': request.user,\
         'btc_latest_val': btc_latest_val,\
         'eth_latest_val': eth_latest_val,\
         'xrp_latest_val': xrp_latest_val,\
