@@ -71,6 +71,12 @@ def portfolio(request, pk):
     if 'investment_created' in request.session and request.session['investment_created'] == True:
         request.session['investment_created'] = False
         investment_created = True
+
+    just_signed_up = False
+    if 'just_signed_up' in request.session and request.session['just_signed_up'] == True:
+        request.session['just_signed_up'] = False
+        just_signed_up = True
+
     return render(request, 'polls/portfolio.html', {'all_portfolios': all_portfolios, \
         'pk': pk,\
         'portfolio': portfolio,\
@@ -79,7 +85,8 @@ def portfolio(request, pk):
         'eth_latest_val': eth_latest_val,\
         'xrp_latest_val': xrp_latest_val,\
         'xlm_latest_val': xlm_latest_val,\
-        'investment_created': investment_created
+        'investment_created': investment_created,\
+        'just_signed_up': just_signed_up\
         })
 
 def create_investment(request, portfolio_id):
@@ -230,10 +237,16 @@ def profile(request, user_id):
                    xrp_latest_val * total_xrp + \
                    xlm_latest_val * total_xlm
 
-    btc_pct = round(100 * btc_latest_val * total_btc / total_pv_val, 2)
-    eth_pct = round(100 * eth_latest_val * total_eth / total_pv_val, 2)
-    xrp_pct = round(100 * xrp_latest_val * total_xrp / total_pv_val, 2)
-    xlm_pct = round(100 * xlm_latest_val * total_xlm / total_pv_val, 2)
+    if total_pv_val:
+        btc_pct = round(100 * btc_latest_val * total_btc / total_pv_val, 2)
+        eth_pct = round(100 * eth_latest_val * total_eth / total_pv_val, 2)
+        xrp_pct = round(100 * xrp_latest_val * total_xrp / total_pv_val, 2)
+        xlm_pct = round(100 * xlm_latest_val * total_xlm / total_pv_val, 2)
+    else:
+        btc_pct = 0
+        eth_pct = 0
+        xrp_pct = 0
+        xlm_pct = 0
 
     #calculate investment amounts
     investments_with_amts = []
@@ -335,6 +348,7 @@ def profile(request, user_id):
     return render(request, 'polls/profile.html', {"user": user, "investments": investments, \
         "investments_with_amts": investments_with_amts,\
         "investment_amts_for_months": investment_amts_for_months,\
+        "total_pv_val": total_pv_val,\
         "total_btc": total_btc,\
         "total_eth": total_eth,\
         "total_xrp": total_xrp,\

@@ -79,9 +79,13 @@
        {% if form.password2.field.required %}required{% endif %}>
        {% for error in form.password2.errors %}
           <p style="color: red">{{ error }}</p>
-        {% endfor %}
+       {% endfor %}
+       {% for error in form.errors %}
+         <p style="color: red">{{error}}</p>
+       {% endfor %}
        <div style="margin:15px;"></div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    <div style="margin-top: 15px;"><a href="/login" style="margin-top:10px;">Sign in</a></div>
     <p class="mt-5 mb-3 text-muted">© 2018 Coinium Inc.</p>
   </form>
 </body>

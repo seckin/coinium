@@ -65,6 +65,14 @@
         </button>
       </div>
       {% endif %}
+      {% if just_signed_up %}
+      <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
+        Please confirm your email address to complete the registration
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %}
       <ul class="navbar-nav px-3">
         <!-- <li class="nav-item text-nowrap">
           <a class="nav-link" href="/logout/">Sign out</a>
@@ -166,7 +174,29 @@
                     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
 
-                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Hi I think that EOS will 10x over the next month" data-url="https://coinium.app" data-via="SeckinCanSahin" data-hashtags="coiniumapp" data-related="" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <div class="" style="min-width: 310px; max-width:600px; height: 400px; margin: 0 auto">
+                  <!-- <label for="usr" style="float: left;font-size:30px;">Tweet:</label> -->
+                  <input type="text" id="tweet_text_id" class="form-control" placeholder="I think that EOS will 10x over the next month" style="margin-left:5px;width: 450px;float: left;">
+                  <!-- <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Hi I think that EOS will 10x over the next month" data-url="https://coinium.app" data-via="SeckinCanSahin" data-hashtags="coiniumapp" data-related="" data-show-count="false">Tweet</a> -->
+                  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+                    <button style="margin-left:10px;" class="btn btn-primary" onclick="tweetIt()">Tweet it!</button>
+                    <script>
+                    function tweetIt () {
+                        if(!$("#tweet_text_id").val()) {
+                            return false;
+                        }
+                      var phrase = $("#tweet_text_id").val();
+                      var tweetUrl = 'https://twitter.com/share?text=' +
+                        encodeURIComponent(phrase) +
+                        encodeURIComponent(' #coinium') +
+                        '&url=' +
+                        'https://coinium.app';
+                        
+                      window.open(tweetUrl);
+                    }
+                    </script>
+                </div>
             </div>
         </main>
       </div>
@@ -174,7 +204,6 @@
 
 
         <script type="text/javascript">
-
 Highcharts.chart('container', {
     chart: {
         type: 'pie',

@@ -24,7 +24,7 @@ def signup(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.is_active = False
+            user.is_active = True#False
             user.save()
             current_site = get_current_site(request)
             # mail_subject = 'Activate your coinium account.'
@@ -39,7 +39,10 @@ def signup(request):
             #             mail_subject, message, to=[to_email]
             # )
             # email.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            request.session['just_signed_up'] = True
+            user.is_active = True
+            return redirect("/login")
+            # return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = SignupForm()
     return render(request, 'signup.html', {'form': form})
