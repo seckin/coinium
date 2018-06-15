@@ -8,8 +8,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ArkAdmin Theme</title>
-    <link rel="shortcut icon" href="http://arkadmin.around25.com/img/ico/favicon.png">
+    <title>{{user.username}}'s Profile</title>
+    <link rel="icon" href="{% static 'polls/images/coinium.png' %}">
 
     <!-- CSS -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css">
@@ -234,7 +234,7 @@
                                     <h3 class="panel-title">Investments Made to {{user.username}}'s portfolios</h3>
                                 </div>
                                 <div class="panel-body">
-                                    <div id="dashboardRevenues" class="chart" style="padding: 0px; position: relative;"></div>
+                                    <div id="dashboardInvestments" class="chart" style="padding: 0px; position: relative;"></div>
                                 </div>
                             </div>
                         </div>
@@ -1121,23 +1121,23 @@ jQuery(function() {
                 type: "zoom",
                 data: zoomData
             },
-            "#dashboardRevenues": {
+            "#dashboardInvestments": {
                 type: "bars",
                 data: [{
                     label: "Investments in USD",
                     data: [
-                        [1, 51231],
-                        [2, 44220],
-                        [3, 12455],
-                        [4, 24313],
-                        [5, 57523],
-                        [6, 98432],
-                        [7, 90934],
-                        [8, 78932],
-                        [9, 12367],
-                        [10, 67345],
-                        [11, 43672],
-                        [12, 74213]
+                        [1, {{investment_amts_for_months.1}}],
+                        [2, {{investment_amts_for_months.2}}],
+                        [3, {{investment_amts_for_months.3}}],
+                        [4, {{investment_amts_for_months.4}}],
+                        [5, {{investment_amts_for_months.5}}],
+                        [6, {{investment_amts_for_months.6}}],
+                        [7, {{investment_amts_for_months.7}}],
+                        [8, {{investment_amts_for_months.8}}],
+                        [9, {{investment_amts_for_months.9}}],
+                        [10, {{investment_amts_for_months.10}}],
+                        [11, {{investment_amts_for_months.11}}],
+                        [12, {{investment_amts_for_months.12}}]
                     ]
                 }]
             },

@@ -184,13 +184,13 @@ def profile(request, user_id):
 
     #calculate investment amounts
     investments_with_amts = []
-    for investment in investments:
-        connection = pymysql.connect(host='localhost',
+    connection = pymysql.connect(host='localhost',
                                  user='root',
                                  password='01990199',
                                  db='coinium',
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
+    for investment in investments:
         try:
             with connection.cursor() as cursor:
                 pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
@@ -208,7 +208,7 @@ def profile(request, user_id):
                 xrp_latest_val_preceding_investment = float(spreads_for_pair[pairs[2]][0]["bestbid"])
                 xlm_latest_val_preceding_investment = 0.5
         finally:
-            connection.close()
+            pass
 
         amt = float(investment.btc_amt) * btc_latest_val_preceding_investment + \
         float(investment.eth_amt) * eth_latest_val_preceding_investment + \
@@ -216,8 +216,65 @@ def profile(request, user_id):
         float(investment.xlm_amt) * xlm_latest_val_preceding_investment
         investments_with_amts.append([investment, amt])
 
+    connection.close()
+
+
+    connection = pymysql.connect(host='localhost',
+                                 user='root',
+                                 password='01990199',
+                                 db='coinium',
+                                 charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    investment_amts_for_months = [0.0] * 13
+    try:
+        with connection.cursor() as cursor:
+            sql = "SELECT MONTH(CURDATE()) as month";
+            cursor.execute(sql, ())
+            cur_month = int(cursor.fetchall()[0]["month"])
+            for i in range(0, 6):
+                pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
+                spreads_for_pair = dict()
+                for pair in pairs:
+                    sql = "select * from Spreads where coin = %s AND YEAR(created_at) = YEAR(DATE_SUB(CURDATE(), INTERVAL " + str(i-1) + " MONTH)) \
+                                            AND MONTH(created_at) < MONTH(DATE_SUB(CURDATE(), INTERVAL " + str(i-1) + " MONTH)) order by created_at desc limit 1"
+                    cursor.execute(sql, (pair))
+                    spreads = cursor.fetchall()
+                    spreads_for_pair[pair] = spreads
+                    print("2 for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
+
+                if len(spreads_for_pair[pairs[0]]) > 0:
+                    btc_latest_val_at_the_end_of_the_month = float(spreads_for_pair[pairs[0]][0]["bestbid"])
+                else:
+                    btc_latest_val_at_the_end_of_the_month = 0.0
+                if len(spreads_for_pair[pairs[1]]) > 0:
+                    eth_latest_val_at_the_end_of_the_month = float(spreads_for_pair[pairs[1]][0]["bestbid"])
+                else:
+                    eth_latest_val_at_the_end_of_the_month = 0.0
+                if len(spreads_for_pair[pairs[2]]) > 0:
+                    xrp_latest_val_at_the_end_of_the_month = float(spreads_for_pair[pairs[2]][0]["bestbid"])
+                else:
+                    xrp_latest_val_at_the_end_of_the_month = 0.0
+                xlm_latest_val_at_the_end_of_the_month = 0.5
+
+                end_of_month_amt = 0.0
+                for investment in Investment.objects.raw("SELECT * \
+                                                FROM polls_investment \
+                                                WHERE YEAR(created_at) = YEAR(DATE_SUB(CURDATE(), INTERVAL " + str(i) + " MONTH)) \
+                                                AND MONTH(created_at) = MONTH(DATE_SUB(CURDATE(), INTERVAL " + str(i) + " MONTH))"):
+                    end_of_month_amt += float(investment.btc_amt) * btc_latest_val_at_the_end_of_the_month + \
+                        float(investment.eth_amt) * eth_latest_val_at_the_end_of_the_month + \
+                        float(investment.xrp_amt) * xrp_latest_val_at_the_end_of_the_month + \
+                        float(investment.xlm_amt) * xlm_latest_val_at_the_end_of_the_month
+                print("end_of_month_amt", end_of_month_amt, "for i = ", i)
+                investment_amts_for_months[cur_month - i] = end_of_month_amt
+
+    finally:
+        connection.close()
+        pass
+
     return render(request, 'polls/profile.html', {"user": user, "investments": investments, \
         "investments_with_amts": investments_with_amts,\
+        "investment_amts_for_months": investment_amts_for_months,\
         "total_btc": total_btc,\
         "total_eth": total_eth,\
         "total_xrp": total_xrp,\
