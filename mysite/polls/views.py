@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.views import generic
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.shortcuts import redirect
 
 from .models import Choice, Question, Portfolio, Investment
 from .forms import PortfolioForm
@@ -66,14 +67,32 @@ def portfolio(request, pk):
             xlm_latest_val = 0.5
     finally:
         connection.close()
+    investment_created = False
+    if 'investment_created' in request.session and request.session['investment_created'] == True:
+        request.session['investment_created'] = False
+        investment_created = True
     return render(request, 'polls/portfolio.html', {'all_portfolios': all_portfolios, \
         'pk': pk,\
         'portfolio': portfolio,\
         'btc_latest_val': btc_latest_val,\
         'eth_latest_val': eth_latest_val,\
         'xrp_latest_val': xrp_latest_val,\
-        'xlm_latest_val': xlm_latest_val
+        'xlm_latest_val': xlm_latest_val,\
+        'investment_created': investment_created
         })
+
+def create_investment(request, portfolio_id):
+    portfolio = Portfolio.objects.get(pk=portfolio_id)
+    investment = Investment.objects.create(portfolio=portfolio,
+                              original_amt=request.GET.get('usd_amt'),
+                              btc_amt=request.GET.get('btc_amt'),
+                              eth_amt=request.GET.get('eth_amt'),
+                              xrp_amt=request.GET.get('xrp_amt'),
+                              xlm_amt=request.GET.get('xlm_amt'),
+                              owner=request.user,
+                              is_active=False)
+    request.session['investment_created'] = True
+    return redirect("/polls/portfolio/" + str(portfolio_id))
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)

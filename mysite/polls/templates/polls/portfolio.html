@@ -37,6 +37,14 @@
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img width="32" height="32" src="{% static 'polls/images/coinium.png' %}"/> Coinium</a>
       <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+      {% if investment_created %}
+      <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
+        <strong>Success!</strong> Investment created!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %}
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="/logout/">Sign out</a>
@@ -77,6 +85,7 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Portfolio: {{ portfolio }}</h1>
+
             <!-- <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
                 <button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -251,13 +260,14 @@ $.getJSON(
                 <p>Stellar amount: <span id="xlm_amt"></span></p>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-info" data-dismiss="modal">Approve Investment</button>
+                <a id="create_investment_id" href="#" class="btn btn-info">Approve Investment</a>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
             </div>
 
           </div>
         </div>
+        <div id="portfolio_id_id" portfolio_id="{{portfolio.id}}"></div>
         <script>
             $("#mymodalbutton").click(function(event){
                 if (!$("#usd_amt_id").val()) {
@@ -276,11 +286,19 @@ $.getJSON(
                 xlm_amt = (usd_amt * parseFloat($("#values").attr("xlm_pct")) / 100.0) / parseFloat($("#values").attr("xlm_latest_val"));
                 xlm_amt = xlm_amt.toFixed(10);
                 console.log("btc_amt:", btc_amt);
-                
+
                 $("#btc_amt").html(btc_amt);
                 $("#eth_amt").html(eth_amt);
                 $("#xrp_amt").html(xrp_amt);
                 $("#xlm_amt").html(xlm_amt);
+                portfolio_id = $("#portfolio_id_id").attr("portfolio_id");
+                href = "/polls/create_investment/" + portfolio_id + "/?usd_amt=" + usd_amt + "&btc_amt=" + btc_amt + "&eth_amt=" + eth_amt + "&xrp_amt=" + xrp_amt + "&xlm_amt=" + xlm_amt;
+
+                console.log("href", href);
+                setTimeout(function(){
+                    $("#create_investment_id").attr("href", href);
+                }, 500);
+                
             });
         </script>
     </body>
