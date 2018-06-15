@@ -184,39 +184,40 @@ def profile(request, user_id):
 
     #calculate investment amounts
     investments_with_amts = []
-    connection = pymysql.connect(host='localhost',
-                                 user='root',
-                                 password='01990199',
-                                 db='coinium',
-                                 charset='utf8mb4',
-                                 cursorclass=pymysql.cursors.DictCursor)
+    # connection = pymysql.connect(host='localhost',
+    #                              user='root',
+    #                              password='01990199',
+    #                              db='coinium',
+    #                              charset='utf8mb4',
+    #                              cursorclass=pymysql.cursors.DictCursor)
     for investment in investments:
-        try:
-            with connection.cursor() as cursor:
-                pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
-                spreads_for_pair = dict()
-                for pair in pairs:
-                    #sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
-                    sql = "select * from Spreads where coin = %s and created_at < %s order by created_at desc limit 1"
-                    cursor.execute(sql, (pair,investment.created_at))#'2018-06-13 18:17:12'))
-                    spreads = cursor.fetchall()
-                    spreads_for_pair[pair] = spreads
-                    print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
+        # try:
+        #     with connection.cursor() as cursor:
+        #         pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
+        #         spreads_for_pair = dict()
+        #         for pair in pairs:
+        #             #sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
+        #             sql = "select * from Spreads where coin = %s and created_at < %s order by created_at desc limit 1"
+        #             cursor.execute(sql, (pair,investment.created_at))#'2018-06-13 18:17:12'))
+        #             spreads = cursor.fetchall()
+        #             spreads_for_pair[pair] = spreads
+        #             print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
 
-                btc_latest_val_preceding_investment = float(spreads_for_pair[pairs[0]][0]["bestbid"])
-                eth_latest_val_preceding_investment = float(spreads_for_pair[pairs[1]][0]["bestbid"])
-                xrp_latest_val_preceding_investment = float(spreads_for_pair[pairs[2]][0]["bestbid"])
-                xlm_latest_val_preceding_investment = 0.5
-        finally:
-            pass
+        #         btc_latest_val_preceding_investment = float(spreads_for_pair[pairs[0]][0]["bestbid"])
+        #         eth_latest_val_preceding_investment = float(spreads_for_pair[pairs[1]][0]["bestbid"])
+        #         xrp_latest_val_preceding_investment = float(spreads_for_pair[pairs[2]][0]["bestbid"])
+        #         xlm_latest_val_preceding_investment = 0.5
+        # finally:
+        #     pass
 
-        amt = float(investment.btc_amt) * btc_latest_val_preceding_investment + \
-        float(investment.eth_amt) * eth_latest_val_preceding_investment + \
-        float(investment.xrp_amt) * xrp_latest_val_preceding_investment + \
-        float(investment.xlm_amt) * xlm_latest_val_preceding_investment
+        # amt = float(investment.btc_amt) * btc_latest_val_preceding_investment + \
+        # float(investment.eth_amt) * eth_latest_val_preceding_investment + \
+        # float(investment.xrp_amt) * xrp_latest_val_preceding_investment + \
+        # float(investment.xlm_amt) * xlm_latest_val_preceding_investment
+        amt = 0
         investments_with_amts.append([investment, amt])
 
-    connection.close()
+    # connection.close()
 
 
     connection = pymysql.connect(host='localhost',
@@ -231,7 +232,7 @@ def profile(request, user_id):
             sql = "SELECT MONTH(CURDATE()) as month";
             cursor.execute(sql, ())
             cur_month = int(cursor.fetchall()[0]["month"])
-            for i in range(0, 6):
+            for i in range(0, 3):
                 pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
                 spreads_for_pair = dict()
                 for pair in pairs:
@@ -257,10 +258,16 @@ def profile(request, user_id):
                 xlm_latest_val_at_the_end_of_the_month = 0.5
 
                 end_of_month_amt = 0.0
+                users_portfolios = Portfolio.objects.filter(owner = user)
+                portfolio_ids = []
+                for p in users_portfolios:
+                    portfolio_ids.append(str(p.id))
+                portfolio_ids_str = ','.join(portfolio_ids)
                 for investment in Investment.objects.raw("SELECT * \
                                                 FROM polls_investment \
                                                 WHERE YEAR(created_at) = YEAR(DATE_SUB(CURDATE(), INTERVAL " + str(i) + " MONTH)) \
-                                                AND MONTH(created_at) = MONTH(DATE_SUB(CURDATE(), INTERVAL " + str(i) + " MONTH))"):
+                                                AND MONTH(created_at) = MONTH(DATE_SUB(CURDATE(), INTERVAL " + str(i) + " MONTH)) \
+                                                AND portfolio_id in (" + portfolio_ids_str + ")"):
                     end_of_month_amt += float(investment.btc_amt) * btc_latest_val_at_the_end_of_the_month + \
                         float(investment.eth_amt) * eth_latest_val_at_the_end_of_the_month + \
                         float(investment.xrp_amt) * xrp_latest_val_at_the_end_of_the_month + \
