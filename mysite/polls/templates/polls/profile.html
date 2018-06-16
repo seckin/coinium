@@ -14,6 +14,7 @@
     <!-- CSS -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css">
     <link href="{% static 'polls/profile/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'polls/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'polls/profile/jasny-bootstrap.min.css' %}" rel="stylesheet">
     <!--<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />-->
     <link href="{% static 'polls/profile/font-awesome.css' %}" rel="stylesheet" type="text/css">
@@ -44,6 +45,10 @@
     .cke {
         visibility: hidden;
     }
+    .navbar {
+        justify-content: flex-end !important;
+        border-radius: 0px;
+    }
     </style>
     <script type="text/javascript" charset="UTF-8" src="{% static 'polls/profile/common.js' %}"></script>
     <script type="text/javascript" charset="UTF-8" src="{% static 'polls/profile/util.js' %}"></script>
@@ -52,41 +57,27 @@
 
 <body class="cover">
 
-    <div class="wrapper container">
+
+    <div class="wrapper">
         <!-- HEAD NAV -->
-        <div class="navbar navbar-default navbar-static-top navbar-main" role="navigation">
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
 
+            <ul class="navbar-nav px-3">
+                <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li class="visible-xs">
-                    <a href="#" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <i class="fa fa-bars"></i>
-                    </a>
-                </li>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle avatar pull-right" data-toggle="dropdown">
-                        <img src="{% static 'polls/profile/mike.jpg' %}" alt="mike" class="img-avatar">
-                        <span class="hidden-small">{{user.username}}<b class="caret"></b></span>
-                    </a>
-                    <ul class="dropdown-menu pull-right">
-                        <li><a href="#"><i class="fa fa-gear"></i>Account Settings</a>
-                        </li>
-                        <li><a href="http://arkadmin.around25.com/v18/profile.html"><i class="fa fa-user"></i>View Profile</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="http://arkadmin.around25.com/v18/login.html"><i class="fa fa-sign-out"></i>Logout</a>
-                        </li>
-                    </ul>
-                </li>
+                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute">
+                    <a class="dropdown-item" href="{% url 'polls:profile' user.id %}">Profile</a>
+                    <a class="dropdown-item" href="/logout/">Sign out</a>
+                </div>
+            </div>
             </ul>
 
-        </div>
+        </nav>
         <!-- END: HEAD NAV -->
 
         <!-- BODY -->
-        <div class="body">
+        <div class="body container">
 
 
             <section class="content" style="min-height: 708px;">
