@@ -22,7 +22,7 @@
 
   {% if success == 1 %}
   <div class="alert alert-success" style="position: fixed; top: 0px;">
-    <strong>Success!</strong> Saved portfolio: {{portfolio}}
+    <strong>Success!</strong> Saved portfolio: <a href="{% url 'polls:portfolio' portfolio.id %}">{{portfolio}}</a>
   </div>
   {% endif %}
 
