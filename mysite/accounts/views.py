@@ -13,11 +13,7 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-
-# class SignUp(generic.CreateView):
-#     form_class = UserCreationForm
-#     success_url = reverse_lazy('login')
-#     template_name = 'signup.html'
+from .models import Investor
 
 def signup(request):
     if request.method == 'POST':
@@ -25,6 +21,10 @@ def signup(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.is_active = True
+            user.save()
+            investor = Investor.objects.create(usd_amt=1000.0, user=user)
+            investor.save()
+            user.investor = investor
             user.save()
             current_site = get_current_site(request)
             mail_subject = 'Activate your coinium account.'

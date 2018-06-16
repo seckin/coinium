@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .models import Choice, Question, Portfolio, Investment
+from accounts.models import Investor
 
 # class UserInline(admin.TabularInline):
 #     model = User
@@ -47,6 +49,23 @@ class InvestmentAdmin(admin.ModelAdmin):
     # inlines = [PortfolioInline]
     list_display = ('owner', 'get_portfolio', 'original_amt', 'btc_amt', 'eth_amt', 'xrp_amt', 'xlm_amt', 'is_active', "created_at", "updated_at")
 
+# Define an inline admin descriptor for Investor model
+# which acts a bit like a singleton
+class InvestorInline(admin.StackedInline):
+    model = Investor
+    can_delete = False
+    verbose_name_plural = 'investor'
+
+# Define a new User admin
+class UserAdmin(BaseUserAdmin):
+    inlines = (InvestorInline, )
+    def usd_amt(self, obj):
+        return obj.investor.usd_amt
+    list_display = ('username', 'usd_amt', 'email', 'first_name', 'last_name', 'is_staff', 'is_active')
+
+# Re-register UserAdmin
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
 
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Portfolio, PortfolioAdmin)
