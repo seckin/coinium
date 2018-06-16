@@ -1,92 +1,121 @@
 {% load static %}
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Highcharts Example</title>
 
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="{% static 'polls/images/coinium.png' %}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Highcharts Example</title>
 
-        <title>Coinium Portfolio Manager</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'polls/images/coinium.png' %}">
 
-        <!-- Bootstrap core CSS -->
-        <link href="{% static 'polls/bootstrap.min.css' %}" rel="stylesheet">
+    <title>Coinium Portfolio Manager</title>
 
-        <style>
-.img-avatar {
-    max-width: 40px;
-    display: inline-block;
-    height: auto;
-    padding: 1px;
-    line-height: 1.428571429;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-}
-.navbar-default.navbar-main .navbar-nav > li > a, .navbar-default.navbar-main .navbar-nav > li > a:hover, .navbar-default.navbar-main .navbar-nav > li > a:focus {
-    color: #393939;
-}
-.dropdown-menu { width: 120px !important; min-width:100px !important; }
-.dropdown-item {    padding: .25rem 1.0rem;}
-        </style>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'polls/bootstrap.min.css' %}" rel="stylesheet">
 
-        <!-- Custom styles for this template -->
-        <link href="{% static 'polls/dashboard.css' %}" rel="stylesheet">
-        <style type="text/css">/* Chart.js */
-    @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
-    </head>
-    <body>
-<!-- 
+    <style>
+    .img-avatar {
+        max-width: 40px;
+        display: inline-block;
+        height: auto;
+        padding: 1px;
+        line-height: 1.428571429;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        -webkit-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+    }
+    .navbar-default.navbar-main .navbar-nav > li > a,
+    .navbar-default.navbar-main .navbar-nav > li > a:hover,
+    .navbar-default.navbar-main .navbar-nav > li > a:focus {
+        color: #393939;
+    }
+    .dropdown-menu {
+        width: 120px !important;
+        min-width: 100px !important;
+    }
+    .dropdown-item {
+        padding: .25rem 1.0rem;
+    }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'polls/dashboard.css' %}" rel="stylesheet">
+    <style type="text/css">
+    /* Chart.js */
+    
+    @-webkit-keyframes chartjs-render-animation {
+        from {
+            opacity: 0.99
+        }
+        to {
+            opacity: 1
+        }
+    }
+    @keyframes chartjs-render-animation {
+        from {
+            opacity: 0.99
+        }
+        to {
+            opacity: 1
+        }
+    }
+    .chartjs-render-monitor {
+        -webkit-animation: chartjs-render-animation 0.001s;
+        animation: chartjs-render-animation 0.001s;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- 
 <script src="../../code/highcharts.js"></script>
 <script src="../../code/highcharts-3d.js"></script>
 <script src="../../code/modules/exporting.js"></script>
 <script src="../../code/modules/export-data.js"></script>
  -->
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="{% static 'polls/bootstrap.min.js' %}"></script>
-<script src="{% static 'polls/highcharts.js' %}"></script>
-<script src="{% static 'polls/highcharts-3d.js' %}"></script>
-<script src="{% static 'polls/exporting.js' %}"></script>
-<script src="{% static 'polls/export-data.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="{% static 'polls/bootstrap.min.js' %}"></script>
+    <script src="{% static 'polls/highcharts.js' %}"></script>
+    <script src="{% static 'polls/highcharts-3d.js' %}"></script>
+    <script src="{% static 'polls/exporting.js' %}"></script>
+    <script src="{% static 'polls/export-data.js' %}"></script>
 
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img width="32" height="32" src="{% static 'polls/images/coinium.png' %}"/> Coinium</a>
-      <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
-      {% if investment_created %}
-      <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
-        <strong>Success!</strong> Investment created!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
-            <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      {% endif %}
-      {% if just_signed_up %}
-      <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
-        Please confirm your email address to complete the registration
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
-            <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      {% endif %}
-      {% if not_enough_usd %}
-      <div class="alert alert-danger" style="top: 0px;margin-bottom:0px;">
-        Not enough balance in account to make this investment.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
-            <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      {% endif %}
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img width="32" height="32" src="{% static 'polls/images/coinium.png' %}" /> Coinium</a>
+        <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+        {% if investment_created %}
+        <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
+            <strong>Success!</strong> Investment created!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %} {% if just_signed_up %}
+        <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
+            Please confirm your email address to complete the registration
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %} {% if not_enough_usd %}
+        <div class="alert alert-danger" style="top: 0px;margin-bottom:0px;">
+            Not enough balance in account to make this investment.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
 
-      <ul class="navbar-nav px-3">
-        <!-- <li class="nav-item text-nowrap">
+        <ul class="navbar-nav px-3">
+            <!-- <li class="nav-item text-nowrap">
           <a class="nav-link" href="/logout/">Sign out</a>
         </li> -->
-        <!-- <li class="dropdown">
+            <!-- <li class="dropdown">
             <a href="#" class="dropdown-toggle avatar pull-right" data-toggle="dropdown">
                 <span class="hidden-small">{{user.username}}<b class="caret"></b></span>
             </a>
@@ -100,54 +129,65 @@
                 </li>
             </ul>
         </li> -->
-        <div class="dropdown show">
-  <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     {{user.username}}
   </a>
 
-  <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute">
-    <a class="dropdown-item" href="{% url 'polls:profile' user.id %}">Profile</a>
-    <a class="dropdown-item" href="/logout/">Sign out</a>
-  </div>
-</div>
-      </ul>
+                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute">
+                    <a class="dropdown-item" href="{% url 'polls:profile' user.id %}">Profile</a>
+                    <a class="dropdown-item" href="/logout/">Sign out</a>
+                </div>
+            </div>
+        </ul>
     </nav>
 
     <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky" style="bottom:100px">
-            <ul class="nav flex-column">
-              {% for portfolio in all_portfolios %}
-              <li class="nav-item">
-                <a class="nav-link active" href="{% url 'polls:portfolio' portfolio.id %}" style="{% if portfolio.id == pk %}color: darkblue; {% endif %}">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-disc"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
-                  {{ portfolio }}
-                </a>
-              </li>
-              {% endfor %}
-            </ul>
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky" style="bottom:100px">
+                    <ul class="nav flex-column">
+                        {% for portfolio in all_portfolios %}
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'polls:portfolio' portfolio.id %}" style="{% if portfolio.id == pk %}color: darkblue; {% endif %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-disc">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                {{ portfolio }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
 
-            <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
               <span>Saved reports</span>
               <a class="d-flex align-items-center text-muted" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
               </a>
             </h6> -->
-          </div>
-        <div>
-          <a href="{% url 'polls:newportfolio' %}">
-            <button class="btn btn-mid btn-info btn-block" style="position: absolute;bottom: 0;left: 0;" type="submit">Create New Portfolio</button>
-          </a>
-        </div>
-      </nav>
-        
+                </div>
+                <div>
+                    <a href="{% url 'polls:newportfolio' %}">
+                        <button class="btn btn-mid btn-info btn-block" style="position: absolute;bottom: 0;left: 0;" type="submit">Create New Portfolio</button>
+                    </a>
+                </div>
+            </nav>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Portfolio: {{ portfolio }}</h1>
 
-            <!-- <div class="btn-toolbar mb-2 mb-md-0">
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                    <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                        <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                    </div>
+                    <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                        <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Portfolio: {{ portfolio }}</h1>
+
+                    <!-- <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
                 <button class="btn btn-sm btn-outline-secondary">Share</button>
                 <button class="btn btn-sm btn-outline-secondary">Export</button>
@@ -157,23 +197,22 @@
                 This week
               </button>
             </div> -->
-            <div class="" style="">
-              <label for="usr" style="float: left;font-size:30px;">$</label>
-              <input type="number" id="usd_amt_id" class="form-control" placeholder="50" id="usr" style="margin-left:5px;width: 100px;float: left;">
-              <button class="btn btn-mid btn-info btn-secondary " id = "mymodalbutton" data-toggle="modal" data-target="#myModal" 
-                style="margin-left:5px;bottom: 0;left: 0;" type="submit">Invest</button>
-            </div>
-          </div>
+                    <div class="" style="">
+                        <label for="usr" style="float: left;font-size:30px;">$</label>
+                        <input type="number" id="usd_amt_id" class="form-control" placeholder="50" id="usr" style="margin-left:5px;width: 100px;float: left;">
+                        <button class="btn btn-mid btn-info btn-secondary " id="mymodalbutton" data-toggle="modal" data-target="#myModal" style="margin-left:5px;bottom: 0;left: 0;" type="submit">Invest</button>
+                    </div>
+                </div>
 
-          <!-- <canvas class="my-4 chartjs-render-monitor" id="myChart" width="2280" height="962" style="display: block; height: 481px; width: 1140px;"></canvas> -->
-          <div id="container" style="height: 400px"></div>
-          <div style="height: 100px;"></div>
-          <div id="container2" style="min-width: 310px; max-width:600px; height: 400px; margin: 0 auto"></div>
+                <!-- <canvas class="my-4 chartjs-render-monitor" id="myChart" width="2280" height="962" style="display: block; height: 481px; width: 1140px;"></canvas> -->
+                <div id="container" style="height: 400px"></div>
+                <div style="height: 100px;"></div>
+                <div id="container2" style="min-width: 310px; max-width:600px; height: 400px; margin: 0 auto"></div>
 
-          <div style="height: 150px;"></div>
-          <!-- <h2>Tweets by Ahmet</h2> -->
-            <div class="table-responsive">
-                <!-- <div id="container3" style="min-width: 310px; max-width:600px; margin: 0 auto">
+                <div style="height: 150px;"></div>
+                <!-- <h2>Tweets by Ahmet</h2> -->
+                <div class="table-responsive">
+                    <!-- <div id="container3" style="min-width: 310px; max-width:600px; margin: 0 auto">
                     <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">What happens when the founder and the hired CEO collide? Epic insight/hindsight <a href="https://twitter.com/johnsculley?ref_src=twsrc%5Etfw">@johnsculley</a> <a href="https://twitter.com/Apple?ref_src=twsrc%5Etfw">@apple</a> <a href="https://t.co/5RhEZ49tgN">https://t.co/5RhEZ49tgN</a></p>&mdash; steve blank (@sgblank) <a href="https://twitter.com/sgblank/status/861472361668722688?ref_src=twsrc%5Etfw">May 8, 2017</a></blockquote>
                     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
@@ -183,205 +222,198 @@
                     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div> -->
 
-                <div class="" style="min-width: 310px; max-width:600px; height: 400px; margin: 0 auto">
-                  <!-- <label for="usr" style="float: left;font-size:30px;">Tweet:</label> -->
-                  <input type="text" id="tweet_text_id" class="form-control" placeholder="I think that EOS will 10x over the next month" style="margin-left:5px;width: 450px;float: left;">
-                  <!-- <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Hi I think that EOS will 10x over the next month" data-url="https://coinium.app" data-via="SeckinCanSahin" data-hashtags="coiniumapp" data-related="" data-show-count="false">Tweet</a> -->
-                  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <div class="" style="min-width: 310px; max-width:600px; height: 400px; margin: 0 auto">
+                        <!-- <label for="usr" style="float: left;font-size:30px;">Tweet:</label> -->
+                        <input type="text" id="tweet_text_id" class="form-control" placeholder="I think that EOS will 10x over the next month" style="margin-left:5px;width: 450px;float: left;">
+                        <!-- <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Hi I think that EOS will 10x over the next month" data-url="https://coinium.app" data-via="SeckinCanSahin" data-hashtags="coiniumapp" data-related="" data-show-count="false">Tweet</a> -->
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-                    <button style="margin-left:10px;" class="btn btn-primary" onclick="tweetIt()">Tweet it!</button>
-                    <script>
-                    function tweetIt () {
-                        if(!$("#tweet_text_id").val()) {
-                            return false;
+                        <button style="margin-left:10px;" class="btn btn-primary" onclick="tweetIt()">Tweet it!</button>
+                        <script>
+                        function tweetIt() {
+                            if (!$("#tweet_text_id").val()) {
+                                return false;
+                            }
+                            var phrase = $("#tweet_text_id").val();
+                            var tweetUrl = 'https://twitter.com/share?text=' +
+                                encodeURIComponent(phrase) +
+                                encodeURIComponent(' #coinium') +
+                                '&url=' +
+                                'https://coinium.app';
+
+                            window.open(tweetUrl);
                         }
-                      var phrase = $("#tweet_text_id").val();
-                      var tweetUrl = 'https://twitter.com/share?text=' +
-                        encodeURIComponent(phrase) +
-                        encodeURIComponent(' #coinium') +
-                        '&url=' +
-                        'https://coinium.app';
-                        
-                      window.open(tweetUrl);
-                    }
-                    </script>
+                        </script>
+                    </div>
                 </div>
-            </div>
-        </main>
-      </div>
+            </main>
+        </div>
     </div>
 
 
-        <script type="text/javascript">
-Highcharts.chart('container', {
-    chart: {
-        type: 'pie',
-        options3d: {
-            enabled: true,
-            alpha: 45
-        }
-    },
-    title: {
-        text: 'Contents of {{portfolio}}'
-    },
-    subtitle: {
-        text: ''
-    },
-    plotOptions: {
-        pie: {
-            innerSize: 100,
-            depth: 45
-        }
-    },
-    series: [{
-        name: 'Percentage',
-        data: [
-            {% if portfolio.btc_pct > 0 %}['Bitcoin: {{portfolio.btc_pct}}%', {{portfolio.btc_pct}}],{% endif %}
-            {% if portfolio.eth_pct > 0 %}['Ethereum: {{portfolio.eth_pct}}%', {{portfolio.eth_pct}}],{% endif %}
-            {% if portfolio.xrp_pct > 0 %}['Ripple: {{portfolio.xrp_pct}}%', {{portfolio.xrp_pct}}],{% endif %}
-            {% if portfolio.xlm_pct > 0 %}['Stellar: {{portfolio.xlm_pct}}%', {{portfolio.xlm_pct}}],{% endif %}
-        ]
-    }]
-});
-        </script>
+    <script type="text/javascript">
+    Highcharts.chart('container', {
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
+            }
+        },
+        title: {
+            text: 'Contents of {{portfolio}}'
+        },
+        subtitle: {
+            text: ''
+        },
+        plotOptions: {
+            pie: {
+                innerSize: 100,
+                depth: 45
+            }
+        },
+        series: [{
+            name: 'Percentage',
+            data: [
+            {% if portfolio.btc_pct > 0 %}['Bitcoin: {{portfolio.btc_pct}}%', {{portfolio.btc_pct}}], {% endif %}
+            {% if portfolio.eth_pct > 0 %}['Ethereum: {{portfolio.eth_pct}}%', {{portfolio.eth_pct}}], {% endif %}
+            {% if portfolio.xrp_pct > 0 %}['Ripple: {{portfolio.xrp_pct}}%', {{portfolio.xrp_pct}}], {% endif %}
+            {% if portfolio.xlm_pct > 0 %}['Stellar: {{portfolio.xlm_pct}}%', {{portfolio.xlm_pct}}], {% endif %}]
+        }]
+    });
+    </script>
 
 
-        <script type="text/javascript">
-
-$(document).ready(function(){
-// setTimeout(function(){ 
-$.getJSON(
-    '{% url 'polls:portfolio_perf' %}',
-    // 'https://cdn.rawgit.com/highcharts/highcharts/057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/usdeur.json',
-    function (data) {
-        Highcharts.chart('container2', {
-            chart: {
-                zoomType: 'x'
-            },
-            title: {
-                text: 'Portfolio value in USD over time'
-            },
-            subtitle: {
-                text: document.ontouchstart === undefined ?
-                        'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
-            },
-            xAxis: {
-                type: 'datetime'
-            },
-            yAxis: {
-                title: {
-                    text: 'Portfolio value in USD'
-                }
-            },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                area: {
-                    fillColor: {
-                        linearGradient: {
-                            x1: 0,
-                            y1: 0,
-                            x2: 0,
-                            y2: 1
-                        },
-                        stops: [
-                            [0, Highcharts.getOptions().colors[0]],
-                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                        ]
+    <script type="text/javascript">
+    $(document).ready(function() {
+        // setTimeout(function(){
+        $.getJSON('{% url "polls:portfolio_perf" %}',
+            // 'https://cdn.rawgit.com/highcharts/highcharts/057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/usdeur.json',
+            function(data) {
+                Highcharts.chart('container2', {
+                    chart: {
+                        zoomType: 'x'
                     },
-                    marker: {
-                        radius: 2
+                    title: {
+                        text: 'Portfolio value in USD over time'
                     },
-                    lineWidth: 1,
-                    states: {
-                        hover: {
-                            lineWidth: 1
+                    subtitle: {
+                        text: document.ontouchstart === undefined ?
+                            'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                    },
+                    xAxis: {
+                        type: 'datetime'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Portfolio value in USD'
                         }
                     },
-                    threshold: null
-                }
-            },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        area: {
+                            fillColor: {
+                                linearGradient: {
+                                    x1: 0,
+                                    y1: 0,
+                                    x2: 0,
+                                    y2: 1
+                                },
+                                stops: [
+                                    [0, Highcharts.getOptions().colors[0]],
+                                    [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                                ]
+                            },
+                            marker: {
+                                radius: 2
+                            },
+                            lineWidth: 1,
+                            states: {
+                                hover: {
+                                    lineWidth: 1
+                                }
+                            },
+                            threshold: null
+                        }
+                    },
 
-            series: [{
-                type: 'area',
-                name: 'Portfolio Value in USD',
-                data: data
-            }]
-        });
-    }
-);
- // }, 3000);
-});
-        </script>
-        <div id="values" style="visibility:hidden;"
-            btc_latest_val="{{btc_latest_val}}"
-            eth_latest_val="{{eth_latest_val}}"
-            xrp_latest_val="{{xrp_latest_val}}"
-            xlm_latest_val="{{xlm_latest_val}}"
-            btc_pct="{{portfolio.btc_pct}}"
-            eth_pct="{{portfolio.eth_pct}}"
-            xrp_pct="{{portfolio.xrp_pct}}"
-            xlm_pct="{{portfolio.xlm_pct}}"
-        ></div>
-        <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
+                    series: [{
+                        type: 'area',
+                        name: 'Portfolio Value in USD',
+                        data: data
+                    }]
+                });
+            }
+        );
+        // }, 3000);
+    });
+    </script>
+    <div id="values" style="visibility:hidden;" btc_latest_val="{{btc_latest_val}}" eth_latest_val="{{eth_latest_val}}" xrp_latest_val="{{xrp_latest_val}}" xlm_latest_val="{{xlm_latest_val}}" btc_pct="{{portfolio.btc_pct}}" eth_pct="{{portfolio.eth_pct}}" xrp_pct="{{portfolio.xrp_pct}}" xlm_pct="{{portfolio.xlm_pct}}"></div>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
-              <div class="modal-header">
-                
-                <h4 class="modal-title">Invest</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-              <div class="modal-body">
-                <p>Bitcoin amount: <span id="btc_amt"></span></p>
-                <p>Ethereum amount: <span id="eth_amt"></span></p>
-                <p>Ripple amount: <span id="xrp_amt"></span></p>
-                <p>Stellar amount: <span id="xlm_amt"></span></p>
-              </div>
-              <div class="modal-footer">
-                <a id="create_investment_id" href="#" class="btn btn-info">Approve Investment</a>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
+                <div class="modal-header">
+
+                    <h4 class="modal-title">Invest</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Bitcoin amount: <span id="btc_amt"></span>
+                    </p>
+                    <p>Ethereum amount: <span id="eth_amt"></span>
+                    </p>
+                    <p>Ripple amount: <span id="xrp_amt"></span>
+                    </p>
+                    <p>Stellar amount: <span id="xlm_amt"></span>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a id="create_investment_id" href="#" class="btn btn-info">Approve Investment</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
 
-          </div>
         </div>
-        <div id="portfolio_id_id" portfolio_id="{{portfolio.id}}"></div>
-        <script>
-            $("#mymodalbutton").click(function(event){
-                if (!$("#usd_amt_id").val()) {
-                    return false;
-                }
-                usd_amt = parseInt($("#usd_amt_id").val());
-                btc_amt = (usd_amt * parseFloat($("#values").attr("btc_pct")) / 100.0) / parseFloat($("#values").attr("btc_latest_val"));
-                btc_amt = btc_amt.toFixed(10);
+    </div>
+    <div id="portfolio_id_id" portfolio_id="{{portfolio.id}}"></div>
+    <script>
+    $("#mymodalbutton").click(function(event) {
+        if (!$("#usd_amt_id").val()) {
+            return false;
+        }
+        usd_amt = parseInt($("#usd_amt_id").val());
+        btc_amt = (usd_amt * parseFloat($("#values").attr("btc_pct")) / 100.0) / parseFloat($("#values").attr("btc_latest_val"));
+        btc_amt = btc_amt.toFixed(10);
 
-                eth_amt = (usd_amt * parseFloat($("#values").attr("eth_pct")) / 100.0) / parseFloat($("#values").attr("eth_latest_val"));
-                eth_amt = eth_amt.toFixed(10);
+        eth_amt = (usd_amt * parseFloat($("#values").attr("eth_pct")) / 100.0) / parseFloat($("#values").attr("eth_latest_val"));
+        eth_amt = eth_amt.toFixed(10);
 
-                xrp_amt = (usd_amt * parseFloat($("#values").attr("xrp_pct")) / 100.0) / parseFloat($("#values").attr("xrp_latest_val"));
-                xrp_amt = xrp_amt.toFixed(10);
+        xrp_amt = (usd_amt * parseFloat($("#values").attr("xrp_pct")) / 100.0) / parseFloat($("#values").attr("xrp_latest_val"));
+        xrp_amt = xrp_amt.toFixed(10);
 
-                xlm_amt = (usd_amt * parseFloat($("#values").attr("xlm_pct")) / 100.0) / parseFloat($("#values").attr("xlm_latest_val"));
-                xlm_amt = xlm_amt.toFixed(10);
-                console.log("btc_amt:", btc_amt);
+        xlm_amt = (usd_amt * parseFloat($("#values").attr("xlm_pct")) / 100.0) / parseFloat($("#values").attr("xlm_latest_val"));
+        xlm_amt = xlm_amt.toFixed(10);
+        console.log("btc_amt:", btc_amt);
 
-                $("#btc_amt").html(btc_amt);
-                $("#eth_amt").html(eth_amt);
-                $("#xrp_amt").html(xrp_amt);
-                $("#xlm_amt").html(xlm_amt);
-                portfolio_id = $("#portfolio_id_id").attr("portfolio_id");
-                href = "/polls/create_investment/" + portfolio_id + "/?usd_amt=" + usd_amt + "&btc_amt=" + btc_amt + "&eth_amt=" + eth_amt + "&xrp_amt=" + xrp_amt + "&xlm_amt=" + xlm_amt;
+        $("#btc_amt").html(btc_amt);
+        $("#eth_amt").html(eth_amt);
+        $("#xrp_amt").html(xrp_amt);
+        $("#xlm_amt").html(xlm_amt);
+        portfolio_id = $("#portfolio_id_id").attr("portfolio_id");
+        href = "/polls/create_investment/" + portfolio_id + "/?usd_amt=" + usd_amt + "&btc_amt=" + btc_amt + "&eth_amt=" + eth_amt + "&xrp_amt=" + xrp_amt + "&xlm_amt=" + xlm_amt;
 
-                console.log("href", href);
-                setTimeout(function(){
-                    $("#create_investment_id").attr("href", href);
-                }, 500);
-                
-            });
-        </script>
-    </body>
+        console.log("href", href);
+        setTimeout(function() {
+            $("#create_investment_id").attr("href", href);
+        }, 500);
+
+    });
+    </script>
+</body>
+
 </html>
