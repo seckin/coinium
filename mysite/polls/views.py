@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 
+from accounts.models import Investor
 from .models import Choice, Question, Portfolio, Investment
 from .forms import PortfolioForm
 import pymysql
@@ -77,6 +78,11 @@ def portfolio(request, pk):
         request.session['just_signed_up'] = False
         just_signed_up = True
 
+    not_enough_usd = False
+    if 'not_enough_usd' in request.session and request.session['not_enough_usd'] == True:
+        request.session['not_enough_usd'] = False
+        not_enough_usd = True
+
     return render(request, 'polls/portfolio.html', {'all_portfolios': all_portfolios, \
         'pk': pk,\
         'portfolio': portfolio,\
@@ -86,10 +92,18 @@ def portfolio(request, pk):
         'xrp_latest_val': xrp_latest_val,\
         'xlm_latest_val': xlm_latest_val,\
         'investment_created': investment_created,\
-        'just_signed_up': just_signed_up\
+        'just_signed_up': just_signed_up,\
+        'not_enough_usd': not_enough_usd\
         })
 
 def create_investment(request, portfolio_id):
+    usd_amt = float(request.GET.get('usd_amt'))
+    if usd_amt > request.user.investor.usd_amt:
+        request.session["not_enough_usd"] = True
+        return redirect("/polls/portfolio/" + str(portfolio_id))
+    else:
+        request.user.investor.usd_amt = float(request.user.investor.usd_amt) - usd_amt
+        request.user.investor.save()
     portfolio = Portfolio.objects.get(pk=portfolio_id)
     investment = Investment.objects.create(portfolio=portfolio,
                               original_amt=request.GET.get('usd_amt'),
@@ -325,7 +339,7 @@ def profile(request, user_id):
 
                 end_of_month_amt = 0.0
                 users_portfolios = Portfolio.objects.filter(owner = user)
-                portfolio_ids = []
+                portfolio_ids = ["-1"]
                 for p in users_portfolios:
                     portfolio_ids.append(str(p.id))
                 portfolio_ids_str = ','.join(portfolio_ids)

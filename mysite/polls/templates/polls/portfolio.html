@@ -73,6 +73,15 @@
         </button>
       </div>
       {% endif %}
+      {% if not_enough_usd %}
+      <div class="alert alert-danger" style="top: 0px;margin-bottom:0px;">
+        Not enough balance in account to make this investment.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %}
+
       <ul class="navbar-nav px-3">
         <!-- <li class="nav-item text-nowrap">
           <a class="nav-link" href="/logout/">Sign out</a>
