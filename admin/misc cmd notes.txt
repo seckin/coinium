@@ -1,8 +1,15 @@
+mysqldump -u root -pco1n23im coinim Spreads > mydb_tables.sql
+mysql -u root -p01990199 coinium < ~/Downloads/mydb_tables.sql
+
+
 scp ~/coinium/graphapi.py root@104.131.139.250:~/graphapi/
+
 
 cmd to start wsgi server:
 root@amineacoin:~/graphapi# source graphapienv/bin/activate
 uwsgi --socket 0.0.0.0:5000 --protocol=http -w wsgi:app
+
+
 
 tables:
 	CREATE TABLE IF NOT EXISTS Spreads (

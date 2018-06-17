@@ -106,7 +106,7 @@
                             <span>This month</span> <b class="caret"></b>
                         </div> -->
                                     </div>
-                                    <h3 class="panel-title">Overall investment performance ({{investments|length}} investments)</h3>
+                                    <h3 class="panel-title">All investments made in and performance of {{user.username}}'s portfolios</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div id="dashboardConversions" class="chart" style="padding: 0px; position: relative;"></div>
@@ -191,7 +191,7 @@
                         <a href="#" class="panel-action"><i class="fa fa-filter"></i></a>
                         <a href="#" class="panel-action"><i class="fa fa-eye"></i></a>
                     </div> -->
-                                    <h3 class="panel-title">Latest Investments by {{user.username}}</h3>
+                                    <h3 class="panel-title">Latest Investments by {{user.username}} ({{investments|length}} investments)</h3>
                                 </div>
                                 <div class="panel-body">
                                     <table class="table table-hover">
@@ -1077,34 +1077,22 @@ jQuery(function() {
                 data: [{
                     label: "New investments",
                     data: [
-                        [1, 46],
-                        [2, 53],
-                        [3, 42],
-                        [4, 45],
-                        [5, 59],
-                        [6, 35],
-                        [7, 39],
-                        [8, 45],
-                        [9, 48],
-                        [10, 57],
-                        [11, 39],
-                        [12, 68]
+                        [1, {{investment_in_month_usd_amt.1}}],
+                        [2, {{investment_in_month_usd_amt.2}}],
+                        [3, {{investment_in_month_usd_amt.3}}],
+                        [4, {{investment_in_month_usd_amt.4}}],
+                        [5, {{investment_in_month_usd_amt.5}}],
+                        [6, {{investment_in_month_usd_amt.6}}]
                     ]
                 }, {
                     label: "Aggregate performance",
                     data: [
-                        [1, 25],
-                        [2, 30],
-                        [3, 33],
-                        [4, 48],
-                        [5, 38],
-                        [6, 40],
-                        [7, 47],
-                        [8, 55],
-                        [9, 43],
-                        [10, 50],
-                        [11, 47],
-                        [12, 39]
+                        [1, {{end_of_month_usd_amt.1}}],
+                        [2, {{end_of_month_usd_amt.2}}],
+                        [3, {{end_of_month_usd_amt.3}}],
+                        [4, {{end_of_month_usd_amt.4}}],
+                        [5, {{end_of_month_usd_amt.5}}],
+                        [6, {{end_of_month_usd_amt.6}}]
                     ]
                 }]
             },
@@ -1122,13 +1110,7 @@ jQuery(function() {
                         [3, {{investment_amts_for_months.3}}],
                         [4, {{investment_amts_for_months.4}}],
                         [5, {{investment_amts_for_months.5}}],
-                        [6, {{investment_amts_for_months.6}}],
-                        [7, {{investment_amts_for_months.7}}],
-                        [8, {{investment_amts_for_months.8}}],
-                        [9, {{investment_amts_for_months.9}}],
-                        [10, {{investment_amts_for_months.10}}],
-                        [11, {{investment_amts_for_months.11}}],
-                        [12, {{investment_amts_for_months.12}}]
+                        [6, {{investment_amts_for_months.6}}]
                     ]
                 }]
             },

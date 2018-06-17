@@ -299,7 +299,7 @@ def profile(request, user_id):
 
     # connection.close()
 
-
+    # investments made to user's portfolios for each month
     connection = pymysql.connect(host='localhost',
                                  user='root',
                                  password='01990199',
@@ -307,6 +307,8 @@ def profile(request, user_id):
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
     investment_amts_for_months = [0.0] * 13
+    all_portfolios_coin_amts_for_individual_months = [[0.0 for i in range(4)] for j in range(13)]
+    end_of_month_coin_prices = [[0.0 for i in range(4)] for j in range(13)]
     try:
         with connection.cursor() as cursor:
             sql = "SELECT MONTH(CURDATE()) as month";
@@ -352,16 +354,55 @@ def profile(request, user_id):
                         float(investment.eth_amt) * eth_latest_val_at_the_end_of_the_month + \
                         float(investment.xrp_amt) * xrp_latest_val_at_the_end_of_the_month + \
                         float(investment.xlm_amt) * xlm_latest_val_at_the_end_of_the_month
-                print("end_of_month_amt", end_of_month_amt, "for i = ", i)
+                    
+                    # print("i = ", i, "cur_month = ", cur_month)
+                    # print("investment:", investment.btc_amt, investment.eth_amt, investment.xrp_amt, investment.xlm_amt)
+                    # print("before all_portfolios_coin_amts_for_individual_months", all_portfolios_coin_amts_for_individual_months)
+                    all_portfolios_coin_amts_for_individual_months[cur_month - i][0] += float(investment.btc_amt)
+                    all_portfolios_coin_amts_for_individual_months[cur_month - i][1] += float(investment.eth_amt)
+                    all_portfolios_coin_amts_for_individual_months[cur_month - i][2] += float(investment.xrp_amt)
+                    all_portfolios_coin_amts_for_individual_months[cur_month - i][3] += float(investment.xlm_amt)
+                    # print("after all_portfolios_coin_amts_for_individual_months", all_portfolios_coin_amts_for_individual_months)
+                end_of_month_coin_prices[cur_month - i][0] = btc_latest_val_at_the_end_of_the_month
+                end_of_month_coin_prices[cur_month - i][1] = eth_latest_val_at_the_end_of_the_month
+                end_of_month_coin_prices[cur_month - i][2] = xrp_latest_val_at_the_end_of_the_month
+                end_of_month_coin_prices[cur_month - i][3] = xlm_latest_val_at_the_end_of_the_month
+                # print("end_of_month_amt", end_of_month_amt, "for i = ", i)
+
                 investment_amts_for_months[cur_month - i] = end_of_month_amt
 
     finally:
         connection.close()
         pass
 
+    # user's portfolios investments and performances over months
+    all_portfolios_coin_amts_till_month = [[0.0 for i in range(4)] for j in range(13)]
+    end_of_month_usd_amt = [0.0 for i in range(13)]
+    investment_in_month_usd_amt = [0.0 for i in range(13)]
+    # print("all_portfolios_coin_amts_for_individual_months", all_portfolios_coin_amts_for_individual_months)
+    for i in range(1,13):
+        all_portfolios_coin_amts_till_month[i][0] = all_portfolios_coin_amts_till_month[i-1][0] + all_portfolios_coin_amts_for_individual_months[i][0]
+        all_portfolios_coin_amts_till_month[i][1] = all_portfolios_coin_amts_till_month[i-1][1] + all_portfolios_coin_amts_for_individual_months[i][1]
+        all_portfolios_coin_amts_till_month[i][2] = all_portfolios_coin_amts_till_month[i-1][2] + all_portfolios_coin_amts_for_individual_months[i][2]
+        all_portfolios_coin_amts_till_month[i][3] = all_portfolios_coin_amts_till_month[i-1][3] + all_portfolios_coin_amts_for_individual_months[i][3]
+        end_of_month_usd_amt[i] = all_portfolios_coin_amts_till_month[i][0] * end_of_month_coin_prices[i][0] + \
+                                  all_portfolios_coin_amts_till_month[i][1] * end_of_month_coin_prices[i][1] + \
+                                  all_portfolios_coin_amts_till_month[i][2] * end_of_month_coin_prices[i][2] + \
+                                  all_portfolios_coin_amts_till_month[i][3] * end_of_month_coin_prices[i][3]
+        investment_in_month_usd_amt[i] = all_portfolios_coin_amts_for_individual_months[i][0] * end_of_month_coin_prices[i][0] + \
+                                         all_portfolios_coin_amts_for_individual_months[i][1] * end_of_month_coin_prices[i][1] + \
+                                         all_portfolios_coin_amts_for_individual_months[i][2] * end_of_month_coin_prices[i][2] + \
+                                         all_portfolios_coin_amts_for_individual_months[i][3] * end_of_month_coin_prices[i][3]
+        #hack:
+        end_of_month_usd_amt[i] -= investment_in_month_usd_amt[i]
+    # print("all_portfolios_coin_amts_till_month", all_portfolios_coin_amts_till_month)
+    # print("end_of_month_usd_amt", end_of_month_usd_amt)
+    # print("investment_in_month_usd_amt", investment_in_month_usd_amt)
     return render(request, 'polls/profile.html', {"user": user, "investments": investments, \
         "investments_with_amts": investments_with_amts,\
         "investment_amts_for_months": investment_amts_for_months,\
+        "end_of_month_usd_amt": end_of_month_usd_amt,\
+        "investment_in_month_usd_amt": investment_in_month_usd_amt,\
         "total_pv_val": total_pv_val,\
         "total_btc": total_btc,\
         "total_eth": total_eth,\
