@@ -8,14 +8,14 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect
 
 from accounts.models import Investor
-from .models import Choice, Question, Portfolio, Investment
+from .models import Choice, Question, Portfolio, Investment, EmbeddedTweet
 from .forms import PortfolioForm
 import pymysql
 import pymysql.cursors
 import decimal
 import time
 import datetime
-
+import requests
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -83,6 +83,13 @@ def portfolio(request, pk):
         request.session['not_enough_usd'] = False
         not_enough_usd = True
 
+    tweet_embedded = False
+    if 'tweet_embedded' in request.session and request.session['tweet_embedded'] == True:
+        request.session['tweet_embedded'] = False
+        tweet_embedded = True
+
+    embedded_tweets = EmbeddedTweet.objects.filter(portfolio=portfolio)
+
     return render(request, 'polls/portfolio.html', {'all_portfolios': all_portfolios, \
         'pk': pk,\
         'portfolio': portfolio,\
@@ -93,7 +100,9 @@ def portfolio(request, pk):
         'xlm_latest_val': xlm_latest_val,\
         'investment_created': investment_created,\
         'just_signed_up': just_signed_up,\
-        'not_enough_usd': not_enough_usd\
+        'not_enough_usd': not_enough_usd,\
+        'tweet_embedded': tweet_embedded,\
+        'embedded_tweets': embedded_tweets\
         })
 
 def create_investment(request, portfolio_id):
@@ -398,6 +407,7 @@ def profile(request, user_id):
     # print("all_portfolios_coin_amts_till_month", all_portfolios_coin_amts_till_month)
     # print("end_of_month_usd_amt", end_of_month_usd_amt)
     # print("investment_in_month_usd_amt", investment_in_month_usd_amt)
+
     return render(request, 'polls/profile.html', {"user": user, "investments": investments, \
         "investments_with_amts": investments_with_amts,\
         "investment_amts_for_months": investment_amts_for_months,\
@@ -417,3 +427,15 @@ def profile(request, user_id):
         "xrp_pct": xrp_pct,\
         "xlm_pct": xlm_pct})
 
+def embed_tweet(request, portfolio_id):
+    portfolio = Portfolio.objects.get(pk=portfolio_id)
+    if portfolio.owner.id == request.user.id:
+        url = request.GET.get('url')
+        r = requests.get('https://api.twitter.com/1/statuses/oembed.json?url=' + url)
+        res_json = r.json()
+        EmbeddedTweet.objects.create(portfolio = portfolio,
+                                     owner = request.user,
+                                     url = url,
+                                     embed_code = res_json['html'])
+        request.session["tweet_embedded"] = True
+    return redirect("/polls/portfolio/" + str(portfolio_id))

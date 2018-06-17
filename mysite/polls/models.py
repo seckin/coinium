@@ -49,3 +49,11 @@ class Investment(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.portfolio.portfolio_name + " " + str(self.btc_amt) + " " + str(self.eth_amt) + " " + str(self.xrp_amt) + " " + str(self.xlm_amt)
+
+class EmbeddedTweet(models.Model):
+    portfolio = models.ForeignKey(Portfolio, editable=False, on_delete=models.PROTECT)
+    owner = models.ForeignKey(User, editable=False, on_delete=models.PROTECT)
+    url = models.CharField(max_length=250)
+    embed_code = models.CharField(max_length=2000)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

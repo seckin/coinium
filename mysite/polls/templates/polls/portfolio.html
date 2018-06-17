@@ -39,6 +39,16 @@
     .dropdown-item {
         padding: .25rem 1.0rem;
     }
+    .navbar-brand {
+        color: #e2e2e2;
+    }
+    .brand {
+        padding-top: 3px;
+        font-size: 21px;
+        position: absolute;
+        display: inline;
+        padding-left: 5px;
+    }
     </style>
 
     <!-- Custom styles for this template -->
@@ -78,7 +88,7 @@
     <script src="{% static 'polls/export-data.js' %}"></script>
 
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img width="32" height="32" src="{% static 'polls/images/coinium.png' %}" /> Coinium</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img width="32" height="32" src="{% static 'polls/images/coinium.png' %}" /> <div class="brand">Coinium</div></a>
         <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
         {% if investment_created %}
         <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
@@ -87,16 +97,26 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        {% endif %} {% if just_signed_up %}
+        {% endif %}
+        {% if just_signed_up %}
         <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
             Please confirm your email address to complete the registration
             <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        {% endif %} {% if not_enough_usd %}
+        {% endif %}
+        {% if not_enough_usd %}
         <div class="alert alert-danger" style="top: 0px;margin-bottom:0px;">
             Not enough balance in account to make this investment.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+        {% if tweet_embedded %}
+        <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
+            <strong>Success!</strong> Tweet embedded!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -158,12 +178,13 @@
 
                 <div id="container" style="height: 400px"></div>
                 <div style="height: 100px;"></div>
-                <div id="container2" style="min-width: 310px; max-width:600px; height: 400px; margin: 0 auto"></div>
+                <div id="container2" style="min-width: 310px; max-width:800px; height: 400px; margin: 0 auto"></div>
 
                 <div style="height: 150px;"></div>
                 <!-- <h2>Tweets by Ahmet</h2> -->
-                <div class="table-responsive">
-                    <div class="" style="min-width: 310px; max-width:600px; height: 400px; margin: 0 auto">
+                <div class="container table-responsive" style="min-width: 310px; max-width:620px;margin: 0 auto">
+
+                    <div class="" style="min-width: 310px; max-width:620px; margin: 0 auto">
                         <input type="text" id="tweet_text_id" class="form-control" placeholder="I think that EOS will 10x over the next month" style="margin-left:5px;width: 450px;float: left;">
                         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
@@ -183,8 +204,54 @@
                             window.open(tweetUrl);
                         }
                         </script>
+
+                        <div>
+                            <input type="text" id="embedCode" class="form-control" placeholder="" style="margin-left:5px;width: 450px;float: left;visibility:hidden;">
+                        </div>
                     </div>
                 </div>
+                <div class="container" style="min-width: 310px; max-width:600px; margin: 0 auto">
+                    {% for embedded_tweet in embedded_tweets %}
+                        {{embedded_tweet.embed_code|safe}}
+                    {% endfor %}
+                </div>
+                {% if portfolio.owner.id == user.id %}
+                <div style="height:60px"></div>
+                <div class="container" style="min-width: 310px; max-width:600px; margin: 0 auto">
+                    <span>{{user.username}}, embed a tweet by pasting the tweet url below:</span>
+                    <input type="text" id="tweetLink" class="form-control" placeholder="https://twitter.com/btaylor/status/970010441702260736" style="width: 600px;float: left;">
+                </div>
+                <div style="height: 60px;"></div>
+                <div class="container" style="min-width: 310px; max-width:600px; margin: 0 auto">
+                    <div id="tweet_preview_id" class="d-none">Preview:</div>
+                    <div id="preview"></div>
+                    <script>
+                    $('#tweetLink').on('input', function() {
+                        var url = $('#tweetLink').val();
+                        if(url) {
+                            $.ajax({
+                                url: "https://api.twitter.com/1/statuses/oembed.json?url="+url,
+                                dataType: "jsonp",
+                                async: false,
+                                success: function(data){
+                                    $("#embedCode").val(data.html);
+                                    $("#preview").html(data.html);
+                                    $("#approve_tweet_id").removeClass("d-none");
+                                    $("#tweet_preview_id").removeClass("d-none");
+                                }
+                            });
+                        }
+                    });
+                    function saveTweet(){
+                        var url = $('#tweetLink').val();
+                        document.location = "/polls/tweetembed/{{portfolio.id}}/?url="+url;
+                    }
+                    </script>
+                    <button id="approve_tweet_id" style="margin-left:10px;" class="btn btn-primary d-none" onclick="saveTweet();">Approve</button>
+                </div>
+                {% endif %}
+                <div style="height: 100px;"></div>
+
             </main>
         </div>
     </div>
