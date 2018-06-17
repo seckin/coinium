@@ -122,7 +122,7 @@
                     <ul class="nav flex-column">
                         {% for portfolio in all_portfolios %}
                         <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'polls:portfolio' portfolio.id %}" style="{% if portfolio.id == pk %}color: darkblue; {% endif %}">
+                            <a class="nav-link {% if portfolio.id == pk %}active{% endif %}" href="{% url 'polls:portfolio' portfolio.id %}" style="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-disc">
                                     <circle cx="12" cy="12" r="10" />
                                     <circle cx="12" cy="12" r="3" />
