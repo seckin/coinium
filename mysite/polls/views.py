@@ -157,7 +157,8 @@ def newportfolio(request):
         form = PortfolioForm()
     return render(request, 'polls/new_portfolio.html', {'form': form, 'success': success, 'portfolio': portfolio})
 
-def portfolio_perf(request):
+def portfolio_perf(request, portfolio_id):
+    portfolio = Portfolio.objects.get(pk = portfolio_id)
     if request.method == 'GET':
         connection = pymysql.connect(host='localhost',
                                  user='root',
@@ -167,10 +168,10 @@ def portfolio_perf(request):
                                  cursorclass=pymysql.cursors.DictCursor)
         try:
             with connection.cursor() as cursor:
-                pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
-                pair_pcts = [0.30, 0.30, 0.40]
+                pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD', 'XXLMZUSD']
+                pair_pcts = [float(portfolio.btc_pct) / 100.0, float(portfolio.eth_pct) / 100, float(portfolio.xrp_pct) / 100, float(portfolio.xlm_pct) / 100]
                 # pair_pcts = [list_has_distributions[0]["btc"] / 100.0, list_has_distributions[0]["eth"] / 100.0, list_has_distributions[0]["xrp"] / 100.0]
-                pair_first_vals = [-1, -1, -1]
+                pair_first_vals = [-1, -1, -1, -1]
                 aggr_appreciation_in_pcts = []
                 # print("list['created_at']", list['created_at'])
                 #start_from_timestamp = time.mktime(datetime.datetime.strptime(list['created_at'], "%Y-%m-%d %H:%M:%S").timetuple())
@@ -203,7 +204,12 @@ group by created_at div 100;"""
                 for i in range(1, len(spreads_for_pair[pairs[0]])):
                     appreciation = 0.0
                     for j in range(len(pairs)):
-                        appreciation += pair_pcts[j] * (spreads_for_pair[pairs[j]][i]["price"] / spreads_for_pair[pairs[j]][0]["price"])
+                        # hack for missing stellar pricing data
+                        if i >= len(spreads_for_pair[pairs[j]]):
+                            px = 0.5
+                        else:
+                            px = spreads_for_pair[pairs[j]][i]["price"]
+                        appreciation += pair_pcts[j] * (px / spreads_for_pair[pairs[j]][0]["price"])
                     tm = spreads_for_pair[pairs[0]][i]["time"]
                     tmstmp = round(time.mktime(tm.timetuple()) * 1000)
                     appreciations.append([tmstmp, appreciation])
@@ -318,6 +324,7 @@ def profile(request, user_id):
     investment_amts_for_months = [0.0] * 13
     all_portfolios_coin_amts_for_individual_months = [[0.0 for i in range(4)] for j in range(13)]
     end_of_month_coin_prices = [[0.0 for i in range(4)] for j in range(13)]
+    cur_month = 0
     try:
         with connection.cursor() as cursor:
             sql = "SELECT MONTH(CURDATE()) as month";
@@ -408,11 +415,24 @@ def profile(request, user_id):
     # print("end_of_month_usd_amt", end_of_month_usd_amt)
     # print("investment_in_month_usd_amt", investment_in_month_usd_amt)
 
-    return render(request, 'polls/profile.html', {"user": user, "investments": investments, \
+    # bottom right - all investments by user
+    all_investments_by_user_in_original_usd_amt_in_month = [0 for x in range(13)]
+    for i in range(0, 3):
+        for investment in Investment.objects.raw("SELECT * \
+                                              FROM polls_investment \
+                                              WHERE YEAR(created_at) = YEAR(DATE_SUB(CURDATE(), INTERVAL " + str(i) + " MONTH)) \
+                                              AND MONTH(created_at) = MONTH(DATE_SUB(CURDATE(), INTERVAL " + str(i) + " MONTH)) \
+                                              AND owner_id = " + str(user.id)):
+            all_investments_by_user_in_original_usd_amt_in_month[cur_month - i] += investment.original_amt
+            
+
+    request_user = request.user;
+    return render(request, 'polls/profile.html', {"user": user, "request_user": request_user, "investments": investments, \
         "investments_with_amts": investments_with_amts,\
         "investment_amts_for_months": investment_amts_for_months,\
         "end_of_month_usd_amt": end_of_month_usd_amt,\
         "investment_in_month_usd_amt": investment_in_month_usd_amt,\
+        "all_investments_by_user_in_original_usd_amt_in_month": all_investments_by_user_in_original_usd_amt_in_month,\
         "total_pv_val": total_pv_val,\
         "total_btc": total_btc,\
         "total_eth": total_eth,\

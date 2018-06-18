@@ -64,7 +64,7 @@
 
             <ul class="navbar-nav px-3">
                 <div class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
+                <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request_user.username}}</a>
 
                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute">
                     <a class="dropdown-item" href="{% url 'polls:profile' user.id %}">Profile</a>
@@ -89,7 +89,10 @@
                 <div class="header">
                     <div class="col-md-12">
                         <h3 class="header-title">{{user.username}}'s Profile</h3>
-                        <p class="header-info">Overview and latest statistics</p>
+                        <p class="header-info" style="display:inline;">Overview and latest statistics</p>
+                        {% if user.id == request_user.id %}
+                        <div style="float:right;">Account balance: ${{user.investor.usd_amt}}</div>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -106,7 +109,7 @@
                             <span>This month</span> <b class="caret"></b>
                         </div> -->
                                     </div>
-                                    <h3 class="panel-title">All investments made in and performance of {{user.username}}'s portfolios</h3>
+                                    <h3 class="panel-title">All investments made in, and performance of portfolios created by {{user.username}}</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div id="dashboardConversions" class="chart" style="padding: 0px; position: relative;"></div>
@@ -156,7 +159,7 @@
                                             }
                                         },
                                         title: {
-                                            text: 'Aggregate contents of all investments'
+                                            text: 'Contents of all investments'
                                         },
                                         subtitle: {
                                             text: ''
@@ -191,7 +194,7 @@
                         <a href="#" class="panel-action"><i class="fa fa-filter"></i></a>
                         <a href="#" class="panel-action"><i class="fa fa-eye"></i></a>
                     </div> -->
-                                    <h3 class="panel-title">Latest Investments by {{user.username}} ({{investments|length}} investments)</h3>
+                                    <h3 class="panel-title">Latest Investments ({{investments|length}} investments)</h3>
                                 </div>
                                 <div class="panel-body">
                                     <table class="table table-hover">
@@ -207,7 +210,7 @@
                                             {% for investment_with_amt in investments_with_amts %}
                                             <tr>
                                                 <td>#{{investment_with_amt.0.id}}</td>
-                                                <td>{{investment_with_amt.0.portfolio}}</td>
+                                                <td><a href="/polls/portfolio/{{investment_with_amt.0.portfolio.id}}">{{investment_with_amt.0.portfolio}}</a></td>
                                                 <td>${{investment_with_amt.0.original_amt}}</td>
                                                 <td>{% if investment_with_amt.0.is_active %}<span class="label label-primary">ACTIVE</span>{% endif %}
                                                 {% if investment_with_amt.0.is_active == False %}<span class="label label-warning">PROCESSING</span>{% endif %}
@@ -222,7 +225,7 @@
                         <div class="col-md-6">
                             <div class="panel ">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Investments made to {{user.username}}'s portfolios</h3>
+                                    <h3 class="panel-title">Investments made by {{user.username}} over the months</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div id="dashboardInvestments" class="chart" style="padding: 0px; position: relative;"></div>
@@ -1085,7 +1088,7 @@ jQuery(function() {
                         [6, {{investment_in_month_usd_amt.6}}]
                     ]
                 }, {
-                    label: "Aggregate performance",
+                    label: "Total capital under management",
                     data: [
                         [1, {{end_of_month_usd_amt.1}}],
                         [2, {{end_of_month_usd_amt.2}}],
@@ -1105,12 +1108,12 @@ jQuery(function() {
                 data: [{
                     label: "Investments in USD",
                     data: [
-                        [1, {{investment_amts_for_months.1}}],
-                        [2, {{investment_amts_for_months.2}}],
-                        [3, {{investment_amts_for_months.3}}],
-                        [4, {{investment_amts_for_months.4}}],
-                        [5, {{investment_amts_for_months.5}}],
-                        [6, {{investment_amts_for_months.6}}]
+                        [1, {{all_investments_by_user_in_original_usd_amt_in_month.1}}],
+                        [2, {{all_investments_by_user_in_original_usd_amt_in_month.2}}],
+                        [3, {{all_investments_by_user_in_original_usd_amt_in_month.3}}],
+                        [4, {{all_investments_by_user_in_original_usd_amt_in_month.4}}],
+                        [5, {{all_investments_by_user_in_original_usd_amt_in_month.5}}],
+                        [6, {{all_investments_by_user_in_original_usd_amt_in_month.6}}]
                     ]
                 }]
             },

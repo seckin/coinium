@@ -199,7 +199,7 @@
                                 encodeURIComponent(phrase) +
                                 encodeURIComponent(' #coinium') +
                                 '&url=' +
-                                'https://coinium.app';
+                                'https://coinium.app/polls/portfolio/{{portfolio.id}}';
 
                             window.open(tweetUrl);
                         }
@@ -293,7 +293,7 @@
     <script type="text/javascript">
     $(document).ready(function() {
         // setTimeout(function(){
-        $.getJSON('{% url "polls:portfolio_perf" %}',
+        $.getJSON('{% url "polls:portfolio_perf" portfolio.id %}',
             // 'https://cdn.rawgit.com/highcharts/highcharts/057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/usdeur.json',
             function(data) {
                 Highcharts.chart('container2', {
