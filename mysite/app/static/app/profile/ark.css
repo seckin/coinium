@@ -634,14 +634,6 @@ a:focus {
 /*
  * Buttons
  */
-.btn {
-  font-size: inherit;
-  border: none;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  position: relative;
-}
 .btn.sr-only {
   position: absolute;
 }
