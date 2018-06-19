@@ -16,6 +16,7 @@ import decimal
 import time
 import datetime
 import requests
+from django.conf import settings
 
 class IndexView(generic.ListView):
     template_name = 'app/index.html'
@@ -47,8 +48,8 @@ def portfolio(request, pk):
     # get latest valuations to embed in the page
     connection = pymysql.connect(host='localhost',
                                  user='root',
-                                 password='01990199',
-                                 db='coinium',
+                                 password=settings.SPREADS_DB_PASSWD,
+                                 db=settings.SPREADS_DB_NAME,
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
     try:
@@ -164,8 +165,8 @@ def portfolio_perf(request, portfolio_id):
     if request.method == 'GET':
         connection = pymysql.connect(host='localhost',
                                  user='root',
-                                 password='01990199',
-                                 db='coinium',
+                                 password=settings.SPREADS_DB_PASSWD,
+                                 db=settings.SPREADS_DB_NAME,
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
         try:
@@ -241,8 +242,8 @@ def profile(request, user_id):
     # get latest valuations
     connection = pymysql.connect(host='localhost',
                                  user='root',
-                                 password='01990199',
-                                 db='coinium',
+                                 password=settings.SPREADS_DB_PASSWD,
+                                 db=settings.SPREADS_DB_NAME,
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
     try:
@@ -284,8 +285,8 @@ def profile(request, user_id):
     investments_with_amts = []
     # connection = pymysql.connect(host='localhost',
     #                              user='root',
-    #                              password='01990199',
-    #                              db='coinium',
+    #                              password=settings.SPREADS_DB_PASSWD,
+    #                              db=settings.SPREADS_DB_NAME,
     #                              charset='utf8mb4',
     #                              cursorclass=pymysql.cursors.DictCursor)
     for investment in investments:
@@ -320,8 +321,8 @@ def profile(request, user_id):
     # investments made to user's portfolios for each month
     connection = pymysql.connect(host='localhost',
                                  user='root',
-                                 password='01990199',
-                                 db='coinium',
+                                 password=settings.SPREADS_DB_PASSWD,
+                                 db=settings.SPREADS_DB_NAME,
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
     investment_amts_for_months = [0.0] * 13
