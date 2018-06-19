@@ -40,6 +40,7 @@ class ResultsView(generic.DetailView):
     template_name = 'polls/results.html'
 
 def portfolio(request, pk):
+    user = request.user
     all_portfolios = Portfolio.objects.all()
     portfolio = Portfolio.objects.get(pk=pk)
 
@@ -92,6 +93,7 @@ def portfolio(request, pk):
 
     return render(request, 'polls/portfolio.html', {'all_portfolios': all_portfolios, \
         'pk': pk,\
+        'user': user,\
         'portfolio': portfolio,\
         'user': request.user,\
         'btc_latest_val': btc_latest_val,\
@@ -189,9 +191,9 @@ def portfolio_perf(request, portfolio_id):
                 spreads_idx_for_pair = dict()
                 for pair in pairs:
                     #sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
-                    sql = """select round(avg((bestbid + bestask) / 2 ),3) as price, convert((min(created_at) div 100)*100, datetime) as time
-from Spreads where coin = %s and created_at >= '2018-05-19 04:12:14' AND created_at <= '2018-05-25 04:12:14'
-group by created_at div 100;"""
+                    sql = """select round(avg((bestbid + bestask) / 2 ),3) as price, convert((min(created_at) div 500)*500, datetime) as time
+from Spreads where coin = %s and created_at >= DATE_SUB(curdate(), INTERVAL 6 WEEK)
+group by created_at div 500;"""
                     cursor.execute(sql, (pair,))
                     spreads = cursor.fetchall()
                     spreads_for_pair[pair] = spreads
@@ -205,10 +207,11 @@ group by created_at div 100;"""
                     appreciation = 0.0
                     for j in range(len(pairs)):
                         # hack for missing stellar pricing data
-                        if i >= len(spreads_for_pair[pairs[j]]):
+                        if j == 3 and i >= len(spreads_for_pair[pairs[j]]):
                             px = 0.5
                         else:
                             px = spreads_for_pair[pairs[j]][i]["price"]
+                        # print ("i", i, "px", px)
                         appreciation += pair_pcts[j] * (px / spreads_for_pair[pairs[j]][0]["price"])
                     tm = spreads_for_pair[pairs[0]][i]["time"]
                     tmstmp = round(time.mktime(tm.timetuple()) * 1000)
@@ -426,6 +429,12 @@ def profile(request, user_id):
             all_investments_by_user_in_original_usd_amt_in_month[cur_month - i] += investment.original_amt
             
 
+    total_investment_usd_amt = total_btc * end_of_month_coin_prices[cur_month][0] + \
+                               total_eth * end_of_month_coin_prices[cur_month][1] + \
+                               total_xrp * end_of_month_coin_prices[cur_month][2] + \
+                               total_xlm * end_of_month_coin_prices[cur_month][3]
+    total_investment_usd_amt = round(total_investment_usd_amt, 2)
+
     request_user = request.user;
     return render(request, 'polls/profile.html', {"user": user, "request_user": request_user, "investments": investments, \
         "investments_with_amts": investments_with_amts,\
@@ -433,6 +442,7 @@ def profile(request, user_id):
         "end_of_month_usd_amt": end_of_month_usd_amt,\
         "investment_in_month_usd_amt": investment_in_month_usd_amt,\
         "all_investments_by_user_in_original_usd_amt_in_month": all_investments_by_user_in_original_usd_amt_in_month,\
+        "total_investment_usd_amt": total_investment_usd_amt,\
         "total_pv_val": total_pv_val,\
         "total_btc": total_btc,\
         "total_eth": total_eth,\

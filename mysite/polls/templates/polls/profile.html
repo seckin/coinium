@@ -90,9 +90,12 @@
                     <div class="col-md-12">
                         <h3 class="header-title">{{user.username}}'s Profile</h3>
                         <p class="header-info" style="display:inline;">Overview and latest statistics</p>
-                        {% if user.id == request_user.id %}
-                        <div style="float:right;">Account balance: ${{user.investor.usd_amt}}</div>
-                        {% endif %}
+                        <div style="float:right;">
+                            {% if user.id == request_user.id %}
+                            <div>USD balance: <div style="float:right;font-weight: bold;">${{user.investor.usd_amt}}</div></div>
+                            {% endif %}
+                            <div>Total investment value: <div style="margin-left:15px;float:right;font-weight: bold;">${{total_investment_usd_amt}}</div></div>
+                        </div>
                     </div>
                 </div>
 
