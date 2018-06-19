@@ -42,7 +42,7 @@ def signup(request):
             request.session['just_signed_up'] = True
             # user.is_active = True
             login(request, user)
-            return redirect("/polls/portfolio/1")
+            return redirect("/app/portfolio/1")
             # return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = SignupForm()
@@ -58,7 +58,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        return redirect("/polls/portfolio/1")
+        return redirect("/app/portfolio/1")
         # return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         return HttpResponse('Activation link is invalid!')

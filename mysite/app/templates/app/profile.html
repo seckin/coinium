@@ -9,31 +9,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>{{user.username}}'s Profile</title>
-    <link rel="icon" href="{% static 'polls/images/coinium.png' %}">
+    <link rel="icon" href="{% static 'app/images/coinium.png' %}">
 
     <!-- CSS -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css">
-    <link href="{% static 'polls/profile/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'polls/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'polls/profile/jasny-bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'app/profile/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'app/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'app/profile/jasny-bootstrap.min.css' %}" rel="stylesheet">
     <!--<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />-->
-    <link href="{% static 'polls/profile/font-awesome.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'polls/profile/daterangepicker-bs3.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'polls/profile/datepicker.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'polls/profile/select2.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'polls/profile/select2-bootstrap.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'polls/profile/uniform.default.min.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'polls/profile/prettify.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'polls/profile/fullcalendar.css' %}" rel="stylesheet">
-    <link href="{% static 'polls/profile/fullcalendar.print.css' %}" rel="stylesheet" media="print">
-    <link href="{% static 'polls/profile/jquery.dataTables.min.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'polls/profile/ark.css' %}" rel="stylesheet" type="text/css">
-    <script src="{% static 'polls/profile/jquery.min.js' %}"></script>
-    <script src="{% static 'polls/highcharts.js' %}"></script>
-    <script src="{% static 'polls/highcharts-3d.js' %}"></script>
+    <link href="{% static 'app/profile/font-awesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'app/profile/daterangepicker-bs3.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'app/profile/datepicker.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'app/profile/select2.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'app/profile/select2-bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'app/profile/uniform.default.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'app/profile/prettify.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'app/profile/fullcalendar.css' %}" rel="stylesheet">
+    <link href="{% static 'app/profile/fullcalendar.print.css' %}" rel="stylesheet" media="print">
+    <link href="{% static 'app/profile/jquery.dataTables.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'app/profile/ark.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'app/profile/jquery.min.js' %}"></script>
+    <script src="{% static 'app/highcharts.js' %}"></script>
+    <script src="{% static 'app/highcharts-3d.js' %}"></script>
 
     <!-- Remove this line on production-->
-    <link href="{% static 'polls/profile/examples.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'app/profile/examples.css' %}" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,9 +50,9 @@
         border-radius: 0px;
     }
     </style>
-    <script type="text/javascript" charset="UTF-8" src="{% static 'polls/profile/common.js' %}"></script>
-    <script type="text/javascript" charset="UTF-8" src="{% static 'polls/profile/util.js' %}"></script>
-    <script type="text/javascript" charset="UTF-8" src="{% static 'polls/profile/stats.js' %}"></script>
+    <script type="text/javascript" charset="UTF-8" src="{% static 'app/profile/common.js' %}"></script>
+    <script type="text/javascript" charset="UTF-8" src="{% static 'app/profile/util.js' %}"></script>
+    <script type="text/javascript" charset="UTF-8" src="{% static 'app/profile/stats.js' %}"></script>
 </head>
 
 <body class="cover">
@@ -67,7 +67,7 @@
                 <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request_user.username}}</a>
 
                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute">
-                    <a class="dropdown-item" href="{% url 'polls:profile' user.id %}">Profile</a>
+                    <a class="dropdown-item" href="{% url 'app:profile' user.id %}">Profile</a>
                     <a class="dropdown-item" href="/logout/">Sign out</a>
                 </div>
             </div>
@@ -213,7 +213,7 @@
                                             {% for investment_with_amt in investments_with_amts %}
                                             <tr>
                                                 <td>#{{investment_with_amt.0.id}}</td>
-                                                <td><a href="/polls/portfolio/{{investment_with_amt.0.portfolio.id}}">{{investment_with_amt.0.portfolio}}</a></td>
+                                                <td><a href="/app/portfolio/{{investment_with_amt.0.portfolio.id}}">{{investment_with_amt.0.portfolio}}</a></td>
                                                 <td>${{investment_with_amt.0.original_amt}}</td>
                                                 <td>{% if investment_with_amt.0.is_active %}<span class="label label-primary">ACTIVE</span>{% endif %}
                                                 {% if investment_with_amt.0.is_active == False %}<span class="label label-warning">PROCESSING</span>{% endif %}
@@ -247,29 +247,29 @@
     <!-- JS -->
     <script async="" src="//www.google-analytics.com/analytics.js"></script>
 
-    <script src="{% static 'polls/profile/jquery-ui.min.js' %}"></script>
-    <script src="{% static 'polls/profile/jquery.uniform.min.js' %}"></script>
-    <script src="{% static 'polls/profile/bootstrap.min.js' %}"></script>
-    <script src="{% static 'polls/profile/jasny-bootstrap.min.js' %}"></script>
-    <script src="{% static 'polls/profile/jquery.autosize.min.js' %}"></script>
-    <script src="{% static 'polls/profile/moment.min.js' %}"></script>
-    <script src="{% static 'polls/profile/daterangepicker.js' %}"></script>
-    <script src="{% static 'polls/profile/bootstrap-datepicker.js' %}"></script>
-    <script src="{% static 'polls/profile/dropzone.min.js' %}"></script>
-    <script src="{% static 'polls/profile/jquery.easypiechart.min.js' %}"></script>
-    <script src="{% static 'polls/profile/jquery.flot.js' %}"></script>
-    <script src="{% static 'polls/profile/jquery.flot.pie.js' %}"></script>
-    <script src="{% static 'polls/profile/jquery.flot.stack.js' %}"></script>
-    <script src="{% static 'polls/profile/jquery.flot.resize.js' %}"></script>
-    <script src="{% static 'polls/profile/jquery.flot.time.js' %}"></script>
-    <script src="{% static 'polls/profile/jquery.flot.navigate.js' %}"></script>
-    <script src="{% static 'polls/profile/select2.min.js' %}"></script>
-    <script src="{% static 'polls/profile/fullcalendar.min.js' %}"></script>
-    <script src="{% static 'polls/profile/jquery.nestable.js' %}"></script>
-    <script src="{% static 'polls/profile/ckeditor.js' %}"></script>
-    <!-- <script src="{% static 'polls/profile/prettify.js' %}"></script> -->
-    <script src="{% static 'polls/profile/js' %}"></script>
-    <script src="{% static 'polls/profile/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'app/profile/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'app/profile/jquery.uniform.min.js' %}"></script>
+    <script src="{% static 'app/profile/bootstrap.min.js' %}"></script>
+    <script src="{% static 'app/profile/jasny-bootstrap.min.js' %}"></script>
+    <script src="{% static 'app/profile/jquery.autosize.min.js' %}"></script>
+    <script src="{% static 'app/profile/moment.min.js' %}"></script>
+    <script src="{% static 'app/profile/daterangepicker.js' %}"></script>
+    <script src="{% static 'app/profile/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'app/profile/dropzone.min.js' %}"></script>
+    <script src="{% static 'app/profile/jquery.easypiechart.min.js' %}"></script>
+    <script src="{% static 'app/profile/jquery.flot.js' %}"></script>
+    <script src="{% static 'app/profile/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'app/profile/jquery.flot.stack.js' %}"></script>
+    <script src="{% static 'app/profile/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'app/profile/jquery.flot.time.js' %}"></script>
+    <script src="{% static 'app/profile/jquery.flot.navigate.js' %}"></script>
+    <script src="{% static 'app/profile/select2.min.js' %}"></script>
+    <script src="{% static 'app/profile/fullcalendar.min.js' %}"></script>
+    <script src="{% static 'app/profile/jquery.nestable.js' %}"></script>
+    <script src="{% static 'app/profile/ckeditor.js' %}"></script>
+    <!-- <script src="{% static 'app/profile/prettify.js' %}"></script> -->
+    <script src="{% static 'app/profile/js' %}"></script>
+    <script src="{% static 'app/profile/jquery.dataTables.min.js' %}"></script>
     <script>
         var ArkAdmin = new function($) {
     "use strict";

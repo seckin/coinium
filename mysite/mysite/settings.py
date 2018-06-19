@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
+    'app.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -123,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/polls/portfolio/1/'
+LOGIN_REDIRECT_URL = '/app/portfolio/1/'
 
 EMAIL_USE_TLS = False
 EMAIL_HOST = 'smtp.mailgun.org'

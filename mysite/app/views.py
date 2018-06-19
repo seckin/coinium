@@ -18,7 +18,7 @@ import datetime
 import requests
 
 class IndexView(generic.ListView):
-    template_name = 'polls/index.html'
+    template_name = 'app/index.html'
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
@@ -33,11 +33,11 @@ class IndexView(generic.ListView):
 
 class DetailView(generic.DetailView):
     model = Question
-    template_name = 'polls/detail.html'
+    template_name = 'app/detail.html'
 
 class ResultsView(generic.DetailView):
     model = Question
-    template_name = 'polls/results.html'
+    template_name = 'app/results.html'
 
 def portfolio(request, pk):
     user = request.user
@@ -91,7 +91,7 @@ def portfolio(request, pk):
 
     embedded_tweets = EmbeddedTweet.objects.filter(portfolio=portfolio)
 
-    return render(request, 'polls/portfolio.html', {'all_portfolios': all_portfolios, \
+    return render(request, 'app/portfolio.html', {'all_portfolios': all_portfolios, \
         'pk': pk,\
         'user': user,\
         'portfolio': portfolio,\
@@ -111,7 +111,7 @@ def create_investment(request, portfolio_id):
     usd_amt = float(request.GET.get('usd_amt'))
     if usd_amt > request.user.investor.usd_amt:
         request.session["not_enough_usd"] = True
-        return redirect("/polls/portfolio/" + str(portfolio_id))
+        return redirect("/app/portfolio/" + str(portfolio_id))
     else:
         request.user.investor.usd_amt = float(request.user.investor.usd_amt) - usd_amt
         request.user.investor.save()
@@ -125,7 +125,7 @@ def create_investment(request, portfolio_id):
                               owner=request.user,
                               is_active=False)
     request.session['investment_created'] = True
-    return redirect("/polls/portfolio/" + str(portfolio_id))
+    return redirect("/app/portfolio/" + str(portfolio_id))
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -133,7 +133,7 @@ def vote(request, question_id):
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the question voting form.
-        return render(request, 'polls/detail.html', {
+        return render(request, 'app/detail.html', {
             'question': question,
             'error_message': "You didn't select a choice.",
         })
@@ -143,7 +143,7 @@ def vote(request, question_id):
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        return HttpResponseRedirect(reverse('app:results', args=(question.id,)))
 
 def newportfolio(request):
     success = 0
@@ -157,7 +157,7 @@ def newportfolio(request):
             success = 1
     else:
         form = PortfolioForm()
-    return render(request, 'polls/new_portfolio.html', {'form': form, 'success': success, 'portfolio': portfolio})
+    return render(request, 'app/new_portfolio.html', {'form': form, 'success': success, 'portfolio': portfolio})
 
 def portfolio_perf(request, portfolio_id):
     portfolio = Portfolio.objects.get(pk = portfolio_id)
@@ -365,7 +365,7 @@ def profile(request, user_id):
                     portfolio_ids.append(str(p.id))
                 portfolio_ids_str = ','.join(portfolio_ids)
                 for investment in Investment.objects.raw("SELECT * \
-                                                FROM polls_investment \
+                                                FROM app_investment \
                                                 WHERE YEAR(created_at) = YEAR(DATE_SUB(CURDATE(), INTERVAL " + str(i) + " MONTH)) \
                                                 AND MONTH(created_at) = MONTH(DATE_SUB(CURDATE(), INTERVAL " + str(i) + " MONTH)) \
                                                 AND portfolio_id in (" + portfolio_ids_str + ")"):
@@ -422,7 +422,7 @@ def profile(request, user_id):
     all_investments_by_user_in_original_usd_amt_in_month = [0 for x in range(13)]
     for i in range(0, 3):
         for investment in Investment.objects.raw("SELECT * \
-                                              FROM polls_investment \
+                                              FROM app_investment \
                                               WHERE YEAR(created_at) = YEAR(DATE_SUB(CURDATE(), INTERVAL " + str(i) + " MONTH)) \
                                               AND MONTH(created_at) = MONTH(DATE_SUB(CURDATE(), INTERVAL " + str(i) + " MONTH)) \
                                               AND owner_id = " + str(user.id)):
@@ -436,7 +436,7 @@ def profile(request, user_id):
     total_investment_usd_amt = round(total_investment_usd_amt, 2)
 
     request_user = request.user;
-    return render(request, 'polls/profile.html', {"user": user, "request_user": request_user, "investments": investments, \
+    return render(request, 'app/profile.html', {"user": user, "request_user": request_user, "investments": investments, \
         "investments_with_amts": investments_with_amts,\
         "investment_amts_for_months": investment_amts_for_months,\
         "end_of_month_usd_amt": end_of_month_usd_amt,\
@@ -468,4 +468,4 @@ def embed_tweet(request, portfolio_id):
                                      url = url,
                                      embed_code = res_json['html'])
         request.session["tweet_embedded"] = True
-    return redirect("/polls/portfolio/" + str(portfolio_id))
+    return redirect("/app/portfolio/" + str(portfolio_id))

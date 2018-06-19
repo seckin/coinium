@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('polls', '0002_portfolio'),
+        ('app', '0002_portfolio'),
     ]
 
     operations = [
@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('owner', models.ForeignKey(editable=False, on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL)),
-                ('portfolio', models.ForeignKey(editable=False, on_delete=django.db.models.deletion.PROTECT, to='polls.Portfolio')),
+                ('portfolio', models.ForeignKey(editable=False, on_delete=django.db.models.deletion.PROTECT, to='app.Portfolio')),
             ],
         ),
     ]

@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.views import generic
 from django.urls import reverse
 
-from polls.models import Choice, Question
+from app.models import Choice, Question
 
 class HomeView(generic.ListView):
     model = Question

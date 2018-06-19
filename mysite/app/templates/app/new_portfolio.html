@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{% static 'polls/images/coinium.png' %}">
+    <link rel="icon" href="{% static 'app/images/coinium.png' %}">
 
     <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'polls/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'app/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="{% static 'polls/signin.css' %}" rel="stylesheet">
+    <link href="{% static 'app/signin.css' %}" rel="stylesheet">
   </head>
 
 {% block content %}
@@ -22,7 +22,7 @@
 
   {% if success == 1 %}
   <div class="alert alert-success" style="position: fixed; top: 0px;">
-    <strong>Success!</strong> Saved portfolio: <a href="{% url 'polls:portfolio' portfolio.id %}">{{portfolio}}</a>
+    <strong>Success!</strong> Saved portfolio: <a href="{% url 'app:portfolio' portfolio.id %}">{{portfolio}}</a>
   </div>
   {% endif %}
 
