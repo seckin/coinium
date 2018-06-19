@@ -6,6 +6,11 @@ from django.views import generic
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+from django.core.mail import EmailMultiAlternatives
+from django.utils.html import strip_tags
 
 from accounts.models import Investor
 from .models import Choice, Question, Portfolio, Investment, EmbeddedTweet
@@ -132,6 +137,22 @@ def create_investment(request, portfolio_id):
                               owner=request.user,
                               is_active=False)
     request.session['investment_created'] = True
+
+    current_site = get_current_site(request)
+    mail_subject = 'New Investment Received for ' + portfolio.portfolio_name
+    html_content = render_to_string('new_investment.html', {
+        'investor': request.user,
+        'investment': investment,
+        'user': portfolio.owner,
+        'domain': current_site.domain,
+        'portfolio': portfolio
+    })
+    text_content = strip_tags(html_content)
+    to_email = portfolio.owner.email
+    email = EmailMultiAlternatives(mail_subject, text_content, 'info@coinium.app', to=[to_email], reply_to=['info@coinium.app'],)
+    email.attach_alternative(html_content, "text/html")
+    email.send()
+
     return redirect("/app/portfolio/" + str(portfolio_id))
 
 def vote(request, question_id):

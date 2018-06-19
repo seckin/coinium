@@ -1,0 +1,4 @@
+{% autoescape off %}Hi {{ user.username }},<br/>
+You have just received ${{investment.original_amt}} for your portfolio <a href="http://{{ domain }}{% url 'app:portfolio' portfolio.id %}">{{portfolio}}</a> from <a href="http://{{ domain }}{% url 'app:profile' investor.id %}">{{investor}}</a>.<br/>
+<br/>
+Team Coinium{% endautoescape %}
