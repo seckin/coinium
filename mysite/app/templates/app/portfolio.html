@@ -171,7 +171,11 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                    <h1 class="h2">{{ portfolio }}</h1>
+                    <div>
+                        <h1 class="h2">{{ portfolio }} <span style="font-size:1rem;">by <a href="/app/profile/{{ portfolio.owner.id }}">{{ portfolio.owner }}</a></span></h1>
+                        <div>{{all_investments|length}} investment{{ all_investments|length|pluralize:",s" }}</div>
+                        <div>${{aum}} under management</div>
+                    </div>
                     <div class="" style="">
                         <label for="usr" style="float: left;font-size:30px;">$</label>
                         <input type="number" id="usd_amt_id" class="form-control" placeholder="50" id="usr" style="margin-left:5px;width: 100px;float: left;">

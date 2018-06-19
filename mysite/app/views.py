@@ -44,7 +44,11 @@ def portfolio(request, pk):
     user = request.user
     all_portfolios = Portfolio.objects.all()
     portfolio = Portfolio.objects.get(pk=pk)
-
+    all_investments = Investment.objects.filter(portfolio=portfolio)
+    aum = 0.0
+    for i in all_investments:
+        aum += float(i.original_amt)
+    aum = round(aum)
     # get latest valuations to embed in the page
     connection = pymysql.connect(host='localhost',
                                  user='root',
@@ -96,6 +100,8 @@ def portfolio(request, pk):
         'pk': pk,\
         'user': user,\
         'portfolio': portfolio,\
+        'all_investments': all_investments,\
+        'aum': aum,\
         'user': request.user,\
         'btc_latest_val': btc_latest_val,\
         'eth_latest_val': eth_latest_val,\
@@ -229,6 +235,7 @@ group by created_at div 500;"""
 def profile(request, user_id):
     user = User.objects.get(pk=user_id)
     investments = Investment.objects.filter(owner=user)
+    portfolios = Portfolio.objects.filter(owner=user)
     total_btc = 0.0
     total_eth = 0.0
     total_xrp = 0.0
@@ -436,6 +443,16 @@ def profile(request, user_id):
                                total_xlm * end_of_month_coin_prices[cur_month][3]
     total_investment_usd_amt = round(total_investment_usd_amt, 2)
 
+    # portfolios with AUM
+    portfolios_with_aum = []
+    for i in range(len(portfolios)):
+        aum = 0.0
+        for investment in Investment.objects.raw("SELECT * \
+                                              FROM app_investment \
+                                              WHERE portfolio_id = " + str(portfolios[i].id)):
+            aum += float(investment.original_amt)
+        portfolios_with_aum.append([portfolios[i], aum])
+
     request_user = request.user;
     return render(request, 'app/profile.html', {"user": user, "request_user": request_user, "investments": investments, \
         "investments_with_amts": investments_with_amts,\
@@ -444,6 +461,7 @@ def profile(request, user_id):
         "investment_in_month_usd_amt": investment_in_month_usd_amt,\
         "all_investments_by_user_in_original_usd_amt_in_month": all_investments_by_user_in_original_usd_amt_in_month,\
         "total_investment_usd_amt": total_investment_usd_amt,\
+        "portfolios_with_aum": portfolios_with_aum,\
         "total_pv_val": total_pv_val,\
         "total_btc": total_btc,\
         "total_eth": total_eth,\
