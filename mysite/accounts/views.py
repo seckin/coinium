@@ -22,7 +22,7 @@ def signup(request):
             user = form.save(commit=False)
             user.is_active = True
             user.save()
-            investor = Investor.objects.create(usd_amt=1000.0, user=user)
+            investor = Investor.objects.create(usd_amt=10000.0, user=user)
             investor.save()
             user.investor = investor
             user.save()
