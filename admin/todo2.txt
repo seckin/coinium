@@ -1,0 +1,45 @@
+
+OK tweet attiginda portfolio linkini eklemeli
+
+OK tweet embed etmenin kolay bi yolu olmali
+    - bunu yapamazsan david'e kardesine sormasi icin soru yazip yolla
+
+jack'e sor slide'i paylasabilir miyim seninle diye
+
+'polls' part of the url should be removed
+
+put a follow button on the profile page
+
+sag alttaki grafik kullanicinin yaptigi tum investmentlari gosterecek
+
+aykut'a sor seninle paylasabilir miyim
+
+zero to one'i shaun'a gotur
+
+write a blog post about how bubbles look similar in graphs and based on the other bubbles' graphs one can invest in CCs
+
+blog.coinium.app icin yazi yazmak ister misin diye Demir'e sor
+
+on portfolio page: you invested $1000 to this portfolio
+
+siteye eklemek icin(deck'e de eklemeli; sirkete yatirim da daha safe bi bet oluyor bundan dolayi):
+    "a global crisis is being expected in 2019 and CCs are inversely correlated with the performance of the world economy. learn the rules of the game and invest now."
+
+----
+
+things to change in the pitch deck
+    the oppourtunity
+        make the red circle etc zoomable
+    the market
+        creating key bulletpoints and quantifying vague points
+    competitive analysis
+        add exchanges list on the left and private portfolio apps on the right so that they know we know
+    product
+        go into engineering-product details in here instead of repetitive explanations
+    team
+        photo for david
+    business model
+        take out percentages except for 30% - just say money managers will decide what their commission is going to be
+    financial projection
+        add more data
+    we should display screenshots of the product
