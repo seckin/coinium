@@ -30,6 +30,28 @@
              margin-right: 0px !important;
         }
       }
+      @media (max-width: 1000px) {
+        .ad_img1 {
+          width: 300px;
+          height: 240px;
+        }
+        .ad_img2 {
+          width: 300px;
+          height: 200px;
+        }
+        .ad_img3 {
+          width: 300px;
+          height: 180px;
+        }
+        .ad_img4 {
+          width: 300px;
+          height: 220px;
+          margin-bottom: 25px;
+        }
+        .display-4 {
+          font-size: 2.5rem;
+        }
+      }
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121123802-1"></script>
@@ -68,7 +90,7 @@
       <div class="col-md-5 p-lg-5 mx-auto my-5">
         <h1 class="display-4 font-weight-normal">Money Management For All</h1>
         <p class="lead font-weight-normal">Find and invest in portfolios created by the best and the brightest.</p>
-        <a class="btn btn-outline-secondary" href="/accounts/signup">Start with paper-investing $10.000 now</a>
+        <a class="btn btn-outline-secondary" href="/accounts/signup" style="width: 300px;white-space: normal;">Start with paper-investing $10.000 now</a>
       </div>
       <div class="product-device box-shadow d-none d-md-block"></div>
       <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
@@ -81,7 +103,7 @@
           <p class="lead">Empowering independent money managers.</p>
         </div>
         <div class="" style="margin-top: 50px;margin-bottom:40px;">
-          <img  src="{% static 'app/images/screenshot1.png' %}" alt="" width="420" height="294">
+          <img class="ad_img1" src="{% static 'app/images/screenshot1.png' %}" alt="" width="420" height="294">
         </div>
       </div>
       <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -90,7 +112,7 @@
           <p class="lead">Hundreds of portfolios, created by some of the greatest money managers of our times.</p>
         </div>
         <div class="" >
-          <img  src="{% static 'app/images/screenshot2.png' %}" alt="" width="480" height="294">
+          <img class="ad_img2" src="{% static 'app/images/screenshot2.png' %}" alt="" width="480" height="294">
         </div>
       </div>
     </div>
@@ -102,7 +124,7 @@
           <p class="lead">Simple tools to create your own portfolios.</p>
         </div>
         <div class="" style="margin-top: 50px;margin-bottom:40px;">
-          <img  src="{% static 'app/images/screenshot3.png' %}" alt="" width="500" height="294">
+          <img class="ad_img3" src="{% static 'app/images/screenshot3.png' %}" alt="" width="500" height="294">
         </div>
       </div>
       <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
@@ -111,7 +133,7 @@
           <p class="lead">Create portfolios that will attract investment from other users, take 10% of the profits you facilitate.</p>
         </div>
         <div class="" >
-          <img  src="{% static 'app/images/screenshot4.png' %}" alt="" width="400" height="294">
+          <img class="ad_img4" src="{% static 'app/images/screenshot4.png' %}" alt="" width="400" height="294">
         </div>
       </div>
     </div>
