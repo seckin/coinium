@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{% static 'app/images/coinium.png' %}">
 
-    <title>{{ portfolio }} - Coinium Portfolio Manager</title>
+    <title>{{ portfolio }} - Coinium Crypto-Portfolio Manager</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'app/bootstrap.min.css' %}" rel="stylesheet">
@@ -82,6 +82,15 @@
         animation: chartjs-render-animation 0.001s;
     }
     </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121123802-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-121123802-1');
+    </script>
 </head>
 
 <body>

@@ -61,22 +61,32 @@
         color: #fff;
     }
     .show>.btn-secondary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem rgba(108,117,125,.5);
-}
-.show>.btn-secondary.dropdown-toggle {
-    color: #fff;
-    background-color: #545b62;
-    border-color: #4e555b;
-    padding: 0.775rem 1.25rem;
-}
-.show {
-    padding: 10px;
-}
+        box-shadow: 0 0 0 0.2rem rgba(108,117,125,.5);
+    }
+    .show>.btn-secondary.dropdown-toggle {
+        color: #fff;
+        background-color: #545b62;
+        border-color: #4e555b;
+        padding: 0.775rem 1.25rem;
+    }
+    .show {
+        padding: 10px;
+    }
 
     </style>
     <script type="text/javascript" charset="UTF-8" src="{% static 'app/profile/common.js' %}"></script>
     <script type="text/javascript" charset="UTF-8" src="{% static 'app/profile/util.js' %}"></script>
     <script type="text/javascript" charset="UTF-8" src="{% static 'app/profile/stats.js' %}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121123802-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-121123802-1');
+    </script>
+
 </head>
 
 <body class="cover">
