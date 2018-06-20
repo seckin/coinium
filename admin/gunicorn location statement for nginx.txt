@@ -1,0 +1,5 @@
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/seckin/mysite/mysite.sock;
+    }
