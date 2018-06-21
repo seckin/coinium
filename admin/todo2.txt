@@ -4,6 +4,8 @@ OK tweet attiginda portfolio linkini eklemeli
 OK tweet embed etmenin kolay bi yolu olmali
     - bunu yapamazsan david'e kardesine sormasi icin soru yazip yolla
 
+otomatik portfolyo generate edip son 1 ay performanslarina bakmak, iyi olanlari sitede gostermek
+
 jack'e sor slide'i paylasabilir miyim seninle diye
 
 'polls' part of the url should be removed
