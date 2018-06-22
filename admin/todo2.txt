@@ -1,47 +1,101 @@
+OK signup stili duzelcek
+OK portfolyo olusturma butonu eklencek sol alta
+OK portfolyo olusturma sayfasi stili duzelcek
+OK server'in ram'ini artir
+OK profil sayfasi olusturulcak - initial version
+NOPE kullanici adini al signup'ta
+OK portfolyolara investment yapma arayuzu yapilcak
+OK mailgun'a cevap atilcak
+OK tweet yazma kutusu eklencek, tweet butonu caliscak
+
+OK investment miktari hesaptan dusulecek
+OK signup sonrasi login edip portfolio/1/'e redirect et
+
+OK portfolyo olusturma sayfasi portfolyonun sayfasina redirect edecek
+
+OK profil tamamlancak
+    OK investment modeli olusturulcak
+    OK sol ust grafik(ler) doldurulcak
+    OK sag alt grafik doldurulcak
+    OK investment objesine dolar miktarini ekle ve bunu profilde sol altta goster
+    OK investment objesine is_approved ekle ve bunu sol altta goster
+    OK kullanici adini dinamik olarak goster
+
+OK account eklencek sag ust koseye
+
+OK sol alt: portfolyolara koydugu tekil investmentlar listeleniyor
+
+OK sag alt:
+    aylik yapilan yatirimlari gostersin - tum portfolyolarina gelen yatirim miktarlari
 
 OK tweet attiginda portfolio linkini eklemeli
 
 OK tweet embed etmenin kolay bi yolu olmali
     - bunu yapamazsan david'e kardesine sormasi icin soru yazip yolla
 
-otomatik portfolyo generate edip son 1 ay performanslarina bakmak, iyi olanlari sitede gostermek
+OK 'polls' part of the url should be removed
 
-jack'e sor slide'i paylasabilir miyim seninle diye
+OK write a blog post about how bubbles look similar in graphs and based on the other bubbles' graphs one can invest in CCs
 
-'polls' part of the url should be removed
+OK things to change in the pitch deck
+
+OK sag alttaki grafik kullanicinin yaptigi tum investmentlari gosterecek
+
+----------------------------------------
+----------------------------------------
+
+
+
+
+
+
+1) slide'i ayakkabiciyla paylas feedback iste
+
+2) jack'e sor slide'i paylasabilir miyim seninle diye
+
+3) aykut'a sor seninle paylasabilir miyim
+
+4) indiehackers'a kisa bi halini koy medium article'inin ve feedback iste
+
+5) on portfolio page: you invested $1000 to this portfolio
+
+6) gecmis coin pricing datasini batch halinde cek, db'ye koy, 20-30 coin icin (kraken'de ne varsa)
+
+7) coin pricing datasini canli olarak cek 20-30 coin icin
+
+8) profilde foto ekleme ozelligi
+
+9) activation emaili yerine newchip'in emaili gibi bir email at
+
+10) otomatik portfolyo generate edip son 1 ay performanslarina bakmak, iyi olanlari sitede gostermek (ya da direkt iyi olacaklari el ile generate etmek)
+
+
 
 put a follow button on the profile page
 
-sag alttaki grafik kullanicinin yaptigi tum investmentlari gosterecek
 
-aykut'a sor seninle paylasabilir miyim
+portfolio sayfasindaki portfolio grafigi dinamik hesaplanacak (portfolyo olusturuldugu tarihten itibaren)
+
+soldaki portfolyo renkleri degiscek
+Nic'e, projeden bahset, coinbase venture fund'i ile ilgileniyoruz
+
+profil detay:
+    sol ust:
+        - olusturdugu portfolyolara gelen tum investment'lar gri olarak gosteriliyor
+        - olusturdugu portfolyolarin aylik ortalama fiyatlari uzerinden %100 uzerinden (portfolyo olusturuldugu andan baslayarak) yuzde gosterilcek. portfolyolara toplam ne kadar yatirim yapildiysa ayin sonunda hesaba katilacak agirlikli ortalama bunu hesaba katacak.
+            - UPDATE: her portfolyo icin bu graph'tan bi tane olsun. portfolyonun basladigi andan itibaren yuzde olarak performansini gostersin. gri'ler de o portfolyoya yapilan yatirimi gostersin. gri cizgiyi ayri bir chart'ta goster mavinin hemen altinda
+            - UPDATE: kendi olusturdugu portfolyolar yukarida gosterilcek ve arka plani yesil olacak. digerlerinin portfolyolarina yaptigi yatirimlarda arka plan beyaz olacak. portfolyolarin kimin tarafindan olusturuldugu title'in icinde yazacak (portfolio by seckin) seklinde
+            - UPDATE: Ayrica "overall investment performance" diye bi grafik kullanicinin yatirdigi tum paralarin performansini gosterecek. ana sayfadaki grafik gibi olacak bu; dakika cozunurlugunde olacak ve o grafik template'i kullanilacak
+
+
 
 zero to one'i shaun'a gotur
 
-write a blog post about how bubbles look similar in graphs and based on the other bubbles' graphs one can invest in CCs
-
 blog.coinium.app icin yazi yazmak ister misin diye Demir'e sor
 
-on portfolio page: you invested $1000 to this portfolio
+
 
 siteye eklemek icin(deck'e de eklemeli; sirkete yatirim da daha safe bi bet oluyor bundan dolayi):
     "a global crisis is being expected in 2019 and CCs are inversely correlated with the performance of the world economy. learn the rules of the game and invest now."
 
-----
 
-things to change in the pitch deck
-    the oppourtunity
-        make the red circle etc zoomable
-    the market
-        creating key bulletpoints and quantifying vague points
-    competitive analysis
-        add exchanges list on the left and private portfolio apps on the right so that they know we know
-    product
-        go into engineering-product details in here instead of repetitive explanations
-    team
-        photo for david
-    business model
-        take out percentages except for 30% - just say money managers will decide what their commission is going to be
-    financial projection
-        add more data
-    we should display screenshots of the product

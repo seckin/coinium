@@ -71,7 +71,7 @@ def portfolio(request, pk):
                 cursor.execute(sql, (pair,))
                 spreads = cursor.fetchall()
                 spreads_for_pair[pair] = spreads
-                print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
+                #print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
 
             btc_latest_val = float(spreads_for_pair[pairs[0]][0]["bestbid"])
             eth_latest_val = float(spreads_for_pair[pairs[1]][0]["bestbid"])
@@ -211,9 +211,9 @@ def portfolio_perf(request, portfolio_id):
 
                 until = int(decimal.Decimal(time.time()))
                 iteration_time = 1528060609
-                print("iteration_time", iteration_time)
-                print("until", until)
-                print("")
+                #print("iteration_time", iteration_time)
+                #print("until", until)
+                #print("")
 
                 spreads_for_pair = dict()
                 spreads_idx_for_pair = dict()
@@ -226,7 +226,7 @@ group by created_at div 500;"""
                     spreads = cursor.fetchall()
                     spreads_for_pair[pair] = spreads
                     spreads_idx_for_pair[pair] = len(spreads) - 1
-                    print("for coin ", pair, " found ", len(spreads), " spreads")
+                    #print("for coin ", pair, " found ", len(spreads), " spreads")
 
                 tm = spreads_for_pair[pairs[0]][0]["time"]
                 tmstmp = round(time.mktime(tm.timetuple()) * 1000)
@@ -284,7 +284,7 @@ def profile(request, user_id):
                 cursor.execute(sql, (pair,))
                 spreads = cursor.fetchall()
                 spreads_for_pair[pair] = spreads
-                print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
+                #print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
 
             btc_latest_val = float(spreads_for_pair[pairs[0]][0]["bestbid"])
             eth_latest_val = float(spreads_for_pair[pairs[1]][0]["bestbid"])
@@ -328,7 +328,7 @@ def profile(request, user_id):
         #             cursor.execute(sql, (pair,investment.created_at))#'2018-06-13 18:17:12'))
         #             spreads = cursor.fetchall()
         #             spreads_for_pair[pair] = spreads
-        #             print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
+        #             #print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
 
         #         btc_latest_val_preceding_investment = float(spreads_for_pair[pairs[0]][0]["bestbid"])
         #         eth_latest_val_preceding_investment = float(spreads_for_pair[pairs[1]][0]["bestbid"])
@@ -371,7 +371,7 @@ def profile(request, user_id):
                     cursor.execute(sql, (pair))
                     spreads = cursor.fetchall()
                     spreads_for_pair[pair] = spreads
-                    print("2 for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
+                    #print("2 for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
 
                 if len(spreads_for_pair[pairs[0]]) > 0:
                     btc_latest_val_at_the_end_of_the_month = float(spreads_for_pair[pairs[0]][0]["bestbid"])
