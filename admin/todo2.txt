@@ -79,6 +79,15 @@ portfolio sayfasindaki portfolio grafigi dinamik hesaplanacak (portfolyo olustur
 soldaki portfolyo renkleri degiscek
 Nic'e, projeden bahset, coinbase venture fund'i ile ilgileniyoruz
 
+"Find clever ways to find groups of like-minded people. Early on, I wrote an early Twitter script to follow a person’s followers. That person often blogged about the problem we were trying to solve. We found 100s of customers this way that were happy to try our product."
+    - twitter hesaplari bul
+
+"9/ Get early customers on chat. A few reasons: (1) a great way to get them to follow through on using the product because you can hold their hand & (2) invaluable way to get feedback & troubleshoot their issues to fix later in the product. I did this w/ the first 200+ customers."
+    - siteye chat koy
+
+"Research the history of your market. It will help you identify old & long-standing assumptions, challenging obstacles you too will face, and critical features it took old players a decade to realize to build. I failed to do this until we were 6 years in & it hurt us."
+    - money management business'in gecmisini arastir / insanlara sor
+
 profil detay:
     sol ust:
         - olusturdugu portfolyolara gelen tum investment'lar gri olarak gosteriliyor
