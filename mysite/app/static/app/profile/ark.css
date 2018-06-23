@@ -660,16 +660,16 @@ a:focus {
 .btn.btn-default .active {
   background-color: #e8e8e8;
 }
-.btn.btn-primary {
-  background-color: #5b98cc;
-}
-.btn.btn-primary:hover {
-  background-color: #4f91c8;
-}
-.btn.btn-primary:active,
-.btn.btn-primary .active {
-  background-color: #4489c5;
-}
+// .btn.btn-primary {
+//   background-color: #5b98cc;
+// }
+// .btn.btn-primary:hover {
+//   background-color: #4f91c8;
+// }
+// .btn.btn-primary:active,
+// .btn.btn-primary .active {
+//   background-color: #4489c5;
+// }
 .btn.btn-success {
   background-color: #84ce84;
 }
