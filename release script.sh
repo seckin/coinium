@@ -45,4 +45,6 @@ printf '\n\nSPREADS_DB_NAME = "coinim"' >> ~/mysite/mysite/settings.py
 
 killall gunicorn
 /home/seckin/gunicorn_script.sh
-
+# killall python
+# killall python3
+/home/seckin/bg_job_script.sh
