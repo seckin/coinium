@@ -529,7 +529,7 @@ def fetch_prices_bg():
     from pyquery import PyQuery as pq
     url = 'https://coinmarketcap.com/all/views/all/'
     d = pq(url=url)
-    res = [[] for x in range(100)]
+    res = [[] for x in range(900)]
     link_secondary = d('.link-secondary')
     for i in range(len(res)):
         shorthand = pq(link_secondary[2 * i]).html() # coin shorthand
