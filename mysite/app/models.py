@@ -59,3 +59,16 @@ class EmbeddedTweet(models.Model):
     embed_code = models.CharField(max_length=20000)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+class PricingData(models.Model):
+    shorthand = models.CharField(max_length=50)
+    name = models.CharField(max_length=250)
+    mkt_cap = models.DecimalField(max_digits=20, decimal_places=6)
+    price = models.DecimalField(max_digits=20, decimal_places=6)
+    circ_supply = models.BigIntegerField(default=0)
+    vol_24h_in_usd = models.DecimalField(max_digits=20, decimal_places=6)
+    pct_1h = models.DecimalField(max_digits=15, decimal_places=6)
+    pct_24h = models.DecimalField(max_digits=15, decimal_places=6)
+    pct_7d = models.DecimalField(max_digits=15, decimal_places=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

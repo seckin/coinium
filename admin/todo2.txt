@@ -69,6 +69,7 @@ OK sag alttaki grafik kullanicinin yaptigi tum investmentlari gosterecek
 
 10) otomatik portfolyo generate edip son 1 ay performanslarina bakmak, iyi olanlari sitede gostermek (ya da direkt iyi olacaklari el ile generate etmek)
 
+coinmarketcap'teki tum coinlerin paper trade edilmesini saglamak
 
 10bin dolarin simulasyon oldugunu daha belirgin yapin
 

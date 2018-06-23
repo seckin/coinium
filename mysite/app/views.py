@@ -14,7 +14,7 @@ from django.utils.html import strip_tags
 from django.core.files.storage import FileSystemStorage
 
 from accounts.models import Investor, Document
-from .models import Choice, Question, Portfolio, Investment, EmbeddedTweet
+from .models import Choice, Question, Portfolio, Investment, EmbeddedTweet, PricingData
 from .forms import PortfolioForm
 import pymysql
 import pymysql.cursors
@@ -521,3 +521,75 @@ def simple_upload(request):
         # return render(request, 'core/simple_upload.html', {
         #     'uploaded_file_url': uploaded_file_url
         # })
+
+def fetch_prices(request):
+    from pyquery import PyQuery as pq
+    url = 'https://coinmarketcap.com/all/views/all/'
+    d = pq(url=url)
+    res = [[] for x in range(950)]
+    link_secondary = d('.link-secondary')
+    for i in range(len(res)):
+        shorthand = pq(link_secondary[2 * i]).html() # coin shorthand
+        #res[i].append(shorthand)
+
+        name = pq(link_secondary[2 * i + 1]).html() # coin name
+        #res[i].append(name)
+
+        mkt_cap = pq(d('.market-cap')[i]).html() # mkt cap
+        mkt_cap = mkt_cap.strip()[1:]
+        mkt_cap = "".join(mkt_cap.split(","))
+        #res[i].append(mkt_cap)
+
+        price = pq(d("td")[i*11+4]).text()[1:] # price
+        #res[i].append(price)
+
+        circ_supply = pq(d("td")[i*11+5]).text() # circulating supply
+        circ_supply = "".join(circ_supply.split(","))
+        circ_supply = circ_supply.strip("*").strip()
+        circ_supply = round(float(circ_supply))
+        #res[i].append(circ_supply)
+
+        vol_24h_in_usd = pq(d("td")[i*11+6]).text()[1:] # volume 24h
+        vol_24h_in_usd = "".join(vol_24h_in_usd.split(","))
+        if not vol_24h_in_usd or vol_24h_in_usd == '?':
+            vol_24h_in_usd = -1
+        #res[i].append(vol_24h_in_usd)
+
+        pct_1h = pq(d("td")[i*11+7]).text()[:-1] # % 1h
+        pct_1h = pct_1h.strip()
+        if not pct_1h or pct_1h == '?':
+            pct_1h = -1
+        #res[i].append(pct_1h)
+
+        pct_24h = pq(d("td")[i*11+8]).text()[:-1] # % 24h
+        pct_24h = pct_24h.strip()
+        if not pct_24h or pct_24h == '?':
+            pct_24h = -1
+        #res[i].append(pct_24h)
+
+        pct_7d = pq(d("td")[i*11+9]).text()[:-1] # % 7d
+        pct_7d = pct_7d.strip()
+        if not pct_7d or pct_7d == '?':
+            pct_7d = -1
+        #res[i].append(pct_7d)
+
+        print("shorthand", shorthand)
+        print("name", name)
+        print("mkt_cap", mkt_cap)
+        print("price", price)
+        print("circ_supply", circ_supply)
+        print("vol_24h_in_usd", vol_24h_in_usd)
+        print("pct_1h", pct_1h)
+        print("pct_24h", pct_24h)
+        print("pct_7d", pct_7d)
+        print("\n\n")
+        PricingData.objects.create(shorthand = shorthand,
+                                   name = name,
+                                   mkt_cap = mkt_cap,
+                                   price = price,
+                                   circ_supply = circ_supply,
+                                   vol_24h_in_usd = vol_24h_in_usd,
+                                   pct_1h = pct_1h,
+                                   pct_24h = pct_24h,
+                                   pct_7d = pct_7d)
+    return JsonResponse({"result": "success"}, safe=False)
