@@ -525,7 +525,7 @@ def simple_upload(request):
 
 @background()
 def fetch_prices_bg():
-    print("in fetch_prices_bg")
+    # print("in fetch_prices_bg")
     from pyquery import PyQuery as pq
     url = 'https://coinmarketcap.com/all/views/all/'
     d = pq(url=url)
@@ -576,16 +576,16 @@ def fetch_prices_bg():
             pct_7d = -1
         #res[i].append(pct_7d)
 
-        print("shorthand", shorthand)
-        print("name", name)
-        print("mkt_cap", mkt_cap)
-        print("price", price)
-        print("circ_supply", circ_supply)
-        print("vol_24h_in_usd", vol_24h_in_usd)
-        print("pct_1h", pct_1h)
-        print("pct_24h", pct_24h)
-        print("pct_7d", pct_7d)
-        print("\n\n")
+        # print("shorthand", shorthand)
+        # print("name", name)
+        # print("mkt_cap", mkt_cap)
+        # print("price", price)
+        # print("circ_supply", circ_supply)
+        # print("vol_24h_in_usd", vol_24h_in_usd)
+        # print("pct_1h", pct_1h)
+        # print("pct_24h", pct_24h)
+        # print("pct_7d", pct_7d)
+        # print("\n\n")
         PricingData.objects.create(shorthand = shorthand,
                                    name = name,
                                    mkt_cap = mkt_cap,
