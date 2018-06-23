@@ -10,6 +10,8 @@ pip3 install django
 pip3 install requests
 pip3 install mysqlclient
 pip3 install pymysql
+pip3 install pyquery
+pip3 install django-background-tasks
 cd ~
 
 rm -rf ~/coinium
@@ -41,6 +43,6 @@ printf '\n\nSPREADS_DB_NAME = "coinim"' >> ~/mysite/mysite/settings.py
 # (mysite) seckin@amineacoin:~/mysite$ /home/seckin/Env/mysite/bin/gunicorn --bind 0.0.0.0:8000 mysite.wsgi
 #(mysiteenv) root@amineacoin:~/mysite# gunicorn --bind 0.0.0.0:8000 mysite.wsgi
 
-sudo killall gunicorn
+killall gunicorn
 /home/seckin/gunicorn_script.sh
 

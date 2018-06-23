@@ -13,6 +13,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 from django.core.files.storage import FileSystemStorage
 
+from background_task import background
 from accounts.models import Investor, Document
 from .models import Choice, Question, Portfolio, Investment, EmbeddedTweet, PricingData
 from .forms import PortfolioForm
@@ -522,11 +523,13 @@ def simple_upload(request):
         #     'uploaded_file_url': uploaded_file_url
         # })
 
-def fetch_prices(request):
+@background()
+def fetch_prices_bg():
+    print("in fetch_prices_bg")
     from pyquery import PyQuery as pq
     url = 'https://coinmarketcap.com/all/views/all/'
     d = pq(url=url)
-    res = [[] for x in range(950)]
+    res = [[] for x in range(100)]
     link_secondary = d('.link-secondary')
     for i in range(len(res)):
         shorthand = pq(link_secondary[2 * i]).html() # coin shorthand
@@ -592,4 +595,7 @@ def fetch_prices(request):
                                    pct_1h = pct_1h,
                                    pct_24h = pct_24h,
                                    pct_7d = pct_7d)
+
+def fetch_prices(request):
+    fetch_prices_bg(repeat=120, repeat_until=None)
     return JsonResponse({"result": "success"}, safe=False)

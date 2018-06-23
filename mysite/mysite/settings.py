@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'background_task',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,6 @@ SPREADS_DB_NAME = "coinium"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+BACKGROUND_TASK_RUN_ASYNC = True
+BACKGROUND_TASK_ASYNC_THREADS = 2
