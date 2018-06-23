@@ -144,29 +144,28 @@
                 </button>
             </div> -->
             {% endif %}
+            <ul class="navbar-nav px-3" style="float:right;">
+                <div class="dropdown show" style="padding: 10px 0px 0px 0px">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request_user.username}}</a>
+
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute;right: 0px;left: unset;    min-width: 7rem;">
+                        <a class="dropdown-item" href="{% url 'app:profile' user.id %}">Profile</a>
+                        <a class="dropdown-item" href="/logout/">Sign out</a>
+                    </div>
+                </div>
+            </ul>
             {% if user.id == request_user.id %}
             <div style="display: inline-block;
                         float: right;
-                        margin-right: 30px;
-                        margin-top: 17px;">
+                        margin-right: 5px;
+                        margin-top: 20px;">
                 <a href="#" class="edit-profile">
-                    <span style="color: white;font-size: 16px;">Edit profile</span>
+                    <span style="color: white;font-size: 12px;">Edit profile</span>
                     <i class="fa fa-pencil-square-o" aria-hidden="true" style="color: white;
-                                                                           font-size: 24px;"></i>
+                                                                           font-size: 12px;"></i>
                 </a>
             </div>
             {% endif %}
-            <ul class="navbar-nav px-3" style="float:right;">
-
-                <div class="dropdown show" style="padding: 10px 0px 0px 0px">
-                <a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request_user.username}}</a>
-
-                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute;right: 0px;left: unset;    min-width: 7rem;">
-                    <a class="dropdown-item" href="{% url 'app:profile' user.id %}">Profile</a>
-                    <a class="dropdown-item" href="/logout/">Sign out</a>
-                </div>
-            </div>
-            </ul>
 
         </nav>
         <!-- END: HEAD NAV -->
@@ -193,12 +192,13 @@
                             <div class="changeAvatarUpload d-none">
                                 <form action="/app/simple_upload/" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
-                                    <input type="file" name="myfile">
-                                    <button type="submit">Upload</button>
+                                    <input type="file" name="myfile" style="margin-top:10px;">
+                                    <button class="btn btn-primary" type="submit" style="margin-top:10px;">Upload</button>
+                                    <a class="btn btn-secondary cancel_upload_photo" style="margin-top:10px;color:white;">Cancel</a>
                                 </form>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <h3 class="header-title">{{user.username}}'s Profile</h3>
                             <!-- <p class="header-info" style="display:inline;">Overview and latest statistics</p> -->
                             <div style="float:left;">
@@ -1300,6 +1300,10 @@ jQuery(function() {
         });
         $(".changeAvatar").click(function(){
             $(".changeAvatarUpload").removeClass("d-none");
+        });
+        $(".cancel_upload_photo").click(function(){
+            $(".changeAvatarHelp").addClass("d-none");
+            $(".changeAvatarUpload").addClass("d-none");
         });
     </script>
 
