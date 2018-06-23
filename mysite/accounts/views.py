@@ -26,18 +26,14 @@ def signup(request):
             investor.save()
             user.investor = investor
             user.save()
-            current_site = get_current_site(request)
-            mail_subject = 'Activate your coinium account.'
-            message = render_to_string('acc_active_email.html', {
+            mail_subject = 'Welcome to Coinium App'
+            html_content = render_to_string('intro_email.html', {
                 'user': user,
-                'domain': current_site.domain,
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)).decode(),
-                'token':account_activation_token.make_token(user),
             })
-            to_email = form.cleaned_data.get('email')
-            email = EmailMessage(
-                        mail_subject, message, 'info@coinium.app', to=[to_email], reply_to=['info@coinium.app'],
-            )
+            text_content = strip_tags(html_content)
+            to_email = "seckincansahin@gmail.com"
+            email = EmailMultiAlternatives(mail_subject, text_content, 'info@coinium.app', to=[to_email], reply_to=['info@coinium.app'],fail_silently=False)
+            email.attach_alternative(html_content, "text/html")
             email.send()
             request.session['just_signed_up'] = True
             # user.is_active = True

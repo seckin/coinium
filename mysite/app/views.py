@@ -46,20 +46,6 @@ class ResultsView(generic.DetailView):
     template_name = 'app/results.html'
 
 def portfolio(request, pk):
-    mail_subject = 'Welcome to Coinium App'
-    html_content = render_to_string('intro_email.html', {
-        # 'investor': request.user,
-        # 'investment': investment,
-        # 'user': portfolio.owner,
-        # 'domain': current_site.domain,
-        # 'portfolio': portfolio
-    })
-    text_content = strip_tags(html_content)
-    to_email = "seckincansahin@gmail.com"
-    email = EmailMultiAlternatives(mail_subject, text_content, 'info@coinium.app', to=[to_email], reply_to=['info@coinium.app'],)
-    email.attach_alternative(html_content, "text/html")
-    email.send()
-
     user = request.user
     all_portfolios = Portfolio.objects.all()
     portfolio = Portfolio.objects.get(pk=pk)
