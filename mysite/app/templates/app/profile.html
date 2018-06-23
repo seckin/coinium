@@ -72,6 +72,34 @@
     .show {
         padding: 10px;
     }
+    .user-avatar {
+        border-radius: 9999px;
+        position: relative;
+        height: 145px;
+        width: 145px;
+    }
+    .user-avatar img {
+        border-radius: 9999px;
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+    }
+    .user-desc {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .user-avatar:hover {
+        box-shadow: inset 0 0 0 5px #1DA1F2 !important;
+    }
+    .edit-profile:hover {
+        text-decoration: none;
+    }
+    .changeAvatar:hover {
+        text-decoration: none;
+    }
+    .changeAvatarHelp {
+        margin-top: 20px;
+    }
 
     </style>
     <script type="text/javascript" charset="UTF-8" src="{% static 'app/profile/common.js' %}"></script>
@@ -108,9 +136,30 @@
                     <img width="32" height="32" src="/static/app/images/coinium.png"/> <div class="brand">Coinium</div>
                 </div>
             </a>
+            {% if uploaded_file_url %}
+            <!-- <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
+                Profile picture updated.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+            {% endif %}
+            {% if user.id == request_user.id %}
+            <div style="display: inline-block;
+                        float: right;
+                        margin-right: 30px;
+                        margin-top: 17px;">
+                <a href="#" class="edit-profile">
+                    <span style="color: white;font-size: 16px;">Edit profile</span>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true" style="color: white;
+                                                                           font-size: 24px;"></i>
+                </a>
+            </div>
+            {% endif %}
             <ul class="navbar-nav px-3" style="float:right;">
+
                 <div class="dropdown show" style="padding: 10px 0px 0px 0px">
-                <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request_user.username}}</a>
+                <a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request_user.username}}</a>
 
                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute;right: 0px;left: unset;    min-width: 7rem;">
                     <a class="dropdown-item" href="{% url 'app:profile' user.id %}">Profile</a>
@@ -133,14 +182,31 @@
 </ol> -->
 
                 <div class="header">
-                    <div class="col-md-12">
-                        <h3 class="header-title">{{user.username}}'s Profile</h3>
-                        <p class="header-info" style="display:inline;">Overview and latest statistics</p>
-                        <div style="float:right;">
-                            {% if user.id == request_user.id %}
-                            <div>USD balance: <div style="float:right;font-weight: bold;">${{user.investor.usd_amt}}</div></div>
-                            {% endif %}
-                            <div>Total value of {{user.username}}'s personal investments: <div style="margin-left:15px;float:right;font-weight: bold;">${{total_investment_usd_amt}}</div></div>
+                    <div class="col-md-12 user-desc">
+                        <div class="col-md-2">
+                            <div id="ember1137" class="user-avatar">
+                                <img class="user-avatar__img" src="{{profile_pic_url}}">
+                            </div>
+                            <div class="changeAvatarHelp d-none">
+                                <a class="changeAvatar" href="#">Change your profile photo</a>
+                            </div>
+                            <div class="changeAvatarUpload d-none">
+                                <form action="/app/simple_upload/" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input type="file" name="myfile">
+                                    <button type="submit">Upload</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h3 class="header-title">{{user.username}}'s Profile</h3>
+                            <!-- <p class="header-info" style="display:inline;">Overview and latest statistics</p> -->
+                            <div style="float:left;">
+                                {% if user.id == request_user.id %}
+                                <div>USD balance: <div style="float:right;font-weight: bold;">${{user.investor.usd_amt}}</div></div>
+                                {% endif %}
+                                <div>Total value of {{user.username}}'s personal investments: <div style="margin-left:15px;float:right;font-weight: bold;">${{total_investment_usd_amt}}</div></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1226,6 +1292,15 @@ jQuery(function() {
     ArkAdmin.init(charts), ArkAdmin.initExamples()
 });
 
+    </script>
+
+    <script>
+        $(".edit-profile").click(function(){
+            $(".changeAvatarHelp").removeClass("d-none");
+        });
+        $(".changeAvatar").click(function(){
+            $(".changeAvatarUpload").removeClass("d-none");
+        });
     </script>
 
     <script>

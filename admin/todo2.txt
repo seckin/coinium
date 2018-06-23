@@ -70,6 +70,12 @@ OK sag alttaki grafik kullanicinin yaptigi tum investmentlari gosterecek
 10) otomatik portfolyo generate edip son 1 ay performanslarina bakmak, iyi olanlari sitede gostermek (ya da direkt iyi olacaklari el ile generate etmek)
 
 
+10bin dolarin simulasyon oldugunu daha belirgin yapin
+
+sloganlarda fazla sanki scammer görüntüsü çizmemeye çalışmakta fayda var mesela hani en süper managerlar gelicek size portfolyo hazırlıycak yazınca altında bi isim misim ya da bişey görmezse birisi scam segisine kapılır
+
+site giren insanda "size bi sürü para kazandırıcaz" izleniminden öte "size şöyle şöyle portfolyo managing imkanları sunuyoruz" izlenimi uyandırsın böylece giren adam kazanıp kaybetenin kendi elinde olduğu izlenimiyle girsin
+
 
 put a follow button on the profile page
 

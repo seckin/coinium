@@ -11,8 +11,9 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
+from django.core.files.storage import FileSystemStorage
 
-from accounts.models import Investor
+from accounts.models import Investor, Document
 from .models import Choice, Question, Portfolio, Investment, EmbeddedTweet
 from .forms import PortfolioForm
 import pymysql
@@ -457,6 +458,18 @@ def profile(request, user_id):
         portfolios_with_aum.append([portfolios[i], aum])
 
     request_user = request.user;
+
+    uploaded_file_url = False
+    if 'uploaded_file_url' in request.session and request.session['uploaded_file_url']:
+        uploaded_file_url = request.session['uploaded_file_url']
+        request.session['uploaded_file_url'] = False
+
+    if len(Document.objects.filter(user=request.user)):
+        fs = FileSystemStorage()
+        profile_pic_url = fs.url(request.user.document.document_filename)
+    else:
+        profile_pic_url = "https://storage.googleapis.com/indie-hackers.appspot.com/avatars/P0jgWBHyYbaC9wp1GEjGELwjsL63"
+
     return render(request, 'app/profile.html', {"user": user, "request_user": request_user, "investments": investments, \
         "investments_with_amts": investments_with_amts,\
         "investment_amts_for_months": investment_amts_for_months,\
@@ -465,6 +478,8 @@ def profile(request, user_id):
         "all_investments_by_user_in_original_usd_amt_in_month": all_investments_by_user_in_original_usd_amt_in_month,\
         "total_investment_usd_amt": total_investment_usd_amt,\
         "portfolios_with_aum": portfolios_with_aum,\
+        "uploaded_file_url": uploaded_file_url,\
+        "profile_pic_url": profile_pic_url,\
         "total_pv_val": total_pv_val,\
         "total_btc": total_btc,\
         "total_eth": total_eth,\
@@ -491,3 +506,18 @@ def embed_tweet(request, portfolio_id):
                                      embed_code = res_json['html'])
         request.session["tweet_embedded"] = True
     return redirect("/app/portfolio/" + str(portfolio_id))
+
+def simple_upload(request):
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        document = Document.objects.create(user=request.user,
+                                document_filename=filename)
+        document.save()
+        request.session["uploaded_file_url"] = uploaded_file_url
+        return redirect("/app/profile/" + str(request.user.id))
+        # return render(request, 'core/simple_upload.html', {
+        #     'uploaded_file_url': uploaded_file_url
+        # })

@@ -18,7 +18,6 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 
-
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)

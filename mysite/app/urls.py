@@ -13,5 +13,6 @@ urlpatterns = [
     path('profile/<int:user_id>', views.profile, name='profile'),
     path('create_investment/<int:portfolio_id>/', views.create_investment, name='create_investment'),
     path('tweetembed/<int:portfolio_id>/', views.embed_tweet, name='embed_tweet'),
+    path('simple_upload/', views.simple_upload, name='simple_upload'),
         #/<float:btc_amt>/<float:eth_amt>/<float:xrp_amt>/<float:xlm_amt>', views.create_investment, name='create_investment'),
 ]
