@@ -14,6 +14,10 @@ from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from .models import Investor
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
+from django.utils.html import strip_tags
+
 
 def signup(request):
     if request.method == 'POST':
@@ -32,7 +36,7 @@ def signup(request):
             })
             text_content = strip_tags(html_content)
             to_email = "seckincansahin@gmail.com"
-            email = EmailMultiAlternatives(mail_subject, text_content, 'info@coinium.app', to=[to_email], reply_to=['info@coinium.app'],fail_silently=False)
+            email = EmailMultiAlternatives(mail_subject, text_content, 'info@coinium.app', to=[to_email], reply_to=['info@coinium.app'])
             email.attach_alternative(html_content, "text/html")
             email.send()
             request.session['just_signed_up'] = True
