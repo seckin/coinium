@@ -81,7 +81,7 @@ def portfolio(request, pk):
                     cursor.execute(sql, (pair,))
                     spreads = cursor.fetchall()
                     spreads_for_pair[pair] = spreads
-                    print("spreads", spreads)
+                    # print("spreads", spreads)
                     if not spreads:
                         spreads = [{'shorthand':pair, 'price': 0}]
                     if spreads[0]['shorthand'] == 'BTC':
@@ -2178,7 +2178,7 @@ def profile(request, user_id):
             cur_month = int(cursor.fetchall()[0]["month"])
             for i in range(0, 3):
                 # pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
-                print("users_portfolio_ids", users_portfolio_ids)
+                # print("users_portfolio_ids", users_portfolio_ids)
                 pairs = get_all_pairs(users_portfolio_ids)
                 spreads_for_pair = dict()
                 for j in range(len(pairs)):
@@ -2193,7 +2193,7 @@ def profile(request, user_id):
                             latest_prices_of_month_arr[cur_month - i][pair_reverse_idx[pair]] = float(spreads[0]["price"])
                         else:
                             latest_prices_of_month_arr[cur_month - i][pair_reverse_idx[pair]] = 0
-                        print("latest_prices_of_month_arr[cur_month - i][pair_reverse_idx[pair]]", cur_month - i, pair_reverse_idx[pair], latest_prices_of_month_arr[cur_month - i][pair_reverse_idx[pair]])
+                        # print("latest_prices_of_month_arr[cur_month - i][pair_reverse_idx[pair]]", cur_month - i, pair_reverse_idx[pair], latest_prices_of_month_arr[cur_month - i][pair_reverse_idx[pair]])
                         #print("2 for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
 
                 end_of_month_amt = 0.0
@@ -2215,10 +2215,10 @@ def profile(request, user_id):
                         all_portfolios_coin_amts_for_individual_months[cur_month - i][k] += float(inv_arr[k])
                     # print("after all_portfolios_coin_amts_for_individual_months", all_portfolios_coin_amts_for_individual_months)
 
-                if i == 1:
-                    print("all_portfolios_coin_amts_for_individual_months[cur_month - i]", cur_month - i, all_portfolios_coin_amts_for_individual_months[cur_month - i])
-                if i == 1:
-                    print("end_of_month_amt", end_of_month_amt)
+                # if i == 1:
+                #     print("all_portfolios_coin_amts_for_individual_months[cur_month - i]", cur_month - i, all_portfolios_coin_amts_for_individual_months[cur_month - i])
+                # if i == 1:
+                #     print("end_of_month_amt", end_of_month_amt)
                 investment_amts_for_months[cur_month - i] = end_of_month_amt
 
     finally:
@@ -2236,8 +2236,6 @@ def profile(request, user_id):
             end_of_month_usd_amt[i] += all_portfolios_coin_amts_till_month[i][k] * latest_prices_of_month_arr[i][k]
             investment_in_month_usd_amt[i] += all_portfolios_coin_amts_for_individual_months[i][k] * latest_prices_of_month_arr[i][k]
         #hack:
-        if i == 5:
-            print("burda ", end_of_month_usd_amt[i])
         end_of_month_usd_amt[i] -= investment_in_month_usd_amt[i]
     # print("all_portfolios_coin_amts_till_month", all_portfolios_coin_amts_till_month)
     # print("end_of_month_usd_amt", end_of_month_usd_amt)
@@ -2283,13 +2281,13 @@ def profile(request, user_id):
     # for i in range(len(coin_pcts_array)):
     #     if coin_pcts_array[i] > 0:
     #         print("coin_pcts_array i =", i, coin_pcts_array[i])
-    for i in range(len(investment_amts_for_months)):
-        if investment_amts_for_months[i] > 0:
-            print("investment_amts_for_months i =", i, investment_amts_for_months[i])
+    # for i in range(len(investment_amts_for_months)):
+    #     if investment_amts_for_months[i] > 0:
+    #         print("investment_amts_for_months i =", i, investment_amts_for_months[i])
 
-    for i in range(len(investment_in_month_usd_amt)):
-        if investment_in_month_usd_amt[i] > 0:
-            print("investment_in_month_usd_amt i =", i, investment_in_month_usd_amt[i])
+    # for i in range(len(investment_in_month_usd_amt)):
+    #     if investment_in_month_usd_amt[i] > 0:
+    #         print("investment_in_month_usd_amt i =", i, investment_in_month_usd_amt[i])
 
 
     return render(request, 'app/profile.html', {"user": user, "request_user": request_user, "investments": investments, \
