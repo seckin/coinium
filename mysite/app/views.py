@@ -2127,16 +2127,8 @@ def profile(request, user_id):
     portfolios = Portfolio.objects.filter(owner=user)
     portfolio_ids = Portfolio.objects.filter(owner=user).values_list('id', flat=True)
 
-    # total_btc = 0.0
-    # total_eth = 0.0
-    # total_xrp = 0.0
-    # total_xlm = 0.0
     total_investment_amts = [0.0 for i in range(934)]
     for investment in investments:
-        # total_btc += float(investment.BTC_amt)
-        # total_eth += float(investment.ETH_amt)
-        # total_xrp += float(investment.XRP_amt)
-        # total_xlm += float(investment.XLM_amt)
         i_arr = get_investment_array(investment)
         for i in range(934):
             total_investment_amts[i] += float(i_arr[i])
@@ -2167,37 +2159,19 @@ def profile(request, user_id):
                 latest_prices_arr[i] = float(spreads[0]["price"])
                 #print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
 
-            # btc_latest_val = float(spreads_for_pair[pairs[0]][0]["bestbid"])
-            # eth_latest_val = float(spreads_for_pair[pairs[1]][0]["bestbid"])
-            # xrp_latest_val = float(spreads_for_pair[pairs[2]][0]["bestbid"])
-            # xlm_latest_val = 0.5
     finally:
         connection.close()
 
-    for i in range(934):
-        if latest_prices_arr[i] > 0:
-            print("latest_prices_arr i", i, latest_prices_arr[i])
-        if total_investment_amts[i] > 0:
-            print("total_investment_amts i", i, total_investment_amts[i])
+    # for i in range(934):
+    #     if latest_prices_arr[i] > 0:
+    #         print("latest_prices_arr i", i, latest_prices_arr[i])
+    #     if total_investment_amts[i] > 0:
+    #         print("total_investment_amts i", i, total_investment_amts[i])
 
-    # total_pv_val = btc_latest_val * total_btc + \
-    #                eth_latest_val * total_eth + \
-    #                xrp_latest_val * total_xrp + \
-    #                xlm_latest_val * total_xlm
     total_pv_val = 0.0
     for i in range(934):
         total_pv_val += latest_prices_arr[i] * total_investment_amts[i]
 
-    # if total_pv_val:
-    #     btc_pct = round(100 * btc_latest_val * total_btc / total_pv_val, 2)
-    #     eth_pct = round(100 * eth_latest_val * total_eth / total_pv_val, 2)
-    #     xrp_pct = round(100 * xrp_latest_val * total_xrp / total_pv_val, 2)
-    #     xlm_pct = round(100 * xlm_latest_val * total_xlm / total_pv_val, 2)
-    # else:
-    #     btc_pct = 0
-    #     eth_pct = 0
-    #     xrp_pct = 0
-    #     xlm_pct = 0
     coin_pcts_array = [0.0 for i in range(934)]
     for i in range(934):
         if total_pv_val > 0:
@@ -2242,20 +2216,6 @@ def profile(request, user_id):
                         latest_prices_of_month_arr[cur_month - i][j] = float(spreads[0]["price"])
                         #print("2 for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
 
-                # if len(spreads_for_pair[pairs[0]]) > 0:
-                #     btc_latest_val_at_the_end_of_the_month = float(spreads_for_pair[pairs[0]][0]["bestbid"])
-                # else:
-                #     btc_latest_val_at_the_end_of_the_month = 0.0
-                # if len(spreads_for_pair[pairs[1]]) > 0:
-                #     eth_latest_val_at_the_end_of_the_month = float(spreads_for_pair[pairs[1]][0]["bestbid"])
-                # else:
-                #     eth_latest_val_at_the_end_of_the_month = 0.0
-                # if len(spreads_for_pair[pairs[2]]) > 0:
-                #     xrp_latest_val_at_the_end_of_the_month = float(spreads_for_pair[pairs[2]][0]["bestbid"])
-                # else:
-                #     xrp_latest_val_at_the_end_of_the_month = 0.0
-                # xlm_latest_val_at_the_end_of_the_month = 0.5
-
                 end_of_month_amt = 0.0
                 users_portfolios = Portfolio.objects.filter(owner = user)
                 portfolio_ids = ["-1"]
@@ -2271,26 +2231,9 @@ def profile(request, user_id):
                     for k in range(934):
                         # print("k", k, "inv_arr[k]", float(inv_arr[k]), "latest_prices_of_month_arr[cur_month - i][k]", latest_prices_of_month_arr[cur_month - i][k])
                         end_of_month_amt += float(inv_arr[k]) * latest_prices_of_month_arr[cur_month - i][k]
-                    # end_of_month_amt += float(investment.BTC_amt) * btc_latest_val_at_the_end_of_the_month + \
-                    #     float(investment.ETH_amt) * eth_latest_val_at_the_end_of_the_month + \
-                    #     float(investment.XRP_amt) * xrp_latest_val_at_the_end_of_the_month + \
-                    #     float(investment.XLM_amt) * xlm_latest_val_at_the_end_of_the_month
-                    
-                    # print("i = ", i, "cur_month = ", cur_month)
-                    # print("investment:", investment.btc_amt, investment.eth_amt, investment.xrp_amt, investment.xlm_amt)
-                    # print("before all_portfolios_coin_amts_for_individual_months", all_portfolios_coin_amts_for_individual_months)
-                    # all_portfolios_coin_amts_for_individual_months[cur_month - i][0] += float(investment.BTC_amt)
-                    # all_portfolios_coin_amts_for_individual_months[cur_month - i][1] += float(investment.ETH_amt)
-                    # all_portfolios_coin_amts_for_individual_months[cur_month - i][2] += float(investment.XRP_amt)
-                    # all_portfolios_coin_amts_for_individual_months[cur_month - i][3] += float(investment.XLM_amt)
                     for k in range(934):
                         all_portfolios_coin_amts_for_individual_months[cur_month - i][k] += float(inv_arr[k])
                     # print("after all_portfolios_coin_amts_for_individual_months", all_portfolios_coin_amts_for_individual_months)
-                # end_of_month_coin_prices[cur_month - i][0] = btc_latest_val_at_the_end_of_the_month
-                # end_of_month_coin_prices[cur_month - i][1] = eth_latest_val_at_the_end_of_the_month
-                # end_of_month_coin_prices[cur_month - i][2] = xrp_latest_val_at_the_end_of_the_month
-                # end_of_month_coin_prices[cur_month - i][3] = xlm_latest_val_at_the_end_of_the_month
-                # print("end_of_month_amt", end_of_month_amt, "for i = ", i)
 
                 investment_amts_for_months[cur_month - i] = end_of_month_amt
 
