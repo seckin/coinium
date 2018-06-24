@@ -10,4 +10,5 @@ for i in range(len(a)):
     if shorthand[:2] == "e_":
         shorthand = shorthand[2:]
     #str += "if spreads[0]['shorthand'] == '" + shorthand + "':\n    " + x[:-4] + "_latest_val = spreads[0]['price']\n"
-    s += "{% if coin_pcts_array." + str(i) + " > 0 %}['" + shorthand+ ": {{coin_pcts_array." + str(i) + "}}%', {{coin_pcts_array." + str(i) + "}}], {% endif %}\n"
+    #s += "{% if coin_pcts_array." + str(i) + " > 0 %}['" + shorthand+ ": {{coin_pcts_array." + str(i) + "}}%', {{coin_pcts_array." + str(i) + "}}], {% endif %}\n"
+    s += "'" + shorthand "':" + str(i) + ","
