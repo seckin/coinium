@@ -2137,7 +2137,7 @@ def profile(request, user_id):
 
     # get latest valuations
     all_portfolios_ids = Portfolio.objects.filter().values_list('id', flat=True)
-    print("all_portfolios_ids", all_portfolios_ids)
+    # print("all_portfolios_ids", all_portfolios_ids)
     latest_prices_arr = get_latest_prices_arr(all_portfolios_ids)
 
     # for i in range(934):
@@ -2149,14 +2149,14 @@ def profile(request, user_id):
     total_pv_val = 0.0
     for i in range(934):
         total_pv_val += latest_prices_arr[i] * total_investment_amts[i]
-    print("latest_prices_arr", latest_prices_arr)
-    print("total_investment_amts", total_investment_amts)
+    # print("latest_prices_arr", latest_prices_arr)
+    # print("total_investment_amts", total_investment_amts)
 
     coin_pcts_array = [0.0 for i in range(934)]
     for i in range(934):
         if total_pv_val > 0:
             coin_pcts_array[i] = round(100.0 * latest_prices_arr[i] * total_investment_amts[i] / total_pv_val, 2)
-    print("coin_pcts_array", coin_pcts_array)
+    # print("coin_pcts_array", coin_pcts_array)
 
     #calculate investment amounts
     investments_with_amts = []
