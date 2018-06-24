@@ -2127,7 +2127,7 @@ def profile(request, user_id):
     user = User.objects.get(pk=user_id)
     investments = Investment.objects.filter(owner=user)
     portfolios = Portfolio.objects.filter(owner=user)
-    portfolio_ids = Portfolio.objects.filter(owner=user).values_list('id', flat=True)
+    users_portfolio_ids = Portfolio.objects.filter(owner=user).values_list('id', flat=True)
 
     total_investment_amts = [0.0 for i in range(934)]
     for investment in investments:
@@ -2136,7 +2136,7 @@ def profile(request, user_id):
             total_investment_amts[i] += float(i_arr[i])
 
     # get latest valuations
-    latest_prices_arr = get_latest_prices_arr(portfolio_ids)
+    latest_prices_arr = get_latest_prices_arr(users_portfolio_ids)
 
     # for i in range(934):
     #     if latest_prices_arr[i] > 0:
@@ -2178,8 +2178,8 @@ def profile(request, user_id):
             cur_month = int(cursor.fetchall()[0]["month"])
             for i in range(0, 3):
                 # pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
-                print("portfolio_ids", portfolio_ids)
-                pairs = get_all_pairs(portfolio_ids)
+                print("users_portfolio_ids", users_portfolio_ids)
+                pairs = get_all_pairs(users_portfolio_ids)
                 spreads_for_pair = dict()
                 for j in range(len(pairs)):
                     pair = pairs[j]
@@ -2189,7 +2189,11 @@ def profile(request, user_id):
                         cursor.execute(sql, (pair))
                         spreads = cursor.fetchall()
                         spreads_for_pair[pair] = spreads
-                        latest_prices_of_month_arr[cur_month - i][j] = float(spreads[0]["price"])
+                        if len(spreads):
+                            latest_prices_of_month_arr[cur_month - i][pair_reverse_idx[pair]] = float(spreads[0]["price"])
+                        else:
+                            latest_prices_of_month_arr[cur_month - i][pair_reverse_idx[pair]] = 0
+                        print("latest_prices_of_month_arr[cur_month - i][pair_reverse_idx[pair]]", cur_month - i, pair_reverse_idx[pair], latest_prices_of_month_arr[cur_month - i][pair_reverse_idx[pair]])
                         #print("2 for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
 
                 end_of_month_amt = 0.0
@@ -2211,6 +2215,10 @@ def profile(request, user_id):
                         all_portfolios_coin_amts_for_individual_months[cur_month - i][k] += float(inv_arr[k])
                     # print("after all_portfolios_coin_amts_for_individual_months", all_portfolios_coin_amts_for_individual_months)
 
+                if i == 1:
+                    print("all_portfolios_coin_amts_for_individual_months[cur_month - i]", cur_month - i, all_portfolios_coin_amts_for_individual_months[cur_month - i])
+                if i == 1:
+                    print("end_of_month_amt", end_of_month_amt)
                 investment_amts_for_months[cur_month - i] = end_of_month_amt
 
     finally:
@@ -2225,9 +2233,11 @@ def profile(request, user_id):
     for i in range(1,13):
         for k in range(934):
             all_portfolios_coin_amts_till_month[i][k] = all_portfolios_coin_amts_till_month[i-1][k] + all_portfolios_coin_amts_for_individual_months[i][k]
-            end_of_month_usd_amt[i] = all_portfolios_coin_amts_till_month[i][k] * latest_prices_of_month_arr[i][k]
-            investment_in_month_usd_amt[i] = all_portfolios_coin_amts_for_individual_months[i][k] * latest_prices_of_month_arr[i][k]
+            end_of_month_usd_amt[i] += all_portfolios_coin_amts_till_month[i][k] * latest_prices_of_month_arr[i][k]
+            investment_in_month_usd_amt[i] += all_portfolios_coin_amts_for_individual_months[i][k] * latest_prices_of_month_arr[i][k]
         #hack:
+        if i == 5:
+            print("burda ", end_of_month_usd_amt[i])
         end_of_month_usd_amt[i] -= investment_in_month_usd_amt[i]
     # print("all_portfolios_coin_amts_till_month", all_portfolios_coin_amts_till_month)
     # print("end_of_month_usd_amt", end_of_month_usd_amt)
@@ -2270,9 +2280,17 @@ def profile(request, user_id):
     else:
         profile_pic_url = "https://storage.googleapis.com/indie-hackers.appspot.com/avatars/P0jgWBHyYbaC9wp1GEjGELwjsL63"
 
-    for i in range(len(coin_pcts_array)):
-        if coin_pcts_array[i] > 0:
-            print("coin_pcts_array i =", i, coin_pcts_array[i])
+    # for i in range(len(coin_pcts_array)):
+    #     if coin_pcts_array[i] > 0:
+    #         print("coin_pcts_array i =", i, coin_pcts_array[i])
+    for i in range(len(investment_amts_for_months)):
+        if investment_amts_for_months[i] > 0:
+            print("investment_amts_for_months i =", i, investment_amts_for_months[i])
+
+    for i in range(len(investment_in_month_usd_amt)):
+        if investment_in_month_usd_amt[i] > 0:
+            print("investment_in_month_usd_amt i =", i, investment_in_month_usd_amt[i])
+
 
     return render(request, 'app/profile.html', {"user": user, "request_user": request_user, "investments": investments, \
         "investments_with_amts": investments_with_amts,\
@@ -2295,10 +2313,6 @@ def profile(request, user_id):
         # "xrp_latest_val": xrp_latest_val,\
         # "xlm_latest_val": xlm_latest_val,\
         "latest_prices_arr": latest_prices_arr,\
-        # "btc_pct": btc_pct,\
-        # "eth_pct": eth_pct,\
-        # "xrp_pct": xrp_pct,\
-        # "xlm_pct": xlm_pct
         "coin_pcts_array": coin_pcts_array,\
         })
 
