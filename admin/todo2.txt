@@ -71,6 +71,15 @@ OK sag alttaki grafik kullanicinin yaptigi tum investmentlari gosterecek
 
 coinmarketcap'teki tum coinlerin paper trade edilmesini saglamak
 
+feedback:
+    I feel like it's missing some social proof though. I want to see who some of these "rockstar investors" are.
+
+    How much is this going to cost? With something like Wealthfront, they charge a % of assets in the portfolio...I assume you are going to do something similar?
+
+    you need to highlight the security of your platform. There have been lots of hacks in the crypto space and immediately I asked myself, "how safe is this"
+
+    your "teams" link doesn't work
+
 10bin dolarin simulasyon oldugunu daha belirgin yapin
 
 sloganlarda fazla sanki scammer görüntüsü çizmemeye çalışmakta fayda var mesela hani en süper managerlar gelicek size portfolyo hazırlıycak yazınca altında bi isim misim ya da bişey görmezse birisi scam segisine kapılır
