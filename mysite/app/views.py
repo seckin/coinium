@@ -2136,7 +2136,9 @@ def profile(request, user_id):
             total_investment_amts[i] += float(i_arr[i])
 
     # get latest valuations
-    latest_prices_arr = get_latest_prices_arr(users_portfolio_ids)
+    all_portfolios_ids = Portfolio.objects.filter().values_list('id', flat=True)
+    print("all_portfolios_ids", all_portfolios_ids)
+    latest_prices_arr = get_latest_prices_arr(all_portfolios_ids)
 
     # for i in range(934):
     #     if latest_prices_arr[i] > 0:
