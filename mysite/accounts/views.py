@@ -34,7 +34,7 @@ def signup(request):
                 'user': user,
             })
             text_content = strip_tags(html_content)
-            to_email = "seckincansahin@gmail.com"
+            to_email = user.email
             email = EmailMultiAlternatives(mail_subject, text_content, 'info@coinium.app', to=[to_email], reply_to=['info@coinium.app'])
             email.attach_alternative(html_content, "text/html")
             email.send()

@@ -1,3 +1,4 @@
+from .models import PricingData
 def get_pairs_and_pcts(portfolio):
     pairs = []
     pair_pcts = []
@@ -2804,3 +2805,2813 @@ def get_pairs_and_pcts(portfolio):
         pairs.append("LIVE")
         pair_pcts.append(float(portfolio.LIVE_pct))
     return (pairs, pair_pcts)
+
+def get_latest_price_for_shorthand(shorthand):
+    pricing_data = PricingData.objects.raw("select * from app_pricingdata where shorthand = '" + shorthand + "' order by created_at desc limit 1")
+    return float(pricing_data[0].price)
+
+def fill_investment(investment, portfolio, usd_amt):
+    print("(float(portfolio.BTC_pct) / 100.0)", ((float(portfolio.BTC_pct) / 100.0)))
+    if portfolio.BTC_pct > 0.0:
+        price = get_latest_price_for_shorthand("BTC")
+        investment.BTC_amt = ((float(portfolio.BTC_pct) / 100.0) * usd_amt) / price
+    if portfolio.ETH_pct > 0.0:
+        price = get_latest_price_for_shorthand("ETH")
+        investment.ETH_amt = ((float(portfolio.ETH_pct) / 100.0) * usd_amt) / price
+    if portfolio.XRP_pct > 0.0:
+        price = get_latest_price_for_shorthand("XRP")
+        investment.XRP_amt = ((float(portfolio.XRP_pct) / 100.0) * usd_amt) / price
+    if portfolio.BCH_pct > 0.0:
+        price = get_latest_price_for_shorthand("BCH")
+        investment.BCH_amt = ((float(portfolio.BCH_pct) / 100.0) * usd_amt) / price
+    if portfolio.EOS_pct > 0.0:
+        price = get_latest_price_for_shorthand("EOS")
+        investment.EOS_amt = ((float(portfolio.EOS_pct) / 100.0) * usd_amt) / price
+    if portfolio.LTC_pct > 0.0:
+        price = get_latest_price_for_shorthand("LTC")
+        investment.LTC_amt = ((float(portfolio.LTC_pct) / 100.0) * usd_amt) / price
+    if portfolio.XLM_pct > 0.0:
+        price = get_latest_price_for_shorthand("XLM")
+        investment.XLM_amt = ((float(portfolio.XLM_pct) / 100.0) * usd_amt) / price
+    if portfolio.ADA_pct > 0.0:
+        price = get_latest_price_for_shorthand("ADA")
+        investment.ADA_amt = ((float(portfolio.ADA_pct) / 100.0) * usd_amt) / price
+    if portfolio.TRX_pct > 0.0:
+        price = get_latest_price_for_shorthand("TRX")
+        investment.TRX_amt = ((float(portfolio.TRX_pct) / 100.0) * usd_amt) / price
+    if portfolio.MIOTA_pct > 0.0:
+        price = get_latest_price_for_shorthand("MIOTA")
+        investment.MIOTA_amt = ((float(portfolio.MIOTA_pct) / 100.0) * usd_amt) / price
+    if portfolio.USDT_pct > 0.0:
+        price = get_latest_price_for_shorthand("USDT")
+        investment.USDT_amt = ((float(portfolio.USDT_pct) / 100.0) * usd_amt) / price
+    if portfolio.NEO_pct > 0.0:
+        price = get_latest_price_for_shorthand("NEO")
+        investment.NEO_amt = ((float(portfolio.NEO_pct) / 100.0) * usd_amt) / price
+    if portfolio.DASH_pct > 0.0:
+        price = get_latest_price_for_shorthand("DASH")
+        investment.DASH_amt = ((float(portfolio.DASH_pct) / 100.0) * usd_amt) / price
+    if portfolio.XMR_pct > 0.0:
+        price = get_latest_price_for_shorthand("XMR")
+        investment.XMR_amt = ((float(portfolio.XMR_pct) / 100.0) * usd_amt) / price
+    if portfolio.BNB_pct > 0.0:
+        price = get_latest_price_for_shorthand("BNB")
+        investment.BNB_amt = ((float(portfolio.BNB_pct) / 100.0) * usd_amt) / price
+    if portfolio.VEN_pct > 0.0:
+        price = get_latest_price_for_shorthand("VEN")
+        investment.VEN_amt = ((float(portfolio.VEN_pct) / 100.0) * usd_amt) / price
+    if portfolio.ETC_pct > 0.0:
+        price = get_latest_price_for_shorthand("ETC")
+        investment.ETC_amt = ((float(portfolio.ETC_pct) / 100.0) * usd_amt) / price
+    if portfolio.XEM_pct > 0.0:
+        price = get_latest_price_for_shorthand("XEM")
+        investment.XEM_amt = ((float(portfolio.XEM_pct) / 100.0) * usd_amt) / price
+    if portfolio.OMG_pct > 0.0:
+        price = get_latest_price_for_shorthand("OMG")
+        investment.OMG_amt = ((float(portfolio.OMG_pct) / 100.0) * usd_amt) / price
+    if portfolio.QTUM_pct > 0.0:
+        price = get_latest_price_for_shorthand("QTUM")
+        investment.QTUM_amt = ((float(portfolio.QTUM_pct) / 100.0) * usd_amt) / price
+    if portfolio.ONT_pct > 0.0:
+        price = get_latest_price_for_shorthand("ONT")
+        investment.ONT_amt = ((float(portfolio.ONT_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZEC_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZEC")
+        investment.ZEC_amt = ((float(portfolio.ZEC_pct) / 100.0) * usd_amt) / price
+    if portfolio.ICX_pct > 0.0:
+        price = get_latest_price_for_shorthand("ICX")
+        investment.ICX_amt = ((float(portfolio.ICX_pct) / 100.0) * usd_amt) / price
+    if portfolio.LSK_pct > 0.0:
+        price = get_latest_price_for_shorthand("LSK")
+        investment.LSK_amt = ((float(portfolio.LSK_pct) / 100.0) * usd_amt) / price
+    if portfolio.DCR_pct > 0.0:
+        price = get_latest_price_for_shorthand("DCR")
+        investment.DCR_amt = ((float(portfolio.DCR_pct) / 100.0) * usd_amt) / price
+    if portfolio.BCN_pct > 0.0:
+        price = get_latest_price_for_shorthand("BCN")
+        investment.BCN_amt = ((float(portfolio.BCN_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZIL_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZIL")
+        investment.ZIL_amt = ((float(portfolio.ZIL_pct) / 100.0) * usd_amt) / price
+    if portfolio.AE_pct > 0.0:
+        price = get_latest_price_for_shorthand("AE")
+        investment.AE_amt = ((float(portfolio.AE_pct) / 100.0) * usd_amt) / price
+    if portfolio.BTG_pct > 0.0:
+        price = get_latest_price_for_shorthand("BTG")
+        investment.BTG_amt = ((float(portfolio.BTG_pct) / 100.0) * usd_amt) / price
+    if portfolio.BTM_pct > 0.0:
+        price = get_latest_price_for_shorthand("BTM")
+        investment.BTM_amt = ((float(portfolio.BTM_pct) / 100.0) * usd_amt) / price
+    if portfolio.SC_pct > 0.0:
+        price = get_latest_price_for_shorthand("SC")
+        investment.SC_amt = ((float(portfolio.SC_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZRX_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZRX")
+        investment.ZRX_amt = ((float(portfolio.ZRX_pct) / 100.0) * usd_amt) / price
+    if portfolio.XVG_pct > 0.0:
+        price = get_latest_price_for_shorthand("XVG")
+        investment.XVG_amt = ((float(portfolio.XVG_pct) / 100.0) * usd_amt) / price
+    if portfolio.BTS_pct > 0.0:
+        price = get_latest_price_for_shorthand("BTS")
+        investment.BTS_amt = ((float(portfolio.BTS_pct) / 100.0) * usd_amt) / price
+    if portfolio.STEEM_pct > 0.0:
+        price = get_latest_price_for_shorthand("STEEM")
+        investment.STEEM_amt = ((float(portfolio.STEEM_pct) / 100.0) * usd_amt) / price
+    if portfolio.MKR_pct > 0.0:
+        price = get_latest_price_for_shorthand("MKR")
+        investment.MKR_amt = ((float(portfolio.MKR_pct) / 100.0) * usd_amt) / price
+    if portfolio.REP_pct > 0.0:
+        price = get_latest_price_for_shorthand("REP")
+        investment.REP_amt = ((float(portfolio.REP_pct) / 100.0) * usd_amt) / price
+    if portfolio.NANO_pct > 0.0:
+        price = get_latest_price_for_shorthand("NANO")
+        investment.NANO_amt = ((float(portfolio.NANO_pct) / 100.0) * usd_amt) / price
+    if portfolio.DOGE_pct > 0.0:
+        price = get_latest_price_for_shorthand("DOGE")
+        investment.DOGE_amt = ((float(portfolio.DOGE_pct) / 100.0) * usd_amt) / price
+    if portfolio.RHOC_pct > 0.0:
+        price = get_latest_price_for_shorthand("RHOC")
+        investment.RHOC_amt = ((float(portfolio.RHOC_pct) / 100.0) * usd_amt) / price
+    if portfolio.WAVES_pct > 0.0:
+        price = get_latest_price_for_shorthand("WAVES")
+        investment.WAVES_amt = ((float(portfolio.WAVES_pct) / 100.0) * usd_amt) / price
+    if portfolio.BCD_pct > 0.0:
+        price = get_latest_price_for_shorthand("BCD")
+        investment.BCD_amt = ((float(portfolio.BCD_pct) / 100.0) * usd_amt) / price
+    if portfolio.BAT_pct > 0.0:
+        price = get_latest_price_for_shorthand("BAT")
+        investment.BAT_amt = ((float(portfolio.BAT_pct) / 100.0) * usd_amt) / price
+    if portfolio.WAN_pct > 0.0:
+        price = get_latest_price_for_shorthand("WAN")
+        investment.WAN_amt = ((float(portfolio.WAN_pct) / 100.0) * usd_amt) / price
+    if portfolio.GNT_pct > 0.0:
+        price = get_latest_price_for_shorthand("GNT")
+        investment.GNT_amt = ((float(portfolio.GNT_pct) / 100.0) * usd_amt) / price
+    if portfolio.BTCP_pct > 0.0:
+        price = get_latest_price_for_shorthand("BTCP")
+        investment.BTCP_amt = ((float(portfolio.BTCP_pct) / 100.0) * usd_amt) / price
+    if portfolio.STRAT_pct > 0.0:
+        price = get_latest_price_for_shorthand("STRAT")
+        investment.STRAT_amt = ((float(portfolio.STRAT_pct) / 100.0) * usd_amt) / price
+    if portfolio.DGB_pct > 0.0:
+        price = get_latest_price_for_shorthand("DGB")
+        investment.DGB_amt = ((float(portfolio.DGB_pct) / 100.0) * usd_amt) / price
+    if portfolio.KCS_pct > 0.0:
+        price = get_latest_price_for_shorthand("KCS")
+        investment.KCS_amt = ((float(portfolio.KCS_pct) / 100.0) * usd_amt) / price
+    if portfolio.WTC_pct > 0.0:
+        price = get_latest_price_for_shorthand("WTC")
+        investment.WTC_amt = ((float(portfolio.WTC_pct) / 100.0) * usd_amt) / price
+    if portfolio.PPT_pct > 0.0:
+        price = get_latest_price_for_shorthand("PPT")
+        investment.PPT_amt = ((float(portfolio.PPT_pct) / 100.0) * usd_amt) / price
+    if portfolio.SNT_pct > 0.0:
+        price = get_latest_price_for_shorthand("SNT")
+        investment.SNT_amt = ((float(portfolio.SNT_pct) / 100.0) * usd_amt) / price
+    if portfolio.HSR_pct > 0.0:
+        price = get_latest_price_for_shorthand("HSR")
+        investment.HSR_amt = ((float(portfolio.HSR_pct) / 100.0) * usd_amt) / price
+    if portfolio.DGD_pct > 0.0:
+        price = get_latest_price_for_shorthand("DGD")
+        investment.DGD_amt = ((float(portfolio.DGD_pct) / 100.0) * usd_amt) / price
+    if portfolio.NAS_pct > 0.0:
+        price = get_latest_price_for_shorthand("NAS")
+        investment.NAS_amt = ((float(portfolio.NAS_pct) / 100.0) * usd_amt) / price
+    if portfolio.HT_pct > 0.0:
+        price = get_latest_price_for_shorthand("HT")
+        investment.HT_amt = ((float(portfolio.HT_pct) / 100.0) * usd_amt) / price
+    if portfolio.IOST_pct > 0.0:
+        price = get_latest_price_for_shorthand("IOST")
+        investment.IOST_amt = ((float(portfolio.IOST_pct) / 100.0) * usd_amt) / price
+    if portfolio.AION_pct > 0.0:
+        price = get_latest_price_for_shorthand("AION")
+        investment.AION_amt = ((float(portfolio.AION_pct) / 100.0) * usd_amt) / price
+    if portfolio.LRC_pct > 0.0:
+        price = get_latest_price_for_shorthand("LRC")
+        investment.LRC_amt = ((float(portfolio.LRC_pct) / 100.0) * usd_amt) / price
+    if portfolio.KMD_pct > 0.0:
+        price = get_latest_price_for_shorthand("KMD")
+        investment.KMD_amt = ((float(portfolio.KMD_pct) / 100.0) * usd_amt) / price
+    if portfolio.GXS_pct > 0.0:
+        price = get_latest_price_for_shorthand("GXS")
+        investment.GXS_amt = ((float(portfolio.GXS_pct) / 100.0) * usd_amt) / price
+    if portfolio.CNX_pct > 0.0:
+        price = get_latest_price_for_shorthand("CNX")
+        investment.CNX_amt = ((float(portfolio.CNX_pct) / 100.0) * usd_amt) / price
+    if portfolio.RDD_pct > 0.0:
+        price = get_latest_price_for_shorthand("RDD")
+        investment.RDD_amt = ((float(portfolio.RDD_pct) / 100.0) * usd_amt) / price
+    if portfolio.BNT_pct > 0.0:
+        price = get_latest_price_for_shorthand("BNT")
+        investment.BNT_amt = ((float(portfolio.BNT_pct) / 100.0) * usd_amt) / price
+    if portfolio.ARDR_pct > 0.0:
+        price = get_latest_price_for_shorthand("ARDR")
+        investment.ARDR_amt = ((float(portfolio.ARDR_pct) / 100.0) * usd_amt) / price
+    if portfolio.MAID_pct > 0.0:
+        price = get_latest_price_for_shorthand("MAID")
+        investment.MAID_amt = ((float(portfolio.MAID_pct) / 100.0) * usd_amt) / price
+    if portfolio.ARK_pct > 0.0:
+        price = get_latest_price_for_shorthand("ARK")
+        investment.ARK_amt = ((float(portfolio.ARK_pct) / 100.0) * usd_amt) / price
+    if portfolio.MOAC_pct > 0.0:
+        price = get_latest_price_for_shorthand("MOAC")
+        investment.MOAC_amt = ((float(portfolio.MOAC_pct) / 100.0) * usd_amt) / price
+    if portfolio.MONA_pct > 0.0:
+        price = get_latest_price_for_shorthand("MONA")
+        investment.MONA_amt = ((float(portfolio.MONA_pct) / 100.0) * usd_amt) / price
+    if portfolio.ELF_pct > 0.0:
+        price = get_latest_price_for_shorthand("ELF")
+        investment.ELF_amt = ((float(portfolio.ELF_pct) / 100.0) * usd_amt) / price
+    if portfolio.CENNZ_pct > 0.0:
+        price = get_latest_price_for_shorthand("CENNZ")
+        investment.CENNZ_amt = ((float(portfolio.CENNZ_pct) / 100.0) * usd_amt) / price
+    if portfolio.DCN_pct > 0.0:
+        price = get_latest_price_for_shorthand("DCN")
+        investment.DCN_amt = ((float(portfolio.DCN_pct) / 100.0) * usd_amt) / price
+    if portfolio.FUN_pct > 0.0:
+        price = get_latest_price_for_shorthand("FUN")
+        investment.FUN_amt = ((float(portfolio.FUN_pct) / 100.0) * usd_amt) / price
+    if portfolio.BIX_pct > 0.0:
+        price = get_latest_price_for_shorthand("BIX")
+        investment.BIX_amt = ((float(portfolio.BIX_pct) / 100.0) * usd_amt) / price
+    if portfolio.GAS_pct > 0.0:
+        price = get_latest_price_for_shorthand("GAS")
+        investment.GAS_amt = ((float(portfolio.GAS_pct) / 100.0) * usd_amt) / price
+    if portfolio.MITH_pct > 0.0:
+        price = get_latest_price_for_shorthand("MITH")
+        investment.MITH_amt = ((float(portfolio.MITH_pct) / 100.0) * usd_amt) / price
+    if portfolio.ENG_pct > 0.0:
+        price = get_latest_price_for_shorthand("ENG")
+        investment.ENG_amt = ((float(portfolio.ENG_pct) / 100.0) * usd_amt) / price
+    if portfolio.PIVX_pct > 0.0:
+        price = get_latest_price_for_shorthand("PIVX")
+        investment.PIVX_amt = ((float(portfolio.PIVX_pct) / 100.0) * usd_amt) / price
+    if portfolio.VERI_pct > 0.0:
+        price = get_latest_price_for_shorthand("VERI")
+        investment.VERI_amt = ((float(portfolio.VERI_pct) / 100.0) * usd_amt) / price
+    if portfolio.KNC_pct > 0.0:
+        price = get_latest_price_for_shorthand("KNC")
+        investment.KNC_amt = ((float(portfolio.KNC_pct) / 100.0) * usd_amt) / price
+    if portfolio.ELA_pct > 0.0:
+        price = get_latest_price_for_shorthand("ELA")
+        investment.ELA_amt = ((float(portfolio.ELA_pct) / 100.0) * usd_amt) / price
+    if portfolio.EMC_pct > 0.0:
+        price = get_latest_price_for_shorthand("EMC")
+        investment.EMC_amt = ((float(portfolio.EMC_pct) / 100.0) * usd_amt) / price
+    if portfolio.FSN_pct > 0.0:
+        price = get_latest_price_for_shorthand("FSN")
+        investment.FSN_amt = ((float(portfolio.FSN_pct) / 100.0) * usd_amt) / price
+    if portfolio.SYS_pct > 0.0:
+        price = get_latest_price_for_shorthand("SYS")
+        investment.SYS_amt = ((float(portfolio.SYS_pct) / 100.0) * usd_amt) / price
+    if portfolio.DROP_pct > 0.0:
+        price = get_latest_price_for_shorthand("DROP")
+        investment.DROP_amt = ((float(portfolio.DROP_pct) / 100.0) * usd_amt) / price
+    if portfolio.CMT_pct > 0.0:
+        price = get_latest_price_for_shorthand("CMT")
+        investment.CMT_amt = ((float(portfolio.CMT_pct) / 100.0) * usd_amt) / price
+    if portfolio.KIN_pct > 0.0:
+        price = get_latest_price_for_shorthand("KIN")
+        investment.KIN_amt = ((float(portfolio.KIN_pct) / 100.0) * usd_amt) / price
+    if portfolio.MANA_pct > 0.0:
+        price = get_latest_price_for_shorthand("MANA")
+        investment.MANA_amt = ((float(portfolio.MANA_pct) / 100.0) * usd_amt) / price
+    if portfolio.NXT_pct > 0.0:
+        price = get_latest_price_for_shorthand("NXT")
+        investment.NXT_amt = ((float(portfolio.NXT_pct) / 100.0) * usd_amt) / price
+    if portfolio.ETHOS_pct > 0.0:
+        price = get_latest_price_for_shorthand("ETHOS")
+        investment.ETHOS_amt = ((float(portfolio.ETHOS_pct) / 100.0) * usd_amt) / price
+    if portfolio.DDD_pct > 0.0:
+        price = get_latest_price_for_shorthand("DDD")
+        investment.DDD_amt = ((float(portfolio.DDD_pct) / 100.0) * usd_amt) / price
+    if portfolio.QASH_pct > 0.0:
+        price = get_latest_price_for_shorthand("QASH")
+        investment.QASH_amt = ((float(portfolio.QASH_pct) / 100.0) * usd_amt) / price
+    if portfolio.DRGN_pct > 0.0:
+        price = get_latest_price_for_shorthand("DRGN")
+        investment.DRGN_amt = ((float(portfolio.DRGN_pct) / 100.0) * usd_amt) / price
+    if portfolio.FCT_pct > 0.0:
+        price = get_latest_price_for_shorthand("FCT")
+        investment.FCT_amt = ((float(portfolio.FCT_pct) / 100.0) * usd_amt) / price
+    if portfolio.LOOM_pct > 0.0:
+        price = get_latest_price_for_shorthand("LOOM")
+        investment.LOOM_amt = ((float(portfolio.LOOM_pct) / 100.0) * usd_amt) / price
+    if portfolio.MTC_pct > 0.0:
+        price = get_latest_price_for_shorthand("MTC")
+        investment.MTC_amt = ((float(portfolio.MTC_pct) / 100.0) * usd_amt) / price
+    if portfolio.GTC_pct > 0.0:
+        price = get_latest_price_for_shorthand("GTC")
+        investment.GTC_amt = ((float(portfolio.GTC_pct) / 100.0) * usd_amt) / price
+    if portfolio.XZC_pct > 0.0:
+        price = get_latest_price_for_shorthand("XZC")
+        investment.XZC_amt = ((float(portfolio.XZC_pct) / 100.0) * usd_amt) / price
+    if portfolio.POLY_pct > 0.0:
+        price = get_latest_price_for_shorthand("POLY")
+        investment.POLY_amt = ((float(portfolio.POLY_pct) / 100.0) * usd_amt) / price
+    if portfolio.NULS_pct > 0.0:
+        price = get_latest_price_for_shorthand("NULS")
+        investment.NULS_amt = ((float(portfolio.NULS_pct) / 100.0) * usd_amt) / price
+    if portfolio.SMART_pct > 0.0:
+        price = get_latest_price_for_shorthand("SMART")
+        investment.SMART_amt = ((float(portfolio.SMART_pct) / 100.0) * usd_amt) / price
+    if portfolio.SUB_pct > 0.0:
+        price = get_latest_price_for_shorthand("SUB")
+        investment.SUB_amt = ((float(portfolio.SUB_pct) / 100.0) * usd_amt) / price
+    if portfolio.CTXC_pct > 0.0:
+        price = get_latest_price_for_shorthand("CTXC")
+        investment.CTXC_amt = ((float(portfolio.CTXC_pct) / 100.0) * usd_amt) / price
+    if portfolio.THETA_pct > 0.0:
+        price = get_latest_price_for_shorthand("THETA")
+        investment.THETA_amt = ((float(portfolio.THETA_pct) / 100.0) * usd_amt) / price
+    if portfolio.BFT_pct > 0.0:
+        price = get_latest_price_for_shorthand("BFT")
+        investment.BFT_amt = ((float(portfolio.BFT_pct) / 100.0) * usd_amt) / price
+    if portfolio.PAYX_pct > 0.0:
+        price = get_latest_price_for_shorthand("PAYX")
+        investment.PAYX_amt = ((float(portfolio.PAYX_pct) / 100.0) * usd_amt) / price
+    if portfolio.STORM_pct > 0.0:
+        price = get_latest_price_for_shorthand("STORM")
+        investment.STORM_amt = ((float(portfolio.STORM_pct) / 100.0) * usd_amt) / price
+    if portfolio.POWR_pct > 0.0:
+        price = get_latest_price_for_shorthand("POWR")
+        investment.POWR_amt = ((float(portfolio.POWR_pct) / 100.0) * usd_amt) / price
+    if portfolio.BLOCK_pct > 0.0:
+        price = get_latest_price_for_shorthand("BLOCK")
+        investment.BLOCK_amt = ((float(portfolio.BLOCK_pct) / 100.0) * usd_amt) / price
+    if portfolio.NXS_pct > 0.0:
+        price = get_latest_price_for_shorthand("NXS")
+        investment.NXS_amt = ((float(portfolio.NXS_pct) / 100.0) * usd_amt) / price
+    if portfolio.MCO_pct > 0.0:
+        price = get_latest_price_for_shorthand("MCO")
+        investment.MCO_amt = ((float(portfolio.MCO_pct) / 100.0) * usd_amt) / price
+    if portfolio.ETN_pct > 0.0:
+        price = get_latest_price_for_shorthand("ETN")
+        investment.ETN_amt = ((float(portfolio.ETN_pct) / 100.0) * usd_amt) / price
+    if portfolio.GBYTE_pct > 0.0:
+        price = get_latest_price_for_shorthand("GBYTE")
+        investment.GBYTE_amt = ((float(portfolio.GBYTE_pct) / 100.0) * usd_amt) / price
+    if portfolio.WAX_pct > 0.0:
+        price = get_latest_price_for_shorthand("WAX")
+        investment.WAX_amt = ((float(portfolio.WAX_pct) / 100.0) * usd_amt) / price
+    if portfolio.TUSD_pct > 0.0:
+        price = get_latest_price_for_shorthand("TUSD")
+        investment.TUSD_amt = ((float(portfolio.TUSD_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZEN_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZEN")
+        investment.ZEN_amt = ((float(portfolio.ZEN_pct) / 100.0) * usd_amt) / price
+    if portfolio.WICC_pct > 0.0:
+        price = get_latest_price_for_shorthand("WICC")
+        investment.WICC_amt = ((float(portfolio.WICC_pct) / 100.0) * usd_amt) / price
+    if portfolio.EOSDAC_pct > 0.0:
+        price = get_latest_price_for_shorthand("EOSDAC")
+        investment.EOSDAC_amt = ((float(portfolio.EOSDAC_pct) / 100.0) * usd_amt) / price
+    if portfolio.RLC_pct > 0.0:
+        price = get_latest_price_for_shorthand("RLC")
+        investment.RLC_amt = ((float(portfolio.RLC_pct) / 100.0) * usd_amt) / price
+    if portfolio.GTO_pct > 0.0:
+        price = get_latest_price_for_shorthand("GTO")
+        investment.GTO_amt = ((float(portfolio.GTO_pct) / 100.0) * usd_amt) / price
+    if portfolio.R_pct > 0.0:
+        price = get_latest_price_for_shorthand("R")
+        investment.R_amt = ((float(portfolio.R_pct) / 100.0) * usd_amt) / price
+    if portfolio.DBC_pct > 0.0:
+        price = get_latest_price_for_shorthand("DBC")
+        investment.DBC_amt = ((float(portfolio.DBC_pct) / 100.0) * usd_amt) / price
+    if portfolio.LINK_pct > 0.0:
+        price = get_latest_price_for_shorthand("LINK")
+        investment.LINK_amt = ((float(portfolio.LINK_pct) / 100.0) * usd_amt) / price
+    if portfolio.SNM_pct > 0.0:
+        price = get_latest_price_for_shorthand("SNM")
+        investment.SNM_amt = ((float(portfolio.SNM_pct) / 100.0) * usd_amt) / price
+    if portfolio.STORJ_pct > 0.0:
+        price = get_latest_price_for_shorthand("STORJ")
+        investment.STORJ_amt = ((float(portfolio.STORJ_pct) / 100.0) * usd_amt) / price
+    if portfolio.MAN_pct > 0.0:
+        price = get_latest_price_for_shorthand("MAN")
+        investment.MAN_amt = ((float(portfolio.MAN_pct) / 100.0) * usd_amt) / price
+    if portfolio.ICN_pct > 0.0:
+        price = get_latest_price_for_shorthand("ICN")
+        investment.ICN_amt = ((float(portfolio.ICN_pct) / 100.0) * usd_amt) / price
+    if portfolio.SALT_pct > 0.0:
+        price = get_latest_price_for_shorthand("SALT")
+        investment.SALT_amt = ((float(portfolio.SALT_pct) / 100.0) * usd_amt) / price
+    if portfolio.NEXO_pct > 0.0:
+        price = get_latest_price_for_shorthand("NEXO")
+        investment.NEXO_amt = ((float(portfolio.NEXO_pct) / 100.0) * usd_amt) / price
+    if portfolio.DATA_pct > 0.0:
+        price = get_latest_price_for_shorthand("DATA")
+        investment.DATA_amt = ((float(portfolio.DATA_pct) / 100.0) * usd_amt) / price
+    if portfolio.BTCD_pct > 0.0:
+        price = get_latest_price_for_shorthand("BTCD")
+        investment.BTCD_amt = ((float(portfolio.BTCD_pct) / 100.0) * usd_amt) / price
+    if portfolio.HOT_pct > 0.0:
+        price = get_latest_price_for_shorthand("HOT")
+        investment.HOT_amt = ((float(portfolio.HOT_pct) / 100.0) * usd_amt) / price
+    if portfolio.CVC_pct > 0.0:
+        price = get_latest_price_for_shorthand("CVC")
+        investment.CVC_amt = ((float(portfolio.CVC_pct) / 100.0) * usd_amt) / price
+    if portfolio.REQ_pct > 0.0:
+        price = get_latest_price_for_shorthand("REQ")
+        investment.REQ_amt = ((float(portfolio.REQ_pct) / 100.0) * usd_amt) / price
+    if portfolio.NCASH_pct > 0.0:
+        price = get_latest_price_for_shorthand("NCASH")
+        investment.NCASH_amt = ((float(portfolio.NCASH_pct) / 100.0) * usd_amt) / price
+    if portfolio.PAY_pct > 0.0:
+        price = get_latest_price_for_shorthand("PAY")
+        investment.PAY_amt = ((float(portfolio.PAY_pct) / 100.0) * usd_amt) / price
+    if portfolio.AGI_pct > 0.0:
+        price = get_latest_price_for_shorthand("AGI")
+        investment.AGI_amt = ((float(portfolio.AGI_pct) / 100.0) * usd_amt) / price
+    if portfolio.HPB_pct > 0.0:
+        price = get_latest_price_for_shorthand("HPB")
+        investment.HPB_amt = ((float(portfolio.HPB_pct) / 100.0) * usd_amt) / price
+    if portfolio.SKY_pct > 0.0:
+        price = get_latest_price_for_shorthand("SKY")
+        investment.SKY_amt = ((float(portfolio.SKY_pct) / 100.0) * usd_amt) / price
+    if portfolio.TNB_pct > 0.0:
+        price = get_latest_price_for_shorthand("TNB")
+        investment.TNB_amt = ((float(portfolio.TNB_pct) / 100.0) * usd_amt) / price
+    if portfolio.ACT_pct > 0.0:
+        price = get_latest_price_for_shorthand("ACT")
+        investment.ACT_amt = ((float(portfolio.ACT_pct) / 100.0) * usd_amt) / price
+    if portfolio.XAS_pct > 0.0:
+        price = get_latest_price_for_shorthand("XAS")
+        investment.XAS_amt = ((float(portfolio.XAS_pct) / 100.0) * usd_amt) / price
+    if portfolio.CVT_pct > 0.0:
+        price = get_latest_price_for_shorthand("CVT")
+        investment.CVT_amt = ((float(portfolio.CVT_pct) / 100.0) * usd_amt) / price
+    if portfolio.ANT_pct > 0.0:
+        price = get_latest_price_for_shorthand("ANT")
+        investment.ANT_amt = ((float(portfolio.ANT_pct) / 100.0) * usd_amt) / price
+    if portfolio.BCI_pct > 0.0:
+        price = get_latest_price_for_shorthand("BCI")
+        investment.BCI_amt = ((float(portfolio.BCI_pct) / 100.0) * usd_amt) / price
+    if portfolio.GNO_pct > 0.0:
+        price = get_latest_price_for_shorthand("GNO")
+        investment.GNO_amt = ((float(portfolio.GNO_pct) / 100.0) * usd_amt) / price
+    if portfolio.MDS_pct > 0.0:
+        price = get_latest_price_for_shorthand("MDS")
+        investment.MDS_amt = ((float(portfolio.MDS_pct) / 100.0) * usd_amt) / price
+    if portfolio.NEBL_pct > 0.0:
+        price = get_latest_price_for_shorthand("NEBL")
+        investment.NEBL_amt = ((float(portfolio.NEBL_pct) / 100.0) * usd_amt) / price
+    if portfolio.BTO_pct > 0.0:
+        price = get_latest_price_for_shorthand("BTO")
+        investment.BTO_amt = ((float(portfolio.BTO_pct) / 100.0) * usd_amt) / price
+    if portfolio.SAN_pct > 0.0:
+        price = get_latest_price_for_shorthand("SAN")
+        investment.SAN_amt = ((float(portfolio.SAN_pct) / 100.0) * usd_amt) / price
+    if portfolio.RUFF_pct > 0.0:
+        price = get_latest_price_for_shorthand("RUFF")
+        investment.RUFF_amt = ((float(portfolio.RUFF_pct) / 100.0) * usd_amt) / price
+    if portfolio.ABT_pct > 0.0:
+        price = get_latest_price_for_shorthand("ABT")
+        investment.ABT_amt = ((float(portfolio.ABT_pct) / 100.0) * usd_amt) / price
+    if portfolio.TRUE_pct > 0.0:
+        price = get_latest_price_for_shorthand("TRUE")
+        investment.TRUE_amt = ((float(portfolio.TRUE_pct) / 100.0) * usd_amt) / price
+    if portfolio.CND_pct > 0.0:
+        price = get_latest_price_for_shorthand("CND")
+        investment.CND_amt = ((float(portfolio.CND_pct) / 100.0) * usd_amt) / price
+    if portfolio.EKT_pct > 0.0:
+        price = get_latest_price_for_shorthand("EKT")
+        investment.EKT_amt = ((float(portfolio.EKT_pct) / 100.0) * usd_amt) / price
+    if portfolio.GAME_pct > 0.0:
+        price = get_latest_price_for_shorthand("GAME")
+        investment.GAME_amt = ((float(portfolio.GAME_pct) / 100.0) * usd_amt) / price
+    if portfolio.SMT_pct > 0.0:
+        price = get_latest_price_for_shorthand("SMT")
+        investment.SMT_amt = ((float(portfolio.SMT_pct) / 100.0) * usd_amt) / price
+    if portfolio.DENT_pct > 0.0:
+        price = get_latest_price_for_shorthand("DENT")
+        investment.DENT_amt = ((float(portfolio.DENT_pct) / 100.0) * usd_amt) / price
+    if portfolio.GRS_pct > 0.0:
+        price = get_latest_price_for_shorthand("GRS")
+        investment.GRS_amt = ((float(portfolio.GRS_pct) / 100.0) * usd_amt) / price
+    if portfolio.DTR_pct > 0.0:
+        price = get_latest_price_for_shorthand("DTR")
+        investment.DTR_amt = ((float(portfolio.DTR_pct) / 100.0) * usd_amt) / price
+    if portfolio.CRPT_pct > 0.0:
+        price = get_latest_price_for_shorthand("CRPT")
+        investment.CRPT_amt = ((float(portfolio.CRPT_pct) / 100.0) * usd_amt) / price
+    if portfolio.QSP_pct > 0.0:
+        price = get_latest_price_for_shorthand("QSP")
+        investment.QSP_amt = ((float(portfolio.QSP_pct) / 100.0) * usd_amt) / price
+    if portfolio.DAI_pct > 0.0:
+        price = get_latest_price_for_shorthand("DAI")
+        investment.DAI_amt = ((float(portfolio.DAI_pct) / 100.0) * usd_amt) / price
+    if portfolio.SOC_pct > 0.0:
+        price = get_latest_price_for_shorthand("SOC")
+        investment.SOC_amt = ((float(portfolio.SOC_pct) / 100.0) * usd_amt) / price
+    if portfolio.CS_pct > 0.0:
+        price = get_latest_price_for_shorthand("CS")
+        investment.CS_amt = ((float(portfolio.CS_pct) / 100.0) * usd_amt) / price
+    if portfolio.IGNIS_pct > 0.0:
+        price = get_latest_price_for_shorthand("IGNIS")
+        investment.IGNIS_amt = ((float(portfolio.IGNIS_pct) / 100.0) * usd_amt) / price
+    if portfolio.XDN_pct > 0.0:
+        price = get_latest_price_for_shorthand("XDN")
+        investment.XDN_amt = ((float(portfolio.XDN_pct) / 100.0) * usd_amt) / price
+    if portfolio.PLR_pct > 0.0:
+        price = get_latest_price_for_shorthand("PLR")
+        investment.PLR_amt = ((float(portfolio.PLR_pct) / 100.0) * usd_amt) / price
+    if portfolio.ENJ_pct > 0.0:
+        price = get_latest_price_for_shorthand("ENJ")
+        investment.ENJ_amt = ((float(portfolio.ENJ_pct) / 100.0) * usd_amt) / price
+    if portfolio.C20_pct > 0.0:
+        price = get_latest_price_for_shorthand("C20")
+        investment.C20_amt = ((float(portfolio.C20_pct) / 100.0) * usd_amt) / price
+    if portfolio.STQ_pct > 0.0:
+        price = get_latest_price_for_shorthand("STQ")
+        investment.STQ_amt = ((float(portfolio.STQ_pct) / 100.0) * usd_amt) / price
+    if portfolio.VTC_pct > 0.0:
+        price = get_latest_price_for_shorthand("VTC")
+        investment.VTC_amt = ((float(portfolio.VTC_pct) / 100.0) * usd_amt) / price
+    if portfolio.BLZ_pct > 0.0:
+        price = get_latest_price_for_shorthand("BLZ")
+        investment.BLZ_amt = ((float(portfolio.BLZ_pct) / 100.0) * usd_amt) / price
+    if portfolio.TKY_pct > 0.0:
+        price = get_latest_price_for_shorthand("TKY")
+        investment.TKY_amt = ((float(portfolio.TKY_pct) / 100.0) * usd_amt) / price
+    if portfolio.BOS_pct > 0.0:
+        price = get_latest_price_for_shorthand("BOS")
+        investment.BOS_amt = ((float(portfolio.BOS_pct) / 100.0) * usd_amt) / price
+    if portfolio.PART_pct > 0.0:
+        price = get_latest_price_for_shorthand("PART")
+        investment.PART_amt = ((float(portfolio.PART_pct) / 100.0) * usd_amt) / price
+    if portfolio.XSN_pct > 0.0:
+        price = get_latest_price_for_shorthand("XSN")
+        investment.XSN_amt = ((float(portfolio.XSN_pct) / 100.0) * usd_amt) / price
+    if portfolio.EDR_pct > 0.0:
+        price = get_latest_price_for_shorthand("EDR")
+        investment.EDR_amt = ((float(portfolio.EDR_pct) / 100.0) * usd_amt) / price
+    if portfolio.TPAY_pct > 0.0:
+        price = get_latest_price_for_shorthand("TPAY")
+        investment.TPAY_amt = ((float(portfolio.TPAY_pct) / 100.0) * usd_amt) / price
+    if portfolio.RDN_pct > 0.0:
+        price = get_latest_price_for_shorthand("RDN")
+        investment.RDN_amt = ((float(portfolio.RDN_pct) / 100.0) * usd_amt) / price
+    if portfolio.AMB_pct > 0.0:
+        price = get_latest_price_for_shorthand("AMB")
+        investment.AMB_amt = ((float(portfolio.AMB_pct) / 100.0) * usd_amt) / price
+    if portfolio.QKC_pct > 0.0:
+        price = get_latest_price_for_shorthand("QKC")
+        investment.QKC_amt = ((float(portfolio.QKC_pct) / 100.0) * usd_amt) / price
+    if portfolio.OCN_pct > 0.0:
+        price = get_latest_price_for_shorthand("OCN")
+        investment.OCN_amt = ((float(portfolio.OCN_pct) / 100.0) * usd_amt) / price
+    if portfolio.GNX_pct > 0.0:
+        price = get_latest_price_for_shorthand("GNX")
+        investment.GNX_amt = ((float(portfolio.GNX_pct) / 100.0) * usd_amt) / price
+    if portfolio.PPC_pct > 0.0:
+        price = get_latest_price_for_shorthand("PPC")
+        investment.PPC_amt = ((float(portfolio.PPC_pct) / 100.0) * usd_amt) / price
+    if portfolio.BRD_pct > 0.0:
+        price = get_latest_price_for_shorthand("BRD")
+        investment.BRD_amt = ((float(portfolio.BRD_pct) / 100.0) * usd_amt) / price
+    if portfolio.ODE_pct > 0.0:
+        price = get_latest_price_for_shorthand("ODE")
+        investment.ODE_amt = ((float(portfolio.ODE_pct) / 100.0) * usd_amt) / price
+    if portfolio.NKN_pct > 0.0:
+        price = get_latest_price_for_shorthand("NKN")
+        investment.NKN_amt = ((float(portfolio.NKN_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZCL_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZCL")
+        investment.ZCL_amt = ((float(portfolio.ZCL_pct) / 100.0) * usd_amt) / price
+    if portfolio.POA_pct > 0.0:
+        price = get_latest_price_for_shorthand("POA")
+        investment.POA_amt = ((float(portfolio.POA_pct) / 100.0) * usd_amt) / price
+    if portfolio.SRN_pct > 0.0:
+        price = get_latest_price_for_shorthand("SRN")
+        investment.SRN_amt = ((float(portfolio.SRN_pct) / 100.0) * usd_amt) / price
+    if portfolio.SPHTX_pct > 0.0:
+        price = get_latest_price_for_shorthand("SPHTX")
+        investment.SPHTX_amt = ((float(portfolio.SPHTX_pct) / 100.0) * usd_amt) / price
+    if portfolio.VEE_pct > 0.0:
+        price = get_latest_price_for_shorthand("VEE")
+        investment.VEE_amt = ((float(portfolio.VEE_pct) / 100.0) * usd_amt) / price
+    if portfolio.UBQ_pct > 0.0:
+        price = get_latest_price_for_shorthand("UBQ")
+        investment.UBQ_amt = ((float(portfolio.UBQ_pct) / 100.0) * usd_amt) / price
+    if portfolio.NANJ_pct > 0.0:
+        price = get_latest_price_for_shorthand("NANJ")
+        investment.NANJ_amt = ((float(portfolio.NANJ_pct) / 100.0) * usd_amt) / price
+    if portfolio.MTL_pct > 0.0:
+        price = get_latest_price_for_shorthand("MTL")
+        investment.MTL_amt = ((float(portfolio.MTL_pct) / 100.0) * usd_amt) / price
+    if portfolio.GVT_pct > 0.0:
+        price = get_latest_price_for_shorthand("GVT")
+        investment.GVT_amt = ((float(portfolio.GVT_pct) / 100.0) * usd_amt) / price
+    if portfolio.CPX_pct > 0.0:
+        price = get_latest_price_for_shorthand("CPX")
+        investment.CPX_amt = ((float(portfolio.CPX_pct) / 100.0) * usd_amt) / price
+    if portfolio.IOTX_pct > 0.0:
+        price = get_latest_price_for_shorthand("IOTX")
+        investment.IOTX_amt = ((float(portfolio.IOTX_pct) / 100.0) * usd_amt) / price
+    if portfolio.TIO_pct > 0.0:
+        price = get_latest_price_for_shorthand("TIO")
+        investment.TIO_amt = ((float(portfolio.TIO_pct) / 100.0) * usd_amt) / price
+    if portfolio.IHT_pct > 0.0:
+        price = get_latest_price_for_shorthand("IHT")
+        investment.IHT_amt = ((float(portfolio.IHT_pct) / 100.0) * usd_amt) / price
+    if portfolio.POE_pct > 0.0:
+        price = get_latest_price_for_shorthand("POE")
+        investment.POE_amt = ((float(portfolio.POE_pct) / 100.0) * usd_amt) / price
+    if portfolio.REN_pct > 0.0:
+        price = get_latest_price_for_shorthand("REN")
+        investment.REN_amt = ((float(portfolio.REN_pct) / 100.0) * usd_amt) / price
+    if portfolio.JNT_pct > 0.0:
+        price = get_latest_price_for_shorthand("JNT")
+        investment.JNT_amt = ((float(portfolio.JNT_pct) / 100.0) * usd_amt) / price
+    if portfolio.AUTO_pct > 0.0:
+        price = get_latest_price_for_shorthand("AUTO")
+        investment.AUTO_amt = ((float(portfolio.AUTO_pct) / 100.0) * usd_amt) / price
+    if portfolio.TEL_pct > 0.0:
+        price = get_latest_price_for_shorthand("TEL")
+        investment.TEL_amt = ((float(portfolio.TEL_pct) / 100.0) * usd_amt) / price
+    if portfolio.BTX_pct > 0.0:
+        price = get_latest_price_for_shorthand("BTX")
+        investment.BTX_amt = ((float(portfolio.BTX_pct) / 100.0) * usd_amt) / price
+    if portfolio.INT_pct > 0.0:
+        price = get_latest_price_for_shorthand("INT")
+        investment.INT_amt = ((float(portfolio.INT_pct) / 100.0) * usd_amt) / price
+    if portfolio.BURST_pct > 0.0:
+        price = get_latest_price_for_shorthand("BURST")
+        investment.BURST_amt = ((float(portfolio.BURST_pct) / 100.0) * usd_amt) / price
+    if portfolio.SAFEX_pct > 0.0:
+        price = get_latest_price_for_shorthand("SAFEX")
+        investment.SAFEX_amt = ((float(portfolio.SAFEX_pct) / 100.0) * usd_amt) / price
+    if portfolio.ITC_pct > 0.0:
+        price = get_latest_price_for_shorthand("ITC")
+        investment.ITC_amt = ((float(portfolio.ITC_pct) / 100.0) * usd_amt) / price
+    if portfolio.EDG_pct > 0.0:
+        price = get_latest_price_for_shorthand("EDG")
+        investment.EDG_amt = ((float(portfolio.EDG_pct) / 100.0) * usd_amt) / price
+    if portfolio.LINDA_pct > 0.0:
+        price = get_latest_price_for_shorthand("LINDA")
+        investment.LINDA_amt = ((float(portfolio.LINDA_pct) / 100.0) * usd_amt) / price
+    if portfolio.XPM_pct > 0.0:
+        price = get_latest_price_for_shorthand("XPM")
+        investment.XPM_amt = ((float(portfolio.XPM_pct) / 100.0) * usd_amt) / price
+    if portfolio.INK_pct > 0.0:
+        price = get_latest_price_for_shorthand("INK")
+        investment.INK_amt = ((float(portfolio.INK_pct) / 100.0) * usd_amt) / price
+    if portfolio.ECA_pct > 0.0:
+        price = get_latest_price_for_shorthand("ECA")
+        investment.ECA_amt = ((float(portfolio.ECA_pct) / 100.0) * usd_amt) / price
+    if portfolio.BITCNY_pct > 0.0:
+        price = get_latest_price_for_shorthand("BITCNY")
+        investment.BITCNY_amt = ((float(portfolio.BITCNY_pct) / 100.0) * usd_amt) / price
+    if portfolio.RKT_pct > 0.0:
+        price = get_latest_price_for_shorthand("RKT")
+        investment.RKT_amt = ((float(portfolio.RKT_pct) / 100.0) * usd_amt) / price
+    if portfolio.DAX_pct > 0.0:
+        price = get_latest_price_for_shorthand("DAX")
+        investment.DAX_amt = ((float(portfolio.DAX_pct) / 100.0) * usd_amt) / price
+    if portfolio.TEN_pct > 0.0:
+        price = get_latest_price_for_shorthand("TEN")
+        investment.TEN_amt = ((float(portfolio.TEN_pct) / 100.0) * usd_amt) / price
+    if portfolio.NAV_pct > 0.0:
+        price = get_latest_price_for_shorthand("NAV")
+        investment.NAV_amt = ((float(portfolio.NAV_pct) / 100.0) * usd_amt) / price
+    if portfolio.SPANK_pct > 0.0:
+        price = get_latest_price_for_shorthand("SPANK")
+        investment.SPANK_amt = ((float(portfolio.SPANK_pct) / 100.0) * usd_amt) / price
+    if portfolio.TRAC_pct > 0.0:
+        price = get_latest_price_for_shorthand("TRAC")
+        investment.TRAC_amt = ((float(portfolio.TRAC_pct) / 100.0) * usd_amt) / price
+    if portfolio.LCC_pct > 0.0:
+        price = get_latest_price_for_shorthand("LCC")
+        investment.LCC_amt = ((float(portfolio.LCC_pct) / 100.0) * usd_amt) / price
+    if portfolio.DTA_pct > 0.0:
+        price = get_latest_price_for_shorthand("DTA")
+        investment.DTA_amt = ((float(portfolio.DTA_pct) / 100.0) * usd_amt) / price
+    if portfolio.NLG_pct > 0.0:
+        price = get_latest_price_for_shorthand("NLG")
+        investment.NLG_amt = ((float(portfolio.NLG_pct) / 100.0) * usd_amt) / price
+    if portfolio.EDO_pct > 0.0:
+        price = get_latest_price_for_shorthand("EDO")
+        investment.EDO_amt = ((float(portfolio.EDO_pct) / 100.0) * usd_amt) / price
+    if portfolio.WGR_pct > 0.0:
+        price = get_latest_price_for_shorthand("WGR")
+        investment.WGR_amt = ((float(portfolio.WGR_pct) / 100.0) * usd_amt) / price
+    if portfolio.RPX_pct > 0.0:
+        price = get_latest_price_for_shorthand("RPX")
+        investment.RPX_amt = ((float(portfolio.RPX_pct) / 100.0) * usd_amt) / price
+    if portfolio.DPY_pct > 0.0:
+        price = get_latest_price_for_shorthand("DPY")
+        investment.DPY_amt = ((float(portfolio.DPY_pct) / 100.0) * usd_amt) / price
+    if portfolio.LEND_pct > 0.0:
+        price = get_latest_price_for_shorthand("LEND")
+        investment.LEND_amt = ((float(portfolio.LEND_pct) / 100.0) * usd_amt) / price
+    if portfolio.EXC_pct > 0.0:
+        price = get_latest_price_for_shorthand("EXC")
+        investment.EXC_amt = ((float(portfolio.EXC_pct) / 100.0) * usd_amt) / price
+    if portfolio.UNO_pct > 0.0:
+        price = get_latest_price_for_shorthand("UNO")
+        investment.UNO_amt = ((float(portfolio.UNO_pct) / 100.0) * usd_amt) / price
+    if portfolio.EMC2_pct > 0.0:
+        price = get_latest_price_for_shorthand("EMC2")
+        investment.EMC2_amt = ((float(portfolio.EMC2_pct) / 100.0) * usd_amt) / price
+    if portfolio.BAY_pct > 0.0:
+        price = get_latest_price_for_shorthand("BAY")
+        investment.BAY_amt = ((float(portfolio.BAY_pct) / 100.0) * usd_amt) / price
+    if portfolio.LYM_pct > 0.0:
+        price = get_latest_price_for_shorthand("LYM")
+        investment.LYM_amt = ((float(portfolio.LYM_pct) / 100.0) * usd_amt) / price
+    if portfolio.ADX_pct > 0.0:
+        price = get_latest_price_for_shorthand("ADX")
+        investment.ADX_amt = ((float(portfolio.ADX_pct) / 100.0) * usd_amt) / price
+    if portfolio.FTC_pct > 0.0:
+        price = get_latest_price_for_shorthand("FTC")
+        investment.FTC_amt = ((float(portfolio.FTC_pct) / 100.0) * usd_amt) / price
+    if portfolio.CPT_pct > 0.0:
+        price = get_latest_price_for_shorthand("CPT")
+        investment.CPT_amt = ((float(portfolio.CPT_pct) / 100.0) * usd_amt) / price
+    if portfolio.APIS_pct > 0.0:
+        price = get_latest_price_for_shorthand("APIS")
+        investment.APIS_amt = ((float(portfolio.APIS_pct) / 100.0) * usd_amt) / price
+    if portfolio.QRL_pct > 0.0:
+        price = get_latest_price_for_shorthand("QRL")
+        investment.QRL_amt = ((float(portfolio.QRL_pct) / 100.0) * usd_amt) / price
+    if portfolio.RVN_pct > 0.0:
+        price = get_latest_price_for_shorthand("RVN")
+        investment.RVN_amt = ((float(portfolio.RVN_pct) / 100.0) * usd_amt) / price
+    if portfolio.BAX_pct > 0.0:
+        price = get_latest_price_for_shorthand("BAX")
+        investment.BAX_amt = ((float(portfolio.BAX_pct) / 100.0) * usd_amt) / price
+    if portfolio.RNTB_pct > 0.0:
+        price = get_latest_price_for_shorthand("RNTB")
+        investment.RNTB_amt = ((float(portfolio.RNTB_pct) / 100.0) * usd_amt) / price
+    if portfolio.PPP_pct > 0.0:
+        price = get_latest_price_for_shorthand("PPP")
+        investment.PPP_amt = ((float(portfolio.PPP_pct) / 100.0) * usd_amt) / price
+    if portfolio.TKN_pct > 0.0:
+        price = get_latest_price_for_shorthand("TKN")
+        investment.TKN_amt = ((float(portfolio.TKN_pct) / 100.0) * usd_amt) / price
+    if portfolio.SLS_pct > 0.0:
+        price = get_latest_price_for_shorthand("SLS")
+        investment.SLS_amt = ((float(portfolio.SLS_pct) / 100.0) * usd_amt) / price
+    if portfolio.TOMO_pct > 0.0:
+        price = get_latest_price_for_shorthand("TOMO")
+        investment.TOMO_amt = ((float(portfolio.TOMO_pct) / 100.0) * usd_amt) / price
+    if portfolio.DATX_pct > 0.0:
+        price = get_latest_price_for_shorthand("DATX")
+        investment.DATX_amt = ((float(portfolio.DATX_pct) / 100.0) * usd_amt) / price
+    if portfolio.LGO_pct > 0.0:
+        price = get_latest_price_for_shorthand("LGO")
+        investment.LGO_amt = ((float(portfolio.LGO_pct) / 100.0) * usd_amt) / price
+    if portfolio.PZM_pct > 0.0:
+        price = get_latest_price_for_shorthand("PZM")
+        investment.PZM_amt = ((float(portfolio.PZM_pct) / 100.0) * usd_amt) / price
+    if portfolio.ETP_pct > 0.0:
+        price = get_latest_price_for_shorthand("ETP")
+        investment.ETP_amt = ((float(portfolio.ETP_pct) / 100.0) * usd_amt) / price
+    if portfolio.CLOAK_pct > 0.0:
+        price = get_latest_price_for_shorthand("CLOAK")
+        investment.CLOAK_amt = ((float(portfolio.CLOAK_pct) / 100.0) * usd_amt) / price
+    if portfolio.EVN_pct > 0.0:
+        price = get_latest_price_for_shorthand("EVN")
+        investment.EVN_amt = ((float(portfolio.EVN_pct) / 100.0) * usd_amt) / price
+    if portfolio.XCP_pct > 0.0:
+        price = get_latest_price_for_shorthand("XCP")
+        investment.XCP_amt = ((float(portfolio.XCP_pct) / 100.0) * usd_amt) / price
+    if portfolio.SWM_pct > 0.0:
+        price = get_latest_price_for_shorthand("SWM")
+        investment.SWM_amt = ((float(portfolio.SWM_pct) / 100.0) * usd_amt) / price
+    if portfolio.TNT_pct > 0.0:
+        price = get_latest_price_for_shorthand("TNT")
+        investment.TNT_amt = ((float(portfolio.TNT_pct) / 100.0) * usd_amt) / price
+    if portfolio.RCN_pct > 0.0:
+        price = get_latest_price_for_shorthand("RCN")
+        investment.RCN_amt = ((float(portfolio.RCN_pct) / 100.0) * usd_amt) / price
+    if portfolio.TCT_pct > 0.0:
+        price = get_latest_price_for_shorthand("TCT")
+        investment.TCT_amt = ((float(portfolio.TCT_pct) / 100.0) * usd_amt) / price
+    if portfolio.SWFTC_pct > 0.0:
+        price = get_latest_price_for_shorthand("SWFTC")
+        investment.SWFTC_amt = ((float(portfolio.SWFTC_pct) / 100.0) * usd_amt) / price
+    if portfolio.VIA_pct > 0.0:
+        price = get_latest_price_for_shorthand("VIA")
+        investment.VIA_amt = ((float(portfolio.VIA_pct) / 100.0) * usd_amt) / price
+    if portfolio.SNGLS_pct > 0.0:
+        price = get_latest_price_for_shorthand("SNGLS")
+        investment.SNGLS_amt = ((float(portfolio.SNGLS_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZCO_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZCO")
+        investment.ZCO_amt = ((float(portfolio.ZCO_pct) / 100.0) * usd_amt) / price
+    if portfolio.GIN_pct > 0.0:
+        price = get_latest_price_for_shorthand("GIN")
+        investment.GIN_amt = ((float(portfolio.GIN_pct) / 100.0) * usd_amt) / price
+    if portfolio.OST_pct > 0.0:
+        price = get_latest_price_for_shorthand("OST")
+        investment.OST_amt = ((float(portfolio.OST_pct) / 100.0) * usd_amt) / price
+    if portfolio.FXT_pct > 0.0:
+        price = get_latest_price_for_shorthand("FXT")
+        investment.FXT_amt = ((float(portfolio.FXT_pct) / 100.0) * usd_amt) / price
+    if portfolio.AST_pct > 0.0:
+        price = get_latest_price_for_shorthand("AST")
+        investment.AST_amt = ((float(portfolio.AST_pct) / 100.0) * usd_amt) / price
+    if portfolio.HAV_pct > 0.0:
+        price = get_latest_price_for_shorthand("HAV")
+        investment.HAV_amt = ((float(portfolio.HAV_pct) / 100.0) * usd_amt) / price
+    if portfolio.PAC_pct > 0.0:
+        price = get_latest_price_for_shorthand("PAC")
+        investment.PAC_amt = ((float(portfolio.PAC_pct) / 100.0) * usd_amt) / price
+    if portfolio.KICK_pct > 0.0:
+        price = get_latest_price_for_shorthand("KICK")
+        investment.KICK_amt = ((float(portfolio.KICK_pct) / 100.0) * usd_amt) / price
+    if portfolio.PRE_pct > 0.0:
+        price = get_latest_price_for_shorthand("PRE")
+        investment.PRE_amt = ((float(portfolio.PRE_pct) / 100.0) * usd_amt) / price
+    if portfolio.SXDT_pct > 0.0:
+        price = get_latest_price_for_shorthand("SXDT")
+        investment.SXDT_amt = ((float(portfolio.SXDT_pct) / 100.0) * usd_amt) / price
+    if portfolio.DNT_pct > 0.0:
+        price = get_latest_price_for_shorthand("DNT")
+        investment.DNT_amt = ((float(portfolio.DNT_pct) / 100.0) * usd_amt) / price
+    if portfolio.XWC_pct > 0.0:
+        price = get_latest_price_for_shorthand("XWC")
+        investment.XWC_amt = ((float(portfolio.XWC_pct) / 100.0) * usd_amt) / price
+    if portfolio.UTK_pct > 0.0:
+        price = get_latest_price_for_shorthand("UTK")
+        investment.UTK_amt = ((float(portfolio.UTK_pct) / 100.0) * usd_amt) / price
+    if portfolio.INS_pct > 0.0:
+        price = get_latest_price_for_shorthand("INS")
+        investment.INS_amt = ((float(portfolio.INS_pct) / 100.0) * usd_amt) / price
+    if portfolio.ATN_pct > 0.0:
+        price = get_latest_price_for_shorthand("ATN")
+        investment.ATN_amt = ((float(portfolio.ATN_pct) / 100.0) * usd_amt) / price
+    if portfolio.UTNP_pct > 0.0:
+        price = get_latest_price_for_shorthand("UTNP")
+        investment.UTNP_amt = ((float(portfolio.UTNP_pct) / 100.0) * usd_amt) / price
+    if portfolio.WINGS_pct > 0.0:
+        price = get_latest_price_for_shorthand("WINGS")
+        investment.WINGS_amt = ((float(portfolio.WINGS_pct) / 100.0) * usd_amt) / price
+    if portfolio.CPC_pct > 0.0:
+        price = get_latest_price_for_shorthand("CPC")
+        investment.CPC_amt = ((float(portfolio.CPC_pct) / 100.0) * usd_amt) / price
+    if portfolio.MGO_pct > 0.0:
+        price = get_latest_price_for_shorthand("MGO")
+        investment.MGO_amt = ((float(portfolio.MGO_pct) / 100.0) * usd_amt) / price
+    if portfolio.DAT_pct > 0.0:
+        price = get_latest_price_for_shorthand("DAT")
+        investment.DAT_amt = ((float(portfolio.DAT_pct) / 100.0) * usd_amt) / price
+    if portfolio.XP_pct > 0.0:
+        price = get_latest_price_for_shorthand("XP")
+        investment.XP_amt = ((float(portfolio.XP_pct) / 100.0) * usd_amt) / price
+    if portfolio.NGC_pct > 0.0:
+        price = get_latest_price_for_shorthand("NGC")
+        investment.NGC_amt = ((float(portfolio.NGC_pct) / 100.0) * usd_amt) / price
+    if portfolio.BCO_pct > 0.0:
+        price = get_latest_price_for_shorthand("BCO")
+        investment.BCO_amt = ((float(portfolio.BCO_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZPT_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZPT")
+        investment.ZPT_amt = ((float(portfolio.ZPT_pct) / 100.0) * usd_amt) / price
+    if portfolio.RNT_pct > 0.0:
+        price = get_latest_price_for_shorthand("RNT")
+        investment.RNT_amt = ((float(portfolio.RNT_pct) / 100.0) * usd_amt) / price
+    if portfolio.AEON_pct > 0.0:
+        price = get_latest_price_for_shorthand("AEON")
+        investment.AEON_amt = ((float(portfolio.AEON_pct) / 100.0) * usd_amt) / price
+    if portfolio.MSP_pct > 0.0:
+        price = get_latest_price_for_shorthand("MSP")
+        investment.MSP_amt = ((float(portfolio.MSP_pct) / 100.0) * usd_amt) / price
+    if portfolio.HTML_pct > 0.0:
+        price = get_latest_price_for_shorthand("HTML")
+        investment.HTML_amt = ((float(portfolio.HTML_pct) / 100.0) * usd_amt) / price
+    if portfolio.CDT_pct > 0.0:
+        price = get_latest_price_for_shorthand("CDT")
+        investment.CDT_amt = ((float(portfolio.CDT_pct) / 100.0) * usd_amt) / price
+    if portfolio.LYL_pct > 0.0:
+        price = get_latest_price_for_shorthand("LYL")
+        investment.LYL_amt = ((float(portfolio.LYL_pct) / 100.0) * usd_amt) / price
+    if portfolio.NMC_pct > 0.0:
+        price = get_latest_price_for_shorthand("NMC")
+        investment.NMC_amt = ((float(portfolio.NMC_pct) / 100.0) * usd_amt) / price
+    if portfolio.MOD_pct > 0.0:
+        price = get_latest_price_for_shorthand("MOD")
+        investment.MOD_amt = ((float(portfolio.MOD_pct) / 100.0) * usd_amt) / price
+    if portfolio.MNX_pct > 0.0:
+        price = get_latest_price_for_shorthand("MNX")
+        investment.MNX_amt = ((float(portfolio.MNX_pct) / 100.0) * usd_amt) / price
+    if portfolio.WPR_pct > 0.0:
+        price = get_latest_price_for_shorthand("WPR")
+        investment.WPR_amt = ((float(portfolio.WPR_pct) / 100.0) * usd_amt) / price
+    if portfolio.HST_pct > 0.0:
+        price = get_latest_price_for_shorthand("HST")
+        investment.HST_amt = ((float(portfolio.HST_pct) / 100.0) * usd_amt) / price
+    if portfolio.LBC_pct > 0.0:
+        price = get_latest_price_for_shorthand("LBC")
+        investment.LBC_amt = ((float(portfolio.LBC_pct) / 100.0) * usd_amt) / price
+    if portfolio.CREDO_pct > 0.0:
+        price = get_latest_price_for_shorthand("CREDO")
+        investment.CREDO_amt = ((float(portfolio.CREDO_pct) / 100.0) * usd_amt) / price
+    if portfolio.ION_pct > 0.0:
+        price = get_latest_price_for_shorthand("ION")
+        investment.ION_amt = ((float(portfolio.ION_pct) / 100.0) * usd_amt) / price
+    if portfolio.YOYOW_pct > 0.0:
+        price = get_latest_price_for_shorthand("YOYOW")
+        investment.YOYOW_amt = ((float(portfolio.YOYOW_pct) / 100.0) * usd_amt) / price
+    if portfolio.ART_pct > 0.0:
+        price = get_latest_price_for_shorthand("ART")
+        investment.ART_amt = ((float(portfolio.ART_pct) / 100.0) * usd_amt) / price
+    if portfolio.MLN_pct > 0.0:
+        price = get_latest_price_for_shorthand("MLN")
+        investment.MLN_amt = ((float(portfolio.MLN_pct) / 100.0) * usd_amt) / price
+    if portfolio.CMCT_pct > 0.0:
+        price = get_latest_price_for_shorthand("CMCT")
+        investment.CMCT_amt = ((float(portfolio.CMCT_pct) / 100.0) * usd_amt) / price
+    if portfolio.FUEL_pct > 0.0:
+        price = get_latest_price_for_shorthand("FUEL")
+        investment.FUEL_amt = ((float(portfolio.FUEL_pct) / 100.0) * usd_amt) / price
+    if portfolio.HVN_pct > 0.0:
+        price = get_latest_price_for_shorthand("HVN")
+        investment.HVN_amt = ((float(portfolio.HVN_pct) / 100.0) * usd_amt) / price
+    if portfolio.DCT_pct > 0.0:
+        price = get_latest_price_for_shorthand("DCT")
+        investment.DCT_amt = ((float(portfolio.DCT_pct) / 100.0) * usd_amt) / price
+    if portfolio.APPC_pct > 0.0:
+        price = get_latest_price_for_shorthand("APPC")
+        investment.APPC_amt = ((float(portfolio.APPC_pct) / 100.0) * usd_amt) / price
+    if portfolio.MED_pct > 0.0:
+        price = get_latest_price_for_shorthand("MED")
+        investment.MED_amt = ((float(portfolio.MED_pct) / 100.0) * usd_amt) / price
+    if portfolio.PHR_pct > 0.0:
+        price = get_latest_price_for_shorthand("PHR")
+        investment.PHR_amt = ((float(portfolio.PHR_pct) / 100.0) * usd_amt) / price
+    if portfolio.BANCA_pct > 0.0:
+        price = get_latest_price_for_shorthand("BANCA")
+        investment.BANCA_amt = ((float(portfolio.BANCA_pct) / 100.0) * usd_amt) / price
+    if portfolio.LET_pct > 0.0:
+        price = get_latest_price_for_shorthand("LET")
+        investment.LET_amt = ((float(portfolio.LET_pct) / 100.0) * usd_amt) / price
+    if portfolio.ECC_pct > 0.0:
+        price = get_latest_price_for_shorthand("ECC")
+        investment.ECC_amt = ((float(portfolio.ECC_pct) / 100.0) * usd_amt) / price
+    if portfolio.LUN_pct > 0.0:
+        price = get_latest_price_for_shorthand("LUN")
+        investment.LUN_amt = ((float(portfolio.LUN_pct) / 100.0) * usd_amt) / price
+    if portfolio.DAG_pct > 0.0:
+        price = get_latest_price_for_shorthand("DAG")
+        investment.DAG_amt = ((float(portfolio.DAG_pct) / 100.0) * usd_amt) / price
+    if portfolio.UUU_pct > 0.0:
+        price = get_latest_price_for_shorthand("UUU")
+        investment.UUU_amt = ((float(portfolio.UUU_pct) / 100.0) * usd_amt) / price
+    if portfolio.SBD_pct > 0.0:
+        price = get_latest_price_for_shorthand("SBD")
+        investment.SBD_amt = ((float(portfolio.SBD_pct) / 100.0) * usd_amt) / price
+    if portfolio.SENT_pct > 0.0:
+        price = get_latest_price_for_shorthand("SENT")
+        investment.SENT_amt = ((float(portfolio.SENT_pct) / 100.0) * usd_amt) / price
+    if portfolio.DBET_pct > 0.0:
+        price = get_latest_price_for_shorthand("DBET")
+        investment.DBET_amt = ((float(portfolio.DBET_pct) / 100.0) * usd_amt) / price
+    if portfolio.TAAS_pct > 0.0:
+        price = get_latest_price_for_shorthand("TAAS")
+        investment.TAAS_amt = ((float(portfolio.TAAS_pct) / 100.0) * usd_amt) / price
+    if portfolio.QLC_pct > 0.0:
+        price = get_latest_price_for_shorthand("QLC")
+        investment.QLC_amt = ((float(portfolio.QLC_pct) / 100.0) * usd_amt) / price
+    if portfolio.WABI_pct > 0.0:
+        price = get_latest_price_for_shorthand("WABI")
+        investment.WABI_amt = ((float(portfolio.WABI_pct) / 100.0) * usd_amt) / price
+    if portfolio.PCN_pct > 0.0:
+        price = get_latest_price_for_shorthand("PCN")
+        investment.PCN_amt = ((float(portfolio.PCN_pct) / 100.0) * usd_amt) / price
+    if portfolio.PURA_pct > 0.0:
+        price = get_latest_price_for_shorthand("PURA")
+        investment.PURA_amt = ((float(portfolio.PURA_pct) / 100.0) * usd_amt) / price
+    if portfolio.XDCE_pct > 0.0:
+        price = get_latest_price_for_shorthand("XDCE")
+        investment.XDCE_amt = ((float(portfolio.XDCE_pct) / 100.0) * usd_amt) / price
+    if portfolio.SSC_pct > 0.0:
+        price = get_latest_price_for_shorthand("SSC")
+        investment.SSC_amt = ((float(portfolio.SSC_pct) / 100.0) * usd_amt) / price
+    if portfolio.VIBE_pct > 0.0:
+        price = get_latest_price_for_shorthand("VIBE")
+        investment.VIBE_amt = ((float(portfolio.VIBE_pct) / 100.0) * usd_amt) / price
+    if portfolio.ELEC_pct > 0.0:
+        price = get_latest_price_for_shorthand("ELEC")
+        investment.ELEC_amt = ((float(portfolio.ELEC_pct) / 100.0) * usd_amt) / price
+    if portfolio.MEDIC_pct > 0.0:
+        price = get_latest_price_for_shorthand("MEDIC")
+        investment.MEDIC_amt = ((float(portfolio.MEDIC_pct) / 100.0) * usd_amt) / price
+    if portfolio.COSS_pct > 0.0:
+        price = get_latest_price_for_shorthand("COSS")
+        investment.COSS_amt = ((float(portfolio.COSS_pct) / 100.0) * usd_amt) / price
+    if portfolio.YEE_pct > 0.0:
+        price = get_latest_price_for_shorthand("YEE")
+        investment.YEE_amt = ((float(portfolio.YEE_pct) / 100.0) * usd_amt) / price
+    if portfolio.AURA_pct > 0.0:
+        price = get_latest_price_for_shorthand("AURA")
+        investment.AURA_amt = ((float(portfolio.AURA_pct) / 100.0) * usd_amt) / price
+    if portfolio.CSC_pct > 0.0:
+        price = get_latest_price_for_shorthand("CSC")
+        investment.CSC_amt = ((float(portfolio.CSC_pct) / 100.0) * usd_amt) / price
+    if portfolio.MOBI_pct > 0.0:
+        price = get_latest_price_for_shorthand("MOBI")
+        investment.MOBI_amt = ((float(portfolio.MOBI_pct) / 100.0) * usd_amt) / price
+    if portfolio.PRL_pct > 0.0:
+        price = get_latest_price_for_shorthand("PRL")
+        investment.PRL_amt = ((float(portfolio.PRL_pct) / 100.0) * usd_amt) / price
+    if portfolio.QUN_pct > 0.0:
+        price = get_latest_price_for_shorthand("QUN")
+        investment.QUN_amt = ((float(portfolio.QUN_pct) / 100.0) * usd_amt) / price
+    if portfolio.SHIFT_pct > 0.0:
+        price = get_latest_price_for_shorthand("SHIFT")
+        investment.SHIFT_amt = ((float(portfolio.SHIFT_pct) / 100.0) * usd_amt) / price
+    if portfolio.CAS_pct > 0.0:
+        price = get_latest_price_for_shorthand("CAS")
+        investment.CAS_amt = ((float(portfolio.CAS_pct) / 100.0) * usd_amt) / price
+    if portfolio.SOAR_pct > 0.0:
+        price = get_latest_price_for_shorthand("SOAR")
+        investment.SOAR_amt = ((float(portfolio.SOAR_pct) / 100.0) * usd_amt) / price
+    if portfolio.BITG_pct > 0.0:
+        price = get_latest_price_for_shorthand("BITG")
+        investment.BITG_amt = ((float(portfolio.BITG_pct) / 100.0) * usd_amt) / price
+    if portfolio.BKX_pct > 0.0:
+        price = get_latest_price_for_shorthand("BKX")
+        investment.BKX_amt = ((float(portfolio.BKX_pct) / 100.0) * usd_amt) / price
+    if portfolio.DOCK_pct > 0.0:
+        price = get_latest_price_for_shorthand("DOCK")
+        investment.DOCK_amt = ((float(portfolio.DOCK_pct) / 100.0) * usd_amt) / price
+    if portfolio.KEY_pct > 0.0:
+        price = get_latest_price_for_shorthand("KEY")
+        investment.KEY_amt = ((float(portfolio.KEY_pct) / 100.0) * usd_amt) / price
+    if portfolio.XES_pct > 0.0:
+        price = get_latest_price_for_shorthand("XES")
+        investment.XES_amt = ((float(portfolio.XES_pct) / 100.0) * usd_amt) / price
+    if portfolio.POT_pct > 0.0:
+        price = get_latest_price_for_shorthand("POT")
+        investment.POT_amt = ((float(portfolio.POT_pct) / 100.0) * usd_amt) / price
+    if portfolio.QBT_pct > 0.0:
+        price = get_latest_price_for_shorthand("QBT")
+        investment.QBT_amt = ((float(portfolio.QBT_pct) / 100.0) * usd_amt) / price
+    if portfolio.DXT_pct > 0.0:
+        price = get_latest_price_for_shorthand("DXT")
+        investment.DXT_amt = ((float(portfolio.DXT_pct) / 100.0) * usd_amt) / price
+    if portfolio.IXT_pct > 0.0:
+        price = get_latest_price_for_shorthand("IXT")
+        investment.IXT_amt = ((float(portfolio.IXT_pct) / 100.0) * usd_amt) / price
+    if portfolio.BMC_pct > 0.0:
+        price = get_latest_price_for_shorthand("BMC")
+        investment.BMC_amt = ((float(portfolio.BMC_pct) / 100.0) * usd_amt) / price
+    if portfolio.PEPECASH_pct > 0.0:
+        price = get_latest_price_for_shorthand("PEPECASH")
+        investment.PEPECASH_amt = ((float(portfolio.PEPECASH_pct) / 100.0) * usd_amt) / price
+    if portfolio.COB_pct > 0.0:
+        price = get_latest_price_for_shorthand("COB")
+        investment.COB_amt = ((float(portfolio.COB_pct) / 100.0) * usd_amt) / price
+    if portfolio.GRID_pct > 0.0:
+        price = get_latest_price_for_shorthand("GRID")
+        investment.GRID_amt = ((float(portfolio.GRID_pct) / 100.0) * usd_amt) / price
+    if portfolio.BITUSD_pct > 0.0:
+        price = get_latest_price_for_shorthand("BITUSD")
+        investment.BITUSD_amt = ((float(portfolio.BITUSD_pct) / 100.0) * usd_amt) / price
+    if portfolio.KRM_pct > 0.0:
+        price = get_latest_price_for_shorthand("KRM")
+        investment.KRM_amt = ((float(portfolio.KRM_pct) / 100.0) * usd_amt) / price
+    if portfolio.HMQ_pct > 0.0:
+        price = get_latest_price_for_shorthand("HMQ")
+        investment.HMQ_amt = ((float(portfolio.HMQ_pct) / 100.0) * usd_amt) / price
+    if portfolio.VIB_pct > 0.0:
+        price = get_latest_price_for_shorthand("VIB")
+        investment.VIB_amt = ((float(portfolio.VIB_pct) / 100.0) * usd_amt) / price
+    if portfolio.PPY_pct > 0.0:
+        price = get_latest_price_for_shorthand("PPY")
+        investment.PPY_amt = ((float(portfolio.PPY_pct) / 100.0) * usd_amt) / price
+    if portfolio.XEL_pct > 0.0:
+        price = get_latest_price_for_shorthand("XEL")
+        investment.XEL_amt = ((float(portfolio.XEL_pct) / 100.0) * usd_amt) / price
+    if portfolio.e_1ST_pct > 0.0:
+        price = get_latest_price_for_shorthand("1ST")
+        investment.e_1ST_amt = ((float(portfolio.e_1ST_pct) / 100.0) * usd_amt) / price
+    if portfolio.NLC2_pct > 0.0:
+        price = get_latest_price_for_shorthand("NLC2")
+        investment.NLC2_amt = ((float(portfolio.NLC2_pct) / 100.0) * usd_amt) / price
+    if portfolio.MTN_pct > 0.0:
+        price = get_latest_price_for_shorthand("MTN")
+        investment.MTN_amt = ((float(portfolio.MTN_pct) / 100.0) * usd_amt) / price
+    if portfolio.THC_pct > 0.0:
+        price = get_latest_price_for_shorthand("THC")
+        investment.THC_amt = ((float(portfolio.THC_pct) / 100.0) * usd_amt) / price
+    if portfolio.TNC_pct > 0.0:
+        price = get_latest_price_for_shorthand("TNC")
+        investment.TNC_amt = ((float(portfolio.TNC_pct) / 100.0) * usd_amt) / price
+    if portfolio.NTK_pct > 0.0:
+        price = get_latest_price_for_shorthand("NTK")
+        investment.NTK_amt = ((float(portfolio.NTK_pct) / 100.0) * usd_amt) / price
+    if portfolio.COLX_pct > 0.0:
+        price = get_latest_price_for_shorthand("COLX")
+        investment.COLX_amt = ((float(portfolio.COLX_pct) / 100.0) * usd_amt) / price
+    if portfolio.COV_pct > 0.0:
+        price = get_latest_price_for_shorthand("COV")
+        investment.COV_amt = ((float(portfolio.COV_pct) / 100.0) * usd_amt) / price
+    if portfolio.DIME_pct > 0.0:
+        price = get_latest_price_for_shorthand("DIME")
+        investment.DIME_amt = ((float(portfolio.DIME_pct) / 100.0) * usd_amt) / price
+    if portfolio.FOTA_pct > 0.0:
+        price = get_latest_price_for_shorthand("FOTA")
+        investment.FOTA_amt = ((float(portfolio.FOTA_pct) / 100.0) * usd_amt) / price
+    if portfolio.LIFE_pct > 0.0:
+        price = get_latest_price_for_shorthand("LIFE")
+        investment.LIFE_amt = ((float(portfolio.LIFE_pct) / 100.0) * usd_amt) / price
+    if portfolio.XBY_pct > 0.0:
+        price = get_latest_price_for_shorthand("XBY")
+        investment.XBY_amt = ((float(portfolio.XBY_pct) / 100.0) * usd_amt) / price
+    if portfolio.MER_pct > 0.0:
+        price = get_latest_price_for_shorthand("MER")
+        investment.MER_amt = ((float(portfolio.MER_pct) / 100.0) * usd_amt) / price
+    if portfolio.RFR_pct > 0.0:
+        price = get_latest_price_for_shorthand("RFR")
+        investment.RFR_amt = ((float(portfolio.RFR_pct) / 100.0) * usd_amt) / price
+    if portfolio.PST_pct > 0.0:
+        price = get_latest_price_for_shorthand("PST")
+        investment.PST_amt = ((float(portfolio.PST_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZSC_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZSC")
+        investment.ZSC_amt = ((float(portfolio.ZSC_pct) / 100.0) * usd_amt) / price
+    if portfolio.PRA_pct > 0.0:
+        price = get_latest_price_for_shorthand("PRA")
+        investment.PRA_amt = ((float(portfolio.PRA_pct) / 100.0) * usd_amt) / price
+    if portfolio.CFI_pct > 0.0:
+        price = get_latest_price_for_shorthand("CFI")
+        investment.CFI_amt = ((float(portfolio.CFI_pct) / 100.0) * usd_amt) / price
+    if portfolio.BIS_pct > 0.0:
+        price = get_latest_price_for_shorthand("BIS")
+        investment.BIS_amt = ((float(portfolio.BIS_pct) / 100.0) * usd_amt) / price
+    if portfolio.QAU_pct > 0.0:
+        price = get_latest_price_for_shorthand("QAU")
+        investment.QAU_amt = ((float(portfolio.QAU_pct) / 100.0) * usd_amt) / price
+    if portfolio.LEO_pct > 0.0:
+        price = get_latest_price_for_shorthand("LEO")
+        investment.LEO_amt = ((float(portfolio.LEO_pct) / 100.0) * usd_amt) / price
+    if portfolio.BRM_pct > 0.0:
+        price = get_latest_price_for_shorthand("BRM")
+        investment.BRM_amt = ((float(portfolio.BRM_pct) / 100.0) * usd_amt) / price
+    if portfolio.BCPT_pct > 0.0:
+        price = get_latest_price_for_shorthand("BCPT")
+        investment.BCPT_amt = ((float(portfolio.BCPT_pct) / 100.0) * usd_amt) / price
+    if portfolio.AMP_pct > 0.0:
+        price = get_latest_price_for_shorthand("AMP")
+        investment.AMP_amt = ((float(portfolio.AMP_pct) / 100.0) * usd_amt) / price
+    if portfolio.TIME_pct > 0.0:
+        price = get_latest_price_for_shorthand("TIME")
+        investment.TIME_amt = ((float(portfolio.TIME_pct) / 100.0) * usd_amt) / price
+    if portfolio.BITB_pct > 0.0:
+        price = get_latest_price_for_shorthand("BITB")
+        investment.BITB_amt = ((float(portfolio.BITB_pct) / 100.0) * usd_amt) / price
+    if portfolio.BLT_pct > 0.0:
+        price = get_latest_price_for_shorthand("BLT")
+        investment.BLT_amt = ((float(portfolio.BLT_pct) / 100.0) * usd_amt) / price
+    if portfolio.LUX_pct > 0.0:
+        price = get_latest_price_for_shorthand("LUX")
+        investment.LUX_amt = ((float(portfolio.LUX_pct) / 100.0) * usd_amt) / price
+    if portfolio.SPC_pct > 0.0:
+        price = get_latest_price_for_shorthand("SPC")
+        investment.SPC_amt = ((float(portfolio.SPC_pct) / 100.0) * usd_amt) / price
+    if portfolio.ONION_pct > 0.0:
+        price = get_latest_price_for_shorthand("ONION")
+        investment.ONION_amt = ((float(portfolio.ONION_pct) / 100.0) * usd_amt) / price
+    if portfolio.RVR_pct > 0.0:
+        price = get_latest_price_for_shorthand("RVR")
+        investment.RVR_amt = ((float(portfolio.RVR_pct) / 100.0) * usd_amt) / price
+    if portfolio.CEEK_pct > 0.0:
+        price = get_latest_price_for_shorthand("CEEK")
+        investment.CEEK_amt = ((float(portfolio.CEEK_pct) / 100.0) * usd_amt) / price
+    if portfolio.TRIG_pct > 0.0:
+        price = get_latest_price_for_shorthand("TRIG")
+        investment.TRIG_amt = ((float(portfolio.TRIG_pct) / 100.0) * usd_amt) / price
+    if portfolio.LATX_pct > 0.0:
+        price = get_latest_price_for_shorthand("LATX")
+        investment.LATX_amt = ((float(portfolio.LATX_pct) / 100.0) * usd_amt) / price
+    if portfolio.ACAT_pct > 0.0:
+        price = get_latest_price_for_shorthand("ACAT")
+        investment.ACAT_amt = ((float(portfolio.ACAT_pct) / 100.0) * usd_amt) / price
+    if portfolio.ALQO_pct > 0.0:
+        price = get_latest_price_for_shorthand("ALQO")
+        investment.ALQO_amt = ((float(portfolio.ALQO_pct) / 100.0) * usd_amt) / price
+    if portfolio.MOT_pct > 0.0:
+        price = get_latest_price_for_shorthand("MOT")
+        investment.MOT_amt = ((float(portfolio.MOT_pct) / 100.0) * usd_amt) / price
+    if portfolio.XSH_pct > 0.0:
+        price = get_latest_price_for_shorthand("XSH")
+        investment.XSH_amt = ((float(portfolio.XSH_pct) / 100.0) * usd_amt) / price
+    if portfolio.EVX_pct > 0.0:
+        price = get_latest_price_for_shorthand("EVX")
+        investment.EVX_amt = ((float(portfolio.EVX_pct) / 100.0) * usd_amt) / price
+    if portfolio.DIVX_pct > 0.0:
+        price = get_latest_price_for_shorthand("DIVX")
+        investment.DIVX_amt = ((float(portfolio.DIVX_pct) / 100.0) * usd_amt) / price
+    if portfolio.DMT_pct > 0.0:
+        price = get_latest_price_for_shorthand("DMT")
+        investment.DMT_amt = ((float(portfolio.DMT_pct) / 100.0) * usd_amt) / price
+    if portfolio.CRW_pct > 0.0:
+        price = get_latest_price_for_shorthand("CRW")
+        investment.CRW_amt = ((float(portfolio.CRW_pct) / 100.0) * usd_amt) / price
+    if portfolio.MWAT_pct > 0.0:
+        price = get_latest_price_for_shorthand("MWAT")
+        investment.MWAT_amt = ((float(portfolio.MWAT_pct) / 100.0) * usd_amt) / price
+    if portfolio.UKG_pct > 0.0:
+        price = get_latest_price_for_shorthand("UKG")
+        investment.UKG_amt = ((float(portfolio.UKG_pct) / 100.0) * usd_amt) / price
+    if portfolio.PASC_pct > 0.0:
+        price = get_latest_price_for_shorthand("PASC")
+        investment.PASC_amt = ((float(portfolio.PASC_pct) / 100.0) * usd_amt) / price
+    if portfolio.TAU_pct > 0.0:
+        price = get_latest_price_for_shorthand("TAU")
+        investment.TAU_amt = ((float(portfolio.TAU_pct) / 100.0) * usd_amt) / price
+    if portfolio.OXY_pct > 0.0:
+        price = get_latest_price_for_shorthand("OXY")
+        investment.OXY_amt = ((float(portfolio.OXY_pct) / 100.0) * usd_amt) / price
+    if portfolio.OMX_pct > 0.0:
+        price = get_latest_price_for_shorthand("OMX")
+        investment.OMX_amt = ((float(portfolio.OMX_pct) / 100.0) * usd_amt) / price
+    if portfolio.BBR_pct > 0.0:
+        price = get_latest_price_for_shorthand("BBR")
+        investment.BBR_amt = ((float(portfolio.BBR_pct) / 100.0) * usd_amt) / price
+    if portfolio.TSL_pct > 0.0:
+        price = get_latest_price_for_shorthand("TSL")
+        investment.TSL_amt = ((float(portfolio.TSL_pct) / 100.0) * usd_amt) / price
+    if portfolio.DIM_pct > 0.0:
+        price = get_latest_price_for_shorthand("DIM")
+        investment.DIM_amt = ((float(portfolio.DIM_pct) / 100.0) * usd_amt) / price
+    if portfolio.PRO_pct > 0.0:
+        price = get_latest_price_for_shorthand("PRO")
+        investment.PRO_amt = ((float(portfolio.PRO_pct) / 100.0) * usd_amt) / price
+    if portfolio.PLBT_pct > 0.0:
+        price = get_latest_price_for_shorthand("PLBT")
+        investment.PLBT_amt = ((float(portfolio.PLBT_pct) / 100.0) * usd_amt) / price
+    if portfolio.DADI_pct > 0.0:
+        price = get_latest_price_for_shorthand("DADI")
+        investment.DADI_amt = ((float(portfolio.DADI_pct) / 100.0) * usd_amt) / price
+    if portfolio.UGC_pct > 0.0:
+        price = get_latest_price_for_shorthand("UGC")
+        investment.UGC_amt = ((float(portfolio.UGC_pct) / 100.0) * usd_amt) / price
+    if portfolio.DMD_pct > 0.0:
+        price = get_latest_price_for_shorthand("DMD")
+        investment.DMD_amt = ((float(portfolio.DMD_pct) / 100.0) * usd_amt) / price
+    if portfolio.BLK_pct > 0.0:
+        price = get_latest_price_for_shorthand("BLK")
+        investment.BLK_amt = ((float(portfolio.BLK_pct) / 100.0) * usd_amt) / price
+    if portfolio.SNC_pct > 0.0:
+        price = get_latest_price_for_shorthand("SNC")
+        investment.SNC_amt = ((float(portfolio.SNC_pct) / 100.0) * usd_amt) / price
+    if portfolio.BETR_pct > 0.0:
+        price = get_latest_price_for_shorthand("BETR")
+        investment.BETR_amt = ((float(portfolio.BETR_pct) / 100.0) * usd_amt) / price
+    if portfolio.GRC_pct > 0.0:
+        price = get_latest_price_for_shorthand("GRC")
+        investment.GRC_amt = ((float(portfolio.GRC_pct) / 100.0) * usd_amt) / price
+    if portfolio.BOT_pct > 0.0:
+        price = get_latest_price_for_shorthand("BOT")
+        investment.BOT_amt = ((float(portfolio.BOT_pct) / 100.0) * usd_amt) / price
+    if portfolio.FLASH_pct > 0.0:
+        price = get_latest_price_for_shorthand("FLASH")
+        investment.FLASH_amt = ((float(portfolio.FLASH_pct) / 100.0) * usd_amt) / price
+    if portfolio.TFD_pct > 0.0:
+        price = get_latest_price_for_shorthand("TFD")
+        investment.TFD_amt = ((float(portfolio.TFD_pct) / 100.0) * usd_amt) / price
+    if portfolio.DBIX_pct > 0.0:
+        price = get_latest_price_for_shorthand("DBIX")
+        investment.DBIX_amt = ((float(portfolio.DBIX_pct) / 100.0) * usd_amt) / price
+    if portfolio.UQC_pct > 0.0:
+        price = get_latest_price_for_shorthand("UQC")
+        investment.UQC_amt = ((float(portfolio.UQC_pct) / 100.0) * usd_amt) / price
+    if portfolio.SWTH_pct > 0.0:
+        price = get_latest_price_for_shorthand("SWTH")
+        investment.SWTH_amt = ((float(portfolio.SWTH_pct) / 100.0) * usd_amt) / price
+    if portfolio.SKB_pct > 0.0:
+        price = get_latest_price_for_shorthand("SKB")
+        investment.SKB_amt = ((float(portfolio.SKB_pct) / 100.0) * usd_amt) / price
+    if portfolio.BCA_pct > 0.0:
+        price = get_latest_price_for_shorthand("BCA")
+        investment.BCA_amt = ((float(portfolio.BCA_pct) / 100.0) * usd_amt) / price
+    if portfolio.SOUL_pct > 0.0:
+        price = get_latest_price_for_shorthand("SOUL")
+        investment.SOUL_amt = ((float(portfolio.SOUL_pct) / 100.0) * usd_amt) / price
+    if portfolio.GUP_pct > 0.0:
+        price = get_latest_price_for_shorthand("GUP")
+        investment.GUP_amt = ((float(portfolio.GUP_pct) / 100.0) * usd_amt) / price
+    if portfolio.MUSE_pct > 0.0:
+        price = get_latest_price_for_shorthand("MUSE")
+        investment.MUSE_amt = ((float(portfolio.MUSE_pct) / 100.0) * usd_amt) / price
+    if portfolio.SNTR_pct > 0.0:
+        price = get_latest_price_for_shorthand("SNTR")
+        investment.SNTR_amt = ((float(portfolio.SNTR_pct) / 100.0) * usd_amt) / price
+    if portfolio.GEM_pct > 0.0:
+        price = get_latest_price_for_shorthand("GEM")
+        investment.GEM_amt = ((float(portfolio.GEM_pct) / 100.0) * usd_amt) / price
+    if portfolio.LA_pct > 0.0:
+        price = get_latest_price_for_shorthand("LA")
+        investment.LA_amt = ((float(portfolio.LA_pct) / 100.0) * usd_amt) / price
+    if portfolio.NKC_pct > 0.0:
+        price = get_latest_price_for_shorthand("NKC")
+        investment.NKC_amt = ((float(portfolio.NKC_pct) / 100.0) * usd_amt) / price
+    if portfolio.MUE_pct > 0.0:
+        price = get_latest_price_for_shorthand("MUE")
+        investment.MUE_amt = ((float(portfolio.MUE_pct) / 100.0) * usd_amt) / price
+    if portfolio.BPT_pct > 0.0:
+        price = get_latest_price_for_shorthand("BPT")
+        investment.BPT_amt = ((float(portfolio.BPT_pct) / 100.0) * usd_amt) / price
+    if portfolio.STK_pct > 0.0:
+        price = get_latest_price_for_shorthand("STK")
+        investment.STK_amt = ((float(portfolio.STK_pct) / 100.0) * usd_amt) / price
+    if portfolio.NMR_pct > 0.0:
+        price = get_latest_price_for_shorthand("NMR")
+        investment.NMR_amt = ((float(portfolio.NMR_pct) / 100.0) * usd_amt) / price
+    if portfolio.CV_pct > 0.0:
+        price = get_latest_price_for_shorthand("CV")
+        investment.CV_amt = ((float(portfolio.CV_pct) / 100.0) * usd_amt) / price
+    if portfolio.OMNI_pct > 0.0:
+        price = get_latest_price_for_shorthand("OMNI")
+        investment.OMNI_amt = ((float(portfolio.OMNI_pct) / 100.0) * usd_amt) / price
+    if portfolio.REM_pct > 0.0:
+        price = get_latest_price_for_shorthand("REM")
+        investment.REM_amt = ((float(portfolio.REM_pct) / 100.0) * usd_amt) / price
+    if portfolio.HYDRO_pct > 0.0:
+        price = get_latest_price_for_shorthand("HYDRO")
+        investment.HYDRO_amt = ((float(portfolio.HYDRO_pct) / 100.0) * usd_amt) / price
+    if portfolio.RBY_pct > 0.0:
+        price = get_latest_price_for_shorthand("RBY")
+        investment.RBY_amt = ((float(portfolio.RBY_pct) / 100.0) * usd_amt) / price
+    if portfolio.ORME_pct > 0.0:
+        price = get_latest_price_for_shorthand("ORME")
+        investment.ORME_amt = ((float(portfolio.ORME_pct) / 100.0) * usd_amt) / price
+    if portfolio.SSP_pct > 0.0:
+        price = get_latest_price_for_shorthand("SSP")
+        investment.SSP_amt = ((float(portfolio.SSP_pct) / 100.0) * usd_amt) / price
+    if portfolio.EVR_pct > 0.0:
+        price = get_latest_price_for_shorthand("EVR")
+        investment.EVR_amt = ((float(portfolio.EVR_pct) / 100.0) * usd_amt) / price
+    if portfolio.MTH_pct > 0.0:
+        price = get_latest_price_for_shorthand("MTH")
+        investment.MTH_amt = ((float(portfolio.MTH_pct) / 100.0) * usd_amt) / price
+    if portfolio.SHND_pct > 0.0:
+        price = get_latest_price_for_shorthand("SHND")
+        investment.SHND_amt = ((float(portfolio.SHND_pct) / 100.0) * usd_amt) / price
+    if portfolio.NEU_pct > 0.0:
+        price = get_latest_price_for_shorthand("NEU")
+        investment.NEU_amt = ((float(portfolio.NEU_pct) / 100.0) * usd_amt) / price
+    if portfolio.RADS_pct > 0.0:
+        price = get_latest_price_for_shorthand("RADS")
+        investment.RADS_amt = ((float(portfolio.RADS_pct) / 100.0) * usd_amt) / price
+    if portfolio.CAPP_pct > 0.0:
+        price = get_latest_price_for_shorthand("CAPP")
+        investment.CAPP_amt = ((float(portfolio.CAPP_pct) / 100.0) * usd_amt) / price
+    if portfolio.STX_pct > 0.0:
+        price = get_latest_price_for_shorthand("STX")
+        investment.STX_amt = ((float(portfolio.STX_pct) / 100.0) * usd_amt) / price
+    if portfolio.MDA_pct > 0.0:
+        price = get_latest_price_for_shorthand("MDA")
+        investment.MDA_amt = ((float(portfolio.MDA_pct) / 100.0) * usd_amt) / price
+    if portfolio.RMT_pct > 0.0:
+        price = get_latest_price_for_shorthand("RMT")
+        investment.RMT_amt = ((float(portfolio.RMT_pct) / 100.0) * usd_amt) / price
+    if portfolio.TIX_pct > 0.0:
+        price = get_latest_price_for_shorthand("TIX")
+        investment.TIX_amt = ((float(portfolio.TIX_pct) / 100.0) * usd_amt) / price
+    if portfolio.MDT_pct > 0.0:
+        price = get_latest_price_for_shorthand("MDT")
+        investment.MDT_amt = ((float(portfolio.MDT_pct) / 100.0) * usd_amt) / price
+    if portfolio.SLR_pct > 0.0:
+        price = get_latest_price_for_shorthand("SLR")
+        investment.SLR_amt = ((float(portfolio.SLR_pct) / 100.0) * usd_amt) / price
+    if portfolio.OAX_pct > 0.0:
+        price = get_latest_price_for_shorthand("OAX")
+        investment.OAX_amt = ((float(portfolio.OAX_pct) / 100.0) * usd_amt) / price
+    if portfolio.ADT_pct > 0.0:
+        price = get_latest_price_for_shorthand("ADT")
+        investment.ADT_amt = ((float(portfolio.ADT_pct) / 100.0) * usd_amt) / price
+    if portfolio.FLO_pct > 0.0:
+        price = get_latest_price_for_shorthand("FLO")
+        investment.FLO_amt = ((float(portfolio.FLO_pct) / 100.0) * usd_amt) / price
+    if portfolio.ARN_pct > 0.0:
+        price = get_latest_price_for_shorthand("ARN")
+        investment.ARN_amt = ((float(portfolio.ARN_pct) / 100.0) * usd_amt) / price
+    if portfolio.BBN_pct > 0.0:
+        price = get_latest_price_for_shorthand("BBN")
+        investment.BBN_amt = ((float(portfolio.BBN_pct) / 100.0) * usd_amt) / price
+    if portfolio.MOON_pct > 0.0:
+        price = get_latest_price_for_shorthand("MOON")
+        investment.MOON_amt = ((float(portfolio.MOON_pct) / 100.0) * usd_amt) / price
+    if portfolio.CHP_pct > 0.0:
+        price = get_latest_price_for_shorthand("CHP")
+        investment.CHP_amt = ((float(portfolio.CHP_pct) / 100.0) * usd_amt) / price
+    if portfolio.AIT_pct > 0.0:
+        price = get_latest_price_for_shorthand("AIT")
+        investment.AIT_amt = ((float(portfolio.AIT_pct) / 100.0) * usd_amt) / price
+    if portfolio.CLO_pct > 0.0:
+        price = get_latest_price_for_shorthand("CLO")
+        investment.CLO_amt = ((float(portfolio.CLO_pct) / 100.0) * usd_amt) / price
+    if portfolio.AIDOC_pct > 0.0:
+        price = get_latest_price_for_shorthand("AIDOC")
+        investment.AIDOC_amt = ((float(portfolio.AIDOC_pct) / 100.0) * usd_amt) / price
+    if portfolio.FDZ_pct > 0.0:
+        price = get_latest_price_for_shorthand("FDZ")
+        investment.FDZ_amt = ((float(portfolio.FDZ_pct) / 100.0) * usd_amt) / price
+    if portfolio.LOC_pct > 0.0:
+        price = get_latest_price_for_shorthand("LOC")
+        investment.LOC_amt = ((float(portfolio.LOC_pct) / 100.0) * usd_amt) / price
+    if portfolio.PAL_pct > 0.0:
+        price = get_latest_price_for_shorthand("PAL")
+        investment.PAL_amt = ((float(portfolio.PAL_pct) / 100.0) * usd_amt) / price
+    if portfolio.IOC_pct > 0.0:
+        price = get_latest_price_for_shorthand("IOC")
+        investment.IOC_amt = ((float(portfolio.IOC_pct) / 100.0) * usd_amt) / price
+    if portfolio.PKC_pct > 0.0:
+        price = get_latest_price_for_shorthand("PKC")
+        investment.PKC_amt = ((float(portfolio.PKC_pct) / 100.0) * usd_amt) / price
+    if portfolio.HXX_pct > 0.0:
+        price = get_latest_price_for_shorthand("HXX")
+        investment.HXX_amt = ((float(portfolio.HXX_pct) / 100.0) * usd_amt) / price
+    if portfolio.UP_pct > 0.0:
+        price = get_latest_price_for_shorthand("UP")
+        investment.UP_amt = ((float(portfolio.UP_pct) / 100.0) * usd_amt) / price
+    if portfolio.SLT_pct > 0.0:
+        price = get_latest_price_for_shorthand("SLT")
+        investment.SLT_amt = ((float(portfolio.SLT_pct) / 100.0) * usd_amt) / price
+    if portfolio.PAT_pct > 0.0:
+        price = get_latest_price_for_shorthand("PAT")
+        investment.PAT_amt = ((float(portfolio.PAT_pct) / 100.0) * usd_amt) / price
+    if portfolio.DICE_pct > 0.0:
+        price = get_latest_price_for_shorthand("DICE")
+        investment.DICE_amt = ((float(portfolio.DICE_pct) / 100.0) * usd_amt) / price
+    if portfolio.EXRN_pct > 0.0:
+        price = get_latest_price_for_shorthand("EXRN")
+        investment.EXRN_amt = ((float(portfolio.EXRN_pct) / 100.0) * usd_amt) / price
+    if portfolio.HMC_pct > 0.0:
+        price = get_latest_price_for_shorthand("HMC")
+        investment.HMC_amt = ((float(portfolio.HMC_pct) / 100.0) * usd_amt) / price
+    if portfolio.SENC_pct > 0.0:
+        price = get_latest_price_for_shorthand("SENC")
+        investment.SENC_amt = ((float(portfolio.SENC_pct) / 100.0) * usd_amt) / price
+    if portfolio.DLT_pct > 0.0:
+        price = get_latest_price_for_shorthand("DLT")
+        investment.DLT_amt = ((float(portfolio.DLT_pct) / 100.0) * usd_amt) / price
+    if portfolio.GEN_pct > 0.0:
+        price = get_latest_price_for_shorthand("GEN")
+        investment.GEN_amt = ((float(portfolio.GEN_pct) / 100.0) * usd_amt) / price
+    if portfolio.CHSB_pct > 0.0:
+        price = get_latest_price_for_shorthand("CHSB")
+        investment.CHSB_amt = ((float(portfolio.CHSB_pct) / 100.0) * usd_amt) / price
+    if portfolio.ABYSS_pct > 0.0:
+        price = get_latest_price_for_shorthand("ABYSS")
+        investment.ABYSS_amt = ((float(portfolio.ABYSS_pct) / 100.0) * usd_amt) / price
+    if portfolio.BQ_pct > 0.0:
+        price = get_latest_price_for_shorthand("BQ")
+        investment.BQ_amt = ((float(portfolio.BQ_pct) / 100.0) * usd_amt) / price
+    if portfolio.EXP_pct > 0.0:
+        price = get_latest_price_for_shorthand("EXP")
+        investment.EXP_amt = ((float(portfolio.EXP_pct) / 100.0) * usd_amt) / price
+    if portfolio.EKO_pct > 0.0:
+        price = get_latest_price_for_shorthand("EKO")
+        investment.EKO_amt = ((float(portfolio.EKO_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZIPT_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZIPT")
+        investment.ZIPT_amt = ((float(portfolio.ZIPT_pct) / 100.0) * usd_amt) / price
+    if portfolio.CLAM_pct > 0.0:
+        price = get_latest_price_for_shorthand("CLAM")
+        investment.CLAM_amt = ((float(portfolio.CLAM_pct) / 100.0) * usd_amt) / price
+    if portfolio.IDH_pct > 0.0:
+        price = get_latest_price_for_shorthand("IDH")
+        investment.IDH_amt = ((float(portfolio.IDH_pct) / 100.0) * usd_amt) / price
+    if portfolio.SRCOIN_pct > 0.0:
+        price = get_latest_price_for_shorthand("SRCOIN")
+        investment.SRCOIN_amt = ((float(portfolio.SRCOIN_pct) / 100.0) * usd_amt) / price
+    if portfolio.ATM_pct > 0.0:
+        price = get_latest_price_for_shorthand("ATM")
+        investment.ATM_amt = ((float(portfolio.ATM_pct) / 100.0) * usd_amt) / price
+    if portfolio.NYC_pct > 0.0:
+        price = get_latest_price_for_shorthand("NYC")
+        investment.NYC_amt = ((float(portfolio.NYC_pct) / 100.0) * usd_amt) / price
+    if portfolio.DEV_pct > 0.0:
+        price = get_latest_price_for_shorthand("DEV")
+        investment.DEV_amt = ((float(portfolio.DEV_pct) / 100.0) * usd_amt) / price
+    if portfolio.GCR_pct > 0.0:
+        price = get_latest_price_for_shorthand("GCR")
+        investment.GCR_amt = ((float(portfolio.GCR_pct) / 100.0) * usd_amt) / price
+    if portfolio.NBAI_pct > 0.0:
+        price = get_latest_price_for_shorthand("NBAI")
+        investment.NBAI_amt = ((float(portfolio.NBAI_pct) / 100.0) * usd_amt) / price
+    if portfolio.POLIS_pct > 0.0:
+        price = get_latest_price_for_shorthand("POLIS")
+        investment.POLIS_amt = ((float(portfolio.POLIS_pct) / 100.0) * usd_amt) / price
+    if portfolio.DTB_pct > 0.0:
+        price = get_latest_price_for_shorthand("DTB")
+        investment.DTB_amt = ((float(portfolio.DTB_pct) / 100.0) * usd_amt) / price
+    if portfolio.CVCOIN_pct > 0.0:
+        price = get_latest_price_for_shorthand("CVCOIN")
+        investment.CVCOIN_amt = ((float(portfolio.CVCOIN_pct) / 100.0) * usd_amt) / price
+    if portfolio.MRK_pct > 0.0:
+        price = get_latest_price_for_shorthand("MRK")
+        investment.MRK_amt = ((float(portfolio.MRK_pct) / 100.0) * usd_amt) / price
+    if portfolio.SHIP_pct > 0.0:
+        price = get_latest_price_for_shorthand("SHIP")
+        investment.SHIP_amt = ((float(portfolio.SHIP_pct) / 100.0) * usd_amt) / price
+    if portfolio.INCNT_pct > 0.0:
+        price = get_latest_price_for_shorthand("INCNT")
+        investment.INCNT_amt = ((float(portfolio.INCNT_pct) / 100.0) * usd_amt) / price
+    if portfolio.HER_pct > 0.0:
+        price = get_latest_price_for_shorthand("HER")
+        investment.HER_amt = ((float(portfolio.HER_pct) / 100.0) * usd_amt) / price
+    if portfolio.AXP_pct > 0.0:
+        price = get_latest_price_for_shorthand("AXP")
+        investment.AXP_amt = ((float(portfolio.AXP_pct) / 100.0) * usd_amt) / price
+    if portfolio.LMC_pct > 0.0:
+        price = get_latest_price_for_shorthand("LMC")
+        investment.LMC_amt = ((float(portfolio.LMC_pct) / 100.0) * usd_amt) / price
+    if portfolio.REBL_pct > 0.0:
+        price = get_latest_price_for_shorthand("REBL")
+        investment.REBL_amt = ((float(portfolio.REBL_pct) / 100.0) * usd_amt) / price
+    if portfolio.APH_pct > 0.0:
+        price = get_latest_price_for_shorthand("APH")
+        investment.APH_amt = ((float(portfolio.APH_pct) / 100.0) * usd_amt) / price
+    if portfolio.DRT_pct > 0.0:
+        price = get_latest_price_for_shorthand("DRT")
+        investment.DRT_amt = ((float(portfolio.DRT_pct) / 100.0) * usd_amt) / price
+    if portfolio.HKN_pct > 0.0:
+        price = get_latest_price_for_shorthand("HKN")
+        investment.HKN_amt = ((float(portfolio.HKN_pct) / 100.0) * usd_amt) / price
+    if portfolio.UBT_pct > 0.0:
+        price = get_latest_price_for_shorthand("UBT")
+        investment.UBT_amt = ((float(portfolio.UBT_pct) / 100.0) * usd_amt) / price
+    if portfolio.XMY_pct > 0.0:
+        price = get_latest_price_for_shorthand("XMY")
+        investment.XMY_amt = ((float(portfolio.XMY_pct) / 100.0) * usd_amt) / price
+    if portfolio.RVT_pct > 0.0:
+        price = get_latest_price_for_shorthand("RVT")
+        investment.RVT_amt = ((float(portfolio.RVT_pct) / 100.0) * usd_amt) / price
+    if portfolio.SEXC_pct > 0.0:
+        price = get_latest_price_for_shorthand("SEXC")
+        investment.SEXC_amt = ((float(portfolio.SEXC_pct) / 100.0) * usd_amt) / price
+    if portfolio.ECOB_pct > 0.0:
+        price = get_latest_price_for_shorthand("ECOB")
+        investment.ECOB_amt = ((float(portfolio.ECOB_pct) / 100.0) * usd_amt) / price
+    if portfolio.SIB_pct > 0.0:
+        price = get_latest_price_for_shorthand("SIB")
+        investment.SIB_amt = ((float(portfolio.SIB_pct) / 100.0) * usd_amt) / price
+    if portfolio.RED_pct > 0.0:
+        price = get_latest_price_for_shorthand("RED")
+        investment.RED_amt = ((float(portfolio.RED_pct) / 100.0) * usd_amt) / price
+    if portfolio.ICOS_pct > 0.0:
+        price = get_latest_price_for_shorthand("ICOS")
+        investment.ICOS_amt = ((float(portfolio.ICOS_pct) / 100.0) * usd_amt) / price
+    if portfolio.SPRTS_pct > 0.0:
+        price = get_latest_price_for_shorthand("SPRTS")
+        investment.SPRTS_amt = ((float(portfolio.SPRTS_pct) / 100.0) * usd_amt) / price
+    if portfolio.GET_pct > 0.0:
+        price = get_latest_price_for_shorthand("GET")
+        investment.GET_amt = ((float(portfolio.GET_pct) / 100.0) * usd_amt) / price
+    if portfolio.PCL_pct > 0.0:
+        price = get_latest_price_for_shorthand("PCL")
+        investment.PCL_amt = ((float(portfolio.PCL_pct) / 100.0) * usd_amt) / price
+    if portfolio.NEOS_pct > 0.0:
+        price = get_latest_price_for_shorthand("NEOS")
+        investment.NEOS_amt = ((float(portfolio.NEOS_pct) / 100.0) * usd_amt) / price
+    if portfolio.BWK_pct > 0.0:
+        price = get_latest_price_for_shorthand("BWK")
+        investment.BWK_amt = ((float(portfolio.BWK_pct) / 100.0) * usd_amt) / price
+    if portfolio.NPX_pct > 0.0:
+        price = get_latest_price_for_shorthand("NPX")
+        investment.NPX_amt = ((float(portfolio.NPX_pct) / 100.0) * usd_amt) / price
+    if portfolio.DYN_pct > 0.0:
+        price = get_latest_price_for_shorthand("DYN")
+        investment.DYN_amt = ((float(portfolio.DYN_pct) / 100.0) * usd_amt) / price
+    if portfolio.BEZ_pct > 0.0:
+        price = get_latest_price_for_shorthand("BEZ")
+        investment.BEZ_amt = ((float(portfolio.BEZ_pct) / 100.0) * usd_amt) / price
+    if portfolio.XST_pct > 0.0:
+        price = get_latest_price_for_shorthand("XST")
+        investment.XST_amt = ((float(portfolio.XST_pct) / 100.0) * usd_amt) / price
+    if portfolio.IPL_pct > 0.0:
+        price = get_latest_price_for_shorthand("IPL")
+        investment.IPL_amt = ((float(portfolio.IPL_pct) / 100.0) * usd_amt) / price
+    if portfolio.VRC_pct > 0.0:
+        price = get_latest_price_for_shorthand("VRC")
+        investment.VRC_amt = ((float(portfolio.VRC_pct) / 100.0) * usd_amt) / price
+    if portfolio.IFT_pct > 0.0:
+        price = get_latest_price_for_shorthand("IFT")
+        investment.IFT_amt = ((float(portfolio.IFT_pct) / 100.0) * usd_amt) / price
+    if portfolio.MUSIC_pct > 0.0:
+        price = get_latest_price_for_shorthand("MUSIC")
+        investment.MUSIC_amt = ((float(portfolio.MUSIC_pct) / 100.0) * usd_amt) / price
+    if portfolio.CAT_pct > 0.0:
+        price = get_latest_price_for_shorthand("CAT")
+        investment.CAT_amt = ((float(portfolio.CAT_pct) / 100.0) * usd_amt) / price
+    if portfolio.LOKI_pct > 0.0:
+        price = get_latest_price_for_shorthand("LOKI")
+        investment.LOKI_amt = ((float(portfolio.LOKI_pct) / 100.0) * usd_amt) / price
+    if portfolio.UCASH_pct > 0.0:
+        price = get_latest_price_for_shorthand("UCASH")
+        investment.UCASH_amt = ((float(portfolio.UCASH_pct) / 100.0) * usd_amt) / price
+    if portfolio.BSD_pct > 0.0:
+        price = get_latest_price_for_shorthand("BSD")
+        investment.BSD_amt = ((float(portfolio.BSD_pct) / 100.0) * usd_amt) / price
+    if portfolio.PIRL_pct > 0.0:
+        price = get_latest_price_for_shorthand("PIRL")
+        investment.PIRL_amt = ((float(portfolio.PIRL_pct) / 100.0) * usd_amt) / price
+    if portfolio.DEB_pct > 0.0:
+        price = get_latest_price_for_shorthand("DEB")
+        investment.DEB_amt = ((float(portfolio.DEB_pct) / 100.0) * usd_amt) / price
+    if portfolio.HWC_pct > 0.0:
+        price = get_latest_price_for_shorthand("HWC")
+        investment.HWC_amt = ((float(portfolio.HWC_pct) / 100.0) * usd_amt) / price
+    if portfolio.NVC_pct > 0.0:
+        price = get_latest_price_for_shorthand("NVC")
+        investment.NVC_amt = ((float(portfolio.NVC_pct) / 100.0) * usd_amt) / price
+    if portfolio.XAUR_pct > 0.0:
+        price = get_latest_price_for_shorthand("XAUR")
+        investment.XAUR_amt = ((float(portfolio.XAUR_pct) / 100.0) * usd_amt) / price
+    if portfolio.FLIXX_pct > 0.0:
+        price = get_latest_price_for_shorthand("FLIXX")
+        investment.FLIXX_amt = ((float(portfolio.FLIXX_pct) / 100.0) * usd_amt) / price
+    if portfolio.RMC_pct > 0.0:
+        price = get_latest_price_for_shorthand("RMC")
+        investment.RMC_amt = ((float(portfolio.RMC_pct) / 100.0) * usd_amt) / price
+    if portfolio.PKT_pct > 0.0:
+        price = get_latest_price_for_shorthand("PKT")
+        investment.PKT_amt = ((float(portfolio.PKT_pct) / 100.0) * usd_amt) / price
+    if portfolio.GBX_pct > 0.0:
+        price = get_latest_price_for_shorthand("GBX")
+        investment.GBX_amt = ((float(portfolio.GBX_pct) / 100.0) * usd_amt) / price
+    if portfolio.NCT_pct > 0.0:
+        price = get_latest_price_for_shorthand("NCT")
+        investment.NCT_amt = ((float(portfolio.NCT_pct) / 100.0) * usd_amt) / price
+    if portfolio.GRFT_pct > 0.0:
+        price = get_latest_price_for_shorthand("GRFT")
+        investment.GRFT_amt = ((float(portfolio.GRFT_pct) / 100.0) * usd_amt) / price
+    if portfolio.EFX_pct > 0.0:
+        price = get_latest_price_for_shorthand("EFX")
+        investment.EFX_amt = ((float(portfolio.EFX_pct) / 100.0) * usd_amt) / price
+    if portfolio.NXC_pct > 0.0:
+        price = get_latest_price_for_shorthand("NXC")
+        investment.NXC_amt = ((float(portfolio.NXC_pct) / 100.0) * usd_amt) / price
+    if portfolio.XPA_pct > 0.0:
+        price = get_latest_price_for_shorthand("XPA")
+        investment.XPA_amt = ((float(portfolio.XPA_pct) / 100.0) * usd_amt) / price
+    if portfolio.AU_pct > 0.0:
+        price = get_latest_price_for_shorthand("AU")
+        investment.AU_amt = ((float(portfolio.AU_pct) / 100.0) * usd_amt) / price
+    if portfolio.SS_pct > 0.0:
+        price = get_latest_price_for_shorthand("SS")
+        investment.SS_amt = ((float(portfolio.SS_pct) / 100.0) * usd_amt) / price
+    if portfolio.APX_pct > 0.0:
+        price = get_latest_price_for_shorthand("APX")
+        investment.APX_amt = ((float(portfolio.APX_pct) / 100.0) * usd_amt) / price
+    if portfolio.PARETO_pct > 0.0:
+        price = get_latest_price_for_shorthand("PARETO")
+        investment.PARETO_amt = ((float(portfolio.PARETO_pct) / 100.0) * usd_amt) / price
+    if portfolio.AIR_pct > 0.0:
+        price = get_latest_price_for_shorthand("AIR")
+        investment.AIR_amt = ((float(portfolio.AIR_pct) / 100.0) * usd_amt) / price
+    if portfolio.PINK_pct > 0.0:
+        price = get_latest_price_for_shorthand("PINK")
+        investment.PINK_amt = ((float(portfolio.PINK_pct) / 100.0) * usd_amt) / price
+    if portfolio.GETX_pct > 0.0:
+        price = get_latest_price_for_shorthand("GETX")
+        investment.GETX_amt = ((float(portfolio.GETX_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZLA_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZLA")
+        investment.ZLA_amt = ((float(portfolio.ZLA_pct) / 100.0) * usd_amt) / price
+    if portfolio.LEV_pct > 0.0:
+        price = get_latest_price_for_shorthand("LEV")
+        investment.LEV_amt = ((float(portfolio.LEV_pct) / 100.0) * usd_amt) / price
+    if portfolio.SWT_pct > 0.0:
+        price = get_latest_price_for_shorthand("SWT")
+        investment.SWT_amt = ((float(portfolio.SWT_pct) / 100.0) * usd_amt) / price
+    if portfolio.AID_pct > 0.0:
+        price = get_latest_price_for_shorthand("AID")
+        investment.AID_amt = ((float(portfolio.AID_pct) / 100.0) * usd_amt) / price
+    if portfolio.TUBE_pct > 0.0:
+        price = get_latest_price_for_shorthand("TUBE")
+        investment.TUBE_amt = ((float(portfolio.TUBE_pct) / 100.0) * usd_amt) / price
+    if portfolio.OK_pct > 0.0:
+        price = get_latest_price_for_shorthand("OK")
+        investment.OK_amt = ((float(portfolio.OK_pct) / 100.0) * usd_amt) / price
+    if portfolio.DGTX_pct > 0.0:
+        price = get_latest_price_for_shorthand("DGTX")
+        investment.DGTX_amt = ((float(portfolio.DGTX_pct) / 100.0) * usd_amt) / price
+    if portfolio.BIO_pct > 0.0:
+        price = get_latest_price_for_shorthand("BIO")
+        investment.BIO_amt = ((float(portfolio.BIO_pct) / 100.0) * usd_amt) / price
+    if portfolio.AVT_pct > 0.0:
+        price = get_latest_price_for_shorthand("AVT")
+        investment.AVT_amt = ((float(portfolio.AVT_pct) / 100.0) * usd_amt) / price
+    if portfolio.MTX_pct > 0.0:
+        price = get_latest_price_for_shorthand("MTX")
+        investment.MTX_amt = ((float(portfolio.MTX_pct) / 100.0) * usd_amt) / price
+    if portfolio.CAG_pct > 0.0:
+        price = get_latest_price_for_shorthand("CAG")
+        investment.CAG_amt = ((float(portfolio.CAG_pct) / 100.0) * usd_amt) / price
+    if portfolio.FLDC_pct > 0.0:
+        price = get_latest_price_for_shorthand("FLDC")
+        investment.FLDC_amt = ((float(portfolio.FLDC_pct) / 100.0) * usd_amt) / price
+    if portfolio.SPD_pct > 0.0:
+        price = get_latest_price_for_shorthand("SPD")
+        investment.SPD_amt = ((float(portfolio.SPD_pct) / 100.0) * usd_amt) / price
+    if portfolio.CXO_pct > 0.0:
+        price = get_latest_price_for_shorthand("CXO")
+        investment.CXO_amt = ((float(portfolio.CXO_pct) / 100.0) * usd_amt) / price
+    if portfolio.PRG_pct > 0.0:
+        price = get_latest_price_for_shorthand("PRG")
+        investment.PRG_amt = ((float(portfolio.PRG_pct) / 100.0) * usd_amt) / price
+    if portfolio.CAN_pct > 0.0:
+        price = get_latest_price_for_shorthand("CAN")
+        investment.CAN_amt = ((float(portfolio.CAN_pct) / 100.0) * usd_amt) / price
+    if portfolio.HBT_pct > 0.0:
+        price = get_latest_price_for_shorthand("HBT")
+        investment.HBT_amt = ((float(portfolio.HBT_pct) / 100.0) * usd_amt) / price
+    if portfolio.PTOY_pct > 0.0:
+        price = get_latest_price_for_shorthand("PTOY")
+        investment.PTOY_amt = ((float(portfolio.PTOY_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZAP_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZAP")
+        investment.ZAP_amt = ((float(portfolio.ZAP_pct) / 100.0) * usd_amt) / price
+    if portfolio.LALA_pct > 0.0:
+        price = get_latest_price_for_shorthand("LALA")
+        investment.LALA_amt = ((float(portfolio.LALA_pct) / 100.0) * usd_amt) / price
+    if portfolio.HBZ_pct > 0.0:
+        price = get_latest_price_for_shorthand("HBZ")
+        investment.HBZ_amt = ((float(portfolio.HBZ_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZOI_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZOI")
+        investment.ZOI_amt = ((float(portfolio.ZOI_pct) / 100.0) * usd_amt) / price
+    if portfolio.PND_pct > 0.0:
+        price = get_latest_price_for_shorthand("PND")
+        investment.PND_amt = ((float(portfolio.PND_pct) / 100.0) * usd_amt) / price
+    if portfolio.ERO_pct > 0.0:
+        price = get_latest_price_for_shorthand("ERO")
+        investment.ERO_amt = ((float(portfolio.ERO_pct) / 100.0) * usd_amt) / price
+    if portfolio.BDG_pct > 0.0:
+        price = get_latest_price_for_shorthand("BDG")
+        investment.BDG_amt = ((float(portfolio.BDG_pct) / 100.0) * usd_amt) / price
+    if portfolio.ADB_pct > 0.0:
+        price = get_latest_price_for_shorthand("ADB")
+        investment.ADB_amt = ((float(portfolio.ADB_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZRC_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZRC")
+        investment.ZRC_amt = ((float(portfolio.ZRC_pct) / 100.0) * usd_amt) / price
+    if portfolio.GOLOS_pct > 0.0:
+        price = get_latest_price_for_shorthand("GOLOS")
+        investment.GOLOS_amt = ((float(portfolio.GOLOS_pct) / 100.0) * usd_amt) / price
+    if portfolio.DERO_pct > 0.0:
+        price = get_latest_price_for_shorthand("DERO")
+        investment.DERO_amt = ((float(portfolio.DERO_pct) / 100.0) * usd_amt) / price
+    if portfolio.MINT_pct > 0.0:
+        price = get_latest_price_for_shorthand("MINT")
+        investment.MINT_amt = ((float(portfolio.MINT_pct) / 100.0) * usd_amt) / price
+    if portfolio.LNC_pct > 0.0:
+        price = get_latest_price_for_shorthand("LNC")
+        investment.LNC_amt = ((float(portfolio.LNC_pct) / 100.0) * usd_amt) / price
+    if portfolio.LWF_pct > 0.0:
+        price = get_latest_price_for_shorthand("LWF")
+        investment.LWF_amt = ((float(portfolio.LWF_pct) / 100.0) * usd_amt) / price
+    if portfolio.DNA_pct > 0.0:
+        price = get_latest_price_for_shorthand("DNA")
+        investment.DNA_amt = ((float(portfolio.DNA_pct) / 100.0) * usd_amt) / price
+    if portfolio.BCC_pct > 0.0:
+        price = get_latest_price_for_shorthand("BCC")
+        investment.BCC_amt = ((float(portfolio.BCC_pct) / 100.0) * usd_amt) / price
+    if portfolio.ADH_pct > 0.0:
+        price = get_latest_price_for_shorthand("ADH")
+        investment.ADH_amt = ((float(portfolio.ADH_pct) / 100.0) * usd_amt) / price
+    if portfolio.PUT_pct > 0.0:
+        price = get_latest_price_for_shorthand("PUT")
+        investment.PUT_amt = ((float(portfolio.PUT_pct) / 100.0) * usd_amt) / price
+    if portfolio.DOT_pct > 0.0:
+        price = get_latest_price_for_shorthand("DOT")
+        investment.DOT_amt = ((float(portfolio.DOT_pct) / 100.0) * usd_amt) / price
+    if portfolio.XNK_pct > 0.0:
+        price = get_latest_price_for_shorthand("XNK")
+        investment.XNK_amt = ((float(portfolio.XNK_pct) / 100.0) * usd_amt) / price
+    if portfolio.SIG_pct > 0.0:
+        price = get_latest_price_for_shorthand("SIG")
+        investment.SIG_amt = ((float(portfolio.SIG_pct) / 100.0) * usd_amt) / price
+    if portfolio.SENSE_pct > 0.0:
+        price = get_latest_price_for_shorthand("SENSE")
+        investment.SENSE_amt = ((float(portfolio.SENSE_pct) / 100.0) * usd_amt) / price
+    if portfolio.MLM_pct > 0.0:
+        price = get_latest_price_for_shorthand("MLM")
+        investment.MLM_amt = ((float(portfolio.MLM_pct) / 100.0) * usd_amt) / price
+    if portfolio.IDXM_pct > 0.0:
+        price = get_latest_price_for_shorthand("IDXM")
+        investment.IDXM_amt = ((float(portfolio.IDXM_pct) / 100.0) * usd_amt) / price
+    if portfolio.FLUZ_pct > 0.0:
+        price = get_latest_price_for_shorthand("FLUZ")
+        investment.FLUZ_amt = ((float(portfolio.FLUZ_pct) / 100.0) * usd_amt) / price
+    if portfolio.BET_pct > 0.0:
+        price = get_latest_price_for_shorthand("BET")
+        investment.BET_amt = ((float(portfolio.BET_pct) / 100.0) * usd_amt) / price
+    if portfolio.NET_pct > 0.0:
+        price = get_latest_price_for_shorthand("NET")
+        investment.NET_amt = ((float(portfolio.NET_pct) / 100.0) * usd_amt) / price
+    if portfolio.BERRY_pct > 0.0:
+        price = get_latest_price_for_shorthand("BERRY")
+        investment.BERRY_amt = ((float(portfolio.BERRY_pct) / 100.0) * usd_amt) / price
+    if portfolio.ELIX_pct > 0.0:
+        price = get_latest_price_for_shorthand("ELIX")
+        investment.ELIX_amt = ((float(portfolio.ELIX_pct) / 100.0) * usd_amt) / price
+    if portfolio.TRST_pct > 0.0:
+        price = get_latest_price_for_shorthand("TRST")
+        investment.TRST_amt = ((float(portfolio.TRST_pct) / 100.0) * usd_amt) / price
+    if portfolio.SEQ_pct > 0.0:
+        price = get_latest_price_for_shorthand("SEQ")
+        investment.SEQ_amt = ((float(portfolio.SEQ_pct) / 100.0) * usd_amt) / price
+    if portfolio.YOC_pct > 0.0:
+        price = get_latest_price_for_shorthand("YOC")
+        investment.YOC_amt = ((float(portfolio.YOC_pct) / 100.0) * usd_amt) / price
+    if portfolio.ADI_pct > 0.0:
+        price = get_latest_price_for_shorthand("ADI")
+        investment.ADI_amt = ((float(portfolio.ADI_pct) / 100.0) * usd_amt) / price
+    if portfolio.BNTY_pct > 0.0:
+        price = get_latest_price_for_shorthand("BNTY")
+        investment.BNTY_amt = ((float(portfolio.BNTY_pct) / 100.0) * usd_amt) / price
+    if portfolio.HEAT_pct > 0.0:
+        price = get_latest_price_for_shorthand("HEAT")
+        investment.HEAT_amt = ((float(portfolio.HEAT_pct) / 100.0) * usd_amt) / price
+    if portfolio.ALIS_pct > 0.0:
+        price = get_latest_price_for_shorthand("ALIS")
+        investment.ALIS_amt = ((float(portfolio.ALIS_pct) / 100.0) * usd_amt) / price
+    if portfolio.B2B_pct > 0.0:
+        price = get_latest_price_for_shorthand("B2B")
+        investment.B2B_amt = ((float(portfolio.B2B_pct) / 100.0) * usd_amt) / price
+    if portfolio.TGT_pct > 0.0:
+        price = get_latest_price_for_shorthand("TGT")
+        investment.TGT_amt = ((float(portfolio.TGT_pct) / 100.0) * usd_amt) / price
+    if portfolio.ENRG_pct > 0.0:
+        price = get_latest_price_for_shorthand("ENRG")
+        investment.ENRG_amt = ((float(portfolio.ENRG_pct) / 100.0) * usd_amt) / price
+    if portfolio.ESP_pct > 0.0:
+        price = get_latest_price_for_shorthand("ESP")
+        investment.ESP_amt = ((float(portfolio.ESP_pct) / 100.0) * usd_amt) / price
+    if portfolio.APR_pct > 0.0:
+        price = get_latest_price_for_shorthand("APR")
+        investment.APR_amt = ((float(portfolio.APR_pct) / 100.0) * usd_amt) / price
+    if portfolio.MITX_pct > 0.0:
+        price = get_latest_price_for_shorthand("MITX")
+        investment.MITX_amt = ((float(portfolio.MITX_pct) / 100.0) * usd_amt) / price
+    if portfolio.e_1WO_pct > 0.0:
+        price = get_latest_price_for_shorthand("1WO")
+        investment.e_1WO_amt = ((float(portfolio.e_1WO_pct) / 100.0) * usd_amt) / price
+    if portfolio.XLR_pct > 0.0:
+        price = get_latest_price_for_shorthand("XLR")
+        investment.XLR_amt = ((float(portfolio.XLR_pct) / 100.0) * usd_amt) / price
+    if portfolio.XSPEC_pct > 0.0:
+        price = get_latest_price_for_shorthand("XSPEC")
+        investment.XSPEC_amt = ((float(portfolio.XSPEC_pct) / 100.0) * usd_amt) / price
+    if portfolio.CBT_pct > 0.0:
+        price = get_latest_price_for_shorthand("CBT")
+        investment.CBT_amt = ((float(portfolio.CBT_pct) / 100.0) * usd_amt) / price
+    if portfolio.CURE_pct > 0.0:
+        price = get_latest_price_for_shorthand("CURE")
+        investment.CURE_amt = ((float(portfolio.CURE_pct) / 100.0) * usd_amt) / price
+    if portfolio.CFUN_pct > 0.0:
+        price = get_latest_price_for_shorthand("CFUN")
+        investment.CFUN_amt = ((float(portfolio.CFUN_pct) / 100.0) * usd_amt) / price
+    if portfolio.COFI_pct > 0.0:
+        price = get_latest_price_for_shorthand("COFI")
+        investment.COFI_amt = ((float(portfolio.COFI_pct) / 100.0) * usd_amt) / price
+    if portfolio.CLN_pct > 0.0:
+        price = get_latest_price_for_shorthand("CLN")
+        investment.CLN_amt = ((float(portfolio.CLN_pct) / 100.0) * usd_amt) / price
+    if portfolio.BEE_pct > 0.0:
+        price = get_latest_price_for_shorthand("BEE")
+        investment.BEE_amt = ((float(portfolio.BEE_pct) / 100.0) * usd_amt) / price
+    if portfolio.BCY_pct > 0.0:
+        price = get_latest_price_for_shorthand("BCY")
+        investment.BCY_amt = ((float(portfolio.BCY_pct) / 100.0) * usd_amt) / price
+    if portfolio.FID_pct > 0.0:
+        price = get_latest_price_for_shorthand("FID")
+        investment.FID_amt = ((float(portfolio.FID_pct) / 100.0) * usd_amt) / price
+    if portfolio.LDC_pct > 0.0:
+        price = get_latest_price_for_shorthand("LDC")
+        investment.LDC_amt = ((float(portfolio.LDC_pct) / 100.0) * usd_amt) / price
+    if portfolio.FACE_pct > 0.0:
+        price = get_latest_price_for_shorthand("FACE")
+        investment.FACE_amt = ((float(portfolio.FACE_pct) / 100.0) * usd_amt) / price
+    if portfolio.MORPH_pct > 0.0:
+        price = get_latest_price_for_shorthand("MORPH")
+        investment.MORPH_amt = ((float(portfolio.MORPH_pct) / 100.0) * usd_amt) / price
+    if portfolio.MYST_pct > 0.0:
+        price = get_latest_price_for_shorthand("MYST")
+        investment.MYST_amt = ((float(portfolio.MYST_pct) / 100.0) * usd_amt) / price
+    if portfolio.PBT_pct > 0.0:
+        price = get_latest_price_for_shorthand("PBT")
+        investment.PBT_amt = ((float(portfolio.PBT_pct) / 100.0) * usd_amt) / price
+    if portfolio.GLD_pct > 0.0:
+        price = get_latest_price_for_shorthand("GLD")
+        investment.GLD_amt = ((float(portfolio.GLD_pct) / 100.0) * usd_amt) / price
+    if portfolio.ADST_pct > 0.0:
+        price = get_latest_price_for_shorthand("ADST")
+        investment.ADST_amt = ((float(portfolio.ADST_pct) / 100.0) * usd_amt) / price
+    if portfolio.LND_pct > 0.0:
+        price = get_latest_price_for_shorthand("LND")
+        investment.LND_amt = ((float(portfolio.LND_pct) / 100.0) * usd_amt) / price
+    if portfolio.COVAL_pct > 0.0:
+        price = get_latest_price_for_shorthand("COVAL")
+        investment.COVAL_amt = ((float(portfolio.COVAL_pct) / 100.0) * usd_amt) / price
+    if portfolio.AUR_pct > 0.0:
+        price = get_latest_price_for_shorthand("AUR")
+        investment.AUR_amt = ((float(portfolio.AUR_pct) / 100.0) * usd_amt) / price
+    if portfolio.SETH_pct > 0.0:
+        price = get_latest_price_for_shorthand("SETH")
+        investment.SETH_amt = ((float(portfolio.SETH_pct) / 100.0) * usd_amt) / price
+    if portfolio.SNOV_pct > 0.0:
+        price = get_latest_price_for_shorthand("SNOV")
+        investment.SNOV_amt = ((float(portfolio.SNOV_pct) / 100.0) * usd_amt) / price
+    if portfolio.EVE_pct > 0.0:
+        price = get_latest_price_for_shorthand("EVE")
+        investment.EVE_amt = ((float(portfolio.EVE_pct) / 100.0) * usd_amt) / price
+    if portfolio.ATB_pct > 0.0:
+        price = get_latest_price_for_shorthand("ATB")
+        investment.ATB_amt = ((float(portfolio.ATB_pct) / 100.0) * usd_amt) / price
+    if portfolio.TOA_pct > 0.0:
+        price = get_latest_price_for_shorthand("TOA")
+        investment.TOA_amt = ((float(portfolio.TOA_pct) / 100.0) * usd_amt) / price
+    if portfolio.TFL_pct > 0.0:
+        price = get_latest_price_for_shorthand("TFL")
+        investment.TFL_amt = ((float(portfolio.TFL_pct) / 100.0) * usd_amt) / price
+    if portfolio.SPHR_pct > 0.0:
+        price = get_latest_price_for_shorthand("SPHR")
+        investment.SPHR_amt = ((float(portfolio.SPHR_pct) / 100.0) * usd_amt) / price
+    if portfolio.MYB_pct > 0.0:
+        price = get_latest_price_for_shorthand("MYB")
+        investment.MYB_amt = ((float(portfolio.MYB_pct) / 100.0) * usd_amt) / price
+    if portfolio.PRIX_pct > 0.0:
+        price = get_latest_price_for_shorthand("PRIX")
+        investment.PRIX_amt = ((float(portfolio.PRIX_pct) / 100.0) * usd_amt) / price
+    if portfolio.POLL_pct > 0.0:
+        price = get_latest_price_for_shorthand("POLL")
+        investment.POLL_amt = ((float(portfolio.POLL_pct) / 100.0) * usd_amt) / price
+    if portfolio.EZT_pct > 0.0:
+        price = get_latest_price_for_shorthand("EZT")
+        investment.EZT_amt = ((float(portfolio.EZT_pct) / 100.0) * usd_amt) / price
+    if portfolio.WCT_pct > 0.0:
+        price = get_latest_price_for_shorthand("WCT")
+        investment.WCT_amt = ((float(portfolio.WCT_pct) / 100.0) * usd_amt) / price
+    if portfolio.MAX_pct > 0.0:
+        price = get_latest_price_for_shorthand("MAX")
+        investment.MAX_amt = ((float(portfolio.MAX_pct) / 100.0) * usd_amt) / price
+    if portfolio.CSNO_pct > 0.0:
+        price = get_latest_price_for_shorthand("CSNO")
+        investment.CSNO_amt = ((float(portfolio.CSNO_pct) / 100.0) * usd_amt) / price
+    if portfolio.TRF_pct > 0.0:
+        price = get_latest_price_for_shorthand("TRF")
+        investment.TRF_amt = ((float(portfolio.TRF_pct) / 100.0) * usd_amt) / price
+    if portfolio.AVA_pct > 0.0:
+        price = get_latest_price_for_shorthand("AVA")
+        investment.AVA_amt = ((float(portfolio.AVA_pct) / 100.0) * usd_amt) / price
+    if portfolio.SYNX_pct > 0.0:
+        price = get_latest_price_for_shorthand("SYNX")
+        investment.SYNX_amt = ((float(portfolio.SYNX_pct) / 100.0) * usd_amt) / price
+    if portfolio.GLA_pct > 0.0:
+        price = get_latest_price_for_shorthand("GLA")
+        investment.GLA_amt = ((float(portfolio.GLA_pct) / 100.0) * usd_amt) / price
+    if portfolio.REAL_pct > 0.0:
+        price = get_latest_price_for_shorthand("REAL")
+        investment.REAL_amt = ((float(portfolio.REAL_pct) / 100.0) * usd_amt) / price
+    if portfolio.IPSX_pct > 0.0:
+        price = get_latest_price_for_shorthand("IPSX")
+        investment.IPSX_amt = ((float(portfolio.IPSX_pct) / 100.0) * usd_amt) / price
+    if portfolio.ABY_pct > 0.0:
+        price = get_latest_price_for_shorthand("ABY")
+        investment.ABY_amt = ((float(portfolio.ABY_pct) / 100.0) * usd_amt) / price
+    if portfolio.TX_pct > 0.0:
+        price = get_latest_price_for_shorthand("TX")
+        investment.TX_amt = ((float(portfolio.TX_pct) / 100.0) * usd_amt) / price
+    if portfolio.NPER_pct > 0.0:
+        price = get_latest_price_for_shorthand("NPER")
+        investment.NPER_amt = ((float(portfolio.NPER_pct) / 100.0) * usd_amt) / price
+    if portfolio.KORE_pct > 0.0:
+        price = get_latest_price_for_shorthand("KORE")
+        investment.KORE_amt = ((float(portfolio.KORE_pct) / 100.0) * usd_amt) / price
+    if portfolio.TIPS_pct > 0.0:
+        price = get_latest_price_for_shorthand("TIPS")
+        investment.TIPS_amt = ((float(portfolio.TIPS_pct) / 100.0) * usd_amt) / price
+    if portfolio.ARY_pct > 0.0:
+        price = get_latest_price_for_shorthand("ARY")
+        investment.ARY_amt = ((float(portfolio.ARY_pct) / 100.0) * usd_amt) / price
+    if portfolio.VIT_pct > 0.0:
+        price = get_latest_price_for_shorthand("VIT")
+        investment.VIT_amt = ((float(portfolio.VIT_pct) / 100.0) * usd_amt) / price
+    if portfolio.OBITS_pct > 0.0:
+        price = get_latest_price_for_shorthand("OBITS")
+        investment.OBITS_amt = ((float(portfolio.OBITS_pct) / 100.0) * usd_amt) / price
+    if portfolio.SHL_pct > 0.0:
+        price = get_latest_price_for_shorthand("SHL")
+        investment.SHL_amt = ((float(portfolio.SHL_pct) / 100.0) * usd_amt) / price
+    if portfolio.WRC_pct > 0.0:
+        price = get_latest_price_for_shorthand("WRC")
+        investment.WRC_amt = ((float(portfolio.WRC_pct) / 100.0) * usd_amt) / price
+    if portfolio.SHP_pct > 0.0:
+        price = get_latest_price_for_shorthand("SHP")
+        investment.SHP_amt = ((float(portfolio.SHP_pct) / 100.0) * usd_amt) / price
+    if portfolio.HQX_pct > 0.0:
+        price = get_latest_price_for_shorthand("HQX")
+        investment.HQX_amt = ((float(portfolio.HQX_pct) / 100.0) * usd_amt) / price
+    if portfolio.J8T_pct > 0.0:
+        price = get_latest_price_for_shorthand("J8T")
+        investment.J8T_amt = ((float(portfolio.J8T_pct) / 100.0) * usd_amt) / price
+    if portfolio.INXT_pct > 0.0:
+        price = get_latest_price_for_shorthand("INXT")
+        investment.INXT_amt = ((float(portfolio.INXT_pct) / 100.0) * usd_amt) / price
+    if portfolio.BRX_pct > 0.0:
+        price = get_latest_price_for_shorthand("BRX")
+        investment.BRX_amt = ((float(portfolio.BRX_pct) / 100.0) * usd_amt) / price
+    if portfolio.VME_pct > 0.0:
+        price = get_latest_price_for_shorthand("VME")
+        investment.VME_amt = ((float(portfolio.VME_pct) / 100.0) * usd_amt) / price
+    if portfolio.BTCZ_pct > 0.0:
+        price = get_latest_price_for_shorthand("BTCZ")
+        investment.BTCZ_amt = ((float(portfolio.BTCZ_pct) / 100.0) * usd_amt) / price
+    if portfolio.PTC_pct > 0.0:
+        price = get_latest_price_for_shorthand("PTC")
+        investment.PTC_amt = ((float(portfolio.PTC_pct) / 100.0) * usd_amt) / price
+    if portfolio.MONK_pct > 0.0:
+        price = get_latest_price_for_shorthand("MONK")
+        investment.MONK_amt = ((float(portfolio.MONK_pct) / 100.0) * usd_amt) / price
+    if portfolio.HUR_pct > 0.0:
+        price = get_latest_price_for_shorthand("HUR")
+        investment.HUR_amt = ((float(portfolio.HUR_pct) / 100.0) * usd_amt) / price
+    if portfolio.GEO_pct > 0.0:
+        price = get_latest_price_for_shorthand("GEO")
+        investment.GEO_amt = ((float(portfolio.GEO_pct) / 100.0) * usd_amt) / price
+    if portfolio.e_2GIVE_pct > 0.0:
+        price = get_latest_price_for_shorthand("2GIVE")
+        investment.e_2GIVE_amt = ((float(portfolio.e_2GIVE_pct) / 100.0) * usd_amt) / price
+    if portfolio.ASTRO_pct > 0.0:
+        price = get_latest_price_for_shorthand("ASTRO")
+        investment.ASTRO_amt = ((float(portfolio.ASTRO_pct) / 100.0) * usd_amt) / price
+    if portfolio.AUC_pct > 0.0:
+        price = get_latest_price_for_shorthand("AUC")
+        investment.AUC_amt = ((float(portfolio.AUC_pct) / 100.0) * usd_amt) / price
+    if portfolio.DTH_pct > 0.0:
+        price = get_latest_price_for_shorthand("DTH")
+        investment.DTH_amt = ((float(portfolio.DTH_pct) / 100.0) * usd_amt) / price
+    if portfolio.OTN_pct > 0.0:
+        price = get_latest_price_for_shorthand("OTN")
+        investment.OTN_amt = ((float(portfolio.OTN_pct) / 100.0) * usd_amt) / price
+    if portfolio.BLUE_pct > 0.0:
+        price = get_latest_price_for_shorthand("BLUE")
+        investment.BLUE_amt = ((float(portfolio.BLUE_pct) / 100.0) * usd_amt) / price
+    if portfolio.PLAY_pct > 0.0:
+        price = get_latest_price_for_shorthand("PLAY")
+        investment.PLAY_amt = ((float(portfolio.PLAY_pct) / 100.0) * usd_amt) / price
+    if portfolio.XBC_pct > 0.0:
+        price = get_latest_price_for_shorthand("XBC")
+        investment.XBC_amt = ((float(portfolio.XBC_pct) / 100.0) * usd_amt) / price
+    if portfolio.FND_pct > 0.0:
+        price = get_latest_price_for_shorthand("FND")
+        investment.FND_amt = ((float(portfolio.FND_pct) / 100.0) * usd_amt) / price
+    if portfolio.PFR_pct > 0.0:
+        price = get_latest_price_for_shorthand("PFR")
+        investment.PFR_amt = ((float(portfolio.PFR_pct) / 100.0) * usd_amt) / price
+    if portfolio.HYP_pct > 0.0:
+        price = get_latest_price_for_shorthand("HYP")
+        investment.HYP_amt = ((float(portfolio.HYP_pct) / 100.0) * usd_amt) / price
+    if portfolio.GCC_pct > 0.0:
+        price = get_latest_price_for_shorthand("GCC")
+        investment.GCC_amt = ((float(portfolio.GCC_pct) / 100.0) * usd_amt) / price
+    if portfolio.IOP_pct > 0.0:
+        price = get_latest_price_for_shorthand("IOP")
+        investment.IOP_amt = ((float(portfolio.IOP_pct) / 100.0) * usd_amt) / price
+    if portfolio.FDX_pct > 0.0:
+        price = get_latest_price_for_shorthand("FDX")
+        investment.FDX_amt = ((float(portfolio.FDX_pct) / 100.0) * usd_amt) / price
+    if portfolio.ATL_pct > 0.0:
+        price = get_latest_price_for_shorthand("ATL")
+        investment.ATL_amt = ((float(portfolio.ATL_pct) / 100.0) * usd_amt) / price
+    if portfolio.INSTAR_pct > 0.0:
+        price = get_latest_price_for_shorthand("INSTAR")
+        investment.INSTAR_amt = ((float(portfolio.INSTAR_pct) / 100.0) * usd_amt) / price
+    if portfolio.HGT_pct > 0.0:
+        price = get_latest_price_for_shorthand("HGT")
+        investment.HGT_amt = ((float(portfolio.HGT_pct) / 100.0) * usd_amt) / price
+    if portfolio.LEDU_pct > 0.0:
+        price = get_latest_price_for_shorthand("LEDU")
+        investment.LEDU_amt = ((float(portfolio.LEDU_pct) / 100.0) * usd_amt) / price
+    if portfolio.UNIT_pct > 0.0:
+        price = get_latest_price_for_shorthand("UNIT")
+        investment.UNIT_amt = ((float(portfolio.UNIT_pct) / 100.0) * usd_amt) / price
+    if portfolio.USNBT_pct > 0.0:
+        price = get_latest_price_for_shorthand("USNBT")
+        investment.USNBT_amt = ((float(portfolio.USNBT_pct) / 100.0) * usd_amt) / price
+    if portfolio.SUMO_pct > 0.0:
+        price = get_latest_price_for_shorthand("SUMO")
+        investment.SUMO_amt = ((float(portfolio.SUMO_pct) / 100.0) * usd_amt) / price
+    if portfolio.EXY_pct > 0.0:
+        price = get_latest_price_for_shorthand("EXY")
+        investment.EXY_amt = ((float(portfolio.EXY_pct) / 100.0) * usd_amt) / price
+    if portfolio.e_0xBTC_pct > 0.0:
+        price = get_latest_price_for_shorthand("0xBTC")
+        investment.e_0xBTC_amt = ((float(portfolio.e_0xBTC_pct) / 100.0) * usd_amt) / price
+    if portfolio.SPR_pct > 0.0:
+        price = get_latest_price_for_shorthand("SPR")
+        investment.SPR_amt = ((float(portfolio.SPR_pct) / 100.0) * usd_amt) / price
+    if portfolio.ERC_pct > 0.0:
+        price = get_latest_price_for_shorthand("ERC")
+        investment.ERC_amt = ((float(portfolio.ERC_pct) / 100.0) * usd_amt) / price
+    if portfolio.XHV_pct > 0.0:
+        price = get_latest_price_for_shorthand("XHV")
+        investment.XHV_amt = ((float(portfolio.XHV_pct) / 100.0) * usd_amt) / price
+    if portfolio.INV_pct > 0.0:
+        price = get_latest_price_for_shorthand("INV")
+        investment.INV_amt = ((float(portfolio.INV_pct) / 100.0) * usd_amt) / price
+    if portfolio.CPAY_pct > 0.0:
+        price = get_latest_price_for_shorthand("CPAY")
+        investment.CPAY_amt = ((float(portfolio.CPAY_pct) / 100.0) * usd_amt) / price
+    if portfolio.IXC_pct > 0.0:
+        price = get_latest_price_for_shorthand("IXC")
+        investment.IXC_amt = ((float(portfolio.IXC_pct) / 100.0) * usd_amt) / price
+    if portfolio.BUZZ_pct > 0.0:
+        price = get_latest_price_for_shorthand("BUZZ")
+        investment.BUZZ_amt = ((float(portfolio.BUZZ_pct) / 100.0) * usd_amt) / price
+    if portfolio.BBO_pct > 0.0:
+        price = get_latest_price_for_shorthand("BBO")
+        investment.BBO_amt = ((float(portfolio.BBO_pct) / 100.0) * usd_amt) / price
+    if portfolio.HAC_pct > 0.0:
+        price = get_latest_price_for_shorthand("HAC")
+        investment.HAC_amt = ((float(portfolio.HAC_pct) / 100.0) * usd_amt) / price
+    if portfolio.BSTN_pct > 0.0:
+        price = get_latest_price_for_shorthand("BSTN")
+        investment.BSTN_amt = ((float(portfolio.BSTN_pct) / 100.0) * usd_amt) / price
+    if portfolio.NTRN_pct > 0.0:
+        price = get_latest_price_for_shorthand("NTRN")
+        investment.NTRN_amt = ((float(portfolio.NTRN_pct) / 100.0) * usd_amt) / price
+    if portfolio.XMCC_pct > 0.0:
+        price = get_latest_price_for_shorthand("XMCC")
+        investment.XMCC_amt = ((float(portfolio.XMCC_pct) / 100.0) * usd_amt) / price
+    if portfolio.SXUT_pct > 0.0:
+        price = get_latest_price_for_shorthand("SXUT")
+        investment.SXUT_amt = ((float(portfolio.SXUT_pct) / 100.0) * usd_amt) / price
+    if portfolio.UFR_pct > 0.0:
+        price = get_latest_price_for_shorthand("UFR")
+        investment.UFR_amt = ((float(portfolio.UFR_pct) / 100.0) * usd_amt) / price
+    if portfolio.SPF_pct > 0.0:
+        price = get_latest_price_for_shorthand("SPF")
+        investment.SPF_amt = ((float(portfolio.SPF_pct) / 100.0) * usd_amt) / price
+    if portfolio.GMT_pct > 0.0:
+        price = get_latest_price_for_shorthand("GMT")
+        investment.GMT_amt = ((float(portfolio.GMT_pct) / 100.0) * usd_amt) / price
+    if portfolio.SEND_pct > 0.0:
+        price = get_latest_price_for_shorthand("SEND")
+        investment.SEND_amt = ((float(portfolio.SEND_pct) / 100.0) * usd_amt) / price
+    if portfolio.AMLT_pct > 0.0:
+        price = get_latest_price_for_shorthand("AMLT")
+        investment.AMLT_amt = ((float(portfolio.AMLT_pct) / 100.0) * usd_amt) / price
+    if portfolio.SCL_pct > 0.0:
+        price = get_latest_price_for_shorthand("SCL")
+        investment.SCL_amt = ((float(portfolio.SCL_pct) / 100.0) * usd_amt) / price
+    if portfolio.QWARK_pct > 0.0:
+        price = get_latest_price_for_shorthand("QWARK")
+        investment.QWARK_amt = ((float(portfolio.QWARK_pct) / 100.0) * usd_amt) / price
+    if portfolio.DOPE_pct > 0.0:
+        price = get_latest_price_for_shorthand("DOPE")
+        investment.DOPE_amt = ((float(portfolio.DOPE_pct) / 100.0) * usd_amt) / price
+    if portfolio.TKS_pct > 0.0:
+        price = get_latest_price_for_shorthand("TKS")
+        investment.TKS_amt = ((float(portfolio.TKS_pct) / 100.0) * usd_amt) / price
+    if portfolio.MSR_pct > 0.0:
+        price = get_latest_price_for_shorthand("MSR")
+        investment.MSR_amt = ((float(portfolio.MSR_pct) / 100.0) * usd_amt) / price
+    if portfolio.FTX_pct > 0.0:
+        price = get_latest_price_for_shorthand("FTX")
+        investment.FTX_amt = ((float(portfolio.FTX_pct) / 100.0) * usd_amt) / price
+    if portfolio.TKA_pct > 0.0:
+        price = get_latest_price_for_shorthand("TKA")
+        investment.TKA_amt = ((float(portfolio.TKA_pct) / 100.0) * usd_amt) / price
+    if portfolio.VRM_pct > 0.0:
+        price = get_latest_price_for_shorthand("VRM")
+        investment.VRM_amt = ((float(portfolio.VRM_pct) / 100.0) * usd_amt) / price
+    if portfolio.RIC_pct > 0.0:
+        price = get_latest_price_for_shorthand("RIC")
+        investment.RIC_amt = ((float(portfolio.RIC_pct) / 100.0) * usd_amt) / price
+    if portfolio.PING_pct > 0.0:
+        price = get_latest_price_for_shorthand("PING")
+        investment.PING_amt = ((float(portfolio.PING_pct) / 100.0) * usd_amt) / price
+    if portfolio.PBL_pct > 0.0:
+        price = get_latest_price_for_shorthand("PBL")
+        investment.PBL_amt = ((float(portfolio.PBL_pct) / 100.0) * usd_amt) / price
+    if portfolio.RUPX_pct > 0.0:
+        price = get_latest_price_for_shorthand("RUPX")
+        investment.RUPX_amt = ((float(portfolio.RUPX_pct) / 100.0) * usd_amt) / price
+    if portfolio.GAT_pct > 0.0:
+        price = get_latest_price_for_shorthand("GAT")
+        investment.GAT_amt = ((float(portfolio.GAT_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZEIT_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZEIT")
+        investment.ZEIT_amt = ((float(portfolio.ZEIT_pct) / 100.0) * usd_amt) / price
+    if portfolio.VOISE_pct > 0.0:
+        price = get_latest_price_for_shorthand("VOISE")
+        investment.VOISE_amt = ((float(portfolio.VOISE_pct) / 100.0) * usd_amt) / price
+    if portfolio.ING_pct > 0.0:
+        price = get_latest_price_for_shorthand("ING")
+        investment.ING_amt = ((float(portfolio.ING_pct) / 100.0) * usd_amt) / price
+    if portfolio.EXCL_pct > 0.0:
+        price = get_latest_price_for_shorthand("EXCL")
+        investment.EXCL_amt = ((float(portfolio.EXCL_pct) / 100.0) * usd_amt) / price
+    if portfolio.HOLD_pct > 0.0:
+        price = get_latest_price_for_shorthand("HOLD")
+        investment.HOLD_amt = ((float(portfolio.HOLD_pct) / 100.0) * usd_amt) / price
+    if portfolio.WISH_pct > 0.0:
+        price = get_latest_price_for_shorthand("WISH")
+        investment.WISH_amt = ((float(portfolio.WISH_pct) / 100.0) * usd_amt) / price
+    if portfolio.IND_pct > 0.0:
+        price = get_latest_price_for_shorthand("IND")
+        investment.IND_amt = ((float(portfolio.IND_pct) / 100.0) * usd_amt) / price
+    if portfolio.MEME_pct > 0.0:
+        price = get_latest_price_for_shorthand("MEME")
+        investment.MEME_amt = ((float(portfolio.MEME_pct) / 100.0) * usd_amt) / price
+    if portfolio.ALT_pct > 0.0:
+        price = get_latest_price_for_shorthand("ALT")
+        investment.ALT_amt = ((float(portfolio.ALT_pct) / 100.0) * usd_amt) / price
+    if portfolio.BON_pct > 0.0:
+        price = get_latest_price_for_shorthand("BON")
+        investment.BON_amt = ((float(portfolio.BON_pct) / 100.0) * usd_amt) / price
+    if portfolio.BRK_pct > 0.0:
+        price = get_latest_price_for_shorthand("BRK")
+        investment.BRK_amt = ((float(portfolio.BRK_pct) / 100.0) * usd_amt) / price
+    if portfolio.EBST_pct > 0.0:
+        price = get_latest_price_for_shorthand("EBST")
+        investment.EBST_amt = ((float(portfolio.EBST_pct) / 100.0) * usd_amt) / price
+    if portfolio.BTDX_pct > 0.0:
+        price = get_latest_price_for_shorthand("BTDX")
+        investment.BTDX_amt = ((float(portfolio.BTDX_pct) / 100.0) * usd_amt) / price
+    if portfolio.I0C_pct > 0.0:
+        price = get_latest_price_for_shorthand("I0C")
+        investment.I0C_amt = ((float(portfolio.I0C_pct) / 100.0) * usd_amt) / price
+    if portfolio.TRC_pct > 0.0:
+        price = get_latest_price_for_shorthand("TRC")
+        investment.TRC_amt = ((float(portfolio.TRC_pct) / 100.0) * usd_amt) / price
+    if portfolio.KRB_pct > 0.0:
+        price = get_latest_price_for_shorthand("KRB")
+        investment.KRB_amt = ((float(portfolio.KRB_pct) / 100.0) * usd_amt) / price
+    if portfolio.SSS_pct > 0.0:
+        price = get_latest_price_for_shorthand("SSS")
+        investment.SSS_amt = ((float(portfolio.SSS_pct) / 100.0) * usd_amt) / price
+    if portfolio.PURE_pct > 0.0:
+        price = get_latest_price_for_shorthand("PURE")
+        investment.PURE_amt = ((float(portfolio.PURE_pct) / 100.0) * usd_amt) / price
+    if portfolio.XHI_pct > 0.0:
+        price = get_latest_price_for_shorthand("XHI")
+        investment.XHI_amt = ((float(portfolio.XHI_pct) / 100.0) * usd_amt) / price
+    if portfolio.CRAVE_pct > 0.0:
+        price = get_latest_price_for_shorthand("CRAVE")
+        investment.CRAVE_amt = ((float(portfolio.CRAVE_pct) / 100.0) * usd_amt) / price
+    if portfolio.ORE_pct > 0.0:
+        price = get_latest_price_for_shorthand("ORE")
+        investment.ORE_amt = ((float(portfolio.ORE_pct) / 100.0) * usd_amt) / price
+    if portfolio.HUSH_pct > 0.0:
+        price = get_latest_price_for_shorthand("HUSH")
+        investment.HUSH_amt = ((float(portfolio.HUSH_pct) / 100.0) * usd_amt) / price
+    if portfolio.VTR_pct > 0.0:
+        price = get_latest_price_for_shorthand("VTR")
+        investment.VTR_amt = ((float(portfolio.VTR_pct) / 100.0) * usd_amt) / price
+    if portfolio.ANC_pct > 0.0:
+        price = get_latest_price_for_shorthand("ANC")
+        investment.ANC_amt = ((float(portfolio.ANC_pct) / 100.0) * usd_amt) / price
+    if portfolio.CMPCO_pct > 0.0:
+        price = get_latest_price_for_shorthand("CMPCO")
+        investment.CMPCO_amt = ((float(portfolio.CMPCO_pct) / 100.0) * usd_amt) / price
+    if portfolio.ETBS_pct > 0.0:
+        price = get_latest_price_for_shorthand("ETBS")
+        investment.ETBS_amt = ((float(portfolio.ETBS_pct) / 100.0) * usd_amt) / price
+    if portfolio.REF_pct > 0.0:
+        price = get_latest_price_for_shorthand("REF")
+        investment.REF_amt = ((float(portfolio.REF_pct) / 100.0) * usd_amt) / price
+    if portfolio.DNR_pct > 0.0:
+        price = get_latest_price_for_shorthand("DNR")
+        investment.DNR_amt = ((float(portfolio.DNR_pct) / 100.0) * usd_amt) / price
+    if portfolio.XGOX_pct > 0.0:
+        price = get_latest_price_for_shorthand("XGOX")
+        investment.XGOX_amt = ((float(portfolio.XGOX_pct) / 100.0) * usd_amt) / price
+    if portfolio.CHX_pct > 0.0:
+        price = get_latest_price_for_shorthand("CHX")
+        investment.CHX_amt = ((float(portfolio.CHX_pct) / 100.0) * usd_amt) / price
+    if portfolio.MVC_pct > 0.0:
+        price = get_latest_price_for_shorthand("MVC")
+        investment.MVC_amt = ((float(portfolio.MVC_pct) / 100.0) * usd_amt) / price
+    if portfolio.FOR_pct > 0.0:
+        price = get_latest_price_for_shorthand("FOR")
+        investment.FOR_amt = ((float(portfolio.FOR_pct) / 100.0) * usd_amt) / price
+    if portfolio.CANN_pct > 0.0:
+        price = get_latest_price_for_shorthand("CANN")
+        investment.CANN_amt = ((float(portfolio.CANN_pct) / 100.0) * usd_amt) / price
+    if portfolio.VIU_pct > 0.0:
+        price = get_latest_price_for_shorthand("VIU")
+        investment.VIU_amt = ((float(portfolio.VIU_pct) / 100.0) * usd_amt) / price
+    if portfolio.NAVI_pct > 0.0:
+        price = get_latest_price_for_shorthand("NAVI")
+        investment.NAVI_amt = ((float(portfolio.NAVI_pct) / 100.0) * usd_amt) / price
+    if portfolio.FYP_pct > 0.0:
+        price = get_latest_price_for_shorthand("FYP")
+        investment.FYP_amt = ((float(portfolio.FYP_pct) / 100.0) * usd_amt) / price
+    if portfolio.CPY_pct > 0.0:
+        price = get_latest_price_for_shorthand("CPY")
+        investment.CPY_amt = ((float(portfolio.CPY_pct) / 100.0) * usd_amt) / price
+    if portfolio.STAC_pct > 0.0:
+        price = get_latest_price_for_shorthand("STAC")
+        investment.STAC_amt = ((float(portfolio.STAC_pct) / 100.0) * usd_amt) / price
+    if portfolio.GENE_pct > 0.0:
+        price = get_latest_price_for_shorthand("GENE")
+        investment.GENE_amt = ((float(portfolio.GENE_pct) / 100.0) * usd_amt) / price
+    if portfolio.SGR_pct > 0.0:
+        price = get_latest_price_for_shorthand("SGR")
+        investment.SGR_amt = ((float(portfolio.SGR_pct) / 100.0) * usd_amt) / price
+    if portfolio.NIO_pct > 0.0:
+        price = get_latest_price_for_shorthand("NIO")
+        investment.NIO_amt = ((float(portfolio.NIO_pct) / 100.0) * usd_amt) / price
+    if portfolio.PIX_pct > 0.0:
+        price = get_latest_price_for_shorthand("PIX")
+        investment.PIX_amt = ((float(portfolio.PIX_pct) / 100.0) * usd_amt) / price
+    if portfolio.MAGE_pct > 0.0:
+        price = get_latest_price_for_shorthand("MAGE")
+        investment.MAGE_amt = ((float(portfolio.MAGE_pct) / 100.0) * usd_amt) / price
+    if portfolio.NLX_pct > 0.0:
+        price = get_latest_price_for_shorthand("NLX")
+        investment.NLX_amt = ((float(portfolio.NLX_pct) / 100.0) * usd_amt) / price
+    if portfolio.EGC_pct > 0.0:
+        price = get_latest_price_for_shorthand("EGC")
+        investment.EGC_amt = ((float(portfolio.EGC_pct) / 100.0) * usd_amt) / price
+    if portfolio.CL_pct > 0.0:
+        price = get_latest_price_for_shorthand("CL")
+        investment.CL_amt = ((float(portfolio.CL_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZEPH_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZEPH")
+        investment.ZEPH_amt = ((float(portfolio.ZEPH_pct) / 100.0) * usd_amt) / price
+    if portfolio.MFG_pct > 0.0:
+        price = get_latest_price_for_shorthand("MFG")
+        investment.MFG_amt = ((float(portfolio.MFG_pct) / 100.0) * usd_amt) / price
+    if portfolio.BBP_pct > 0.0:
+        price = get_latest_price_for_shorthand("BBP")
+        investment.BBP_amt = ((float(portfolio.BBP_pct) / 100.0) * usd_amt) / price
+    if portfolio.BUN_pct > 0.0:
+        price = get_latest_price_for_shorthand("BUN")
+        investment.BUN_amt = ((float(portfolio.BUN_pct) / 100.0) * usd_amt) / price
+    if portfolio.PYLNT_pct > 0.0:
+        price = get_latest_price_for_shorthand("PYLNT")
+        investment.PYLNT_amt = ((float(portfolio.PYLNT_pct) / 100.0) * usd_amt) / price
+    if portfolio.CDX_pct > 0.0:
+        price = get_latest_price_for_shorthand("CDX")
+        investment.CDX_amt = ((float(portfolio.CDX_pct) / 100.0) * usd_amt) / price
+    if portfolio.DAN_pct > 0.0:
+        price = get_latest_price_for_shorthand("DAN")
+        investment.DAN_amt = ((float(portfolio.DAN_pct) / 100.0) * usd_amt) / price
+    if portfolio.TRAK_pct > 0.0:
+        price = get_latest_price_for_shorthand("TRAK")
+        investment.TRAK_amt = ((float(portfolio.TRAK_pct) / 100.0) * usd_amt) / price
+    if portfolio.LDOGE_pct > 0.0:
+        price = get_latest_price_for_shorthand("LDOGE")
+        investment.LDOGE_amt = ((float(portfolio.LDOGE_pct) / 100.0) * usd_amt) / price
+    if portfolio.TES_pct > 0.0:
+        price = get_latest_price_for_shorthand("TES")
+        investment.TES_amt = ((float(portfolio.TES_pct) / 100.0) * usd_amt) / price
+    if portfolio.FGC_pct > 0.0:
+        price = get_latest_price_for_shorthand("FGC")
+        investment.FGC_amt = ((float(portfolio.FGC_pct) / 100.0) * usd_amt) / price
+    if portfolio.AIX_pct > 0.0:
+        price = get_latest_price_for_shorthand("AIX")
+        investment.AIX_amt = ((float(portfolio.AIX_pct) / 100.0) * usd_amt) / price
+    if portfolio.WSX_pct > 0.0:
+        price = get_latest_price_for_shorthand("WSX")
+        investment.WSX_amt = ((float(portfolio.WSX_pct) / 100.0) * usd_amt) / price
+    if portfolio.MAC_pct > 0.0:
+        price = get_latest_price_for_shorthand("MAC")
+        investment.MAC_amt = ((float(portfolio.MAC_pct) / 100.0) * usd_amt) / price
+    if portfolio.NOBL_pct > 0.0:
+        price = get_latest_price_for_shorthand("NOBL")
+        investment.NOBL_amt = ((float(portfolio.NOBL_pct) / 100.0) * usd_amt) / price
+    if portfolio.DP_pct > 0.0:
+        price = get_latest_price_for_shorthand("DP")
+        investment.DP_amt = ((float(portfolio.DP_pct) / 100.0) * usd_amt) / price
+    if portfolio.LOCI_pct > 0.0:
+        price = get_latest_price_for_shorthand("LOCI")
+        investment.LOCI_amt = ((float(portfolio.LOCI_pct) / 100.0) * usd_amt) / price
+    if portfolio.HIRE_pct > 0.0:
+        price = get_latest_price_for_shorthand("HIRE")
+        investment.HIRE_amt = ((float(portfolio.HIRE_pct) / 100.0) * usd_amt) / price
+    if portfolio.OPC_pct > 0.0:
+        price = get_latest_price_for_shorthand("OPC")
+        investment.OPC_amt = ((float(portfolio.OPC_pct) / 100.0) * usd_amt) / price
+    if portfolio.GCN_pct > 0.0:
+        price = get_latest_price_for_shorthand("GCN")
+        investment.GCN_amt = ((float(portfolio.GCN_pct) / 100.0) * usd_amt) / price
+    if portfolio.IC_pct > 0.0:
+        price = get_latest_price_for_shorthand("IC")
+        investment.IC_amt = ((float(portfolio.IC_pct) / 100.0) * usd_amt) / price
+    if portfolio.ACE_pct > 0.0:
+        price = get_latest_price_for_shorthand("ACE")
+        investment.ACE_amt = ((float(portfolio.ACE_pct) / 100.0) * usd_amt) / price
+    if portfolio.BOUTS_pct > 0.0:
+        price = get_latest_price_for_shorthand("BOUTS")
+        investment.BOUTS_amt = ((float(portfolio.BOUTS_pct) / 100.0) * usd_amt) / price
+    if portfolio.XNN_pct > 0.0:
+        price = get_latest_price_for_shorthand("XNN")
+        investment.XNN_amt = ((float(portfolio.XNN_pct) / 100.0) * usd_amt) / price
+    if portfolio.CREA_pct > 0.0:
+        price = get_latest_price_for_shorthand("CREA")
+        investment.CREA_amt = ((float(portfolio.CREA_pct) / 100.0) * usd_amt) / price
+    if portfolio.EFYT_pct > 0.0:
+        price = get_latest_price_for_shorthand("EFYT")
+        investment.EFYT_amt = ((float(portfolio.EFYT_pct) / 100.0) * usd_amt) / price
+    if portfolio.XTL_pct > 0.0:
+        price = get_latest_price_for_shorthand("XTL")
+        investment.XTL_amt = ((float(portfolio.XTL_pct) / 100.0) * usd_amt) / price
+    if portfolio.TEAM_pct > 0.0:
+        price = get_latest_price_for_shorthand("TEAM")
+        investment.TEAM_amt = ((float(portfolio.TEAM_pct) / 100.0) * usd_amt) / price
+    if portfolio.XMG_pct > 0.0:
+        price = get_latest_price_for_shorthand("XMG")
+        investment.XMG_amt = ((float(portfolio.XMG_pct) / 100.0) * usd_amt) / price
+    if portfolio.HUC_pct > 0.0:
+        price = get_latest_price_for_shorthand("HUC")
+        investment.HUC_amt = ((float(portfolio.HUC_pct) / 100.0) * usd_amt) / price
+    if portfolio.RAIN_pct > 0.0:
+        price = get_latest_price_for_shorthand("RAIN")
+        investment.RAIN_amt = ((float(portfolio.RAIN_pct) / 100.0) * usd_amt) / price
+    if portfolio.MNTP_pct > 0.0:
+        price = get_latest_price_for_shorthand("MNTP")
+        investment.MNTP_amt = ((float(portfolio.MNTP_pct) / 100.0) * usd_amt) / price
+    if portfolio.TRCT_pct > 0.0:
+        price = get_latest_price_for_shorthand("TRCT")
+        investment.TRCT_amt = ((float(portfolio.TRCT_pct) / 100.0) * usd_amt) / price
+    if portfolio.EFL_pct > 0.0:
+        price = get_latest_price_for_shorthand("EFL")
+        investment.EFL_amt = ((float(portfolio.EFL_pct) / 100.0) * usd_amt) / price
+    if portfolio.XBP_pct > 0.0:
+        price = get_latest_price_for_shorthand("XBP")
+        investment.XBP_amt = ((float(portfolio.XBP_pct) / 100.0) * usd_amt) / price
+    if portfolio.BTW_pct > 0.0:
+        price = get_latest_price_for_shorthand("BTW")
+        investment.BTW_amt = ((float(portfolio.BTW_pct) / 100.0) * usd_amt) / price
+    if portfolio.TZC_pct > 0.0:
+        price = get_latest_price_for_shorthand("TZC")
+        investment.TZC_amt = ((float(portfolio.TZC_pct) / 100.0) * usd_amt) / price
+    if portfolio.DIX_pct > 0.0:
+        price = get_latest_price_for_shorthand("DIX")
+        investment.DIX_amt = ((float(portfolio.DIX_pct) / 100.0) * usd_amt) / price
+    if portfolio.ODN_pct > 0.0:
+        price = get_latest_price_for_shorthand("ODN")
+        investment.ODN_amt = ((float(portfolio.ODN_pct) / 100.0) * usd_amt) / price
+    if portfolio.STAK_pct > 0.0:
+        price = get_latest_price_for_shorthand("STAK")
+        investment.STAK_amt = ((float(portfolio.STAK_pct) / 100.0) * usd_amt) / price
+    if portfolio.FT_pct > 0.0:
+        price = get_latest_price_for_shorthand("FT")
+        investment.FT_amt = ((float(portfolio.FT_pct) / 100.0) * usd_amt) / price
+    if portfolio.CRB_pct > 0.0:
+        price = get_latest_price_for_shorthand("CRB")
+        investment.CRB_amt = ((float(portfolio.CRB_pct) / 100.0) * usd_amt) / price
+    if portfolio.HAT_pct > 0.0:
+        price = get_latest_price_for_shorthand("HAT")
+        investment.HAT_amt = ((float(portfolio.HAT_pct) / 100.0) * usd_amt) / price
+    if portfolio.SWIFT_pct > 0.0:
+        price = get_latest_price_for_shorthand("SWIFT")
+        investment.SWIFT_amt = ((float(portfolio.SWIFT_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZER_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZER")
+        investment.ZER_amt = ((float(portfolio.ZER_pct) / 100.0) * usd_amt) / price
+    if portfolio.BYC_pct > 0.0:
+        price = get_latest_price_for_shorthand("BYC")
+        investment.BYC_amt = ((float(portfolio.BYC_pct) / 100.0) * usd_amt) / price
+    if portfolio.AMM_pct > 0.0:
+        price = get_latest_price_for_shorthand("AMM")
+        investment.AMM_amt = ((float(portfolio.AMM_pct) / 100.0) * usd_amt) / price
+    if portfolio.EBTC_pct > 0.0:
+        price = get_latest_price_for_shorthand("EBTC")
+        investment.EBTC_amt = ((float(portfolio.EBTC_pct) / 100.0) * usd_amt) / price
+    if portfolio.FRST_pct > 0.0:
+        price = get_latest_price_for_shorthand("FRST")
+        investment.FRST_amt = ((float(portfolio.FRST_pct) / 100.0) * usd_amt) / price
+    if portfolio.ITNS_pct > 0.0:
+        price = get_latest_price_for_shorthand("ITNS")
+        investment.ITNS_amt = ((float(portfolio.ITNS_pct) / 100.0) * usd_amt) / price
+    if portfolio.ESZ_pct > 0.0:
+        price = get_latest_price_for_shorthand("ESZ")
+        investment.ESZ_amt = ((float(portfolio.ESZ_pct) / 100.0) * usd_amt) / price
+    if portfolio.BTRN_pct > 0.0:
+        price = get_latest_price_for_shorthand("BTRN")
+        investment.BTRN_amt = ((float(portfolio.BTRN_pct) / 100.0) * usd_amt) / price
+    if portfolio.UCOM_pct > 0.0:
+        price = get_latest_price_for_shorthand("UCOM")
+        investment.UCOM_amt = ((float(portfolio.UCOM_pct) / 100.0) * usd_amt) / price
+    if portfolio.SKIN_pct > 0.0:
+        price = get_latest_price_for_shorthand("SKIN")
+        investment.SKIN_amt = ((float(portfolio.SKIN_pct) / 100.0) * usd_amt) / price
+    if portfolio.MAG_pct > 0.0:
+        price = get_latest_price_for_shorthand("MAG")
+        investment.MAG_amt = ((float(portfolio.MAG_pct) / 100.0) * usd_amt) / price
+    if portfolio.DGC_pct > 0.0:
+        price = get_latest_price_for_shorthand("DGC")
+        investment.DGC_amt = ((float(portfolio.DGC_pct) / 100.0) * usd_amt) / price
+    if portfolio.VIVO_pct > 0.0:
+        price = get_latest_price_for_shorthand("VIVO")
+        investment.VIVO_amt = ((float(portfolio.VIVO_pct) / 100.0) * usd_amt) / price
+    if portfolio.PHO_pct > 0.0:
+        price = get_latest_price_for_shorthand("PHO")
+        investment.PHO_amt = ((float(portfolio.PHO_pct) / 100.0) * usd_amt) / price
+    if portfolio.FCN_pct > 0.0:
+        price = get_latest_price_for_shorthand("FCN")
+        investment.FCN_amt = ((float(portfolio.FCN_pct) / 100.0) * usd_amt) / price
+    if portfolio.MRT_pct > 0.0:
+        price = get_latest_price_for_shorthand("MRT")
+        investment.MRT_amt = ((float(portfolio.MRT_pct) / 100.0) * usd_amt) / price
+    if portfolio.RNS_pct > 0.0:
+        price = get_latest_price_for_shorthand("RNS")
+        investment.RNS_amt = ((float(portfolio.RNS_pct) / 100.0) * usd_amt) / price
+    if portfolio.SCT_pct > 0.0:
+        price = get_latest_price_for_shorthand("SCT")
+        investment.SCT_amt = ((float(portfolio.SCT_pct) / 100.0) * usd_amt) / price
+    if portfolio.DAY_pct > 0.0:
+        price = get_latest_price_for_shorthand("DAY")
+        investment.DAY_amt = ((float(portfolio.DAY_pct) / 100.0) * usd_amt) / price
+    if portfolio.JEW_pct > 0.0:
+        price = get_latest_price_for_shorthand("JEW")
+        investment.JEW_amt = ((float(portfolio.JEW_pct) / 100.0) * usd_amt) / price
+    if portfolio.JC_pct > 0.0:
+        price = get_latest_price_for_shorthand("JC")
+        investment.JC_amt = ((float(portfolio.JC_pct) / 100.0) * usd_amt) / price
+    if portfolio.SGN_pct > 0.0:
+        price = get_latest_price_for_shorthand("SGN")
+        investment.SGN_amt = ((float(portfolio.SGN_pct) / 100.0) * usd_amt) / price
+    if portfolio.ADZ_pct > 0.0:
+        price = get_latest_price_for_shorthand("ADZ")
+        investment.ADZ_amt = ((float(portfolio.ADZ_pct) / 100.0) * usd_amt) / price
+    if portfolio.HERO_pct > 0.0:
+        price = get_latest_price_for_shorthand("HERO")
+        investment.HERO_amt = ((float(portfolio.HERO_pct) / 100.0) * usd_amt) / price
+    if portfolio.TDX_pct > 0.0:
+        price = get_latest_price_for_shorthand("TDX")
+        investment.TDX_amt = ((float(portfolio.TDX_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZNY_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZNY")
+        investment.ZNY_amt = ((float(portfolio.ZNY_pct) / 100.0) * usd_amt) / price
+    if portfolio.e_808_pct > 0.0:
+        price = get_latest_price_for_shorthand("808")
+        investment.e_808_amt = ((float(portfolio.e_808_pct) / 100.0) * usd_amt) / price
+    if portfolio.EPY_pct > 0.0:
+        price = get_latest_price_for_shorthand("EPY")
+        investment.EPY_amt = ((float(portfolio.EPY_pct) / 100.0) * usd_amt) / price
+    if portfolio.TDS_pct > 0.0:
+        price = get_latest_price_for_shorthand("TDS")
+        investment.TDS_amt = ((float(portfolio.TDS_pct) / 100.0) * usd_amt) / price
+    if portfolio.UIS_pct > 0.0:
+        price = get_latest_price_for_shorthand("UIS")
+        investment.UIS_amt = ((float(portfolio.UIS_pct) / 100.0) * usd_amt) / price
+    if portfolio.DTRC_pct > 0.0:
+        price = get_latest_price_for_shorthand("DTRC")
+        investment.DTRC_amt = ((float(portfolio.DTRC_pct) / 100.0) * usd_amt) / price
+    if portfolio.ELLA_pct > 0.0:
+        price = get_latest_price_for_shorthand("ELLA")
+        investment.ELLA_amt = ((float(portfolio.ELLA_pct) / 100.0) * usd_amt) / price
+    if portfolio.EBCH_pct > 0.0:
+        price = get_latest_price_for_shorthand("EBCH")
+        investment.EBCH_amt = ((float(portfolio.EBCH_pct) / 100.0) * usd_amt) / price
+    if portfolio.UNB_pct > 0.0:
+        price = get_latest_price_for_shorthand("UNB")
+        investment.UNB_amt = ((float(portfolio.UNB_pct) / 100.0) * usd_amt) / price
+    if portfolio.FYN_pct > 0.0:
+        price = get_latest_price_for_shorthand("FYN")
+        investment.FYN_amt = ((float(portfolio.FYN_pct) / 100.0) * usd_amt) / price
+    if portfolio.TIG_pct > 0.0:
+        price = get_latest_price_for_shorthand("TIG")
+        investment.TIG_amt = ((float(portfolio.TIG_pct) / 100.0) * usd_amt) / price
+    if portfolio.AMN_pct > 0.0:
+        price = get_latest_price_for_shorthand("AMN")
+        investment.AMN_amt = ((float(portfolio.AMN_pct) / 100.0) * usd_amt) / price
+    if portfolio.ATS_pct > 0.0:
+        price = get_latest_price_for_shorthand("ATS")
+        investment.ATS_amt = ((float(portfolio.ATS_pct) / 100.0) * usd_amt) / price
+    if portfolio.DFT_pct > 0.0:
+        price = get_latest_price_for_shorthand("DFT")
+        investment.DFT_amt = ((float(portfolio.DFT_pct) / 100.0) * usd_amt) / price
+    if portfolio.NOX_pct > 0.0:
+        price = get_latest_price_for_shorthand("NOX")
+        investment.NOX_amt = ((float(portfolio.NOX_pct) / 100.0) * usd_amt) / price
+    if portfolio.STU_pct > 0.0:
+        price = get_latest_price_for_shorthand("STU")
+        investment.STU_amt = ((float(portfolio.STU_pct) / 100.0) * usd_amt) / price
+    if portfolio.EARTH_pct > 0.0:
+        price = get_latest_price_for_shorthand("EARTH")
+        investment.EARTH_amt = ((float(portfolio.EARTH_pct) / 100.0) * usd_amt) / price
+    if portfolio.JIYO_pct > 0.0:
+        price = get_latest_price_for_shorthand("JIYO")
+        investment.JIYO_amt = ((float(portfolio.JIYO_pct) / 100.0) * usd_amt) / price
+    if portfolio.MEC_pct > 0.0:
+        price = get_latest_price_for_shorthand("MEC")
+        investment.MEC_amt = ((float(portfolio.MEC_pct) / 100.0) * usd_amt) / price
+    if portfolio.ORI_pct > 0.0:
+        price = get_latest_price_for_shorthand("ORI")
+        investment.ORI_amt = ((float(portfolio.ORI_pct) / 100.0) * usd_amt) / price
+    if portfolio.DRPU_pct > 0.0:
+        price = get_latest_price_for_shorthand("DRPU")
+        investment.DRPU_amt = ((float(portfolio.DRPU_pct) / 100.0) * usd_amt) / price
+    if portfolio.MORE_pct > 0.0:
+        price = get_latest_price_for_shorthand("MORE")
+        investment.MORE_amt = ((float(portfolio.MORE_pct) / 100.0) * usd_amt) / price
+    if portfolio.INN_pct > 0.0:
+        price = get_latest_price_for_shorthand("INN")
+        investment.INN_amt = ((float(portfolio.INN_pct) / 100.0) * usd_amt) / price
+    if portfolio.EVC_pct > 0.0:
+        price = get_latest_price_for_shorthand("EVC")
+        investment.EVC_amt = ((float(portfolio.EVC_pct) / 100.0) * usd_amt) / price
+    if portfolio.TNS_pct > 0.0:
+        price = get_latest_price_for_shorthand("TNS")
+        investment.TNS_amt = ((float(portfolio.TNS_pct) / 100.0) * usd_amt) / price
+    if portfolio.LINX_pct > 0.0:
+        price = get_latest_price_for_shorthand("LINX")
+        investment.LINX_amt = ((float(portfolio.LINX_pct) / 100.0) * usd_amt) / price
+    if portfolio.SAGA_pct > 0.0:
+        price = get_latest_price_for_shorthand("SAGA")
+        investment.SAGA_amt = ((float(portfolio.SAGA_pct) / 100.0) * usd_amt) / price
+    if portfolio.MBI_pct > 0.0:
+        price = get_latest_price_for_shorthand("MBI")
+        investment.MBI_amt = ((float(portfolio.MBI_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZET_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZET")
+        investment.ZET_amt = ((float(portfolio.ZET_pct) / 100.0) * usd_amt) / price
+    if portfolio.ARC_pct > 0.0:
+        price = get_latest_price_for_shorthand("ARC")
+        investment.ARC_amt = ((float(portfolio.ARC_pct) / 100.0) * usd_amt) / price
+    if portfolio.EL_pct > 0.0:
+        price = get_latest_price_for_shorthand("EL")
+        investment.EL_amt = ((float(portfolio.EL_pct) / 100.0) * usd_amt) / price
+    if portfolio.UNIFY_pct > 0.0:
+        price = get_latest_price_for_shorthand("UNIFY")
+        investment.UNIFY_amt = ((float(portfolio.UNIFY_pct) / 100.0) * usd_amt) / price
+    if portfolio.EQT_pct > 0.0:
+        price = get_latest_price_for_shorthand("EQT")
+        investment.EQT_amt = ((float(portfolio.EQT_pct) / 100.0) * usd_amt) / price
+    if portfolio.VULC_pct > 0.0:
+        price = get_latest_price_for_shorthand("VULC")
+        investment.VULC_amt = ((float(portfolio.VULC_pct) / 100.0) * usd_amt) / price
+    if portfolio.KLN_pct > 0.0:
+        price = get_latest_price_for_shorthand("KLN")
+        investment.KLN_amt = ((float(portfolio.KLN_pct) / 100.0) * usd_amt) / price
+    if portfolio.QVT_pct > 0.0:
+        price = get_latest_price_for_shorthand("QVT")
+        investment.QVT_amt = ((float(portfolio.QVT_pct) / 100.0) * usd_amt) / price
+    if portfolio.PLAN_pct > 0.0:
+        price = get_latest_price_for_shorthand("PLAN")
+        investment.PLAN_amt = ((float(portfolio.PLAN_pct) / 100.0) * usd_amt) / price
+    if portfolio.VRS_pct > 0.0:
+        price = get_latest_price_for_shorthand("VRS")
+        investment.VRS_amt = ((float(portfolio.VRS_pct) / 100.0) * usd_amt) / price
+    if portfolio.IFLT_pct > 0.0:
+        price = get_latest_price_for_shorthand("IFLT")
+        investment.IFLT_amt = ((float(portfolio.IFLT_pct) / 100.0) * usd_amt) / price
+    if portfolio.BTA_pct > 0.0:
+        price = get_latest_price_for_shorthand("BTA")
+        investment.BTA_amt = ((float(portfolio.BTA_pct) / 100.0) * usd_amt) / price
+    if portfolio.MCAP_pct > 0.0:
+        price = get_latest_price_for_shorthand("MCAP")
+        investment.MCAP_amt = ((float(portfolio.MCAP_pct) / 100.0) * usd_amt) / price
+    if portfolio.SUR_pct > 0.0:
+        price = get_latest_price_for_shorthand("SUR")
+        investment.SUR_amt = ((float(portfolio.SUR_pct) / 100.0) * usd_amt) / price
+    if portfolio.HPC_pct > 0.0:
+        price = get_latest_price_for_shorthand("HPC")
+        investment.HPC_amt = ((float(portfolio.HPC_pct) / 100.0) * usd_amt) / price
+    if portfolio.ELTCOIN_pct > 0.0:
+        price = get_latest_price_for_shorthand("ELTCOIN")
+        investment.ELTCOIN_amt = ((float(portfolio.ELTCOIN_pct) / 100.0) * usd_amt) / price
+    if portfolio.XPD_pct > 0.0:
+        price = get_latest_price_for_shorthand("XPD")
+        investment.XPD_amt = ((float(portfolio.XPD_pct) / 100.0) * usd_amt) / price
+    if portfolio.CRM_pct > 0.0:
+        price = get_latest_price_for_shorthand("CRM")
+        investment.CRM_amt = ((float(portfolio.CRM_pct) / 100.0) * usd_amt) / price
+    if portfolio.RLT_pct > 0.0:
+        price = get_latest_price_for_shorthand("RLT")
+        investment.RLT_amt = ((float(portfolio.RLT_pct) / 100.0) * usd_amt) / price
+    if portfolio.WILD_pct > 0.0:
+        price = get_latest_price_for_shorthand("WILD")
+        investment.WILD_amt = ((float(portfolio.WILD_pct) / 100.0) * usd_amt) / price
+    if portfolio.XTO_pct > 0.0:
+        price = get_latest_price_for_shorthand("XTO")
+        investment.XTO_amt = ((float(portfolio.XTO_pct) / 100.0) * usd_amt) / price
+    if portfolio.DGPT_pct > 0.0:
+        price = get_latest_price_for_shorthand("DGPT")
+        investment.DGPT_amt = ((float(portfolio.DGPT_pct) / 100.0) * usd_amt) / price
+    if portfolio.CJT_pct > 0.0:
+        price = get_latest_price_for_shorthand("CJT")
+        investment.CJT_amt = ((float(portfolio.CJT_pct) / 100.0) * usd_amt) / price
+    if portfolio.BTB_pct > 0.0:
+        price = get_latest_price_for_shorthand("BTB")
+        investment.BTB_amt = ((float(portfolio.BTB_pct) / 100.0) * usd_amt) / price
+    if portfolio.ZBC_pct > 0.0:
+        price = get_latest_price_for_shorthand("ZBC")
+        investment.ZBC_amt = ((float(portfolio.ZBC_pct) / 100.0) * usd_amt) / price
+    if portfolio.e_1337_pct > 0.0:
+        price = get_latest_price_for_shorthand("1337")
+        investment.e_1337_amt = ((float(portfolio.e_1337_pct) / 100.0) * usd_amt) / price
+    if portfolio.e_42_pct > 0.0:
+        price = get_latest_price_for_shorthand("42")
+        investment.e_42_amt = ((float(portfolio.e_42_pct) / 100.0) * usd_amt) / price
+    if portfolio.GAM_pct > 0.0:
+        price = get_latest_price_for_shorthand("GAM")
+        investment.GAM_amt = ((float(portfolio.GAM_pct) / 100.0) * usd_amt) / price
+    if portfolio.KB3_pct > 0.0:
+        price = get_latest_price_for_shorthand("KB3")
+        investment.KB3_amt = ((float(portfolio.KB3_pct) / 100.0) * usd_amt) / price
+    if portfolio.NSR_pct > 0.0:
+        price = get_latest_price_for_shorthand("NSR")
+        investment.NSR_amt = ((float(portfolio.NSR_pct) / 100.0) * usd_amt) / price
+    if portfolio.CRC_pct > 0.0:
+        price = get_latest_price_for_shorthand("CRC")
+        investment.CRC_amt = ((float(portfolio.CRC_pct) / 100.0) * usd_amt) / price
+    if portfolio.BDL_pct > 0.0:
+        price = get_latest_price_for_shorthand("BDL")
+        investment.BDL_amt = ((float(portfolio.BDL_pct) / 100.0) * usd_amt) / price
+    if portfolio.CHC_pct > 0.0:
+        price = get_latest_price_for_shorthand("CHC")
+        investment.CHC_amt = ((float(portfolio.CHC_pct) / 100.0) * usd_amt) / price
+    if portfolio.GRMD_pct > 0.0:
+        price = get_latest_price_for_shorthand("GRMD")
+        investment.GRMD_amt = ((float(portfolio.GRMD_pct) / 100.0) * usd_amt) / price
+    if portfolio.MBRS_pct > 0.0:
+        price = get_latest_price_for_shorthand("MBRS")
+        investment.MBRS_amt = ((float(portfolio.MBRS_pct) / 100.0) * usd_amt) / price
+    if portfolio.EQL_pct > 0.0:
+        price = get_latest_price_for_shorthand("EQL")
+        investment.EQL_amt = ((float(portfolio.EQL_pct) / 100.0) * usd_amt) / price
+    if portfolio.JET_pct > 0.0:
+        price = get_latest_price_for_shorthand("JET")
+        investment.JET_amt = ((float(portfolio.JET_pct) / 100.0) * usd_amt) / price
+    if portfolio.BITSILVER_pct > 0.0:
+        price = get_latest_price_for_shorthand("BITSILVER")
+        investment.BITSILVER_amt = ((float(portfolio.BITSILVER_pct) / 100.0) * usd_amt) / price
+    if portfolio.PIPL_pct > 0.0:
+        price = get_latest_price_for_shorthand("PIPL")
+        investment.PIPL_amt = ((float(portfolio.PIPL_pct) / 100.0) * usd_amt) / price
+    if portfolio.XCN_pct > 0.0:
+        price = get_latest_price_for_shorthand("XCN")
+        investment.XCN_amt = ((float(portfolio.XCN_pct) / 100.0) * usd_amt) / price
+    if portfolio.BBI_pct > 0.0:
+        price = get_latest_price_for_shorthand("BBI")
+        investment.BBI_amt = ((float(portfolio.BBI_pct) / 100.0) * usd_amt) / price
+    if portfolio.NMS_pct > 0.0:
+        price = get_latest_price_for_shorthand("NMS")
+        investment.NMS_amt = ((float(portfolio.NMS_pct) / 100.0) * usd_amt) / price
+    if portfolio.OCT_pct > 0.0:
+        price = get_latest_price_for_shorthand("OCT")
+        investment.OCT_amt = ((float(portfolio.OCT_pct) / 100.0) * usd_amt) / price
+    if portfolio.QBIC_pct > 0.0:
+        price = get_latest_price_for_shorthand("QBIC")
+        investment.QBIC_amt = ((float(portfolio.QBIC_pct) / 100.0) * usd_amt) / price
+    if portfolio.FANS_pct > 0.0:
+        price = get_latest_price_for_shorthand("FANS")
+        investment.FANS_amt = ((float(portfolio.FANS_pct) / 100.0) * usd_amt) / price
+    if portfolio.ADC_pct > 0.0:
+        price = get_latest_price_for_shorthand("ADC")
+        investment.ADC_amt = ((float(portfolio.ADC_pct) / 100.0) * usd_amt) / price
+    if portfolio.TRUST_pct > 0.0:
+        price = get_latest_price_for_shorthand("TRUST")
+        investment.TRUST_amt = ((float(portfolio.TRUST_pct) / 100.0) * usd_amt) / price
+    if portfolio.VZT_pct > 0.0:
+        price = get_latest_price_for_shorthand("VZT")
+        investment.VZT_amt = ((float(portfolio.VZT_pct) / 100.0) * usd_amt) / price
+    if portfolio.TBX_pct > 0.0:
+        price = get_latest_price_for_shorthand("TBX")
+        investment.TBX_amt = ((float(portfolio.TBX_pct) / 100.0) * usd_amt) / price
+    if portfolio.XRL_pct > 0.0:
+        price = get_latest_price_for_shorthand("XRL")
+        investment.XRL_amt = ((float(portfolio.XRL_pct) / 100.0) * usd_amt) / price
+    if portfolio.ARG_pct > 0.0:
+        price = get_latest_price_for_shorthand("ARG")
+        investment.ARG_amt = ((float(portfolio.ARG_pct) / 100.0) * usd_amt) / price
+    if portfolio.SMS_pct > 0.0:
+        price = get_latest_price_for_shorthand("SMS")
+        investment.SMS_amt = ((float(portfolio.SMS_pct) / 100.0) * usd_amt) / price
+    if portfolio.CRED_pct > 0.0:
+        price = get_latest_price_for_shorthand("CRED")
+        investment.CRED_amt = ((float(portfolio.CRED_pct) / 100.0) * usd_amt) / price
+    if portfolio.ONG_pct > 0.0:
+        price = get_latest_price_for_shorthand("ONG")
+        investment.ONG_amt = ((float(portfolio.ONG_pct) / 100.0) * usd_amt) / price
+    if portfolio.DEW_pct > 0.0:
+        price = get_latest_price_for_shorthand("DEW")
+        investment.DEW_amt = ((float(portfolio.DEW_pct) / 100.0) * usd_amt) / price
+    if portfolio.OPT_pct > 0.0:
+        price = get_latest_price_for_shorthand("OPT")
+        investment.OPT_amt = ((float(portfolio.OPT_pct) / 100.0) * usd_amt) / price
+    if portfolio.DOVU_pct > 0.0:
+        price = get_latest_price_for_shorthand("DOVU")
+        investment.DOVU_amt = ((float(portfolio.DOVU_pct) / 100.0) * usd_amt) / price
+    if portfolio.DEM_pct > 0.0:
+        price = get_latest_price_for_shorthand("DEM")
+        investment.DEM_amt = ((float(portfolio.DEM_pct) / 100.0) * usd_amt) / price
+    if portfolio.SXC_pct > 0.0:
+        price = get_latest_price_for_shorthand("SXC")
+        investment.SXC_amt = ((float(portfolio.SXC_pct) / 100.0) * usd_amt) / price
+    if portfolio.HORSE_pct > 0.0:
+        price = get_latest_price_for_shorthand("HORSE")
+        investment.HORSE_amt = ((float(portfolio.HORSE_pct) / 100.0) * usd_amt) / price
+    if portfolio.LIVE_pct > 0.0:
+        price = get_latest_price_for_shorthand("LIVE")
+        investment.LIVE_amt = ((float(portfolio.LIVE_pct) / 100.0) * usd_amt) / price
+    investment.save()
