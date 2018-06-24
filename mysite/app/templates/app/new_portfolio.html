@@ -37,7 +37,7 @@
   {% endif %}
 
   <div style="clear:both;">
-    <form method="post">
+    <form method="post" style="height: 600px;">
       {% csrf_token %}
       <h2>New portfolio</h2>
         <label for="{{ form.portfolio_name.id_for_label }}">Portfolio name:</label><br>
@@ -51,7 +51,7 @@
          {% if form.portfolio_name.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
 
-         <label for="{{ form.BTC_pct.id_for_label }}">ETH percentage:</label><br>
+<label for="{{ form.BTC_pct.id_for_label }}">BTC percentage:</label><br>
          <input type="number" step="0.01"
          name="{{ form.BTC_pct.name }}"
          id="{{ form.BTC_pct.id_for_label }}"
@@ -1337,7 +1337,7 @@
          placeholder=""
          {% if form.WICC_pct.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
-t
+
 <label for="{{ form.EOSDAC_pct.id_for_label }}">EOSDAC percentage:</label><br>
          <input type="number" step="0.01"
          name="{{ form.EOSDAC_pct.name }}"
@@ -3989,15 +3989,15 @@ t
          {% if form.XEL_pct.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
 
-<label for="{{ form.1ST_pct.id_for_label }}">1ST percentage:</label><br>
+<label for="{{ form.e_1ST_pct.id_for_label }}">1ST percentage:</label><br>
          <input type="number" step="0.01"
-         name="{{ form.1ST_pct.name }}"
-         id="{{ form.1ST_pct.id_for_label }}"
-         {% if form.1ST_pct.value != None %}value="{{ form.1ST_pct.value|stringformat:'s' }}"{% endif %}
-         maxlength="{{ form.1ST_pct.field.max_length }}"
+         name="{{ form.e_1ST_pct.name }}"
+         id="{{ form.e_1ST_pct.id_for_label }}"
+         {% if form.e_1ST_pct.value != None %}value="{{ form.e_1ST_pct.value|stringformat:'s' }}"{% endif %}
+         maxlength="{{ form.e_1ST_pct.field.max_length }}"
          class="form-control"
          placeholder=""
-         {% if form.1ST_pct.field.required %}required{% endif %}>
+         {% if form.e_1ST_pct.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
 
 <label for="{{ form.NLC2_pct.id_for_label }}">NLC2 percentage:</label><br>
@@ -6805,15 +6805,15 @@ t
          {% if form.MITX_pct.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
 
-<label for="{{ form.1WO_pct.id_for_label }}">1WO percentage:</label><br>
+<label for="{{ form.e_1WO_pct.id_for_label }}">1WO percentage:</label><br>
          <input type="number" step="0.01"
-         name="{{ form.1WO_pct.name }}"
-         id="{{ form.1WO_pct.id_for_label }}"
-         {% if form.1WO_pct.value != None %}value="{{ form.1WO_pct.value|stringformat:'s' }}"{% endif %}
-         maxlength="{{ form.1WO_pct.field.max_length }}"
+         name="{{ form.e_1WO_pct.name }}"
+         id="{{ form.e_1WO_pct.id_for_label }}"
+         {% if form.e_1WO_pct.value != None %}value="{{ form.e_1WO_pct.value|stringformat:'s' }}"{% endif %}
+         maxlength="{{ form.e_1WO_pct.field.max_length }}"
          class="form-control"
          placeholder=""
-         {% if form.1WO_pct.field.required %}required{% endif %}>
+         {% if form.e_1WO_pct.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
 
 <label for="{{ form.XLR_pct.id_for_label }}">XLR percentage:</label><br>
@@ -7487,15 +7487,15 @@ t
          {% if form.GEO_pct.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
 
-<label for="{{ form.2GIVE_pct.id_for_label }}">2GIVE percentage:</label><br>
+<label for="{{ form.e_2GIVE_pct.id_for_label }}">2GIVE percentage:</label><br>
          <input type="number" step="0.01"
-         name="{{ form.2GIVE_pct.name }}"
-         id="{{ form.2GIVE_pct.id_for_label }}"
-         {% if form.2GIVE_pct.value != None %}value="{{ form.2GIVE_pct.value|stringformat:'s' }}"{% endif %}
-         maxlength="{{ form.2GIVE_pct.field.max_length }}"
+         name="{{ form.e_2GIVE_pct.name }}"
+         id="{{ form.e_2GIVE_pct.id_for_label }}"
+         {% if form.e_2GIVE_pct.value != None %}value="{{ form.e_2GIVE_pct.value|stringformat:'s' }}"{% endif %}
+         maxlength="{{ form.e_2GIVE_pct.field.max_length }}"
          class="form-control"
          placeholder=""
-         {% if form.2GIVE_pct.field.required %}required{% endif %}>
+         {% if form.e_2GIVE_pct.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
 
 <label for="{{ form.ASTRO_pct.id_for_label }}">ASTRO percentage:</label><br>
@@ -7729,15 +7729,15 @@ t
          {% if form.EXY_pct.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
 
-<label for="{{ form.0xBTC_pct.id_for_label }}">0xBTC percentage:</label><br>
+<label for="{{ form.e_0xBTC_pct.id_for_label }}">0xBTC percentage:</label><br>
          <input type="number" step="0.01"
-         name="{{ form.0xBTC_pct.name }}"
-         id="{{ form.0xBTC_pct.id_for_label }}"
-         {% if form.0xBTC_pct.value != None %}value="{{ form.0xBTC_pct.value|stringformat:'s' }}"{% endif %}
-         maxlength="{{ form.0xBTC_pct.field.max_length }}"
+         name="{{ form.e_0xBTC_pct.name }}"
+         id="{{ form.e_0xBTC_pct.id_for_label }}"
+         {% if form.e_0xBTC_pct.value != None %}value="{{ form.e_0xBTC_pct.value|stringformat:'s' }}"{% endif %}
+         maxlength="{{ form.e_0xBTC_pct.field.max_length }}"
          class="form-control"
          placeholder=""
-         {% if form.0xBTC_pct.field.required %}required{% endif %}>
+         {% if form.e_0xBTC_pct.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
 
 <label for="{{ form.SPR_pct.id_for_label }}">SPR percentage:</label><br>
@@ -9357,15 +9357,15 @@ t
          {% if form.ZNY_pct.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
 
-<label for="{{ form.808_pct.id_for_label }}">808 percentage:</label><br>
+<label for="{{ form.e_808_pct.id_for_label }}">808 percentage:</label><br>
          <input type="number" step="0.01"
-         name="{{ form.808_pct.name }}"
-         id="{{ form.808_pct.id_for_label }}"
-         {% if form.808_pct.value != None %}value="{{ form.808_pct.value|stringformat:'s' }}"{% endif %}
-         maxlength="{{ form.808_pct.field.max_length }}"
+         name="{{ form.e_808_pct.name }}"
+         id="{{ form.e_808_pct.id_for_label }}"
+         {% if form.e_808_pct.value != None %}value="{{ form.e_808_pct.value|stringformat:'s' }}"{% endif %}
+         maxlength="{{ form.e_808_pct.field.max_length }}"
          class="form-control"
          placeholder=""
-         {% if form.808_pct.field.required %}required{% endif %}>
+         {% if form.e_808_pct.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
 
 <label for="{{ form.EPY_pct.id_for_label }}">EPY percentage:</label><br>
@@ -9929,26 +9929,26 @@ ct
          {% if form.ZBC_pct.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
 
-<label for="{{ form.1337_pct.id_for_label }}">1337 percentage:</label><br>
+<label for="{{ form.e_1337_pct.id_for_label }}">1337 percentage:</label><br>
          <input type="number" step="0.01"
-         name="{{ form.1337_pct.name }}"
-         id="{{ form.1337_pct.id_for_label }}"
-         {% if form.1337_pct.value != None %}value="{{ form.1337_pct.value|stringformat:'s' }}"{% endif %}
-         maxlength="{{ form.1337_pct.field.max_length }}"
+         name="{{ form.e_1337_pct.name }}"
+         id="{{ form.e_1337_pct.id_for_label }}"
+         {% if form.e_1337_pct.value != None %}value="{{ form.e_1337_pct.value|stringformat:'s' }}"{% endif %}
+         maxlength="{{ form.e_1337_pct.field.max_length }}"
          class="form-control"
          placeholder=""
-         {% if form.1337_pct.field.required %}required{% endif %}>
+         {% if form.e_1337_pct.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
 
-<label for="{{ form.42_pct.id_for_label }}">42 percentage:</label><br>
+<label for="{{ form.e_42_pct.id_for_label }}">42 percentage:</label><br>
          <input type="number" step="0.01"
-         name="{{ form.42_pct.name }}"
-         id="{{ form.42_pct.id_for_label }}"
-         {% if form.42_pct.value != None %}value="{{ form.42_pct.value|stringformat:'s' }}"{% endif %}
-         maxlength="{{ form.42_pct.field.max_length }}"
+         name="{{ form.e_42_pct.name }}"
+         id="{{ form.e_42_pct.id_for_label }}"
+         {% if form.e_42_pct.value != None %}value="{{ form.e_42_pct.value|stringformat:'s' }}"{% endif %}
+         maxlength="{{ form.e_42_pct.field.max_length }}"
          class="form-control"
          placeholder=""
-         {% if form.42_pct.field.required %}required{% endif %}>
+         {% if form.e_42_pct.field.required %}required{% endif %}>
          <div style="margin:5px;"></div>
 
 <label for="{{ form.GAM_pct.id_for_label }}">GAM percentage:</label><br>
