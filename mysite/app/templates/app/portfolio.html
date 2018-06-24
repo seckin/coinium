@@ -194,7 +194,7 @@
                     </div>
                 </div>
 
-                <div id="container" style="height: 400px"></div>
+                <div id="container" style="height: 400px;max-width:800px; margin: 0 auto;"></div>
                 <div style="height: 100px;"></div>
                 <div id="container2" style="min-width: 310px; max-width:800px; height: 400px; margin: 0 auto"></div>
 
@@ -1250,7 +1250,7 @@
                         zoomType: 'x'
                     },
                     title: {
-                        text: 'Portfolio value in USD over time'
+                        text: 'Portfolio value in percentage over time'
                     },
                     subtitle: {
                         text: document.ontouchstart === undefined ?
@@ -1261,7 +1261,7 @@
                     },
                     yAxis: {
                         title: {
-                            text: 'Portfolio value in USD'
+                            text: 'Portfolio value in percentage over initial amount'
                         }
                     },
                     legend: {
@@ -1296,7 +1296,7 @@
 
                     series: [{
                         type: 'area',
-                        name: 'Portfolio Value in USD',
+                        name: 'Portfolio value in percentage over initial amount',
                         data: data
                     }]
                 });
