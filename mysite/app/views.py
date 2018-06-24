@@ -2152,6 +2152,7 @@ def profile(request, user_id):
     for i in range(934):
         if total_pv_val > 0:
             coin_pcts_array[i] = round(100.0 * latest_prices_arr[i] * total_investment_amts[i] / total_pv_val, 2)
+    print("coin_pcts_array", coin_pcts_array)
 
     #calculate investment amounts
     investments_with_amts = []
