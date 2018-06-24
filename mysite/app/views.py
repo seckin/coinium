@@ -187,7 +187,7 @@ def portfolio_perf(request, portfolio_id):
                 pair_pcts = []
                 from .utils import get_pairs_and_pcts
                 (pairs, pair_pcts) = get_pairs_and_pcts(portfolio)
-                pair_pcts = [x / 100.0 for x in pair_pcts]
+                pair_pcts = [x for x in pair_pcts]
                 #pair_pcts = [float(portfolio.btc_pct) / 100.0, float(portfolio.eth_pct) / 100, float(portfolio.xrp_pct) / 100, float(portfolio.xlm_pct) / 100]
                 # pair_pcts = [list_has_distributions[0]["btc"] / 100.0, list_has_distributions[0]["eth"] / 100.0, list_has_distributions[0]["xrp"] / 100.0]
                 pair_first_vals = [-1 for i in range(len(pairs))]
@@ -219,7 +219,7 @@ group by created_at div 1000;"""
 
                 tm = spreads_for_pair[pairs[0]][0]["time"]
                 tmstmp = round(time.mktime(tm.timetuple()) * 1000)
-                appreciations = [[tmstmp, 1.0]]
+                appreciations = [[tmstmp, 100.0]]
                 ln = 1000000000
                 for i in range(len(pairs)):
                     ln = min(ln, len(spreads_for_pair[pairs[i]]))
