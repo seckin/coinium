@@ -2147,6 +2147,8 @@ def profile(request, user_id):
     total_pv_val = 0.0
     for i in range(934):
         total_pv_val += latest_prices_arr[i] * total_investment_amts[i]
+    print("latest_prices_arr", latest_prices_arr)
+    print("total_investment_amts", total_investment_amts)
 
     coin_pcts_array = [0.0 for i in range(934)]
     for i in range(934):
