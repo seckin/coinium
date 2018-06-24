@@ -176,16 +176,20 @@ def portfolio_perf(request, portfolio_id):
     if request.method == 'GET':
         connection = pymysql.connect(host='localhost',
                                  user='root',
-                                 password=settings.SPREADS_DB_PASSWD,
-                                 db=settings.SPREADS_DB_NAME,
+                                 password='01990199',#settings.SPREADS_DB_PASSWD,
+                                 db='coiniumweb',#settings.SPREADS_DB_NAME,
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
         try:
             with connection.cursor() as cursor:
-                pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD', 'XXLMZUSD']
-                pair_pcts = [float(portfolio.btc_pct) / 100.0, float(portfolio.eth_pct) / 100, float(portfolio.xrp_pct) / 100, float(portfolio.xlm_pct) / 100]
+                #pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD', 'XXLMZUSD']
+                pairs = []
+                pair_pcts = []
+                from .utils import get_pairs_and_pcts
+                (pairs, pair_pcts) = get_pairs_and_pcts(portfolio)
+                #pair_pcts = [float(portfolio.btc_pct) / 100.0, float(portfolio.eth_pct) / 100, float(portfolio.xrp_pct) / 100, float(portfolio.xlm_pct) / 100]
                 # pair_pcts = [list_has_distributions[0]["btc"] / 100.0, list_has_distributions[0]["eth"] / 100.0, list_has_distributions[0]["xrp"] / 100.0]
-                pair_first_vals = [-1, -1, -1, -1]
+                pair_first_vals = [-1 for i in range(len(pairs))]
                 aggr_appreciation_in_pcts = []
                 # print("list['created_at']", list['created_at'])
                 #start_from_timestamp = time.mktime(datetime.datetime.strptime(list['created_at'], "%Y-%m-%d %H:%M:%S").timetuple())
@@ -203,9 +207,9 @@ def portfolio_perf(request, portfolio_id):
                 spreads_idx_for_pair = dict()
                 for pair in pairs:
                     #sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
-                    sql = """select round(avg((bestbid + bestask) / 2 ),3) as price, convert((min(created_at) div 500)*500, datetime) as time
-from Spreads where coin = %s and created_at >= DATE_SUB(curdate(), INTERVAL 6 WEEK)
-group by created_at div 500;"""
+                    sql = """select round(avg(price),6) as price, convert((min(created_at) div 1000)*1000, datetime) as time
+from app_pricingdata where shorthand = %s and created_at >= DATE_SUB(curdate(), INTERVAL 6 WEEK)
+group by created_at div 1000;"""
                     cursor.execute(sql, (pair,))
                     spreads = cursor.fetchall()
                     spreads_for_pair[pair] = spreads
@@ -215,16 +219,19 @@ group by created_at div 500;"""
                 tm = spreads_for_pair[pairs[0]][0]["time"]
                 tmstmp = round(time.mktime(tm.timetuple()) * 1000)
                 appreciations = [[tmstmp, 1.0]]
-                for i in range(1, len(spreads_for_pair[pairs[0]])):
+                ln = 1000000000
+                for i in range(len(pairs)):
+                    ln = min(ln, len(spreads_for_pair[pairs[i]]))
+                for i in range(1, ln):
                     appreciation = 0.0
                     for j in range(len(pairs)):
                         # hack for missing stellar pricing data
                         if j == 3 and i >= len(spreads_for_pair[pairs[j]]):
                             px = 0.5
                         else:
-                            px = spreads_for_pair[pairs[j]][i]["price"]
+                            px = float(spreads_for_pair[pairs[j]][i]["price"])
                         # print ("i", i, "px", px)
-                        appreciation += pair_pcts[j] * (px / spreads_for_pair[pairs[j]][0]["price"])
+                        appreciation += pair_pcts[j] * (px / float(spreads_for_pair[pairs[j]][0]["price"]))
                     tm = spreads_for_pair[pairs[0]][i]["time"]
                     tmstmp = round(time.mktime(tm.timetuple()) * 1000)
                     appreciations.append([tmstmp, appreciation])
