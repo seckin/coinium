@@ -17,6 +17,7 @@ from background_task import background
 from accounts.models import Investor, Document
 from .models import Choice, Question, Portfolio, Investment, EmbeddedTweet, PricingData
 from .forms import PortfolioForm
+from .utils import get_pairs_and_pcts, get_investment_array, get_all_pairs
 import pymysql
 import pymysql.cursors
 import decimal
@@ -67,8 +68,7 @@ def portfolio(request, pk):
     try:
         with connection.cursor() as cursor:
             #pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
-            from .utils import get_pairs_and_pcts
-            (pairs, pair_pcts) = get_pairs_and_pcts(portfolio)
+            (pairs, pair_pcts) = get_pairs_and_pcts(pk)
             spreads_for_pair = dict()
             for i in range(len(pairs)):
                 pair = pairs[i]
@@ -2062,8 +2062,7 @@ def portfolio_perf(request, portfolio_id):
                 #pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD', 'XXLMZUSD']
                 pairs = []
                 pair_pcts = []
-                from .utils import get_pairs_and_pcts
-                (pairs, pair_pcts) = get_pairs_and_pcts(portfolio)
+                (pairs, pair_pcts) = get_pairs_and_pcts(portfolio_id)
                 pair_pcts = [x for x in pair_pcts]
                 #pair_pcts = [float(portfolio.btc_pct) / 100.0, float(portfolio.eth_pct) / 100, float(portfolio.xrp_pct) / 100, float(portfolio.xlm_pct) / 100]
                 # pair_pcts = [list_has_distributions[0]["btc"] / 100.0, list_has_distributions[0]["eth"] / 100.0, list_has_distributions[0]["xrp"] / 100.0]
@@ -2126,105 +2125,101 @@ def profile(request, user_id):
     user = User.objects.get(pk=user_id)
     investments = Investment.objects.filter(owner=user)
     portfolios = Portfolio.objects.filter(owner=user)
-    total_btc = 0.0
-    total_eth = 0.0
-    total_xrp = 0.0
-    total_xlm = 0.0
+    portfolio_ids = Portfolio.objects.filter(owner=user).values_list('id', flat=True)
+
+    # total_btc = 0.0
+    # total_eth = 0.0
+    # total_xrp = 0.0
+    # total_xlm = 0.0
+    total_investment_amts = [0.0 for i in range(934)]
     for investment in investments:
-        total_btc += float(investment.BTC_amt)
-        total_eth += float(investment.ETH_amt)
-        total_xrp += float(investment.XRP_amt)
-        total_xlm += float(investment.XLM_amt)
+        # total_btc += float(investment.BTC_amt)
+        # total_eth += float(investment.ETH_amt)
+        # total_xrp += float(investment.XRP_amt)
+        # total_xlm += float(investment.XLM_amt)
+        i_arr = get_investment_array(investment)
+        for i in range(934):
+            total_investment_amts[i] += float(i_arr[i])
 
     # get latest valuations
     connection = pymysql.connect(host='localhost',
                                  user='root',
-                                 password=settings.SPREADS_DB_PASSWD,
-                                 db=settings.SPREADS_DB_NAME,
+                                 password="01990199",#settings.SPREADS_DB_PASSWD,
+                                 db="coiniumweb",#settings.SPREADS_DB_NAME,
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
+
+    latest_prices_arr = [0.0 for i in range(934)]
     try:
         with connection.cursor() as cursor:
-            pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
+            # pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
+            print("portfolio_ids", portfolio_ids)
+            pairs = get_all_pairs(portfolio_ids)
+            print("pairs", pairs)
             spreads_for_pair = dict()
-            for pair in pairs:
+            for i in range(len(pairs)):
+                pair = pairs[i]
                 #sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
-                sql = "select * from Spreads where coin = %s order by created_at desc limit 1"
+                sql = "select * from app_pricingdata where shorthand = %s order by created_at desc limit 1"
                 cursor.execute(sql, (pair,))
                 spreads = cursor.fetchall()
                 spreads_for_pair[pair] = spreads
+                latest_prices_arr[i] = float(spreads[0]["price"])
                 #print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
 
-            btc_latest_val = float(spreads_for_pair[pairs[0]][0]["bestbid"])
-            eth_latest_val = float(spreads_for_pair[pairs[1]][0]["bestbid"])
-            xrp_latest_val = float(spreads_for_pair[pairs[2]][0]["bestbid"])
-            xlm_latest_val = 0.5
+            # btc_latest_val = float(spreads_for_pair[pairs[0]][0]["bestbid"])
+            # eth_latest_val = float(spreads_for_pair[pairs[1]][0]["bestbid"])
+            # xrp_latest_val = float(spreads_for_pair[pairs[2]][0]["bestbid"])
+            # xlm_latest_val = 0.5
     finally:
         connection.close()
 
-    total_pv_val = btc_latest_val * total_btc + \
-                   eth_latest_val * total_eth + \
-                   xrp_latest_val * total_xrp + \
-                   xlm_latest_val * total_xlm
+    for i in range(934):
+        if latest_prices_arr[i] > 0:
+            print("latest_prices_arr i", i, latest_prices_arr[i])
+        if total_investment_amts[i] > 0:
+            print("total_investment_amts i", i, total_investment_amts[i])
 
-    if total_pv_val:
-        btc_pct = round(100 * btc_latest_val * total_btc / total_pv_val, 2)
-        eth_pct = round(100 * eth_latest_val * total_eth / total_pv_val, 2)
-        xrp_pct = round(100 * xrp_latest_val * total_xrp / total_pv_val, 2)
-        xlm_pct = round(100 * xlm_latest_val * total_xlm / total_pv_val, 2)
-    else:
-        btc_pct = 0
-        eth_pct = 0
-        xrp_pct = 0
-        xlm_pct = 0
+    # total_pv_val = btc_latest_val * total_btc + \
+    #                eth_latest_val * total_eth + \
+    #                xrp_latest_val * total_xrp + \
+    #                xlm_latest_val * total_xlm
+    total_pv_val = 0.0
+    for i in range(934):
+        total_pv_val += latest_prices_arr[i] * total_investment_amts[i]
+
+    # if total_pv_val:
+    #     btc_pct = round(100 * btc_latest_val * total_btc / total_pv_val, 2)
+    #     eth_pct = round(100 * eth_latest_val * total_eth / total_pv_val, 2)
+    #     xrp_pct = round(100 * xrp_latest_val * total_xrp / total_pv_val, 2)
+    #     xlm_pct = round(100 * xlm_latest_val * total_xlm / total_pv_val, 2)
+    # else:
+    #     btc_pct = 0
+    #     eth_pct = 0
+    #     xrp_pct = 0
+    #     xlm_pct = 0
+    coin_pcts_array = [0.0 for i in range(934)]
+    for i in range(934):
+        if total_pv_val > 0:
+            coin_pcts_array[i] = round(100.0 * latest_prices_arr[i] * total_investment_amts[i] / total_pv_val, 2)
 
     #calculate investment amounts
     investments_with_amts = []
-    # connection = pymysql.connect(host='localhost',
-    #                              user='root',
-    #                              password=settings.SPREADS_DB_PASSWD,
-    #                              db=settings.SPREADS_DB_NAME,
-    #                              charset='utf8mb4',
-    #                              cursorclass=pymysql.cursors.DictCursor)
     for investment in investments:
-        # try:
-        #     with connection.cursor() as cursor:
-        #         pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
-        #         spreads_for_pair = dict()
-        #         for pair in pairs:
-        #             #sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
-        #             sql = "select * from Spreads where coin = %s and created_at < %s order by created_at desc limit 1"
-        #             cursor.execute(sql, (pair,investment.created_at))#'2018-06-13 18:17:12'))
-        #             spreads = cursor.fetchall()
-        #             spreads_for_pair[pair] = spreads
-        #             #print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
-
-        #         btc_latest_val_preceding_investment = float(spreads_for_pair[pairs[0]][0]["bestbid"])
-        #         eth_latest_val_preceding_investment = float(spreads_for_pair[pairs[1]][0]["bestbid"])
-        #         xrp_latest_val_preceding_investment = float(spreads_for_pair[pairs[2]][0]["bestbid"])
-        #         xlm_latest_val_preceding_investment = 0.5
-        # finally:
-        #     pass
-
-        # amt = float(investment.btc_amt) * btc_latest_val_preceding_investment + \
-        # float(investment.eth_amt) * eth_latest_val_preceding_investment + \
-        # float(investment.xrp_amt) * xrp_latest_val_preceding_investment + \
-        # float(investment.xlm_amt) * xlm_latest_val_preceding_investment
         amt = 0
         investments_with_amts.append([investment, amt])
-
-    # connection.close()
 
     # investments made to user's portfolios for each month
     connection = pymysql.connect(host='localhost',
                                  user='root',
-                                 password=settings.SPREADS_DB_PASSWD,
-                                 db=settings.SPREADS_DB_NAME,
+                                 password="01990199",#settings.SPREADS_DB_PASSWD,
+                                 db="coiniumweb",#settings.SPREADS_DB_NAME,
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
     investment_amts_for_months = [0.0] * 13
-    all_portfolios_coin_amts_for_individual_months = [[0.0 for i in range(4)] for j in range(13)]
-    end_of_month_coin_prices = [[0.0 for i in range(4)] for j in range(13)]
+    all_portfolios_coin_amts_for_individual_months = [[0.0 for i in range(934)] for j in range(13)]
+    # end_of_month_coin_prices = [[0.0 for i in range(934)] for j in range(13)]
+    latest_prices_of_month_arr = [[0.0 for i in range(934)] for j in range(13)]
     cur_month = 0
     try:
         with connection.cursor() as cursor:
@@ -2232,29 +2227,34 @@ def profile(request, user_id):
             cursor.execute(sql, ())
             cur_month = int(cursor.fetchall()[0]["month"])
             for i in range(0, 3):
-                pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
+                # pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
+                print("portfolio_ids", portfolio_ids)
+                pairs = get_all_pairs(portfolio_ids)
                 spreads_for_pair = dict()
-                for pair in pairs:
-                    sql = "select * from Spreads where coin = %s AND YEAR(created_at) = YEAR(DATE_SUB(CURDATE(), INTERVAL " + str(i-1) + " MONTH)) \
-                                            AND MONTH(created_at) < MONTH(DATE_SUB(CURDATE(), INTERVAL " + str(i-1) + " MONTH)) order by created_at desc limit 1"
-                    cursor.execute(sql, (pair))
-                    spreads = cursor.fetchall()
-                    spreads_for_pair[pair] = spreads
-                    #print("2 for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
+                for j in range(len(pairs)):
+                    pair = pairs[j]
+                    if total_investment_amts[j] > 0:
+                        sql = "select * from app_pricingdata where shorthand = %s AND YEAR(created_at) = YEAR(DATE_SUB(CURDATE(), INTERVAL " + str(i-1) + " MONTH)) \
+                                                AND MONTH(created_at) < MONTH(DATE_SUB(CURDATE(), INTERVAL " + str(i-1) + " MONTH)) order by created_at desc limit 1"
+                        cursor.execute(sql, (pair))
+                        spreads = cursor.fetchall()
+                        spreads_for_pair[pair] = spreads
+                        latest_prices_of_month_arr[cur_month - i][j] = float(spreads[0]["price"])
+                        #print("2 for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
 
-                if len(spreads_for_pair[pairs[0]]) > 0:
-                    btc_latest_val_at_the_end_of_the_month = float(spreads_for_pair[pairs[0]][0]["bestbid"])
-                else:
-                    btc_latest_val_at_the_end_of_the_month = 0.0
-                if len(spreads_for_pair[pairs[1]]) > 0:
-                    eth_latest_val_at_the_end_of_the_month = float(spreads_for_pair[pairs[1]][0]["bestbid"])
-                else:
-                    eth_latest_val_at_the_end_of_the_month = 0.0
-                if len(spreads_for_pair[pairs[2]]) > 0:
-                    xrp_latest_val_at_the_end_of_the_month = float(spreads_for_pair[pairs[2]][0]["bestbid"])
-                else:
-                    xrp_latest_val_at_the_end_of_the_month = 0.0
-                xlm_latest_val_at_the_end_of_the_month = 0.5
+                # if len(spreads_for_pair[pairs[0]]) > 0:
+                #     btc_latest_val_at_the_end_of_the_month = float(spreads_for_pair[pairs[0]][0]["bestbid"])
+                # else:
+                #     btc_latest_val_at_the_end_of_the_month = 0.0
+                # if len(spreads_for_pair[pairs[1]]) > 0:
+                #     eth_latest_val_at_the_end_of_the_month = float(spreads_for_pair[pairs[1]][0]["bestbid"])
+                # else:
+                #     eth_latest_val_at_the_end_of_the_month = 0.0
+                # if len(spreads_for_pair[pairs[2]]) > 0:
+                #     xrp_latest_val_at_the_end_of_the_month = float(spreads_for_pair[pairs[2]][0]["bestbid"])
+                # else:
+                #     xrp_latest_val_at_the_end_of_the_month = 0.0
+                # xlm_latest_val_at_the_end_of_the_month = 0.5
 
                 end_of_month_amt = 0.0
                 users_portfolios = Portfolio.objects.filter(owner = user)
@@ -2267,23 +2267,29 @@ def profile(request, user_id):
                                                 WHERE YEAR(created_at) = YEAR(DATE_SUB(CURDATE(), INTERVAL " + str(i) + " MONTH)) \
                                                 AND MONTH(created_at) = MONTH(DATE_SUB(CURDATE(), INTERVAL " + str(i) + " MONTH)) \
                                                 AND portfolio_id in (" + portfolio_ids_str + ")"):
-                    end_of_month_amt += float(investment.BTC_amt) * btc_latest_val_at_the_end_of_the_month + \
-                        float(investment.ETH_amt) * eth_latest_val_at_the_end_of_the_month + \
-                        float(investment.XRP_amt) * xrp_latest_val_at_the_end_of_the_month + \
-                        float(investment.XLM_amt) * xlm_latest_val_at_the_end_of_the_month
+                    inv_arr = get_investment_array(investment)
+                    for k in range(934):
+                        # print("k", k, "inv_arr[k]", float(inv_arr[k]), "latest_prices_of_month_arr[cur_month - i][k]", latest_prices_of_month_arr[cur_month - i][k])
+                        end_of_month_amt += float(inv_arr[k]) * latest_prices_of_month_arr[cur_month - i][k]
+                    # end_of_month_amt += float(investment.BTC_amt) * btc_latest_val_at_the_end_of_the_month + \
+                    #     float(investment.ETH_amt) * eth_latest_val_at_the_end_of_the_month + \
+                    #     float(investment.XRP_amt) * xrp_latest_val_at_the_end_of_the_month + \
+                    #     float(investment.XLM_amt) * xlm_latest_val_at_the_end_of_the_month
                     
                     # print("i = ", i, "cur_month = ", cur_month)
                     # print("investment:", investment.btc_amt, investment.eth_amt, investment.xrp_amt, investment.xlm_amt)
                     # print("before all_portfolios_coin_amts_for_individual_months", all_portfolios_coin_amts_for_individual_months)
-                    all_portfolios_coin_amts_for_individual_months[cur_month - i][0] += float(investment.BTC_amt)
-                    all_portfolios_coin_amts_for_individual_months[cur_month - i][1] += float(investment.ETH_amt)
-                    all_portfolios_coin_amts_for_individual_months[cur_month - i][2] += float(investment.XRP_amt)
-                    all_portfolios_coin_amts_for_individual_months[cur_month - i][3] += float(investment.XLM_amt)
+                    # all_portfolios_coin_amts_for_individual_months[cur_month - i][0] += float(investment.BTC_amt)
+                    # all_portfolios_coin_amts_for_individual_months[cur_month - i][1] += float(investment.ETH_amt)
+                    # all_portfolios_coin_amts_for_individual_months[cur_month - i][2] += float(investment.XRP_amt)
+                    # all_portfolios_coin_amts_for_individual_months[cur_month - i][3] += float(investment.XLM_amt)
+                    for k in range(934):
+                        all_portfolios_coin_amts_for_individual_months[cur_month - i][k] += float(inv_arr[k])
                     # print("after all_portfolios_coin_amts_for_individual_months", all_portfolios_coin_amts_for_individual_months)
-                end_of_month_coin_prices[cur_month - i][0] = btc_latest_val_at_the_end_of_the_month
-                end_of_month_coin_prices[cur_month - i][1] = eth_latest_val_at_the_end_of_the_month
-                end_of_month_coin_prices[cur_month - i][2] = xrp_latest_val_at_the_end_of_the_month
-                end_of_month_coin_prices[cur_month - i][3] = xlm_latest_val_at_the_end_of_the_month
+                # end_of_month_coin_prices[cur_month - i][0] = btc_latest_val_at_the_end_of_the_month
+                # end_of_month_coin_prices[cur_month - i][1] = eth_latest_val_at_the_end_of_the_month
+                # end_of_month_coin_prices[cur_month - i][2] = xrp_latest_val_at_the_end_of_the_month
+                # end_of_month_coin_prices[cur_month - i][3] = xlm_latest_val_at_the_end_of_the_month
                 # print("end_of_month_amt", end_of_month_amt, "for i = ", i)
 
                 investment_amts_for_months[cur_month - i] = end_of_month_amt
@@ -2293,23 +2299,15 @@ def profile(request, user_id):
         pass
 
     # user's portfolios investments and performances over months
-    all_portfolios_coin_amts_till_month = [[0.0 for i in range(4)] for j in range(13)]
+    all_portfolios_coin_amts_till_month = [[0.0 for i in range(934)] for j in range(13)]
     end_of_month_usd_amt = [0.0 for i in range(13)]
     investment_in_month_usd_amt = [0.0 for i in range(13)]
     # print("all_portfolios_coin_amts_for_individual_months", all_portfolios_coin_amts_for_individual_months)
     for i in range(1,13):
-        all_portfolios_coin_amts_till_month[i][0] = all_portfolios_coin_amts_till_month[i-1][0] + all_portfolios_coin_amts_for_individual_months[i][0]
-        all_portfolios_coin_amts_till_month[i][1] = all_portfolios_coin_amts_till_month[i-1][1] + all_portfolios_coin_amts_for_individual_months[i][1]
-        all_portfolios_coin_amts_till_month[i][2] = all_portfolios_coin_amts_till_month[i-1][2] + all_portfolios_coin_amts_for_individual_months[i][2]
-        all_portfolios_coin_amts_till_month[i][3] = all_portfolios_coin_amts_till_month[i-1][3] + all_portfolios_coin_amts_for_individual_months[i][3]
-        end_of_month_usd_amt[i] = all_portfolios_coin_amts_till_month[i][0] * end_of_month_coin_prices[i][0] + \
-                                  all_portfolios_coin_amts_till_month[i][1] * end_of_month_coin_prices[i][1] + \
-                                  all_portfolios_coin_amts_till_month[i][2] * end_of_month_coin_prices[i][2] + \
-                                  all_portfolios_coin_amts_till_month[i][3] * end_of_month_coin_prices[i][3]
-        investment_in_month_usd_amt[i] = all_portfolios_coin_amts_for_individual_months[i][0] * end_of_month_coin_prices[i][0] + \
-                                         all_portfolios_coin_amts_for_individual_months[i][1] * end_of_month_coin_prices[i][1] + \
-                                         all_portfolios_coin_amts_for_individual_months[i][2] * end_of_month_coin_prices[i][2] + \
-                                         all_portfolios_coin_amts_for_individual_months[i][3] * end_of_month_coin_prices[i][3]
+        for k in range(934):
+            all_portfolios_coin_amts_till_month[i][k] = all_portfolios_coin_amts_till_month[i-1][k] + all_portfolios_coin_amts_for_individual_months[i][k]
+            end_of_month_usd_amt[i] = all_portfolios_coin_amts_till_month[i][k] * latest_prices_of_month_arr[i][k]
+            investment_in_month_usd_amt[i] = all_portfolios_coin_amts_for_individual_months[i][k] * latest_prices_of_month_arr[i][k]
         #hack:
         end_of_month_usd_amt[i] -= investment_in_month_usd_amt[i]
     # print("all_portfolios_coin_amts_till_month", all_portfolios_coin_amts_till_month)
@@ -2325,12 +2323,9 @@ def profile(request, user_id):
                                               AND MONTH(created_at) = MONTH(DATE_SUB(CURDATE(), INTERVAL " + str(i) + " MONTH)) \
                                               AND owner_id = " + str(user.id)):
             all_investments_by_user_in_original_usd_amt_in_month[cur_month - i] += investment.original_amt
-            
 
-    total_investment_usd_amt = total_btc * end_of_month_coin_prices[cur_month][0] + \
-                               total_eth * end_of_month_coin_prices[cur_month][1] + \
-                               total_xrp * end_of_month_coin_prices[cur_month][2] + \
-                               total_xlm * end_of_month_coin_prices[cur_month][3]
+    for k in range(934):
+        total_investment_usd_amt = total_investment_amts[k] * latest_prices_of_month_arr[cur_month][k]
     total_investment_usd_amt = round(total_investment_usd_amt, 2)
 
     # portfolios with AUM
@@ -2356,6 +2351,10 @@ def profile(request, user_id):
     else:
         profile_pic_url = "https://storage.googleapis.com/indie-hackers.appspot.com/avatars/P0jgWBHyYbaC9wp1GEjGELwjsL63"
 
+    for i in range(len(coin_pcts_array)):
+        if coin_pcts_array[i] > 0:
+            print("coin_pcts_array i =", i, coin_pcts_array[i])
+
     return render(request, 'app/profile.html', {"user": user, "request_user": request_user, "investments": investments, \
         "investments_with_amts": investments_with_amts,\
         "investment_amts_for_months": investment_amts_for_months,\
@@ -2367,18 +2366,22 @@ def profile(request, user_id):
         "uploaded_file_url": uploaded_file_url,\
         "profile_pic_url": profile_pic_url,\
         "total_pv_val": total_pv_val,\
-        "total_btc": total_btc,\
-        "total_eth": total_eth,\
-        "total_xrp": total_xrp,\
-        "total_xlm": total_xlm,\
-        "btc_latest_val": btc_latest_val,\
-        "eth_latest_val": eth_latest_val,\
-        "xrp_latest_val": xrp_latest_val,\
-        "xlm_latest_val": xlm_latest_val,\
-        "btc_pct": btc_pct,\
-        "eth_pct": eth_pct,\
-        "xrp_pct": xrp_pct,\
-        "xlm_pct": xlm_pct})
+        # "total_btc": total_btc,\
+        # "total_eth": total_eth,\
+        # "total_xrp": total_xrp,\
+        # "total_xlm": total_xlm,\
+        "total_investment_amts": total_investment_amts,\
+        # "btc_latest_val": btc_latest_val,\
+        # "eth_latest_val": eth_latest_val,\
+        # "xrp_latest_val": xrp_latest_val,\
+        # "xlm_latest_val": xlm_latest_val,\
+        "latest_prices_arr": latest_prices_arr,\
+        # "btc_pct": btc_pct,\
+        # "eth_pct": eth_pct,\
+        # "xrp_pct": xrp_pct,\
+        # "xlm_pct": xlm_pct
+        "coin_pcts_array": coin_pcts_array,\
+        })
 
 def embed_tweet(request, portfolio_id):
     portfolio = Portfolio.objects.get(pk=portfolio_id)

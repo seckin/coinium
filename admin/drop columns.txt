@@ -1,4 +1,11 @@
-ABT  
+ALTER TABLE app_investment ADD COLUMN btc_amt INTEGER;
+ALTER TABLE app_investment ADD COLUMN eth_amt INTEGER;
+ALTER TABLE app_investment ADD COLUMN xrp_amt INTEGER;
+ALTER TABLE app_investment ADD COLUMN xlm_amt INTEGER;
+
+ALTER TABLE app_investment ADD last_name VARCHAR(50);
+
+ALTER TABLE app_investment DROP COLUMN ABT_amt;
 ALTER TABLE app_investment DROP COLUMN ABYSS_amt;
 ALTER TABLE app_investment DROP COLUMN ABY_amt;
 ALTER TABLE app_investment DROP COLUMN ACAT_amt;
