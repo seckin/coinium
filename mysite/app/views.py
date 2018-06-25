@@ -15,6 +15,7 @@ from django.core.files.storage import FileSystemStorage
 
 from background_task import background
 from accounts.models import Investor, Document
+from silk.profiling.profiler import silk_profile
 from .models import Choice, Question, Portfolio, Investment, EmbeddedTweet, PricingData
 from .forms import PortfolioForm
 from .utils import get_pairs_and_pcts, get_investment_array, get_all_pairs, get_latest_prices_arr
@@ -2123,6 +2124,7 @@ group by created_at div 1000;"""
             connection.close()
     return JsonResponse({'error': 'Unsupported method'})
 
+@silk_profile(name='View Profile')
 def profile(request, user_id):
     user = User.objects.get(pk=user_id)
     investments = Investment.objects.filter(owner=user)

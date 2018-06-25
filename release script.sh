@@ -12,6 +12,7 @@ pip3 install mysqlclient
 pip3 install pymysql
 pip3 install pyquery
 pip3 install django-background-tasks
+pip3 install django-silk
 cd ~
 
 rm -rf ~/coinium
