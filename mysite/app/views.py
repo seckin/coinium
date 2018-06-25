@@ -73,6 +73,7 @@ def portfolio(request, pk):
             #pairs = ['XXBTZUSD', 'XETHZUSD', 'XXRPZUSD']
             (pairs, pair_pcts) = get_pairs_and_pcts(pk)
             spreads_for_pair = dict()
+            print("pairs", pairs)
             for i in range(len(pairs)):
                 pair = pairs[i]
                 pair_pct = pair_pcts[i]
@@ -83,7 +84,7 @@ def portfolio(request, pk):
                     spreads = cursor.fetchall()
                     spreads_for_pair[pair] = spreads
                     # print("spreads", spreads)
-                    if not spreads:
+                    if not len(spreads):
                         spreads = [{'shorthand':pair, 'price': 0}]
                     if spreads[0]['shorthand'] == 'BTC':
                         BTC_latest_val = spreads[0]['price']
@@ -1984,6 +1985,10 @@ def portfolio(request, pk):
         tweet_embedded = True
 
     embedded_tweets = EmbeddedTweet.objects.filter(portfolio=portfolio)
+    print("BTC_latest_val", BTC_latest_val)
+    print("ETH_latest_val", ETH_latest_val)
+    print("XRP_latest_val", XRP_latest_val)
+    print("EOS_latest_val", EOS_latest_val)
 
     return render(request, 'app/portfolio.html', {'all_portfolios': all_portfolios, \
         'pk': pk,\
