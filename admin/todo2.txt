@@ -51,25 +51,31 @@ OK sag alttaki grafik kullanicinin yaptigi tum investmentlari gosterecek
 
 1) slide'i ayakkabiciyla paylas feedback iste
 
-2) jack'e sor slide'i paylasabilir miyim seninle diye
+OK 2) jack'e sor slide'i paylasabilir miyim seninle diye
 
-3) aykut'a sor seninle paylasabilir miyim
+OK 3) aykut'a sor seninle paylasabilir miyim
 
-4) indiehackers'a kisa bi halini koy medium article'inin ve feedback iste
+OK 4) indiehackers'a kisa bi halini koy medium article'inin ve feedback iste
 
 5) on portfolio page: you invested $1000 to this portfolio
 
-6) gecmis coin pricing datasini batch halinde cek, db'ye koy, 20-30 coin icin (kraken'de ne varsa)
+OK 6) gecmis coin pricing datasini batch halinde cek, db'ye koy, 20-30 coin icin (kraken'de ne varsa)
 
-7) coin pricing datasini canli olarak cek 20-30 coin icin
+OK 7) coin pricing datasini canli olarak cek 20-30 coin icin
 
-8) profilde foto ekleme ozelligi
+OK 8) profilde foto ekleme ozelligi
 
-9) activation emaili yerine newchip'in emaili gibi bir email at
+OK 9) activation emaili yerine newchip'in emaili gibi bir email at
 
 10) otomatik portfolyo generate edip son 1 ay performanslarina bakmak, iyi olanlari sitede gostermek (ya da direkt iyi olacaklari el ile generate etmek)
 
+OK 11) 10bin dolarin simulasyon oldugunu daha belirgin yapin
+
+media klasorunu kalici bir yerden serve et
+
 coinmarketcap'teki tum coinlerin paper trade edilmesini saglamak
+
+portfolyolarin performanslarini surekli olarak hesaplayip persist etmek ve sol ustteki grafikte gostermek gerek. anlik total degeri hesaplayacak duz bi sekilde (yeni gelen yatirimlarla arada kalan mesafe gercek performansi gosterecek)
 
 feedback:
     I feel like it's missing some social proof though. I want to see who some of these "rockstar investors" are.
@@ -80,7 +86,7 @@ feedback:
 
     your "teams" link doesn't work
 
-10bin dolarin simulasyon oldugunu daha belirgin yapin
+
 
 sloganlarda fazla sanki scammer görüntüsü çizmemeye çalışmakta fayda var mesela hani en süper managerlar gelicek size portfolyo hazırlıycak yazınca altında bi isim misim ya da bişey görmezse birisi scam segisine kapılır
 
@@ -111,8 +117,6 @@ profil detay:
             - UPDATE: her portfolyo icin bu graph'tan bi tane olsun. portfolyonun basladigi andan itibaren yuzde olarak performansini gostersin. gri'ler de o portfolyoya yapilan yatirimi gostersin. gri cizgiyi ayri bir chart'ta goster mavinin hemen altinda
             - UPDATE: kendi olusturdugu portfolyolar yukarida gosterilcek ve arka plani yesil olacak. digerlerinin portfolyolarina yaptigi yatirimlarda arka plan beyaz olacak. portfolyolarin kimin tarafindan olusturuldugu title'in icinde yazacak (portfolio by seckin) seklinde
             - UPDATE: Ayrica "overall investment performance" diye bi grafik kullanicinin yatirdigi tum paralarin performansini gosterecek. ana sayfadaki grafik gibi olacak bu; dakika cozunurlugunde olacak ve o grafik template'i kullanilacak
-
-
 
 zero to one'i shaun'a gotur
 
