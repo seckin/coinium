@@ -2045,6 +2045,7 @@ def create_investment(request, portfolio_id):
 def newportfolio(request):
     success = 0
     portfolio = None
+    total_not_100pct = False
     if request.method == 'POST':
         form = PortfolioForm(request.POST)
         if form.is_valid():
@@ -2052,9 +2053,11 @@ def newportfolio(request):
             portfolio.owner = request.user
             portfolio.save()
             success = 1
+        else:
+            total_not_100pct = True
     else:
         form = PortfolioForm()
-    return render(request, 'app/new_portfolio.html', {'form': form, 'success': success, 'portfolio': portfolio})
+    return render(request, 'app/new_portfolio.html', {'form': form, 'success': success, 'portfolio': portfolio, 'total_not_100pct': total_not_100pct})
 
 def portfolio_perf(request, portfolio_id):
     portfolio = Portfolio.objects.get(pk = portfolio_id)

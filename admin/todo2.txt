@@ -41,6 +41,25 @@ OK things to change in the pitch deck
 
 OK sag alttaki grafik kullanicinin yaptigi tum investmentlari gosterecek
 
+OK 2) jack'e sor slide'i paylasabilir miyim seninle diye
+
+OK 3) aykut'a sor seninle paylasabilir miyim
+
+OK 4) indiehackers'a kisa bi halini koy medium article'inin ve feedback iste
+
+OK 6) gecmis coin pricing datasini batch halinde cek, db'ye koy, 20-30 coin icin (kraken'de ne varsa)
+
+OK 7) coin pricing datasini canli olarak cek 20-30 coin icin
+
+OK 8) profilde foto ekleme ozelligi
+
+OK 9) activation emaili yerine newchip'in emaili gibi bir email at
+
+OK 11) 10bin dolarin simulasyon oldugunu daha belirgin yapin
+
+OK coinmarketcap'teki tum coinlerin paper trade edilmesini saglamak
+
+
 ----------------------------------------
 ----------------------------------------
 
@@ -51,29 +70,15 @@ OK sag alttaki grafik kullanicinin yaptigi tum investmentlari gosterecek
 
 1) slide'i ayakkabiciyla paylas feedback iste
 
-OK 2) jack'e sor slide'i paylasabilir miyim seninle diye
-
-OK 3) aykut'a sor seninle paylasabilir miyim
-
-OK 4) indiehackers'a kisa bi halini koy medium article'inin ve feedback iste
-
 5) on portfolio page: you invested $1000 to this portfolio
-
-OK 6) gecmis coin pricing datasini batch halinde cek, db'ye koy, 20-30 coin icin (kraken'de ne varsa)
-
-OK 7) coin pricing datasini canli olarak cek 20-30 coin icin
-
-OK 8) profilde foto ekleme ozelligi
-
-OK 9) activation emaili yerine newchip'in emaili gibi bir email at
 
 10) otomatik portfolyo generate edip son 1 ay performanslarina bakmak, iyi olanlari sitede gostermek (ya da direkt iyi olacaklari el ile generate etmek)
 
-OK 11) 10bin dolarin simulasyon oldugunu daha belirgin yapin
+12) %100'den fazla veya az olamasin portfolio'lar
 
 media klasorunu kalici bir yerden serve et
 
-coinmarketcap'teki tum coinlerin paper trade edilmesini saglamak
+
 
 portfolyolarin performanslarini surekli olarak hesaplayip persist etmek ve sol ustteki grafikte gostermek gerek. anlik total degeri hesaplayacak duz bi sekilde (yeni gelen yatirimlarla arada kalan mesafe gercek performansi gosterecek)
 

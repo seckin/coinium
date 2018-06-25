@@ -35,6 +35,11 @@
     <strong>Success!</strong> Saved portfolio: <a href="{% url 'app:portfolio' portfolio.id %}">{{portfolio}}</a>
   </div>
   {% endif %}
+  {% if total_not_100pct %}
+  <div class="alert alert-danger" style="position: fixed; top: 0px;">
+    <strong>Error!</strong> Total not equal to 100 percent</a>
+  </div>
+  {% endif %}
 
   <div style="clear:both;">
     <form method="post" style="height: 600px;">
