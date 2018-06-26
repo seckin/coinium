@@ -54,6 +54,9 @@
     .nav-link {
         padding: .25rem 1rem;
     }
+    .sticky-top {
+        box-shadow: inset 0px -2px 2px -2px rgba(0, 0, 0, .5);
+    }
     </style>
 
     <!-- Custom styles for this template -->
@@ -101,9 +104,18 @@
     <script src="{% static 'app/exporting.js' %}"></script>
     <script src="{% static 'app/export-data.js' %}"></script>
 
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img width="32" height="32" src="{% static 'app/images/coinium.png' %}" /> <div class="brand">Coinium</div></a>
-        <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <a class="navbar-brand col-sm-3 col-md-2" href="#"><img width="32" height="32" src="{% static 'app/images/coinium.png' %}" /> <div class="brand">Coinium</div></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/app/coins">Coins Data</a>
+          </li>
+        </ul>
         {% if investment_created %}
         <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
             <strong>Success!</strong> Investment created!
@@ -136,17 +148,22 @@
             </button>
         </div>
         {% endif %}
-
-        <ul class="navbar-nav px-3">
+        <div class="form-inline my-2 my-lg-0">
+            <!-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a> -->
             <div class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
+                <a class="btn dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
 
                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute">
                     <a class="dropdown-item" href="{% url 'app:profile' user.id %}">Profile</a>
                     <a class="dropdown-item" href="/logout/">Sign out</a>
                 </div>
             </div>
-        </ul>
+          <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+        </div>
+      </div>
     </nav>
 
     <div class="container-fluid">
