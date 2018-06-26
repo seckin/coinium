@@ -74,25 +74,43 @@
     .navbar-brand {
       margin: 10px 0px;
     }
+    .sticky-top {
+      box-shadow: inset 0px -2px 2px -2px rgba(0, 0, 0, .5);
+    }
     </style>
   </head>
 
 {% block content %}
-<body class="text-center " style="">
-  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img width="32" height="32" src="{% static 'app/images/coinium.png' %}" /> <div class="brand">Coinium</div></a>
-        <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+<body class="" style="">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <a class="navbar-brand col-sm-3 col-md-2" href="#"><img width="32" height="32" src="{% static 'app/images/coinium.png' %}" /> <div class="brand">Coinium</div></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <ul class="navbar-nav px-3">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/app/coins">Coins</a>
+          </li>
+        </ul>
+
+        <div class="my-2 my-lg-0">
+            <!-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a> -->
             <div class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
+                <a class="btn dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
 
                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute">
                     <a class="dropdown-item" href="{% url 'app:profile' user.id %}">Profile</a>
                     <a class="dropdown-item" href="/logout/">Sign out</a>
                 </div>
             </div>
-        </ul>
+          <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+        </div>
+      </div>
     </nav>
 
     <div style="max-width:1250px!important; margin: 0 auto; margin-top: 50px;margin-bottom:100px;">

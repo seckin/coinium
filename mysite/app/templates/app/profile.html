@@ -100,6 +100,9 @@
     .changeAvatarHelp {
         margin-top: 20px;
     }
+    .sticky-top {
+      box-shadow: inset 0px -2px 2px -2px rgba(0, 0, 0, .5);
+    }
 
     </style>
     <script type="text/javascript" charset="UTF-8" src="{% static 'app/profile/common.js' %}"></script>
@@ -121,59 +124,48 @@
 
 
     <div class="wrapper">
-        <!-- HEAD NAV -->
-        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-            <a href="/app/portfolio/1">
-                <div class="navbar-brand col-sm-3 col-md-2 mr-0" 
-                 style="display:inline-block; float:left;width: 240px;
-                    padding-top: .75rem;
-                    padding-bottom: .75rem;
-                    font-size: 1rem;
-                    background-color: rgba(0, 0, 0, .25);
-                    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
-                    height:63px;
-                    padding:15px;">
-                    <img width="32" height="32" src="/static/app/images/coinium.png"/> <div class="brand">Coinium</div>
-                </div>
-            </a>
-            {% if uploaded_file_url %}
-            <!-- <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
-                Profile picture updated.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div> -->
-            {% endif %}
-            <ul class="navbar-nav px-3" style="float:right;">
-                <div class="dropdown show" style="padding: 10px 0px 0px 0px">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request_user.username}}</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <a class="navbar-brand col-sm-3 col-md-2" href="#"><img width="32" height="32" src="{% static 'app/images/coinium.png' %}" /> <div class="brand">Coinium</div></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute;right: 0px;left: unset;    min-width: 7rem;">
-                        <a class="dropdown-item" href="{% url 'app:profile' user.id %}">Profile</a>
-                        <a class="dropdown-item" href="/logout/">Sign out</a>
-                    </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/app/coins">Coins</a>
+          </li>
+        </ul>
+
+        {% if uploaded_file_url %}
+        <!-- <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
+            Profile picture updated.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div> -->
+        {% endif %}
+
+        {% if user.id == request_user.id %}
+        <div class="nav-item">
+            <a class="nav-link edit-profile" href="#"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color: white;font-size: 12px;"></i>Edit profile</a>
+        </div>
+        {% endif %}
+
+        <div class="my-2 my-lg-0">
+            <div class="dropdown show">
+                <a class="btn dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request_user.username}}</a>
+
+                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute">
+                    <a class="dropdown-item" href="{% url 'app:profile' request_user.id %}">Profile</a>
+                    <a class="dropdown-item" href="/logout/">Sign out</a>
                 </div>
-            </ul>
-            {% if user.id == request_user.id %}
-            <div style="display: inline-block;
-                        float: right;
-                        margin-right: 5px;
-                        margin-top: 20px;">
-                <a href="#" class="edit-profile">
-                    <span style="color: white;font-size: 12px;">Edit profile</span>
-                    <i class="fa fa-pencil-square-o" aria-hidden="true" style="color: white;
-                                                                           font-size: 12px;"></i>
-                </a>
             </div>
-            {% endif %}
+        </div>
+      </div>
+    </nav>
 
-        </nav>
-        <!-- END: HEAD NAV -->
-
-        <!-- BODY -->
         <div class="body container">
-
-
             <section class="content" style="min-height: 708px;">
 
                 <!-- <ol class="breadcrumb">
