@@ -59,25 +59,31 @@ OK 11) 10bin dolarin simulasyon oldugunu daha belirgin yapin
 
 OK coinmarketcap'teki tum coinlerin paper trade edilmesini saglamak
 
+OK profil detay:
+    sol ust:
+        - olusturdugu portfolyolara gelen tum investment'lar gri olarak gosteriliyor
+        - olusturdugu portfolyolarin aylik ortalama fiyatlari uzerinden %100 uzerinden (portfolyo olusturuldugu andan baslayarak) yuzde gosterilcek. portfolyolara toplam ne kadar yatirim yapildiysa ayin sonunda hesaba katilacak agirlikli ortalama bunu hesaba katacak.
+            - UPDATE: her portfolyo icin bu graph'tan bi tane olsun. portfolyonun basladigi andan itibaren yuzde olarak performansini gostersin. gri'ler de o portfolyoya yapilan yatirimi gostersin. gri cizgiyi ayri bir chart'ta goster mavinin hemen altinda
+            - UPDATE: kendi olusturdugu portfolyolar yukarida gosterilcek ve arka plani yesil olacak. digerlerinin portfolyolarina yaptigi yatirimlarda arka plan beyaz olacak. portfolyolarin kimin tarafindan olusturuldugu title'in icinde yazacak (portfolio by seckin) seklinde
+            - UPDATE: Ayrica "overall investment performance" diye bi grafik kullanicinin yatirdigi tum paralarin performansini gosterecek. ana sayfadaki grafik gibi olacak bu; dakika cozunurlugunde olacak ve o grafik template'i kullanilacak
+
+OK 12) %100'den fazla veya az olamasin portfolio'lar
+
+OK 1) slide'i ayakkabiciyla paylas feedback iste
 
 ----------------------------------------
 ----------------------------------------
 
 
 
-
-
-
-1) slide'i ayakkabiciyla paylas feedback iste
 
 5) on portfolio page: you invested $1000 to this portfolio
 
 10) otomatik portfolyo generate edip son 1 ay performanslarina bakmak, iyi olanlari sitede gostermek (ya da direkt iyi olacaklari el ile generate etmek)
 
-12) %100'den fazla veya az olamasin portfolio'lar
-
 media klasorunu kalici bir yerden serve et
 
+OK logged in ise homepage pv sayfasina redirect etsin
 
 
 portfolyolarin performanslarini surekli olarak hesaplayip persist etmek ve sol ustteki grafikte gostermek gerek. anlik total degeri hesaplayacak duz bi sekilde (yeni gelen yatirimlarla arada kalan mesafe gercek performansi gosterecek)
@@ -98,9 +104,6 @@ sloganlarda fazla sanki scammer görüntüsü çizmemeye çalışmakta fayda var
 site giren insanda "size bi sürü para kazandırıcaz" izleniminden öte "size şöyle şöyle portfolyo managing imkanları sunuyoruz" izlenimi uyandırsın böylece giren adam kazanıp kaybetenin kendi elinde olduğu izlenimiyle girsin
 
 
-put a follow button on the profile page
-
-
 portfolio sayfasindaki portfolio grafigi dinamik hesaplanacak (portfolyo olusturuldugu tarihten itibaren)
 
 soldaki portfolyo renkleri degiscek
@@ -114,14 +117,6 @@ Nic'e, projeden bahset, coinbase venture fund'i ile ilgileniyoruz
 
 "Research the history of your market. It will help you identify old & long-standing assumptions, challenging obstacles you too will face, and critical features it took old players a decade to realize to build. I failed to do this until we were 6 years in & it hurt us."
     - money management business'in gecmisini arastir / insanlara sor
-
-profil detay:
-    sol ust:
-        - olusturdugu portfolyolara gelen tum investment'lar gri olarak gosteriliyor
-        - olusturdugu portfolyolarin aylik ortalama fiyatlari uzerinden %100 uzerinden (portfolyo olusturuldugu andan baslayarak) yuzde gosterilcek. portfolyolara toplam ne kadar yatirim yapildiysa ayin sonunda hesaba katilacak agirlikli ortalama bunu hesaba katacak.
-            - UPDATE: her portfolyo icin bu graph'tan bi tane olsun. portfolyonun basladigi andan itibaren yuzde olarak performansini gostersin. gri'ler de o portfolyoya yapilan yatirimi gostersin. gri cizgiyi ayri bir chart'ta goster mavinin hemen altinda
-            - UPDATE: kendi olusturdugu portfolyolar yukarida gosterilcek ve arka plani yesil olacak. digerlerinin portfolyolarina yaptigi yatirimlarda arka plan beyaz olacak. portfolyolarin kimin tarafindan olusturuldugu title'in icinde yazacak (portfolio by seckin) seklinde
-            - UPDATE: Ayrica "overall investment performance" diye bi grafik kullanicinin yatirdigi tum paralarin performansini gosterecek. ana sayfadaki grafik gibi olacak bu; dakika cozunurlugunde olacak ve o grafik template'i kullanilacak
 
 zero to one'i shaun'a gotur
 
