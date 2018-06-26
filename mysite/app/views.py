@@ -51,6 +51,28 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'app/results.html'
 
+def coins(request):
+    all_coins = []
+    connection = pymysql.connect(host='localhost',
+                                 user='root',
+                                 password='01990199',#settings.SPREADS_DB_PASSWD,
+                                 db='coiniumweb',#settings.SPREADS_DB_NAME,
+                                 charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    try:
+        with connection.cursor() as cursor:
+            sql = "select shorthand, max(created_at) time from app_pricingdata group by shorthand;"
+            cursor.execute(sql, ())
+            shorthands = cursor.fetchall()
+            for i in range(len(shorthands)):
+                coin = PricingData.objects.filter(shorthand=shorthands[i]["shorthand"], created_at = shorthands[i]["time"])
+                # print("coin", coin)
+                all_coins.append(coin[0])
+    finally:
+        connection.close()
+
+    return render(request, 'app/coins.html', {"all_coins": all_coins})
+
 def portfolio(request, pk):
     user = request.user
     all_portfolios = Portfolio.objects.all()
