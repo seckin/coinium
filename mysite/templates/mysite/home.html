@@ -52,7 +52,36 @@
           font-size: 2.5rem;
         }
       }
+      .sticky-top {
+        box-shadow: inset 0px -2px 2px -2px rgba(0, 0, 0, .5);
+      }
+      .brand {
+        width: 100px;
+        display: inline;
+      }
+      .nav-link:hover {
+    color: rgba(0,0,0,.7);
+}
+.nav-link {
+    padding-right: .5rem;
+    padding-left: .5rem;
+}
+.nav-link:focus, .nav-link:hover {
+    text-decoration: none;
+}
+.nav-link {
+    display: block;
+    padding: .5rem 1rem;
+}
+.nav-link {
+    color: rgba(0,0,0,.5);
+    list-style-type: none;
+}
+.nav-item {
+    list-style-type: none;
+}
     </style>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121123802-1"></script>
     <script>
@@ -66,12 +95,39 @@
 
   <body>
 
-    <nav class="site-header sticky-top py-1">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <a class="navbar-brand col-sm-3 col-md-2" href="#"><img width="32" height="32" src="{% static 'app/images/coinium.png' %}" /> <div class="brand">Coinium</div></a>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/app/coins">Coins</a>
+          </li>
+        </ul>
+
+        <div class="form-inline my-2 my-lg-0">
+          <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+          <li class="nav-item">
+              <a class="nav-link" href="/login">Sign in</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/accounts/signup">Sign up</a>
+            </li>
+        </div>
+      </div>
+    </nav>
+
+    <!-- <nav class="site-header sticky-top py-1">
       <div class="d-flex flex-column flex-md-row justify-content-between" style="padding: 5px 15px;">
         <div>
         <img  src="{% static 'app/images/coinium.png' %}" alt="" width="48" height="48">
         <div style="display:inline-block;color:white;margin-top:2px;">Coinium</div>
-        </div>
+        </div> -->
         <!-- <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
         <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
         <a class="py-2 d-none d-md-inline-block" href="#">Features</a> -->
@@ -79,12 +135,12 @@
 
         <!-- <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a> -->
         <!-- <a class="py-2 d-none d-md-inline-block" href="#">Cart</a> -->
-        <div style="float:right;">
+        <!-- <div style="float:right;">
           <a class="py-2 d-none d-md-inline-block" style="margin-right:20px;" href="/login">Login</a>
           <a class="py-2 d-none d-md-inline-block" href="/accounts/signup">Sign up</a>
         </div>
       </div>
-    </nav>
+    </nav> -->
 
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light" style="margin: 0 !important;">
       <div class="col-md-5 p-lg-5 mx-auto my-5">
