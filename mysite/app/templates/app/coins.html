@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <!-- saved from url=(0051)https://getbootstrap.com/docs/4.0/examples/sign-in/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -106,6 +107,24 @@
     .nav-item {
       list-style-type: none;
     }
+    .blue {
+      color: #4089E3;
+    }
+    .red {
+      color: #d94040;
+    }
+    .green {
+      color: #009e73;;
+    }
+    .tar {
+      text-align: right;
+    }
+    .fw600 {
+      font-weight: 600;
+    }
+    .fw300 {
+      font-weight: 300;
+    }
     </style>
   </head>
 
@@ -174,15 +193,15 @@
         <tbody>
             {% for coin in all_coins %}
             <tr>
-                <td>{{coin.shorthand}}</td>
-                <td>{{coin.name}}</td>
-                <td>${{coin.mkt_cap|floatformat}}</td>
-                <td>${{coin.price|floatformat}}</td>
-                <td>{{coin.circ_supply}}</td>
-                <td>${{coin.vol_24h_in_usd|floatformat}}</td>
-                <td style="width:70px;">{{coin.pct_1h|floatformat}}</td>
-                <td style="width:70px;">{{coin.pct_24h|floatformat}}</td>
-                <td style="width:70px;">{{coin.pct_7d|floatformat}}</td>
+                <td class="fw600">{{coin.shorthand}}</td>
+                <td class="fw300">{{coin.name}}</td>
+                <td class="blue tar">${{coin.mkt_cap|floatformat|intcomma}}</td>
+                <td class="blue tar">${{coin.price|floatformat|intcomma}}</td>
+                <td class="blue tar">{{coin.circ_supply|intcomma}}</td>
+                <td class="blue tar">${{coin.vol_24h_in_usd|floatformat|intcomma}}</td>
+                <td class="tar {% if coin.pct_1h < 0 %}red{% endif %}{% if coin.pct_1h > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_1h|floatformat}}%</td>
+                <td class="tar {% if coin.pct_24h < 0 %}red{% endif %}{% if coin.pct_24h > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_24h|floatformat}}%</td>
+                <td class="tar {% if coin.pct_7d < 0 %}red{% endif %}{% if coin.pct_7d > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_7d|floatformat}}%</td>
             </tr>
             {% endfor %}
         </tbody>
