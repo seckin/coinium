@@ -19,6 +19,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{% static 'app/bootstrap.min.js' %}"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -33,49 +34,76 @@
     </style>
     <style>
     .img-avatar {
-        max-width: 40px;
-        display: inline-block;
-        height: auto;
-        padding: 1px;
-        line-height: 1.428571429;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 50%;
-        -webkit-transition: all 0.2s ease-in-out;
-        transition: all 0.2s ease-in-out;
+      max-width: 40px;
+      display: inline-block;
+      height: auto;
+      padding: 1px;
+      line-height: 1.428571429;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      -webkit-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
     }
     .navbar-default.navbar-main .navbar-nav > li > a,
     .navbar-default.navbar-main .navbar-nav > li > a:hover,
     .navbar-default.navbar-main .navbar-nav > li > a:focus {
-        color: #393939;
+      color: #393939;
     }
     .dropdown-menu {
-        width: 120px !important;
-        min-width: 100px !important;
-        right: 0px;
-        left: unset !important;
+      width: 120px !important;
+      min-width: 100px !important;
+      right: 0px;
+      left: unset !important;
     }
     .dropdown-item {
-        padding: .25rem 1.0rem;
+      padding: .25rem 1.0rem;
     }
     .navbar-brand {
-        color: #e2e2e2;
+      color: #e2e2e2;
     }
     .brand {
-        padding-top: 3px;
-        font-size: 21px;
-        position: absolute;
-        display: inline;
-        padding-left: 5px;
+      padding-top: 3px;
+      font-size: 21px;
+      position: absolute;
+      display: inline;
+      padding-left: 5px;
     }
     .nav-link {
-        padding: .25rem 1rem;
+      padding: .25rem 1rem;
     }
     .navbar-brand {
       margin: 10px 0px;
     }
     .sticky-top {
       box-shadow: inset 0px -2px 2px -2px rgba(0, 0, 0, .5);
+    }
+    @media (max-width: 1000px) {
+      .coins-link {
+        margin-left: 18px;
+        margin-bottom: -10px;
+      }
+      .form-inline {
+        display: block;
+      }
+    }
+    .nav-link {
+      padding-right: .5rem;
+      padding-left: .5rem;
+    }
+    .nav-link:focus, .nav-link:hover {
+      text-decoration: none;
+    }
+    .nav-link {
+      display: block;
+      padding: .5rem 1rem;
+    }
+    .nav-link {
+      color: rgba(0,0,0,.5);
+      list-style-type: none;
+    }
+    .nav-item {
+      list-style-type: none;
     }
     </style>
   </head>
@@ -91,7 +119,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/app/coins">Coins</a>
+            <a class="nav-link coins-link active" href="/app/coins">Coins</a>
           </li>
         </ul>
 
@@ -110,6 +138,17 @@
             </div>
           <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+        </div>
+        {% endif %}
+        {% if not request.user.is_authenticated %}
+        <div class="form-inline my-2 my-lg-0">
+          <li class="nav-item">
+              <a class="nav-link" href="/login">Sign in</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/accounts/signup">Sign up</a>
+            </li>
         </div>
         {% endif %}
       </div>
