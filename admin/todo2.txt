@@ -88,16 +88,22 @@ mobilde signin ve signup gorunsun
 
 profil bootstrap 4'e gececek
 
+crontab'da ip'yi girdim, domain aktarilinca tekrar coinium.app yapilacak. http de https yapilacak.
+
 about page yapilcak
 
 team page yapilcak
 
+portfolio'lardan para withdraw etme ozelligi yapilcak
+
+para withdraw ederken kar'in %10'u portfolyoyu olusturan kullaniciya aktarilacak
+
+portfolyolari modify etme ozelligi
 
 
+on portfolio page: you invested $1000 to this portfolio
 
-5) on portfolio page: you invested $1000 to this portfolio
-
-10) otomatik portfolyo generate edip son 1 ay performanslarina bakmak, iyi olanlari sitede gostermek (ya da direkt iyi olacaklari el ile generate etmek)
+otomatik portfolyo generate edip son 1 ay performanslarina bakmak, iyi olanlari sitede gostermek (ya da direkt iyi olacaklari el ile generate etmek)
 
 media klasorunu kalici bir yerden serve et
 

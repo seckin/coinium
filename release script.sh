@@ -13,6 +13,7 @@ pip3 install pymysql
 pip3 install pyquery
 pip3 install django-background-tasks
 pip3 install django-silk
+pip3 install gunicorn psycopg2
 cd ~
 
 rm -rf ~/coinium
@@ -28,7 +29,7 @@ cd ~/mysite
 # ~/mysite/manage.py createsuperuser
 
 
-printf '\n\nALLOWED_HOSTS = ["104.131.139.250", "coinium.app"]' >> ~/mysite/mysite/settings.py
+printf '\n\nALLOWED_HOSTS = ["104.131.139.250", "95.216.10.109", "coinium.app"]' >> ~/mysite/mysite/settings.py
 printf "\n\nSTATIC_ROOT = os.path.join(BASE_DIR, 'static/')" >> ~/mysite/mysite/settings.py
 printf '\n\nSPREADS_DB_NAME = "coinim"' >> ~/mysite/mysite/settings.py
 

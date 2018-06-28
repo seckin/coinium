@@ -125,12 +125,12 @@
         </div>
         {% endif %}
         {% if just_signed_up %}
-        <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
+        <!-- <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
             Please confirm your email address to complete the registration
             <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
                 <span aria-hidden="true">&times;</span>
             </button>
-        </div>
+        </div> -->
         {% endif %}
         {% if not_enough_usd %}
         <div class="alert alert-danger" style="top: 0px;margin-bottom:0px;">
@@ -153,7 +153,7 @@
               Dropdown
             </a> -->
             <div class="dropdown show">
-                <a class="btn dropdown-toggle" href="https://example.com" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
+                <a class="btn dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
 
                 <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute">
                     <a class="dropdown-item" href="{% url 'app:profile' user.id %}">Profile</a>
