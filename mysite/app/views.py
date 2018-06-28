@@ -64,10 +64,11 @@ def coins(request):
             sql = "select shorthand, max(created_at) time from app_pricingdata group by shorthand;"
             cursor.execute(sql, ())
             shorthands = cursor.fetchall()
+            sql = "select * from app_pricingdata where "
             for i in range(len(shorthands)):
-                coin = PricingData.objects.filter(shorthand=shorthands[i]["shorthand"], created_at = shorthands[i]["time"])
-                # print("coin", coin)
-                all_coins.append(coin[0])
+                sql += "(shorthand='" + shorthands[i]["shorthand"] + "' and created_at = '" + str(shorthands[i]["time"]) + "') or "
+            sql = sql[:-3]
+            all_coins = PricingData.objects.raw(sql)
     finally:
         connection.close()
 
