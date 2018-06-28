@@ -2824,7 +2824,7 @@ def get_all_pairs(portfolio_ids):
             # p = Portfolio.objects.get(pk = portfolio.id)
             # print("p.BTC_pct", p.BTC_pct)
             (pairs, _) = get_pairs_and_pcts(portfolio_id)
-            print("portfolio_id", portfolio_id, "pairs", pairs)
+            # print("portfolio_id", portfolio_id, "pairs", pairs)
             # print("inside pairs", pairs)
             all_pairs = all_pairs.union(set(pairs))
     return list(all_pairs)
@@ -5656,7 +5656,7 @@ def get_latest_prices_arr(portfolio_ids):
         with connection.cursor() as cursor:
             # print("portfolio_ids", portfolio_ids)
             pairs = get_all_pairs(portfolio_ids)
-            print("pairs", pairs)
+            #print("pairs", pairs)
             spreads_for_pair = dict()
             for i in range(len(pairs)):
                 pair = pairs[i]
@@ -5665,13 +5665,13 @@ def get_latest_prices_arr(portfolio_ids):
                 cursor.execute(sql, (pair,))
                 spreads = cursor.fetchall()
                 spreads_for_pair[pair] = spreads
-                print("xxx pair", pair)
+                #print("xxx pair", pair)
                 if len(spreads):
                     latest_prices_arr[pair_reverse_idx[pair]] = float(spreads[0]["price"])
                 else:
                     latest_prices_arr[pair_reverse_idx[pair]] = 0
                 if pair == "WICC":
-                    print("wicc float(spreads[0]['price'])", float(spreads[0]["price"]))
+                    #print("wicc float(spreads[0]['price'])", float(spreads[0]["price"]))
                 #print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
 
     finally:
