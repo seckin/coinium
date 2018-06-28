@@ -145,16 +145,6 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="profile-ddown my-2 my-lg-0">
-            <div class="dropdown show">
-                <a class="btn dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request_user.username}}</a>
-
-                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute">
-                    <!-- <a class="dropdown-item" href="{% url 'app:profile' request_user.id %}">Profile</a> -->
-                    <a class="dropdown-item" href="/logout/">Sign out</a>
-                </div>
-            </div>
-        </div>
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link coins-link" href="/app/coins">Coins</a>
@@ -176,7 +166,16 @@
         </div>
         {% endif %}
 
-        
+        <!-- <div class="profile-ddown my-2 my-lg-0">
+            <div class="dropdown show">
+                <a class="btn dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request_user.username}}</a>
+
+                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuLink" style="position:absolute">
+                    <a class="dropdown-item" href="{% url 'app:profile' request_user.id %}">Profile</a>
+                    <a class="dropdown-item" href="/logout/">Sign out</a>
+                </div>
+            </div>
+        </div> -->
       </div>
     </nav>
 
