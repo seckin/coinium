@@ -5665,13 +5665,10 @@ def get_latest_prices_arr(portfolio_ids):
                 cursor.execute(sql, (pair,))
                 spreads = cursor.fetchall()
                 spreads_for_pair[pair] = spreads
-                #print("xxx pair", pair)
                 if len(spreads):
                     latest_prices_arr[pair_reverse_idx[pair]] = float(spreads[0]["price"])
                 else:
                     latest_prices_arr[pair_reverse_idx[pair]] = 0
-                if pair == "WICC":
-                    #print("wicc float(spreads[0]['price'])", float(spreads[0]["price"]))
                 #print("for coin ", pair, " found ", len(spreads), " spreads. spreads:", spreads)
 
     finally:
