@@ -1,0 +1,28 @@
+$TTL 86400
+@   IN SOA ns1.first-ns.de. postmaster.robot.first-ns.de. (
+    2018063002   ; serial
+    86400        ; refresh
+    10800        ; retry
+    3600000      ; expire
+    86400 )      ; minimum
+ 
+@                        IN NS      robotns3.second-ns.com.
+@                        IN NS      robotns2.second-ns.de.
+@                        IN NS      ns1.first-ns.de.
+ 
+@                        IN A       95.216.10.109
+mail                     IN A       95.216.10.109
+www                      IN A       95.216.10.109
+@                        IN MX 10   mail
+mg                       IN TXT     "v=spf1" "include:mailgun.org" "~all"
+pic._domainkey.mg        IN TXT     "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDWhUkyT+I0YNs2SlWjH7OLNK4n8TbhXgOnI3lqVDfvIkb82rQ/0IYXqv5QbV18Tn7zRtp+rqYh+eDSFcbHqDMmBpethi2XO7Z5pmmYWG2YLKHhwYkgU9nIBHyemaD05AgP7qSv+gCJKgMxQPDNagrtAaMOpZcx4l6X0r9Th9fUeQIDAQAB"
+    
+email.mg                 IN CNAME   mailgun.org
+mg                       IN MX 10   mxb.mailgun.org
+mg                       IN MX 10   mxa.mailgun.org 
+@                        IN MX  5   alt4.aspmx.l.google.com
+@                        IN MX  5   alt3.aspmx.l.google.com
+@                        IN MX  5   alt2.aspmx.l.google.com
+@                        IN MX  5   alt1.aspmx.l.google.com
+@                        IN MX  1   aspmx.l.google.com
+@                        IN TXT     google-site-verification=DpbHjMqX7Th4V7Ao-Qum8l9kIqGdMkQyfI4X4aF9jJ8
