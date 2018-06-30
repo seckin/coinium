@@ -79,12 +79,25 @@ OK navbarlari beyaz yap
 
 OK logged in ise homepage pv sayfasina redirect etsin
 
+OK homepage'e tekrar signin signup linklerini koy
 
-homepage'e tekrar signin signup linklerini koy
+OK mobilde sign in sign up linkleri gorunsun
+
+OK profilde navbar mobilde calismali
+
+OK portfolyo mobil navbar stil duzeltilcek
+
+OK coins sayfasi stili gelistirilcek
+
+OK mobilde signin ve signup gorunsun home'da
+
+
+
+
+
+make the coins page faster
 
 navbarlardaki stil farklari duzelcek
-
-mobilde signin ve signup gorunsun
 
 profil bootstrap 4'e gececek
 
@@ -99,7 +112,6 @@ portfolio'lardan para withdraw etme ozelligi yapilcak
 para withdraw ederken kar'in %10'u portfolyoyu olusturan kullaniciya aktarilacak
 
 portfolyolari modify etme ozelligi
-
 
 on portfolio page: you invested $1000 to this portfolio
 

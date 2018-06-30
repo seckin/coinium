@@ -1,10 +1,11 @@
 su seckin
 
-echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
-echo "export WORKON_HOME=~/Env" >> ~/.bashrc
-echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
-source ~/.bashrc
+#echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
+#echo "export WORKON_HOME=~/Env" >> ~/.bashrc
+#echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
+#source ~/.bashrc
 
+cd ~
 workon mysite
 pip3 install django
 pip3 install requests
@@ -14,7 +15,7 @@ pip3 install pyquery
 pip3 install django-background-tasks
 pip3 install django-silk
 pip3 install gunicorn psycopg2
-cd ~
+
 
 rm -rf ~/coinium
 rm -rf ~/mysite
