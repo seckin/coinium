@@ -1,111 +1,23 @@
-OK signup stili duzelcek
-OK portfolyo olusturma butonu eklencek sol alta
-OK portfolyo olusturma sayfasi stili duzelcek
-OK server'in ram'ini artir
-OK profil sayfasi olusturulcak - initial version
-NOPE kullanici adini al signup'ta
-OK portfolyolara investment yapma arayuzu yapilcak
-OK mailgun'a cevap atilcak
-OK tweet yazma kutusu eklencek, tweet butonu caliscak
-
-OK investment miktari hesaptan dusulecek
-OK signup sonrasi login edip portfolio/1/'e redirect et
-
-OK portfolyo olusturma sayfasi portfolyonun sayfasina redirect edecek
-
-OK profil tamamlancak
-    OK investment modeli olusturulcak
-    OK sol ust grafik(ler) doldurulcak
-    OK sag alt grafik doldurulcak
-    OK investment objesine dolar miktarini ekle ve bunu profilde sol altta goster
-    OK investment objesine is_approved ekle ve bunu sol altta goster
-    OK kullanici adini dinamik olarak goster
-
-OK account eklencek sag ust koseye
-
-OK sol alt: portfolyolara koydugu tekil investmentlar listeleniyor
-
-OK sag alt:
-    aylik yapilan yatirimlari gostersin - tum portfolyolarina gelen yatirim miktarlari
-
-OK tweet attiginda portfolio linkini eklemeli
-
-OK tweet embed etmenin kolay bi yolu olmali
-    - bunu yapamazsan david'e kardesine sormasi icin soru yazip yolla
-
-OK 'polls' part of the url should be removed
-
-OK write a blog post about how bubbles look similar in graphs and based on the other bubbles' graphs one can invest in CCs
-
-OK things to change in the pitch deck
-
-OK sag alttaki grafik kullanicinin yaptigi tum investmentlari gosterecek
-
-OK 2) jack'e sor slide'i paylasabilir miyim seninle diye
-
-OK 3) aykut'a sor seninle paylasabilir miyim
-
-OK 4) indiehackers'a kisa bi halini koy medium article'inin ve feedback iste
-
-OK 6) gecmis coin pricing datasini batch halinde cek, db'ye koy, 20-30 coin icin (kraken'de ne varsa)
-
-OK 7) coin pricing datasini canli olarak cek 20-30 coin icin
-
-OK 8) profilde foto ekleme ozelligi
-
-OK 9) activation emaili yerine newchip'in emaili gibi bir email at
-
-OK 11) 10bin dolarin simulasyon oldugunu daha belirgin yapin
-
-OK coinmarketcap'teki tum coinlerin paper trade edilmesini saglamak
-
-OK profil detay:
-    sol ust:
-        - olusturdugu portfolyolara gelen tum investment'lar gri olarak gosteriliyor
-        - olusturdugu portfolyolarin aylik ortalama fiyatlari uzerinden %100 uzerinden (portfolyo olusturuldugu andan baslayarak) yuzde gosterilcek. portfolyolara toplam ne kadar yatirim yapildiysa ayin sonunda hesaba katilacak agirlikli ortalama bunu hesaba katacak.
-            - UPDATE: her portfolyo icin bu graph'tan bi tane olsun. portfolyonun basladigi andan itibaren yuzde olarak performansini gostersin. gri'ler de o portfolyoya yapilan yatirimi gostersin. gri cizgiyi ayri bir chart'ta goster mavinin hemen altinda
-            - UPDATE: kendi olusturdugu portfolyolar yukarida gosterilcek ve arka plani yesil olacak. digerlerinin portfolyolarina yaptigi yatirimlarda arka plan beyaz olacak. portfolyolarin kimin tarafindan olusturuldugu title'in icinde yazacak (portfolio by seckin) seklinde
-            - UPDATE: Ayrica "overall investment performance" diye bi grafik kullanicinin yatirdigi tum paralarin performansini gosterecek. ana sayfadaki grafik gibi olacak bu; dakika cozunurlugunde olacak ve o grafik template'i kullanilacak
-
-OK 12) %100'den fazla veya az olamasin portfolio'lar
-
-OK 1) slide'i ayakkabiciyla paylas feedback iste
 
 ----------------------------------------
 ----------------------------------------
 
+OK fix /media/ being destroyed during the release
 
-OK navbarlari beyaz yap
+OK make the coins page faster
 
-OK logged in ise homepage pv sayfasina redirect etsin
+add new fields to profile page
 
-OK homepage'e tekrar signin signup linklerini koy
-
-OK mobilde sign in sign up linkleri gorunsun
-
-OK profilde navbar mobilde calismali
-
-OK portfolyo mobil navbar stil duzeltilcek
-
-OK coins sayfasi stili gelistirilcek
-
-OK mobilde signin ve signup gorunsun home'da
+Add Disclaimer, Privacy and Terms
 
 
 
-
-
-make the coins page faster
 
 navbarlardaki stil farklari duzelcek
 
 profil bootstrap 4'e gececek
 
 crontab'da ip'yi girdim, domain aktarilinca tekrar coinium.app yapilacak. http de https yapilacak.
-
-about page yapilcak
-
-team page yapilcak
 
 portfolio'lardan para withdraw etme ozelligi yapilcak
 
