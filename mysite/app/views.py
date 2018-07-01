@@ -2362,15 +2362,22 @@ def embed_tweet(request, portfolio_id):
     return redirect("/app/portfolio/" + str(portfolio_id))
 
 def simple_upload(request):
-    if request.method == 'POST' and request.FILES['myfile']:
-        myfile = request.FILES['myfile']
-        fs = FileSystemStorage()
-        filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
-        document = Document.objects.create(user=request.user,
-                                document_filename=filename)
-        document.save()
-        request.session["uploaded_file_url"] = uploaded_file_url
+    if request.method == 'POST':
+        if 'myfile' in request.FILES:
+            myfile = request.FILES['myfile']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            uploaded_file_url = fs.url(filename)
+            document = Document.objects.create(user=request.user,
+                                    document_filename=filename)
+            document.save()
+            request.session["uploaded_file_url"] = uploaded_file_url
+
+        request.user.investor.facebook = request.POST.get("facebook")
+        request.user.investor.twitter = request.POST.get("twitter")
+        request.user.investor.linkedin = request.POST.get("linkedin")
+        request.user.investor.website = request.POST.get("website")
+        request.user.investor.save()
         return redirect("/app/profile/" + str(request.user.id))
         # return render(request, 'core/simple_upload.html', {
         #     'uploaded_file_url': uploaded_file_url

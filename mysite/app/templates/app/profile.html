@@ -101,7 +101,14 @@
         margin-top: 20px;
     }
     .sticky-top {
-      box-shadow: inset 0px -2px 2px -2px rgba(0, 0, 0, .5);
+        box-shadow: inset 0px -2px 2px -2px rgba(0, 0, 0, .5);
+    }
+    .fab {
+        color: #9d9e9e;
+    }
+    .fab:hover {
+        text-decoration: none;
+        color: #666666;
     }
     @media (max-width: 1000px) {
         .coins-link {
@@ -117,11 +124,26 @@
           margin-top: 10px;
         }
       }
+      .edit-field-label {
+        float: left;
+        margin: 14px;
+        font-size: 16px;
+        width:80px;
+      }
+      .edit-field-input {
+        margin-top:10px;
+        width: 300px;
+      }
+      .edit-container {
+        float:left;
+        width:600px;
+      }
 
     </style>
     <script type="text/javascript" charset="UTF-8" src="{% static 'app/profile/common.js' %}"></script>
     <script type="text/javascript" charset="UTF-8" src="{% static 'app/profile/util.js' %}"></script>
     <script type="text/javascript" charset="UTF-8" src="{% static 'app/profile/stats.js' %}"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121123802-1"></script>
     <script>
@@ -195,15 +217,33 @@
                                 <img class="user-avatar__img" src="{% static 'app/images/approved.png' %}" style="width: 85px;height: 85px;margin-top: -80px;margin-left: 90px;">
                                 {% endif %}
                             </div>
-                            <div class="changeAvatarHelp d-none">
-                                <a class="changeAvatar" href="#">Change your profile photo</a>
-                            </div>
-                            <div class="changeAvatarUpload d-none">
+                            <div class="websites d-none" style="margin-top:10px;">
                                 <form action="/app/simple_upload/" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
-                                    <input type="file" name="myfile" style="margin-top:10px;">
-                                    <button class="btn btn-primary" type="submit" style="margin-top:10px;">Upload</button>
-                                    <a class="btn btn-secondary cancel_upload_photo" style="margin-top:10px;color:white;">Cancel</a>
+                                    <div class="edit-container">
+                                        <div><label class="edit-field-label" for="profilephoto">Photo:</label></div>
+                                        <div><input class="form-control edit-field-input" type="file" name="myfile" id="profilephoto"></div>
+                                    </div>
+                                    <div class="edit-container">
+                                        <div><label class="edit-field-label" for="facebook">Facebook:</label></div>
+                                        <div><input class="form-control edit-field-input" type="text" name="facebook" id="facebook" value="{{user.investor.facebook}}"></div>
+                                    </div>
+                                    <div class="edit-container">
+                                        <div><label class="edit-field-label" for="linkedin">Linkedin:</label></div>
+                                        <div><input class="form-control edit-field-input" type="text" name="linkedin" id="linkedin" value="{{user.investor.linkedin}}" ></div>
+                                    </div>
+                                    <div class="edit-container">
+                                        <div><label class="edit-field-label" for="twitter">Twitter:</label></div>
+                                        <div><input class="form-control edit-field-input" type="text" name="twitter" id="twitter" value="{{user.investor.twitter}}"></div>
+                                    </div>
+                                    <div class="edit-container">
+                                        <div><label class="edit-field-label" for="website">Website:</label></div>
+                                        <div><input class="form-control edit-field-input" type="text" name="website" id="website" value="{{user.investor.website}}"></div>
+                                    </div>
+                                    <div class="edit-container">
+                                        <button class="btn btn-primary btn-lg" type="submit" style="margin-top:10px;margin-left:120px;">Save</button>
+                                        <a class="btn btn-secondary btn-lg cancel_upload_photo" style="margin-top:10px;margin-left:10px;color:white;">Cancel</a>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -215,6 +255,20 @@
                                 <div>USD balance: <div style="float:right;font-weight: bold;">${{user.investor.usd_amt}}</div></div>
                                 {% endif %}
                                 <div>Total value of {{user.username}}'s personal investments: <div style="margin-left:15px;float:right;font-weight: bold;">${{total_investment_usd_amt}}</div></div>
+                                <div style="margin-top:5px;">
+                                    {% if user.investor.linkedin %}
+                                    <a href="{{user.investor.linkedin}}" target="_blank" class="fab fa-linkedin-in" style="margin-right:5px;"></a>
+                                    {% endif %}
+                                    {% if user.investor.facebook %}
+                                    <a href="{{user.investor.facebook}}" target="_blank" class="fab fa-facebook-f" style="margin-right:5px;"></a>
+                                    {% endif %}
+                                    {% if user.investor.twitter %}
+                                    <a href="{{user.investor.twitter}}" target="_blank" class="fab fa-twitter" style="margin-right:5px;"></a>
+                                    {% endif %}
+                                    {% if user.investor.website %}
+                                    <a href="{{user.investor.website}}" target="_blank" class="" style="margin-right:5px;color:gray;">{{user.investor.website}}</a>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2236,15 +2290,10 @@ jQuery(function() {
 
     <script>
         $(".edit-profile").click(function(){
-            $(".changeAvatarHelp").removeClass("d-none");
-        });
-        $(".changeAvatar").click(function(){
-            $(".changeAvatarUpload").removeClass("d-none");
-            $(".changeAvatarHelp").addClass("d-none");
+            $(".websites").removeClass("d-none");
         });
         $(".cancel_upload_photo").click(function(){
-            $(".changeAvatarHelp").addClass("d-none");
-            $(".changeAvatarUpload").addClass("d-none");
+            $(".websites").addClass("d-none");
         });
     </script>
 
