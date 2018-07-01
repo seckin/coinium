@@ -6,3 +6,12 @@ def home_view(request):
     if request.user.is_authenticated:
         return redirect("/app/portfolio/1")
     return render(request, 'mysite/home.html', {})
+
+def disclaimer_view(request):
+    return render(request, 'mysite/disclaimer.html', {})
+
+def tos_view(request):
+    return render(request, 'mysite/tos.html', {})
+
+def privacy_view(request):
+    return render(request, 'mysite/privacy.html', {})

@@ -1,0 +1,220 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://getbootstrap.com/docs/4.0/examples/product/ -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'app/images/coinium.png' %}">
+
+    <title>Coinium - Social Crypto-Portfolio Manager</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'app/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'app/product.css' %}" rel="stylesheet">
+    <style>
+    @media (min-width: 768px) {
+        .pl-md-3,
+        .px-md-3 {
+            padding-left: 0px !important;
+        }
+        .mb-md-3,
+        .my-md-3 {
+            margin-bottom: 0px !important;
+        }
+        .mt-md-3,
+        .my-md-3 {
+            margin-top: 0px !important;
+        }
+        .mr-md-3,
+        .mx-md-3 {
+            margin-right: 0px !important;
+        }
+    }
+    @media (max-width: 1000px) {
+        .ad_img1 {
+            width: 300px;
+            height: 240px;
+        }
+        .ad_img2 {
+            width: 300px;
+            height: 200px;
+        }
+        .ad_img3 {
+            width: 300px;
+            height: 180px;
+        }
+        .ad_img4 {
+            width: 300px;
+            height: 220px;
+            margin-bottom: 25px;
+        }
+        .display-4 {
+            font-size: 2.5rem;
+        }
+        .coins-link {
+            margin-left: 18px;
+            margin-bottom: -10px;
+        }
+        .form-inline {
+            display: block;
+        }
+    }
+    .sticky-top {
+        box-shadow: inset 0px -2px 2px -2px rgba(0, 0, 0, .5);
+    }
+    .brand {
+        width: 100px;
+        display: inline;
+    }
+    .nav-link:hover {
+        color: rgba(0, 0, 0, .7);
+    }
+    .nav-link {
+        padding-right: .5rem;
+        padding-left: .5rem;
+    }
+    .nav-link:focus,
+    .nav-link:hover {
+        text-decoration: none;
+    }
+    .nav-link {
+        display: block;
+        padding: .5rem 1rem;
+    }
+    .nav-link {
+        color: rgba(0, 0, 0, .5);
+        list-style-type: none;
+    }
+    .nav-item {
+        list-style-type: none;
+    }
+    </style>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121123802-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-121123802-1');
+    </script>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="{% static 'app/bootstrap.min.js' %}"></script>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand col-sm-3 col-md-2" href="#"><img width="32" height="32" src="{% static 'app/images/coinium.png' %}" />
+            <div class="brand">Coinium</div>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+
+                <li class="nav-item">
+                    <a class="nav-link coins-link" href="/app/coins">Coins</a>
+                </li>
+            </ul>
+
+            <div class="form-inline my-2 my-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Sign in</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/accounts/signup">Sign up</a>
+                </li>
+            </div>
+        </div>
+    </nav>
+
+    <div class="">
+        <div class="header">
+            <h1 class="text-center">Disclaimer</h1>
+        </div>
+        <div class="row container" style="width:600px; margin:0 auto;">
+            <div class="col-md-12 col-md-offset-2">
+                <section class="sub-section">
+                    <h3>No Investment Advice</h3>
+                    <p>
+                        The information provided on this website does not constitute investment advice, financial advice, trading advice, or any other sort of advice and you should not treat any of the website's content as such. Coinium does not recommend that any cryptocurrency should be bought, sold, or held by you. Do conduct your own due diligence and consult your financial advisor before making any investment decisions.
+                    </p>
+                </section>
+                <section class="sub-section">
+                    <h3> Accuracy of Information </h3>
+                    <p>
+                        Coinium will strive to ensure accuracy of information listed on this website although it will not hold any responsibility for any missing or wrong information. Coinium provides all information <i>as is</i>. You understand that you are using any and all information available here at your own risk.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <footer class="container py-5">
+        <div class="row">
+            <div class="col-12 col-md">
+                <img src="{% static 'app/images/coinium.png' %}" width="48" height="48">
+                <small class="d-block mb-3 text-muted">© 2018</small>
+            </div>
+            <!-- <div class="col-6 col-md">
+          <h5>Features</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Cool stuff</a></li>
+            <li><a class="text-muted" href="#">Random feature</a></li>
+            <li><a class="text-muted" href="#">Team feature</a></li>
+            <li><a class="text-muted" href="#">Stuff for developers</a></li>
+            <li><a class="text-muted" href="#">Another one</a></li>
+            <li><a class="text-muted" href="#">Last time</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Resource</a></li>
+            <li><a class="text-muted" href="#">Resource name</a></li>
+            <li><a class="text-muted" href="#">Another resource</a></li>
+            <li><a class="text-muted" href="#">Final resource</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Business</a></li>
+            <li><a class="text-muted" href="#">Education</a></li>
+            <li><a class="text-muted" href="#">Government</a></li>
+            <li><a class="text-muted" href="#">Gaming</a></li>
+          </ul>
+        </div> -->
+            <div class="col-6 col-md">
+                <h5>About</h5>
+                <ul class="list-unstyled text-small">
+                    <li><a class="text-muted" href="/disclaimer">Disclaimer</a>
+                    </li>
+                    <li><a class="text-muted" href="/privacy">Privacy</a>
+                    </li>
+                    <li><a class="text-muted" href="/tos">Terms</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
