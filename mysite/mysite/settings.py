@@ -140,7 +140,7 @@ SPREADS_DB_PASSWD = "01990199"
 SPREADS_DB_NAME = "coinium"
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
 
 BACKGROUND_TASK_RUN_ASYNC = True
 BACKGROUND_TASK_ASYNC_THREADS = 2
