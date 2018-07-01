@@ -10,6 +10,8 @@ class Investor(models.Model):
     twitter = models.CharField(max_length=250, default="")
     linkedin = models.CharField(max_length=250, default="")
     website = models.CharField(max_length=250, default="")
+    city = models.CharField(max_length=250, default="")
+    university = models.CharField(max_length=250, default="")
 
 class Document(models.Model):
     user = models.OneToOneField(User, on_delete=models.PROTECT)

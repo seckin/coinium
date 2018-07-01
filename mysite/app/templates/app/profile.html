@@ -221,6 +221,14 @@
                                 <form action="/app/simple_upload/" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="edit-container">
+                                        <div><label class="edit-field-label" for="city">City:</label></div>
+                                        <div><input class="form-control edit-field-input" type="text" name="city" id="city" value="{{user.investor.city}}"></div>
+                                    </div>
+                                    <div class="edit-container">
+                                        <div><label class="edit-field-label" for="university">University:</label></div>
+                                        <div><input class="form-control edit-field-input" type="text" name="university" id="university" value="{{user.investor.university}}"></div>
+                                    </div>
+                                    <div class="edit-container">
                                         <div><label class="edit-field-label" for="profilephoto">Photo:</label></div>
                                         <div><input class="form-control edit-field-input" type="file" name="myfile" id="profilephoto"></div>
                                     </div>
@@ -247,7 +255,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-6">
                             <h3 class="header-title">{{user.username}}'s Profile</h3>
                             <!-- <p class="header-info" style="display:inline;">Overview and latest statistics</p> -->
                             <div style="float:left;">
@@ -256,6 +264,14 @@
                                 {% endif %}
                                 <div>Total value of {{user.username}}'s personal investments: <div style="margin-left:15px;float:right;font-weight: bold;">${{total_investment_usd_amt}}</div></div>
                                 <div style="margin-top:5px;">
+                                    {% if user.investor.city %}
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <a href="#" class="" style="margin-right:10px;color:gray;">{{user.investor.city}}</a>
+                                    {% endif %}
+                                    {% if user.investor.university %}
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <a href="#" class="" style="margin-right:10px;color:gray;">{{user.investor.university}}</a>
+                                    {% endif %}
                                     {% if user.investor.linkedin %}
                                     <a href="{{user.investor.linkedin}}" target="_blank" class="fab fa-linkedin-in" style="margin-right:5px;"></a>
                                     {% endif %}
@@ -263,10 +279,10 @@
                                     <a href="{{user.investor.facebook}}" target="_blank" class="fab fa-facebook-f" style="margin-right:5px;"></a>
                                     {% endif %}
                                     {% if user.investor.twitter %}
-                                    <a href="{{user.investor.twitter}}" target="_blank" class="fab fa-twitter" style="margin-right:5px;"></a>
+                                    <a href="{{user.investor.twitter}}" target="_blank" class="fab fa-twitter" style="margin-right:10px;"></a>
                                     {% endif %}
                                     {% if user.investor.website %}
-                                    <a href="{{user.investor.website}}" target="_blank" class="" style="margin-right:5px;color:gray;">{{user.investor.website}}</a>
+                                    <a href="{{user.investor.website}}" target="_blank" class="" style="margin-right:10px;color:gray;">{{user.investor.website}}</a>
                                     {% endif %}
                                 </div>
                             </div>
