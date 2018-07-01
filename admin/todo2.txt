@@ -6,9 +6,14 @@ OK fix /media/ being destroyed during the release
 
 OK make the coins page faster
 
+OK crontab'da ip'yi girdim, domain aktarilinca tekrar coinium.app yapilacak. http de https yapilacak.
+
+OK Add Disclaimer, Privacy and Terms
+
+
 add new fields to profile page
 
-Add Disclaimer, Privacy and Terms
+OK add approved investor badge
 
 
 
@@ -16,8 +21,6 @@ Add Disclaimer, Privacy and Terms
 navbarlardaki stil farklari duzelcek
 
 profil bootstrap 4'e gececek
-
-crontab'da ip'yi girdim, domain aktarilinca tekrar coinium.app yapilacak. http de https yapilacak.
 
 portfolio'lardan para withdraw etme ozelligi yapilcak
 
@@ -29,9 +32,6 @@ on portfolio page: you invested $1000 to this portfolio
 
 otomatik portfolyo generate edip son 1 ay performanslarina bakmak, iyi olanlari sitede gostermek (ya da direkt iyi olacaklari el ile generate etmek)
 
-media klasorunu kalici bir yerden serve et
-
-
 portfolyolarin performanslarini surekli olarak hesaplayip persist etmek ve sol ustteki grafikte gostermek gerek. anlik total degeri hesaplayacak duz bi sekilde (yeni gelen yatirimlarla arada kalan mesafe gercek performansi gosterecek)
 
 feedback:
@@ -41,12 +41,9 @@ feedback:
 
     you need to highlight the security of your platform. There have been lots of hacks in the crypto space and immediately I asked myself, "how safe is this"
 
-
-
 sloganlarda fazla sanki scammer görüntüsü çizmemeye çalışmakta fayda var mesela hani en süper managerlar gelicek size portfolyo hazırlıycak yazınca altında bi isim misim ya da bişey görmezse birisi scam segisine kapılır
 
 site giren insanda "size bi sürü para kazandırıcaz" izleniminden öte "size şöyle şöyle portfolyo managing imkanları sunuyoruz" izlenimi uyandırsın böylece giren adam kazanıp kaybetenin kendi elinde olduğu izlenimiyle girsin
-
 
 portfolio sayfasindaki portfolio grafigi dinamik hesaplanacak (portfolyo olusturuldugu tarihten itibaren)
 

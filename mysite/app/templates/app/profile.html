@@ -191,6 +191,9 @@
                         <div class="col-md-2">
                             <div id="ember1137" class="user-avatar">
                                 <img class="user-avatar__img" src="{{profile_pic_url}}">
+                                {% if user.investor.is_approved %}
+                                <img class="user-avatar__img" src="{% static 'app/images/approved.png' %}" style="width: 85px;height: 85px;margin-top: -80px;margin-left: 90px;">
+                                {% endif %}
                             </div>
                             <div class="changeAvatarHelp d-none">
                                 <a class="changeAvatar" href="#">Change your profile photo</a>

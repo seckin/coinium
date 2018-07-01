@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Investor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     usd_amt = models.DecimalField(max_digits=10, decimal_places=2)
+    is_approved = models.BooleanField(default=False)
 
 class Document(models.Model):
     user = models.OneToOneField(User, on_delete=models.PROTECT)
