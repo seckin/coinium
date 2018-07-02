@@ -2,26 +2,26 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from .models import Choice, Question, Portfolio, Investment
+from .models import Portfolio, Investment
 from accounts.models import Investor
 
 # class UserInline(admin.TabularInline):
 #     model = User
 #     extra = 1
 
-class ChoiceInline(admin.TabularInline):
-    model = Choice
-    extra = 3
+# class ChoiceInline(admin.TabularInline):
+#     model = Choice
+#     extra = 3
 
-class QuestionAdmin(admin.ModelAdmin):
-    fieldsets = [
-        (None,               {'fields': ['question_text']}),
-        ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
-    ]
-    inlines = [ChoiceInline]
-    list_display = ('question_text', 'pub_date', 'was_published_recently')
-    list_filter = ['pub_date']
-    search_fields = ['question_text']
+# class QuestionAdmin(admin.ModelAdmin):
+#     fieldsets = [
+#         (None,               {'fields': ['question_text']}),
+#         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
+#     ]
+#     inlines = [ChoiceInline]
+#     list_display = ('question_text', 'pub_date', 'was_published_recently')
+#     list_filter = ['pub_date']
+#     search_fields = ['question_text']
 
 # class InvestmentInline(admin.TabularInline):
 #     model = Investment
@@ -67,6 +67,6 @@ class UserAdmin(BaseUserAdmin):
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 
-admin.site.register(Question, QuestionAdmin)
+# admin.site.register(Question, QuestionAdmin)
 admin.site.register(Portfolio, PortfolioAdmin)
 admin.site.register(Investment, InvestmentAdmin)

@@ -185,6 +185,15 @@
         </div> -->
         {% endif %}
 
+        {% if review_saved %}
+        <div class="alert alert-success" style="top: 0px;margin-bottom:0px;">
+            Review saved.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -5px;margin-left: 15px;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+
         {% if user.id == request_user.id %}
         <div class="nav-item">
             <a class="nav-link edit-profile" href="#"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color: white;font-size: 12px;"></i>Edit profile</a>
@@ -1406,7 +1415,7 @@
                             </div>
                         </div>
                         <style>
-                            .dps64.frw58 .review-content {
+.dps64.frw58 .review-content {
     font-size: 16px;
     line-height: 24px;
 }
@@ -1458,7 +1467,7 @@
     width: 12.5%;
 }
 .s-grid0-colSm20, .s-grid-colSm20, .s-gridC-colSm20 {
-    width: 83.33333%;
+    /*width: 83.33333%;*/
 }
 .dps64.frw58 .annotation {
     margin-left: 12px;
@@ -1549,19 +1558,18 @@ ul {
     margin: .5em 0;
     padding: 5px;
 }
-input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week], select, textarea {
-    background: #fff;
-    border: 1px solid #a6a6a6;
-    color: #000;
-}
                         </style>
+
                         <div class="col-md-6">
                             <div class="c-inset profile-module">
-                                <div class="" style="min-height:250px !important;">
+                                <div style="margin: 0px 0px 20px 0px;">REFERENCES</div>
+                                {% if reviews_with_profile_pics %}
+                                <div class="" style="min-height:350px !important;">
                                     <div class="s-vgBottom1">
                                         <ul class="reviews">
+                                            {% for review_with_profile_pic in reviews_with_profile_pics %}
                                             <li class="review">
-                                                <div data-review="{&quot;id&quot;:14573,&quot;note&quot;:&quot;Cameron has been an incredible asset to @Seenco on Data, Growth, Product and monetization. We're lucky to call him an advisor. &quot;,&quot;hidden&quot;:false}" class=" dps64 profiles-show frw58 review _a _jm" data-_tn="profiles/show/review" _js-initialized="true">
+                                                <div class=" dps64 profiles-show frw58 review _a _jm" _js-initialized="true">
                                                     <div class="s-grid s-vgPullLeft2 s-vgPullRight2">
                                                         <div class="font-style-light review s-grid-colSm22">
                                                             <div class="s-grid0">
@@ -1569,26 +1577,27 @@ input[type=date], input[type=datetime-local], input[type=datetime], input[type=e
                                                                     “
                                                                 </div>
                                                                 <div class="s-grid0-colSm22 s-vgPadLeft0_5 s-vgBottom1 u-colorGray3 review-content">
-                                                                    Cameron has been an incredible asset to @Seenco on Data, Growth, Product and monetization. We're lucky to call him an advisor.
+                                                                    {{review_with_profile_pic.review.note}}
                                                                 </div>
                                                                 <div class="s-grid0-colSm1 s-grid-break">
                                                                     &nbsp;
                                                                 </div>
                                                                 <div class="s-grid0-colSm3 u-hiddenMdUp">
                                                                     <div class="reviewer-photo micro s-vgLeft0_5">
-                                                                        <a class="profile-link" data-type="User" data-id="138306" href="https://angel.co/tarikh"><img class="angel_image" alt="Tarikh Korula" src="https://d1qb2nb5cznatu.cloudfront.net/users/138306-medium_jpg?1414879611">
+                                                                        <a class="profile-link" href="/app/profile/{{review_with_profile_pic.review.owner.id}}"><img class="angel_image" alt="{{review_with_profile_pic.review.owner.first_name}} {{review_with_profile_pic.review.owner.last_name}}" src="{{review_with_profile_pic.profile_pic_url}}">
                                                                         </a>
                                                                     </div>
                                                                 </div>
                                                                 <div class="s-grid0-colSm20">
                                                                     <div class="annotation u-colorGray8 u-fontSize13 font-style-light">
-                                                                        <div class="u-fontSize13"><a class="profile-link u-uncoloredLink u-colorGray8 font-style-medium" data-type="User" data-id="138306" href="https://angel.co/tarikh" data-hasqtip="15" aria-describedby="qtip-15">Tarikh Korula</a> · <a class="u-colorGray8" href="https://angel.co/seen">Seen</a>
+                                                                        <div class="u-fontSize13"><a class="profile-link u-uncoloredLink u-colorGray8 font-style-medium" href="/app/profile/{{review_with_profile_pic.review.owner.id}}" data-hasqtip="15" aria-describedby="qtip-15">{{review_with_profile_pic.review.owner.first_name}} {{review_with_profile_pic.review.owner.last_name}}</a>
                                                                         </div>
-                                                                        <div data-object_id="138306" data-object_type="Profile" data-field="bio" data-value=" Co-founder @seen, @uncommon-projects • Worked at @frog-design, @yahoo, @indymedia  • Organizer @techcrunch Hackathons •&nbsp;Winner @yahoo 1st Hackday" class=" dm77 fud43 _a _jm" data-_tn="mentions/updating_mentions_field" _js-initialized="true">
-                                                                            <p> Co-founder <a href="https://angel.co/seen" class="at_mention_link" target="_blank" data-mention="true" data-type="Startup" data-id="97192" data-slug_id="359949" data-name="seen" data-hasqtip="19" oldtitle="Seen" title=""><span class="at_mention_symbol">@</span><span class="at_mention_slug">Seen</span></a>, <a href="https://angel.co/uncommon-projects" class="at_mention_link" target="_blank" title="Uncommon Projects" data-mention="true" data-type="Startup" data-id="116350" data-slug_id="409300" data-name="uncommon-projects"><span class="at_mention_symbol">@</span><span class="at_mention_slug">Uncommon Projects</span></a> • Worked at <a href="https://angel.co/frog-design" class="at_mention_link" target="_blank" data-mention="true" data-type="Startup" data-id="42885" data-slug_id="225667" data-name="frog-design" data-hasqtip="24" oldtitle="Frog Design" title=""><span class="at_mention_symbol">@</span><span class="at_mention_slug">Frog Design</span></a>, <a href="https://angel.co/yahoo" class="at_mention_link" target="_blank" title="Yahoo" data-mention="true" data-type="Startup" data-id="37575" data-slug_id="215062" data-name="yahoo"><span class="at_mention_symbol">@</span><span class="at_mention_slug">Yahoo</span></a>, <a href="https://angel.co/indymedia" class="at_mention_link" target="_blank" title="Indymedia" data-mention="true" data-type="Startup" data-id="119170" data-slug_id="417135" data-name="indymedia"><span class="at_mention_symbol">@</span><span class="at_mention_slug">Indymedia</span></a> • Organizer <a href="https://angel.co/techcrunch" class="at_mention_link" target="_blank" data-mention="true" data-type="Startup" data-id="17093" data-slug_id="66236" data-name="techcrunch" data-hasqtip="18" oldtitle="TechCrunch" title=""><span class="at_mention_symbol">@</span><span class="at_mention_slug">TechCrunch</span></a> Hackathons •&nbsp;Winner <a href="https://angel.co/yahoo" class="at_mention_link" target="_blank" title="Yahoo" data-mention="true" data-type="Startup" data-id="37575" data-slug_id="215062" data-name="yahoo"><span class="at_mention_symbol">@</span><span class="at_mention_slug">Yahoo</span></a> 1st Hackday</p>
+                                                                        <div class=" dm77 fud43 _a _jm">
+                                                                            <p>{{review_with_profile_pic.review.owner.investor.experience}}</p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <br/>
                                                             </div>
                                                         </div>
                                                         <div class="s-grid-colMd2 u-colorGray9">
@@ -1596,43 +1605,37 @@ input[type=date], input[type=datetime-local], input[type=datetime], input[type=e
                                                     </div>
                                                 </div>
                                             </li>
+                                            {% endfor %}
                                         </ul>
                                     </div>
-                                    
                                 </div>
+                                {% endif %}
                                 <div class="review_form with_reviews" name="references">
-                                        <div class="c-inset-hr form-divider non-admin"></div>
-                                        <div class="c-inset-bleed u-bgGray">
-                                            <div class="u-clearfix dr73 ffm36 _a _jm" data-limit="20" data-_tn="reviews/form" _js-initialized="true">
-                                                <form class="review-form" id="review-469422-form" action="/reviews" accept-charset="UTF-8" method="post">
-                                                    <input name="utf8" type="hidden" value="✓">
-                                                    <input type="hidden" name="authenticity_token" value="6dXXXUFyRjuagwu5Cd0YBgLc2vz+4P37R48tvrWMGuOiKx3E22oJjt3+qh9XlyTQ0Pl4RFHlvUYvEB79BAcQVw==">
-                                                    <input type="hidden" name="new_user_profile" id="new_user_profile" value="1">
-
-                                                    <input value="32167" type="hidden" name="review[related_via_id]" id="review_related_via_id">
-                                                    <input value="Startup" type="hidden" name="review[related_via_type]" id="review_related_via_type">
-                                                    <input value="469422" type="hidden" name="review[reviewed_id]" id="review_reviewed_id">
-                                                    <input value="User" type="hidden" name="review[reviewed_type]" id="review_reviewed_type">
-                                                    <input value="0" type="hidden" name="review[source]" id="review_source">
-                                                    <input value="1" type="hidden" name="review[public]" id="review_public">
-                                                    <div class="g-form">
-                                                        <div class="row">
-                                                            <!-- <div class="note_error u-colorError u-hidden">
-                                                                Reference needs to be at least 20 characters long
-                                                            </div> -->
-                                                            <textarea class="note keep_style autogrow" placeholder="Recommend Cameron Marlow" rows="1" name="review[note]" id="review_note"></textarea>
-                                                        </div>
-                                                        <div class="row action">
-                                                            <input type="submit" name="commit" value="Post" class="g-button blue">
-                                                        </div>
+                                    <div class="c-inset-hr form-divider non-admin"></div>
+                                    <div class="c-inset-bleed u-bgGray">
+                                        <div class="u-clearfix dr73 ffm36 _a _jm" data-limit="20" data-_tn="reviews/form" _js-initialized="true">
+                                            <form class="review-form" id="review-469422-form" action="/app/review" accept-charset="UTF-8" method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="for_user_id" id="for_user_id_id" value="{{user.id}}">
+                                                <div class="g-form">
+                                                    <div class="row">
+                                                        <!-- <div class="note_error u-colorError u-hidden">
+                                                            Reference needs to be at least 20 characters long
+                                                        </div> -->
+                                                        <textarea class="note keep_style autogrow" placeholder="Recommend {{user.first_name}} {{user.last_name}}" rows="1" name="review" id="review_note"></textarea>
                                                     </div>
-                                                </form>
-                                            </div>
+                                                    <div class="row action">
+                                                        <input type="submit" name="commit" value="Post" class="g-button blue">
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
+                                </div>
                             </div>
 
                         </div>
+
                     </div>
 
                 </div>
