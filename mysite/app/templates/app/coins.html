@@ -196,12 +196,12 @@
                 <td class="fw600">{{coin.shorthand}}</td>
                 <td class="fw300">{{coin.name}}</td>
                 <td class="blue tar">${{coin.mkt_cap|floatformat|intcomma}}</td>
-                <td class="blue tar">${{coin.price|floatformat|intcomma}}</td>
+                <td class="blue tar">${{coin.price.normalize|intcomma}}</td>
                 <td class="blue tar">{{coin.circ_supply|intcomma}}</td>
                 <td class="blue tar">${{coin.vol_24h_in_usd|floatformat|intcomma}}</td>
-                <td class="tar {% if coin.pct_1h < 0 %}red{% endif %}{% if coin.pct_1h > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_1h|floatformat}}%</td>
-                <td class="tar {% if coin.pct_24h < 0 %}red{% endif %}{% if coin.pct_24h > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_24h|floatformat}}%</td>
-                <td class="tar {% if coin.pct_7d < 0 %}red{% endif %}{% if coin.pct_7d > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_7d|floatformat}}%</td>
+                <td class="tar {% if coin.pct_1h < 0 %}red{% endif %}{% if coin.pct_1h > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_1h.normalize}}%</td>
+                <td class="tar {% if coin.pct_24h < 0 %}red{% endif %}{% if coin.pct_24h > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_24h.normalize}}%</td>
+                <td class="tar {% if coin.pct_7d < 0 %}red{% endif %}{% if coin.pct_7d > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_7d.normalize}}%</td>
             </tr>
             {% endfor %}
         </tbody>
