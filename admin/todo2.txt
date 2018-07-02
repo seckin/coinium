@@ -10,8 +10,7 @@ OK crontab'da ip'yi girdim, domain aktarilinca tekrar coinium.app yapilacak. htt
 
 OK Add Disclaimer, Privacy and Terms
 
-
-add new fields to profile page
+OK add new fields to profile page
 
 OK add approved investor badge
 

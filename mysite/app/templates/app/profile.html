@@ -221,8 +221,8 @@
                                 <form action="/app/simple_upload/" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="edit-container">
-                                        <div><label class="edit-field-label" for="city">City:</label></div>
-                                        <div><input class="form-control edit-field-input" type="text" name="city" id="city" value="{{user.investor.city}}"></div>
+                                        <div><label class="edit-field-label" for="location">Location:</label></div>
+                                        <div><input class="form-control edit-field-input" type="text" name="location" id="location" value="{{user.investor.location}}"></div>
                                     </div>
                                     <div class="edit-container">
                                         <div><label class="edit-field-label" for="university">University:</label></div>
@@ -264,9 +264,9 @@
                                 {% endif %}
                                 <div>Total value of {{user.username}}'s personal investments: <div style="margin-left:15px;float:right;font-weight: bold;">${{total_investment_usd_amt}}</div></div>
                                 <div style="margin-top:5px;">
-                                    {% if user.investor.city %}
+                                    {% if user.investor.location %}
                                     <i class="fas fa-map-marker-alt"></i>
-                                    <div href="#" class="" style="margin-right:10px;color:gray;display:inline-block;">{{user.investor.city}}</div>
+                                    <div href="#" class="" style="margin-right:10px;color:gray;display:inline-block;">{{user.investor.location}}</div>
                                     {% endif %}
                                     {% if user.investor.university %}
                                     <i class="fas fa-graduation-cap"></i>

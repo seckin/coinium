@@ -2381,7 +2381,7 @@ def simple_upload(request):
         request.user.investor.twitter = request.POST.get("twitter")
         request.user.investor.linkedin = request.POST.get("linkedin")
         request.user.investor.website = request.POST.get("website")
-        request.user.investor.city = request.POST.get("city")
+        request.user.investor.location = request.POST.get("location")
         request.user.investor.university = request.POST.get("university")
         request.user.investor.save()
         return redirect("/app/profile/" + str(request.user.id))
