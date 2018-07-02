@@ -20,6 +20,8 @@ OK 'experience' part on the profile page - fill it in with edit profile button.
 
 OK money managers can't be anonymous - full names are required to be displayed everywhere
 
+gokhan'a email at
+
 homepage tasarimcilarla degistirdigimiz sekilde degisecek
     bunu da ekle: "training wheels for your eventual hedge fund"
 
