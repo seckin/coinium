@@ -16,7 +16,7 @@ OK add approved investor badge
 
 
 
-'experience' part on the profile page - fill it in with edit profile button.
+OK 'experience' part on the profile page - fill it in with edit profile button.
 
 money managers can't be anonymous - full names are required to be displayed everywhere
 

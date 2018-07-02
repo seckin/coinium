@@ -58,6 +58,26 @@
        {% if form.username.field.required %}required{% endif %}>
        <div style="margin:5px;"></div>
 
+      <input type="text"
+       name="{{ form.first_name.name }}"
+       id="{{ form.first_name.id_for_label }}"
+       {% if form.first_name.value != None %}value="{{ form.first_name.value|stringformat:'s' }}"{% endif %}
+       maxlength="{{ form.first_name.field.max_length }}"
+       class="form-control"
+       placeholder="First name"
+       {% if form.first_name.field.required %}required{% endif %}>
+       <div style="margin:5px;"></div>
+
+      <input type="text"
+       name="{{ form.last_name.name }}"
+       id="{{ form.last_name.id_for_label }}"
+       {% if form.last_name.value != None %}value="{{ form.last_name.value|stringformat:'s' }}"{% endif %}
+       maxlength="{{ form.last_name.field.max_length }}"
+       class="form-control"
+       placeholder="Last name"
+       {% if form.last_name.field.required %}required{% endif %}>
+       <div style="margin:5px;"></div>
+
       <input type="email"
        name="{{ form.email.name }}"
        id="{{ form.email.id_for_label }}"

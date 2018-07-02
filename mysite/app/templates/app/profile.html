@@ -8,7 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{user.username}}'s Profile</title>
+    <title>{{user.first_name}} {{user.last_name}}'s Profile</title>
     <link rel="icon" href="{% static 'app/images/coinium.png' %}">
 
     <!-- CSS -->
@@ -263,7 +263,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <h3 class="header-title">{{user.username}}'s Profile</h3>
+                            <h3 class="header-title">{{user.first_name}} {{user.last_name}}'s Profile</h3>
                             <!-- <p class="header-info" style="display:inline;">Overview and latest statistics</p> -->
                             <div style="float:left;">
                                 {% if user.investor.experience %}
@@ -296,7 +296,7 @@
                                 {% if user.id == request_user.id %}
                                 <div>USD balance: <div style="float:right;font-weight: bold;">${{user.investor.usd_amt}}</div></div>
                                 {% endif %}
-                                <div>Total value of {{user.username}}'s personal investments: <div style="margin-left:15px;float:right;font-weight: bold;">${{total_investment_usd_amt}}</div></div>
+                                <div>Total value of {{user.first_name}} {{user.last_name}}'s personal investments: <div style="margin-left:15px;float:right;font-weight: bold;">${{total_investment_usd_amt}}</div></div>
                             </div>
                         </div>
                     </div>
@@ -315,7 +315,7 @@
                             <span>This month</span> <b class="caret"></b>
                         </div> -->
                                     </div>
-                                    <h3 class="panel-title">All investments made in, and performance of portfolios created by {{user.username}}</h3>
+                                    <h3 class="panel-title">All investments made in, and performance of portfolios created by {{user.first_name}} {{user.last_name}}</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div id="dashboardConversions" class="chart" style="padding: 0px; position: relative;"></div>
@@ -1326,7 +1326,7 @@
                         <div class="col-md-6">
                             <div class="panel">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Portfolios managed by {{request_user.username}}</h3>
+                                    <h3 class="panel-title">Portfolios managed by {{request_user.first_name}} {{request_user.last_name}}</h3>
                                 </div>
                                 <div class="panel-body">
                                     <table class="table table-hover">
@@ -1357,7 +1357,7 @@
                         <div class="col-md-6">
                             <div class="panel ">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Investments made by {{user.username}} over the months</h3>
+                                    <h3 class="panel-title">Investments made by {{user.first_name}} {{user.last_name}} over the months</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div id="dashboardInvestments" class="chart" style="padding: 0px; position: relative;"></div>
@@ -1369,7 +1369,7 @@
                         <div class="col-md-6">
                             <div class="panel">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Latest Investments by {{user.username}} ({{investments|length}} investments)</h3>
+                                    <h3 class="panel-title">Latest Investments by {{user.first_name}} {{user.last_name}} ({{investments|length}} investments)</h3>
                                 </div>
                                 <div class="panel-body">
                                     <table class="table table-hover">
