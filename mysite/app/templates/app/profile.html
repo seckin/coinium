@@ -270,7 +270,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                             <h3 class="header-title" style="font-weight: 800;">{{user.first_name}} {{user.last_name}} <span style="font-weight: 400;font-size: 20px;">({{user.username}})</span></h3>
                             <!-- <p class="header-info" style="display:inline;">Overview and latest statistics</p> -->
                             <div style="float:left;">
@@ -302,9 +302,9 @@
                                     {% endif %}
                                 </div>
                                 {% if user.id == request_user.id %}
-                                <div>USD balance: <div style="float:right;font-weight: bold;">${{user.investor.usd_amt}}</div></div>
+                                <div class="col-md-10" style="padding-left: 0px;">USD balance: <div style="float:right;font-weight: bold;">${{user.investor.usd_amt}}</div></div>
                                 {% endif %}
-                                <div>Total value of {{user.first_name}} {{user.last_name}}'s personal investments: <div style="margin-left:15px;float:right;font-weight: bold;">${{total_investment_usd_amt}}</div></div>
+                                <div class="col-md-10" style="padding-left: 0px;">Total value of {{user.first_name}} {{user.last_name}}'s personal investments: <div style="margin-left:15px;float:right;font-weight: bold;">${{total_investment_usd_amt}}</div></div>
                             </div>
                         </div>
                     </div>
