@@ -2417,7 +2417,7 @@ def review(request):
         note = request.POST.get("review")
         review = Review.objects.create(note=note, for_user=for_user, owner=request.user)
         request.session["review_saved"] = True
-        return redirect("/app/profile/" + str(request.user.id))
+        return redirect("/app/profile/" + str(for_user.id))
 
 @background()
 def fetch_prices_bg():
