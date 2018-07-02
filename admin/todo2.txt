@@ -22,6 +22,8 @@ OK money managers can't be anonymous - full names are required to be displayed e
 
 gokhan'a email at
 
+db backup scriptini repoya koy
+
 homepage tasarimcilarla degistirdigimiz sekilde degisecek
     bunu da ekle: "training wheels for your eventual hedge fund"
 
