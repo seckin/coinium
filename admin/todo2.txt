@@ -18,7 +18,7 @@ OK add approved investor badge
 
 OK 'experience' part on the profile page - fill it in with edit profile button.
 
-money managers can't be anonymous - full names are required to be displayed everywhere
+OK money managers can't be anonymous - full names are required to be displayed everywhere
 
 homepage tasarimcilarla degistirdigimiz sekilde degisecek
     bunu da ekle: "training wheels for your eventual hedge fund"
