@@ -7,6 +7,11 @@ def home_view(request):
         return redirect("/app/portfolio/1")
     return render(request, 'mysite/home.html', {})
 
+def invest_view(request):
+    if request.user.is_authenticated:
+        return redirect("/app/portfolio/1")
+    return render(request, 'mysite/invest.html', {})
+
 def disclaimer_view(request):
     return render(request, 'mysite/disclaimer.html', {})
 

@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url('^$', views.home_view, name='home_view'),
+    url('^invest$', views.invest_view, name='invest_view'),
     url('^disclaimer$', views.disclaimer_view, name='disclaimer_view'),
     url('^tos$', views.tos_view, name='tos_view'),
     url('^privacy$', views.privacy_view, name='privacy_view'),
