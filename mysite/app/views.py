@@ -2368,6 +2368,10 @@ def simple_upload(request):
             fs = FileSystemStorage()
             filename = fs.save(myfile.name, myfile)
             uploaded_file_url = fs.url(filename)
+            documents = Document.objects.filter(user=request.user)
+            for i in range(len(documents)):
+                documents[i].delete()
+
             document = Document.objects.create(user=request.user,
                                     document_filename=filename)
             document.save()

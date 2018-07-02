@@ -266,11 +266,11 @@
                                 <div style="margin-top:5px;">
                                     {% if user.investor.city %}
                                     <i class="fas fa-map-marker-alt"></i>
-                                    <a href="#" class="" style="margin-right:10px;color:gray;">{{user.investor.city}}</a>
+                                    <div href="#" class="" style="margin-right:10px;color:gray;display:inline-block;">{{user.investor.city}}</div>
                                     {% endif %}
                                     {% if user.investor.university %}
                                     <i class="fas fa-graduation-cap"></i>
-                                    <a href="#" class="" style="margin-right:10px;color:gray;">{{user.investor.university}}</a>
+                                    <div href="#" class="" style="margin-right:10px;color:gray;display:inline-block;">{{user.investor.university}}</div>
                                     {% endif %}
                                     {% if user.investor.linkedin %}
                                     <a href="{{user.investor.linkedin}}" target="_blank" class="fab fa-linkedin-in" style="margin-right:5px;"></a>
