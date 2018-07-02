@@ -16,6 +16,15 @@ OK add approved investor badge
 
 
 
+'experience' part on the profile page - fill it in with edit profile button.
+
+money managers can't be anonymous - full names are required to be displayed everywhere
+
+homepage tasarimcilarla degistirdigimiz sekilde degisecek
+    bunu da ekle: "training wheels for your eventual hedge fund"
+
+investorlar icin ayri bir homepage yapilacak, asil homepage'den buna link verilecek
+    bunu da ekle: "giving an expert that will make me money"
 
 navbarlardaki stil farklari duzelcek
 

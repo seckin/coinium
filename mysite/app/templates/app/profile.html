@@ -110,6 +110,9 @@
         text-decoration: none;
         color: #666666;
     }
+    .experience {
+        margin: 5px 0px 10px;
+    }
     @media (max-width: 1000px) {
         .coins-link {
           margin-top: 5px;
@@ -221,6 +224,10 @@
                                 <form action="/app/simple_upload/" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="edit-container">
+                                        <div><label class="edit-field-label" for="experience">Experience:</label></div>
+                                        <div><textarea class="form-control edit-field-input" type="text" name="experience" id="experience" value="{{user.investor.experience}}" rows="2" cols="75" style="height:60px;"></textarea></div>
+                                    </div>
+                                    <div class="edit-container">
                                         <div><label class="edit-field-label" for="location">Location:</label></div>
                                         <div><input class="form-control edit-field-input" type="text" name="location" id="location" value="{{user.investor.location}}"></div>
                                     </div>
@@ -259,11 +266,12 @@
                             <h3 class="header-title">{{user.username}}'s Profile</h3>
                             <!-- <p class="header-info" style="display:inline;">Overview and latest statistics</p> -->
                             <div style="float:left;">
-                                {% if user.id == request_user.id %}
-                                <div>USD balance: <div style="float:right;font-weight: bold;">${{user.investor.usd_amt}}</div></div>
+                                {% if user.investor.experience %}
+                                <div class="experience">
+                                    {{user.investor.experience}}
+                                </div>
                                 {% endif %}
-                                <div>Total value of {{user.username}}'s personal investments: <div style="margin-left:15px;float:right;font-weight: bold;">${{total_investment_usd_amt}}</div></div>
-                                <div style="margin-top:5px;">
+                                <div style="margin-top:5px;margin-bottom:5px;">
                                     {% if user.investor.location %}
                                     <i class="fas fa-map-marker-alt"></i>
                                     <div href="#" class="" style="margin-right:10px;color:gray;display:inline-block;">{{user.investor.location}}</div>
@@ -285,6 +293,10 @@
                                     <a href="{{user.investor.website}}" target="_blank" class="" style="margin-right:10px;color:gray;">{{user.investor.website}}</a>
                                     {% endif %}
                                 </div>
+                                {% if user.id == request_user.id %}
+                                <div>USD balance: <div style="float:right;font-weight: bold;">${{user.investor.usd_amt}}</div></div>
+                                {% endif %}
+                                <div>Total value of {{user.username}}'s personal investments: <div style="margin-left:15px;float:right;font-weight: bold;">${{total_investment_usd_amt}}</div></div>
                             </div>
                         </div>
                     </div>

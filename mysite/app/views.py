@@ -2383,6 +2383,7 @@ def simple_upload(request):
         request.user.investor.website = request.POST.get("website")
         request.user.investor.location = request.POST.get("location")
         request.user.investor.university = request.POST.get("university")
+        request.user.investor.experience = request.POST.get("experience")
         request.user.investor.save()
         return redirect("/app/profile/" + str(request.user.id))
         # return render(request, 'core/simple_upload.html', {
