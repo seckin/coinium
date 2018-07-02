@@ -131,7 +131,7 @@
         float: left;
         margin: 14px;
         font-size: 16px;
-        width:80px;
+        width:90px;
       }
       .edit-field-input {
         margin-top:10px;
@@ -223,6 +223,14 @@
                             <div class="websites d-none" style="margin-top:10px;">
                                 <form action="/app/simple_upload/" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
+                                    <div class="edit-container">
+                                        <div><label class="edit-field-label" for="first_name">First name:</label></div>
+                                        <div><input class="form-control edit-field-input" type="text" name="first_name" id="first_name" value="{{user.first_name}}"></div>
+                                    </div>
+                                    <div class="edit-container">
+                                        <div><label class="edit-field-label" for="last_name">Last name:</label></div>
+                                        <div><input class="form-control edit-field-input" type="text" name="last_name" id="last_name" value="{{user.last_name}}"></div>
+                                    </div>
                                     <div class="edit-container">
                                         <div><label class="edit-field-label" for="experience">Experience:</label></div>
                                         <div><textarea class="form-control edit-field-input" type="text" name="experience" id="experience" value="{{user.investor.experience}}" rows="2" cols="75" style="height:60px;"></textarea></div>
