@@ -125,6 +125,12 @@
     .fw300 {
       font-weight: 300;
     }
+    .td-padding {
+      padding: 0.4em !important;
+    }
+    .black {
+      color: #444;
+    }
     </style>
   </head>
 
@@ -193,15 +199,15 @@
         <tbody>
             {% for coin in all_coins %}
             <tr>
-                <td class="fw600">{{coin.shorthand}}</td>
-                <td class="fw300">{{coin.name}}</td>
-                <td class="blue tar">${{coin.mkt_cap|floatformat|intcomma}}</td>
-                <td class="blue tar">${{coin.price.normalize|intcomma}}</td>
-                <td class="blue tar">{{coin.circ_supply|intcomma}}</td>
-                <td class="blue tar">${{coin.vol_24h_in_usd|floatformat|intcomma}}</td>
-                <td class="tar {% if coin.pct_1h < 0 %}red{% endif %}{% if coin.pct_1h > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_1h.normalize}}%</td>
-                <td class="tar {% if coin.pct_24h < 0 %}red{% endif %}{% if coin.pct_24h > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_24h.normalize}}%</td>
-                <td class="tar {% if coin.pct_7d < 0 %}red{% endif %}{% if coin.pct_7d > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_7d.normalize}}%</td>
+                <td class="td-padding fw600">{{coin.shorthand}}</td>
+                <td class="td-padding black fw300">{{coin.name}}</td>
+                <td class="td-padding tar">${{coin.mkt_cap|floatformat|intcomma}}</td>
+                <td class="td-padding blue tar">${{coin.price.normalize|intcomma}}</td>
+                <td class="td-padding blue tar">{{coin.circ_supply|intcomma}}</td>
+                <td class="td-padding blue tar">${{coin.vol_24h_in_usd|floatformat|intcomma}}</td>
+                <td class="td-padding tar {% if coin.pct_1h < 0 %}red{% endif %}{% if coin.pct_1h > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_1h.normalize}}%</td>
+                <td class="td-padding tar {% if coin.pct_24h < 0 %}red{% endif %}{% if coin.pct_24h > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_24h.normalize}}%</td>
+                <td class="td-padding tar {% if coin.pct_7d < 0 %}red{% endif %}{% if coin.pct_7d > 0 %}green{% endif %}" style="width:70px;">{{coin.pct_7d.normalize}}%</td>
             </tr>
             {% endfor %}
         </tbody>

@@ -22,7 +22,16 @@ OK money managers can't be anonymous - full names are required to be displayed e
 
 gokhan'a email at
 
-db backup scriptini repoya koy
+OK db backup scriptini repoya koy
+
+portfolyolari paid-to-view yap
+
+ornek portfolyolar olustur 20 kullanici uzerinden 100 tane
+
+eaze gibi article sayfalari yap, altinda en iyi perform eden portfolyolari goster kucuk graph'larla
+    https://www.eaze.com/article/pride-cannabis-lgbtq-activists-medical-marijuana
+
+What I don't like on your LP, no clear positioning. Who is your customer, why you are better.
 
 homepage tasarimcilarla degistirdigimiz sekilde degisecek
     bunu da ekle: "training wheels for your eventual hedge fund"

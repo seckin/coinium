@@ -2321,9 +2321,9 @@ def profile(request, user_id):
         review_saved = request.session['review_saved']
         request.session['review_saved'] = False
 
-    if len(Document.objects.filter(user=request.user)):
+    if len(Document.objects.filter(user=user)):
         fs = FileSystemStorage()
-        profile_pic_url = fs.url(request.user.document.document_filename)
+        profile_pic_url = fs.url(user.document.document_filename)
     else:
         profile_pic_url = "https://storage.googleapis.com/indie-hackers.appspot.com/avatars/P0jgWBHyYbaC9wp1GEjGELwjsL63"
 
@@ -2495,3 +2495,11 @@ def fetch_prices_bg():
 def fetch_prices(request):
     fetch_prices_bg(repeat=120, repeat_until=None)
     return JsonResponse({"result": "success"}, safe=False)
+
+# def feed(request):
+#     import stream
+#     client = stream.connect('5xa2j6wsghpe', 'gvjs3xxf6pbwsmze7rvhcdyqncj7buh7ad2g6x8krphqbjtu9g6s9drpktca2uxe')
+#     # For the feed group 'user' and user id 'eric' get the feed
+#     eric_feed = client.feed('user', 'eric')
+#     # Add the activity to the feed
+#     eric_feed.add_activity({'actor': 'eric', 'verb': 'tweet', 'object': 1, 'tweet': 'Hello world'})
