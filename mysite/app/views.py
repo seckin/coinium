@@ -2129,16 +2129,17 @@ group by created_at div 1000;"""
                 ln = 1000000000
                 for i in range(len(pairs)):
                     ln = min(ln, len(spreads_for_pair[pairs[i]]))
+                initial_px = float(spreads_for_pair[pairs[j]][0]["price"])
                 for i in range(1, ln):
                     appreciation = 0.0
                     for j in range(len(pairs)):
-                        # hack for missing stellar pricing data
-                        if j == 3 and i >= len(spreads_for_pair[pairs[j]]):
-                            px = 0.5
-                        else:
-                            px = float(spreads_for_pair[pairs[j]][i]["price"])
+                        px = float(spreads_for_pair[pairs[j]][i]["price"])
                         # print ("i", i, "px", px)
-                        appreciation += pair_pcts[j] * (px / float(spreads_for_pair[pairs[j]][0]["price"]))
+                        if not initial_px:
+                            initial_px = px
+                        if initial_px:
+                            appreciation += pair_pcts[j] * (px / initial_px)
+
                     tm = spreads_for_pair[pairs[0]][i]["time"]
                     tmstmp = round(time.mktime(tm.timetuple()) * 1000)
                     appreciations.append([tmstmp, appreciation])

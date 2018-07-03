@@ -24,6 +24,17 @@ gokhan'a email at
 
 OK db backup scriptini repoya koy
 
+bug var, 0 gorunuyor 23 gorunmeliyken: "Total value of alan sten's personal investments: $0.0"
+    https://coinium.app/app/profile/35
+
+kaydolan kisilere teker teker email at
+
+anasayfaya ornek kullanici profil kesitleri koy sol dogru akan profil foto, fullname ve descriptionlari. ustune "some of our users" yazip.
+
+solda portfolyo olusturuldugundan beri ne kadar appreciate/depreciate etmis gostermek
+
+ana sayfaya alinti koy
+
 portfolyolari paid-to-view yap
 
 ornek portfolyolar olustur 20 kullanici uzerinden 100 tane
@@ -52,6 +63,8 @@ portfolyolari modify etme ozelligi
 on portfolio page: you invested $1000 to this portfolio
 
 otomatik portfolyo generate edip son 1 ay performanslarina bakmak, iyi olanlari sitede gostermek (ya da direkt iyi olacaklari el ile generate etmek)
+
+Offering 2fa on the main site
 
 portfolyolarin performanslarini surekli olarak hesaplayip persist etmek ve sol ustteki grafikte gostermek gerek. anlik total degeri hesaplayacak duz bi sekilde (yeni gelen yatirimlarla arada kalan mesafe gercek performansi gosterecek)
 
