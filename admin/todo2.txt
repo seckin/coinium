@@ -29,6 +29,8 @@ bug var, 0 gorunuyor 23 gorunmeliyken: "Total value of alan sten's personal inve
 
 kaydolan kisilere teker teker email at
 
+e-meeting Khan’s Hedge fund manager friend
+
 anasayfaya ornek kullanici profil kesitleri koy sol dogru akan profil foto, fullname ve descriptionlari. ustune "some of our users" yazip.
 
 solda portfolyo olusturuldugundan beri ne kadar appreciate/depreciate etmis gostermek
