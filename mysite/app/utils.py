@@ -5736,7 +5736,10 @@ from app_pricingdata where shorthand = %s and created_at >= '" + str(portfolio.c
                     else:
                         px = float(spreads_for_pair[pairs[j]][k]["price"])
                     # print ("i", i, "px", px)
-                    initial_px = float(spreads_for_pair[pairs[j]][0]["price"])
+                    if px == 0:
+                        initial_px = 0.000001
+                    else:
+                        initial_px = float(spreads_for_pair[pairs[j]][0]["price"])
                     if not initial_px:
                         initial_px = px
                     appreciation += pair_pcts[j] * (px / initial_px)
