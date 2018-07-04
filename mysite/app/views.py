@@ -2010,9 +2010,9 @@ def portfolio(request, pk):
     embedded_tweets = EmbeddedTweet.objects.filter(portfolio=portfolio)
 
     portfolios_with_appreciation = []
-    for portfolio in all_portfolios:
-        appreciation = get_portfolio_appreciation_since_inception(portfolio)
-        portfolios_with_appreciation.append({"appreciation":appreciation, "portfolio":portfolio})
+    for tmp_portfolio in all_portfolios:
+        appreciation = get_portfolio_appreciation_since_inception(tmp_portfolio)
+        portfolios_with_appreciation.append({"appreciation":appreciation, "portfolio":tmp_portfolio})
 
     return render(request, 'app/portfolio.html', { \
         'all_portfolios': all_portfolios, \
@@ -2153,11 +2153,9 @@ group by created_at div 1000;"""
                 # tm = spreads_for_pair[pairs[0]][0]["time"]
                 # tmstmp = round(time.mktime(tm.timetuple()) * 1000)
                 # dct = {"pointStart":tmstmp,"pointInterval":60000,"dataLength":len(spreads_for_pair[pairs[0]]),"data":appreciations}
-                # connection.close()
                 return JsonResponse(appreciations, safe=False)
         finally:
-            # connection.close()
-            pass
+            connection.close()
     return JsonResponse({'error': 'Unsupported method'})
 
 # @silk_profile(name='View Profile')
