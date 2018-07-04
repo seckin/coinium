@@ -17,5 +17,6 @@ urlpatterns = [
     path('review', views.review, name='review'),
     path('fetch_prices/', views.fetch_prices, name='fetch_prices'),
     path('coins/', views.coins, name='coins'),
+    path('discord/', views.mass_discord_email, name='mass_discord_email'),
         #/<float:btc_amt>/<float:eth_amt>/<float:xrp_amt>/<float:xlm_amt>', views.create_investment, name='create_investment'),
 ]

@@ -2509,3 +2509,19 @@ def fetch_prices(request):
 #     eric_feed = client.feed('user', 'eric')
 #     # Add the activity to the feed
 #     eric_feed.add_activity({'actor': 'eric', 'verb': 'tweet', 'object': 1, 'tweet': 'Hello world'})
+
+def mass_discord_email(request):
+    users = User.objects.all()
+    arr = []
+    for user in users:
+        mail_subject = 'We want to get to know you'
+        html_content = render_to_string('discord_email.html', {
+            'user': user,
+        })
+        text_content = strip_tags(html_content)
+        to_email = user.email
+        email = EmailMultiAlternatives(mail_subject, text_content, 'seckin@coinium.app', to=[to_email], reply_to=['seckin@coinium.app'])
+        email.attach_alternative(html_content, "text/html")
+        email.send()
+        arr.append(user.id)
+    return JsonResponse({"result": arr}, safe=False)
