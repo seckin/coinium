@@ -2015,7 +2015,6 @@ def portfolio(request, pk):
         portfolios_with_appreciation.append({"appreciation":appreciation, "portfolio":tmp_portfolio})
 
     return render(request, 'app/portfolio.html', { \
-        'all_portfolios': all_portfolios, \
         'portfolios_with_appreciation': portfolios_with_appreciation, \
         'pk': pk,\
         'user': user,\
@@ -2122,7 +2121,7 @@ def portfolio_perf(request, portfolio_id):
                 for pair in pairs:
                     #sql = "SELECT * FROM `Spreads` WHERE `coin`=%s AND `timestamp`>=%s ORDER BY `timestamp` asc"
                     sql = """select round(avg(price),6) as price, convert((min(created_at) div 1000)*1000, datetime) as time
-from app_pricingdata where shorthand = %s and created_at >= DATE_SUB(curdate(), INTERVAL 6 WEEK)
+from app_pricingdata where shorthand = %s and created_at >= '""" + str(portfolio.created_date) + """'
 group by created_at div 1000;"""
                     cursor.execute(sql, (pair,))
                     spreads = cursor.fetchall()
