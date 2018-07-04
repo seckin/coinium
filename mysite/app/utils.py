@@ -5726,7 +5726,7 @@ from app_pricingdata where shorthand = %s and created_at >= '" + str(portfolio.c
             ln = 1000000000
             for i in range(len(pairs)):
                 ln = min(ln, len(spreads_for_pair[pairs[i]]))
-            for i in range(ln-1, ln):
+            for i in range(ln-3, ln-2):
                 appreciation = 0.0
                 for j in range(len(pairs)):
                     # hack for missing stellar pricing data
