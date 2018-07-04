@@ -5726,11 +5726,15 @@ from app_pricingdata where shorthand = %s and created_at >= '" + str(portfolio.c
             ln = 1000000000
             for i in range(len(pairs)):
                 ln = min(ln, len(spreads_for_pair[pairs[i]]))
-            for i in range(ln-3, ln-2):
+            for i in range(ln-1, ln):
                 appreciation = 0.0
+                k = i
                 for j in range(len(pairs)):
-                    # hack for missing stellar pricing data
-                    px = float(spreads_for_pair[pairs[j]][i]["price"])
+                    k = len(spreads_for_pair[pairs[j]])-1
+                    if k < 0:
+                        px = 0
+                    else:
+                        px = float(spreads_for_pair[pairs[j]][k]["price"])
                     # print ("i", i, "px", px)
                     initial_px = float(spreads_for_pair[pairs[j]][0]["price"])
                     if not initial_px:
