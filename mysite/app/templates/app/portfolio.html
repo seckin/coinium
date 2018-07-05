@@ -125,7 +125,7 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
+          <li class="nav-item" style="border-bottom: 0;">
             <a class="nav-link coins-link" href="/app/coins">Coins</a>
           </li>
         </ul>
@@ -1281,7 +1281,15 @@
         $.getJSON('{% url "app:portfolio_perf" portfolio.id %}',
             // 'https://cdn.rawgit.com/highcharts/highcharts/057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/usdeur.json',
             function(data) {
+                Highcharts.setOptions({
+                    global : {
+                        useUTC : false
+                    }
+                });
                 Highcharts.chart('container2', {
+                    time: {
+                        timezone: 'America/Los_Angeles'
+                    },
                     chart: {
                         zoomType: 'x'
                     },
