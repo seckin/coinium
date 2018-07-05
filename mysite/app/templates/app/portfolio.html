@@ -1286,9 +1286,9 @@
                         useUTC : false
                     }
                 });
-                Highcharts.chart('container2', {
+                chart1 = Highcharts.chart('container2', {
                     time: {
-                        timezone: 'America/Los_Angeles'
+                        timezoneOffset: (new Date()).getTimezoneOffset()
                     },
                     chart: {
                         zoomType: 'x'
@@ -1344,6 +1344,10 @@
                         data: data
                     }]
                 });
+                console.log(
+                   'Current time in Los Angeles',
+                   chart1.time.dateFormat('%Y-%m-%d %H:%M:%S', Date.now())
+                );
             }
         );
         // }, 3000);
