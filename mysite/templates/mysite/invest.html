@@ -116,7 +116,7 @@
     <script src="{% static 'app/bootstrap.min.js' %}"></script>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <a class="navbar-brand col-sm-3 col-md-2" href="#"><img width="32" height="32" src="{% static 'app/images/coinium.png' %}" />
+        <a class="navbar-brand col-sm-3 col-md-2" href="/"><img width="32" height="32" src="{% static 'app/images/coinium.png' %}" />
             <div class="brand">Coinium</div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -171,6 +171,19 @@
     </div>
 
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+        <div class="mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden" style="background-color: #44cc44;">
+            <div class="my-3 py-3">
+                <h2 class="display-5">Learn about cryptocurrencies and what makes each one important</h2>
+                <p class="lead">Read our blog posts, talk with people on the platform</p>
+            </div>
+            <div class="" style="width:600px;margin:0 auto;margin-top: 10px;margin-bottom:40px; background-color:#eefdfb;">
+                <a target="_blank" href="https://hackernoon.com/cryptocurrencies-are-not-over-here-is-the-proof-d4cc65f444cd">&starf; Cryptocurrencies are not over. Here is the proof</a><br/>
+                <a target="_blank" href="https://hackernoon.com/7-out-of-10-richest-family-offices-in-the-usa-are-invested-in-cryptocurrencies-eb88795b529b">&starf; 7 out of 10 richest family offices in the USA are invested in cryptocurrencies. Why shouldn’t you be able to too?</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
         <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
             <div class="my-3 py-3">
                 <h2 class="display-5">Invest as little as $10</h2>
@@ -181,6 +194,57 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .home-feature {
+            float:left;
+        }
+        .user-avatar {
+            border-radius: 9999px;
+            position: relative;
+            height: 145px;
+            width: 145px;
+            margin: 0 auto;
+        }
+        .user-avatar img {
+            border-radius: 9999px;
+            height: 100%;
+            object-fit: cover;
+            width: 100%;
+        }
+        .three-features {
+            margin: 60px 0px;
+        }
+    </style>
+
+    <div class="row three-features hidden-xs">
+        <div class="container">
+            <div><h2 style="text-align: center;">Our Team</h2></div><br/><br/>
+            <div class="col-sm-4 home-feature">
+                <div class="user-avatar">
+                    <img class="user-avatar__img" src="{% static 'app/images/seckin4.jpg' %}">
+                </div>
+                <span class="website_blue"></span>
+                <h3>Seckin C. Sahin</h3>
+                <p>Co-Founder, CEO. Previously product engineer at Udemy, ICY Capital, Facebook.</p>
+            </div>
+            <div class="col-sm-4 home-feature">
+                <div class="user-avatar">
+                    <img class="user-avatar__img" src="{% static 'app/images/shaun.jpg' %}">
+                </div>
+                <h3>Shaun McCreedy</h3>
+                <p>Co-Founder, President. Previously Sales at Marketo and Udemy.</p>
+            </div>
+            <div class="col-sm-4 home-feature">
+                <div class="user-avatar">
+                    <img class="user-avatar__img" src="{% static 'app/images/david.jpg' %}">
+                </div>
+                <h3>David Jones</h3>
+                <p>Advisor. Founder at Sonoma IT.</p>
+            </div>
+        </div>
+    </div>
+
 
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
         <div class="bg-dark mr-md-3 pt-3 px-3 px-md-5 text-center text-white overflow-hidden">
