@@ -316,6 +316,85 @@
                                 <div class="col-md-10" style="padding-left: 0px;">Total value of {{user.first_name}} {{user.last_name}}'s personal investments: <div style="margin-left:15px;float:right;font-weight: bold;">${{total_investment_usd_amt}}</div></div>
                             </div>
                         </div>
+                        <div style="float: right;">
+                            <button class="follow btn {% if following %}btn-success {% else %} btn-primary{% endif %}">{% if following %}Following{% else %}Follow{% endif %}</button>
+                        </div>
+                        <script>
+                            // using jQuery
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+                            $(".follow").click(function() {
+                                if($(".follow").hasClass("btn-primary")) {
+                                    $.post("/app/follow/",
+                                        {
+                                            user_id: "{{user.id}}"
+                                        },
+                                        function(data, status){
+                                            window.a = data
+                                            console.log('data["result"]', data["result"]);
+                                            if(data["result"]) {
+                                                if(data["result"] < 0) {
+                                                    $(".follow").removeClass("btn-success");
+                                                    $(".follow").addClass("btn-primary");
+                                                    $(".follow").html("Follow");
+                                                } else {
+                                                    $(".follow").removeClass("btn-primary");
+                                                    $(".follow").addClass("btn-success");
+                                                    $(".follow").html("Following");
+                                                }
+                                            }
+                                            // alert("Data: " + data + "\nStatus: " + status);
+                                        });
+                                } else {
+                                    $.post("/app/unfollow/",
+                                        {
+                                            user_id: "{{user.id}}"
+                                        },
+                                        function(data, status){
+                                            window.a = data
+                                            console.log('data["result"]', data["result"]);
+                                            if(data["result"]) {
+                                                if(data["result"] < 0) {
+                                                    $(".follow").removeClass("btn-success");
+                                                    $(".follow").addClass("btn-primary");
+                                                    $(".follow").html("Follow");
+                                                } else {
+                                                    $(".follow").removeClass("btn-primary");
+                                                    $(".follow").addClass("btn-success");
+                                                    $(".follow").html("Following");
+                                                }
+                                            }
+                                            // alert("Data: " + data + "\nStatus: " + status);
+                                        });
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
 
