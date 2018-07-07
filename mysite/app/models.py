@@ -1928,3 +1928,9 @@ class Follow(models.Model):
     followed = models.ForeignKey(User, editable=False, on_delete=models.PROTECT, related_name="follow_for_user")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+class Post(models.Model):
+    owner = models.ForeignKey(User, editable=False, on_delete=models.PROTECT)
+    note = models.CharField(max_length=2500)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

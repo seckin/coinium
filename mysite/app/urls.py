@@ -21,5 +21,6 @@ urlpatterns = [
     path('feed_test/', views.feed_test, name='feed_test'),
     path('follow/', views.follow, name='follow'),
     path('unfollow/', views.unfollow, name='unfollow'),
+    path('post/', views.post, name='post'),
         #/<float:btc_amt>/<float:eth_amt>/<float:xrp_amt>/<float:xlm_amt>', views.create_investment, name='create_investment'),
 ]

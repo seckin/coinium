@@ -16,7 +16,7 @@ from django.core.files.storage import FileSystemStorage
 from background_task import background
 from accounts.models import Investor, Document
 # from silk.profiling.profiler import silk_profile
-from .models import Portfolio, Investment, EmbeddedTweet, PricingData, Review, Follow
+from .models import Portfolio, Investment, EmbeddedTweet, PricingData, Review, Follow, Post
 from .forms import PortfolioForm
 from .utils import get_pairs_and_pcts, get_investment_array, get_all_pairs, get_latest_prices_arr, get_portfolio_appreciation_since_inception
 import pymysql
@@ -2338,6 +2338,11 @@ def profile(request, user_id):
         review_saved = request.session['review_saved']
         request.session['review_saved'] = False
 
+    post_saved = False
+    if 'post_saved' in request.session and request.session['post_saved']:
+        post_saved = request.session['post_saved']
+        request.session['post_saved'] = False
+
     if len(Document.objects.filter(user=user)):
         fs = FileSystemStorage()
         profile_pic_url = fs.url(user.document.document_filename)
@@ -2355,9 +2360,22 @@ def profile(request, user_id):
     #     if investment_in_month_usd_amt[i] > 0:
     #         print("investment_in_month_usd_amt i =", i, investment_in_month_usd_amt[i])
 
+    res = Post.objects.filter(owner=user).order_by('-created_at')
+    posts_with_profile_pics = []
+    for post in res:
+        if len(Document.objects.filter(user=post.owner)):
+            fs = FileSystemStorage()
+            profile_pic_url = fs.url(post.owner.document.document_filename)
+        else:
+            profile_pic_url = "https://storage.googleapis.com/indie-hackers.appspot.com/avatars/P0jgWBHyYbaC9wp1GEjGELwjsL63"
+            print("post.created_at", post.created_at)
+        posts_with_profile_pics.append({"post":post, "profile_pic_url": profile_pic_url, "secondsago": (datetime.datetime.now(timezone.utc) - post.created_at).total_seconds()})
+    posts_dont_exist = len(posts_with_profile_pics) == 0
 
     return render(request, 'app/profile.html', {"user": user, "request_user": request_user, "investments": investments, \
         "following": following,\
+        "posts_with_profile_pics": posts_with_profile_pics,\
+        "posts_dont_exist": posts_dont_exist,\
         "investments_with_amts": investments_with_amts,\
         "investment_amts_for_months": investment_amts_for_months,\
         "end_of_month_usd_amt": end_of_month_usd_amt,\
@@ -2367,6 +2385,7 @@ def profile(request, user_id):
         "portfolios_with_aum": portfolios_with_aum,\
         "uploaded_file_url": uploaded_file_url,\
         "review_saved": review_saved,\
+        "post_saved": post_saved,\
         "reviews_with_profile_pics": reviews_with_profile_pics,\
         "profile_pic_url": profile_pic_url,\
         "total_pv_val": total_pv_val,\
@@ -2583,3 +2602,10 @@ def unfollow(request):
         follow.delete()
     unfollow_user(to_unfollow_id, request.user.id)
     return JsonResponse({"result": -1}, safe=False)
+
+def post(request):
+    note = request.POST.get("note")
+    post = Post.objects.create(owner = request.user,
+                               note = note)
+    request.session["post_saved"] = True
+    return redirect("/app/profile/" + str(request.user.id))
