@@ -1,3 +1,7 @@
+celery worker:
+Seckins-MacBook-Air:mysite seckin$ celery -A mysite worker -l info
+
+
 to start the job queue:
 nohup python3.5 manage.py process_tasks &
 
