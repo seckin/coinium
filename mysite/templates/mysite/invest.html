@@ -44,7 +44,8 @@
         }
         .ad_img2 {
             width: 300px;
-            height: 200px;
+            height: 120px;
+            margin: 50px 0px !important;
         }
         .ad_img3 {
             width: 300px;
@@ -65,6 +66,9 @@
         .form-inline {
             display: block;
         }
+    }
+    .ad_img2 {
+        margin: 50px;
     }
     .sticky-top {
         box-shadow: inset 0px -2px 2px -2px rgba(0, 0, 0, .5);
@@ -94,6 +98,48 @@
     }
     .nav-item {
         list-style-type: none;
+    }
+    .testimonial {
+        padding: 100px 100px;
+        color: ghostwhite;
+        padding-bottom: 200px;
+        padding-top: 0px;
+        text-align: center;
+    }
+    .testimonial > h5 {
+        font-size: 32px;
+    }
+    .carousel-item {
+        background-color: brown;
+        padding: 100px;
+    }
+    .carousel-caption {
+
+    }
+    .testimonial-img {
+        border-radius: 9999px;
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+    }
+    .testimonial-img-container {
+        border-radius: 9999px;
+        position: relative;
+        height: 145px;
+        width: 145px;
+        margin: 0 auto;
+    }
+    .carousel-item {
+        min-height: 486px;
+    }
+    @media (max-width: 1000px) {
+        .testimonial {
+            padding: 0px !important;
+            margin-bottom: 250px;
+        }
+        .bd-example {
+            min-height: 770px;
+        }
     }
     </style>
 
@@ -131,7 +177,7 @@
             </ul>
 
             <div class="form-inline my-2 my-lg-0">
-              <li class="nav-item">
+                <li class="nav-item">
                     <a class="btn btn-success" href="/">Create portfolios</a>
                 </li>
                 <li class="nav-item">
@@ -148,7 +194,7 @@
         <div class="col-md-5 mx-auto my-5">
             <h1 class="display-4 font-weight-normal" style="font-size: 48px;">Invest in great portfolios</h1>
             <p class="lead font-weight-normal">Take your pick from a wide array of crypto portfolios managed by pros</p>
-            <a class="btn btn-primary" href="/accounts/signup" style="width: 300px;white-space: normal;">Invest $10,000 in demo funds</a>
+            <a class="btn btn-primary" href="/accounts/signup" style="width: 340px;white-space: normal;">Start with $10,000 in demo funds</a>
         </div>
 
         <div>
@@ -164,8 +210,8 @@
             </div>
             <div class="" style="margin-top: 50px;margin-bottom:40px;">
                 <img class="ad_img1" src="{% static 'app/images/contents-of-investments.png' %}" alt="" width="350" height="294">
-                <img class="ad_img1" src="{% static 'app/images/portfolios-managed-by.png' %}" alt="" width="420" height="200" style="margin: 50px;">
-                <img class="ad_img1" src="{% static 'app/images/all-investments.png' %}" alt="" width="420" height="294">
+                <img class="ad_img2" src="{% static 'app/images/portfolios-managed-by.png' %}" alt="" width="420" height="200">
+                <img class="ad_img3" src="{% static 'app/images/all-investments.png' %}" alt="" width="420" height="294">
             </div>
         </div>
     </div>
@@ -176,7 +222,7 @@
                 <h2 class="display-5">Learn about cryptocurrencies and what makes each one important</h2>
                 <p class="lead">Read our blog posts, talk with people on the platform</p>
             </div>
-            <div class="" style="width:600px;margin:0 auto;margin-top: 10px;margin-bottom:40px; background-color:#eefdfb;">
+            <div class="" style="margin:0 auto;margin-top: 10px;margin-bottom:40px; background-color:#eefdfb;">
                 <a target="_blank" href="https://hackernoon.com/cryptocurrencies-are-not-over-here-is-the-proof-d4cc65f444cd">&starf; Cryptocurrencies are not over. Here is the proof</a><br/>
                 <a target="_blank" href="https://hackernoon.com/7-out-of-10-richest-family-offices-in-the-usa-are-invested-in-cryptocurrencies-eb88795b529b">&starf; 7 out of 10 richest family offices in the USA are invested in cryptocurrencies. Why shouldn’t you be able to too?</a>
             </div>
@@ -194,6 +240,71 @@
             </div>
         </div>
     </div>
+
+    <div class="bd-example">
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1" class=""></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2" class=""></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="testimonial">
+                        <h5>"I have played around with it and found the portfolio tools really easy to use."</h5>
+                    </div>
+                    <div class="carousel-caption d-md-block">
+                        <div class="testimonial-img-container">
+                            <img class="testimonial-img" src="{% static 'app/images/testimonial1.jpeg' %}" width="48" height="48">
+                        </div>
+                        <p><span>Jack Daniels</span>
+                            <br/><span style="font-size:12px;">Crypto-trader with 4 years of experience. Previously a partner at a New York hedge-fund.</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="testimonial">
+                        <h5>"I like how easy it is to invest in other people's portfolios."</h5>
+                    </div>
+                    <div class="carousel-caption d-md-block">
+                        <div class="testimonial-img-container">
+                            <img class="testimonial-img" src="{% static 'app/images/testimonial2.JPG' %}" width="48" height="48">
+                        </div>
+                        <p><span>Kim Williams</span>
+                            <br/><span style="font-size:12px;">Software engineer @WorkBits.</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="testimonial">
+                        <h5>"A cool playground to test out investment ideas in the crypto space."</h5>
+                    </div>
+                    <div class="carousel-caption d-md-block">
+                        <div class="testimonial-img-container">
+                            <img class="testimonial-img" src="{% static 'app/images/testimonial3.jpeg' %}" width="48" height="48">
+                        </div>
+                        <p><span>Ben Adams</span>
+                            <br/><span style="font-size:12px;">Elementary school teacher.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        $('.carousel').carousel({
+          interval: 4000
+        });
+    </script>
 
     <style>
         .home-feature {

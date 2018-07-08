@@ -1988,6 +1988,10 @@ def portfolio(request, pk):
             # xlm_latest_val = 0.5
     finally:
         connection.close()
+
+    if not request.user.is_authenticated:
+        return redirect("/login/")
+
     investment_created = False
     if 'investment_created' in request.session and request.session['investment_created'] == True:
         request.session['investment_created'] = False
@@ -2609,3 +2613,39 @@ def post(request):
                                note = note)
     request.session["post_saved"] = True
     return redirect("/app/profile/" + str(request.user.id))
+
+def charts(request, coin_id):
+    return render(request, 'app/charts.html', {"coin_id": coin_id, "request_user": request.user,\
+        })
+
+
+def coin_perf(request, coin_id):
+    if request.method == 'GET':
+        connection = pymysql.connect(host='localhost',
+                                 user='root',
+                                 password='01990199',#settings.SPREADS_DB_PASSWD,
+                                 db='coiniumweb',#settings.SPREADS_DB_NAME,
+                                 charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor)
+        try:
+            with connection.cursor() as cursor:
+                pair = coin_id
+                sql = """select round(avg(price),6) as price, convert((min(created_at) div 1000)*1000, datetime) as time
+from app_pricingdata where shorthand = %s and created_at >= DATE_SUB(curdate(), INTERVAL 2 WEEK)
+group by created_at div 1000;"""
+                cursor.execute(sql, (pair,))
+                spreads = cursor.fetchall()
+                # spreads_for_pair[pair] = spreads
+                #print("for coin ", pair, " found ", len(spreads), " spreads")
+
+                prices = []
+                for i in range(len(spreads)):
+                    px = float(spreads[i]["price"])
+                    tm = spreads[i]["time"]
+                    tmstmp = round(time.mktime(tm.timetuple()) * 1000)
+                    prices.append([tmstmp, px])
+
+                return JsonResponse(prices, safe=False)
+        finally:
+            connection.close()
+    return JsonResponse({'error': 'Unsupported method'})

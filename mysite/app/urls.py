@@ -22,5 +22,7 @@ urlpatterns = [
     path('follow/', views.follow, name='follow'),
     path('unfollow/', views.unfollow, name='unfollow'),
     path('post/', views.post, name='post'),
+    path('charts/<str:coin_id>/', views.charts, name='charts'),
+    path('coin_perf/<str:coin_id>/', views.coin_perf, name='coin_perf'),
         #/<float:btc_amt>/<float:eth_amt>/<float:xrp_amt>/<float:xlm_amt>', views.create_investment, name='create_investment'),
 ]

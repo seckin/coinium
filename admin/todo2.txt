@@ -14,7 +14,18 @@ OK add new fields to profile page
 
 OK add approved investor badge
 
+bugun:
+    solda "portfolyolar" yaz
 
+    OK mobilde testimoniallari duzelt
+
+    OK mobilde 2. homepage'i duzelt
+
+    OK testimonial'lari diger homepage'e de koy
+
+    OK signup email yanlis linke gidiyor, login'e gitsin
+
+    portfolyo sayfalarini kaydolmadan gorebilsinler. home page'lere de link koy
 
 OK 'experience' part on the profile page - fill it in with edit profile button.
 

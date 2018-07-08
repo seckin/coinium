@@ -44,7 +44,8 @@
         }
         .ad_img2 {
             width: 300px;
-            height: 200px;
+            height: 120px;
+            margin: 50px 0px !important;
         }
         .ad_img3 {
             width: 300px;
@@ -65,6 +66,9 @@
         .form-inline {
             display: block;
         }
+    }
+    .ad_img2 {
+        margin: 50px;
     }
     .sticky-top {
         box-shadow: inset 0px -2px 2px -2px rgba(0, 0, 0, .5);
@@ -95,6 +99,68 @@
     .nav-item {
         list-style-type: none;
     }
+    .testimonial {
+        padding: 100px 100px;
+        color: ghostwhite;
+        padding-bottom: 200px;
+        padding-top: 0px;
+        text-align: center;
+    }
+    .testimonial > h5 {
+        font-size: 32px;
+    }
+    .carousel-item {
+        background-color: brown;
+        padding: 100px;
+    }
+    .carousel-caption {
+
+    }
+    .testimonial-img {
+        border-radius: 9999px;
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+    }
+    .testimonial-img-container {
+        border-radius: 9999px;
+        position: relative;
+        height: 145px;
+        width: 145px;
+        margin: 0 auto;
+    }
+    .carousel-item {
+        min-height: 486px;
+    }
+    @media (max-width: 1000px) {
+        .testimonial {
+            padding: 0px !important;
+            margin-bottom: 250px;
+        }
+        .bd-example {
+            min-height: 770px;
+        }
+    }
+    .home-feature {
+        float:left;
+    }
+    .user-avatar {
+        border-radius: 9999px;
+        position: relative;
+        height: 145px;
+        width: 145px;
+        margin: 0 auto;
+    }
+    .user-avatar img {
+        border-radius: 9999px;
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+    }
+    .three-features {
+        margin-top: 60px;
+    }
+
     </style>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -156,7 +222,7 @@
             <img class="ad_img1" src="{% static 'app/images/investment-seed.jpg' %}" alt="" width="420" height="294" style="border-radius: 40px;box-shadow: 10px 10px 5px #aaaaaa;">
         </div>
     </div>
-    
+
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
         <div style="background-color: #0ea90e;" class=" mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
             <p style="padding-bottom: 33px;">Coinium is an easy-to-use cryptocurrency investment platform</p>
@@ -171,8 +237,8 @@
             </div>
             <div class="" style="margin-top: 50px;margin-bottom:40px;">
                 <img class="ad_img1" src="{% static 'app/images/contents-of-investments.png' %}" alt="" width="350" height="294">
-                <img class="ad_img1" src="{% static 'app/images/portfolios-managed-by.png' %}" alt="" width="440" height="200" style="margin: 50px;">
-                <img class="ad_img1" src="{% static 'app/images/all-investments.png' %}" alt="" width="420" height="294">
+                <img class="ad_img2" src="{% static 'app/images/portfolios-managed-by.png' %}" alt="" width="440" height="200">
+                <img class="ad_img3" src="{% static 'app/images/all-investments.png' %}" alt="" width="420" height="294">
             </div>
         </div>
     </div>
@@ -189,41 +255,6 @@
         </div>
     </div>
 
-    <style>
-        .testimonial {
-            padding: 100px 100px;
-            color: ghostwhite;
-            padding-bottom: 200px;
-            padding-top: 0px;
-            text-align: center;
-        }
-        .testimonial > h5 {
-            font-size: 32px;
-        }
-        .carousel-item {
-            background-color: brown;
-            padding: 100px;
-        }
-        .carousel-caption {
-
-        }
-        .testimonial-img {
-            border-radius: 9999px;
-            height: 100%;
-            object-fit: cover;
-            width: 100%;
-        }
-        .testimonial-img-container {
-            border-radius: 9999px;
-            position: relative;
-            height: 145px;
-            width: 145px;
-            margin: 0 auto;
-        }
-        .carousel-item {
-            min-height: 486px;
-        }
-    </style>
     <div class="bd-example">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -234,9 +265,9 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="testimonial">
-                        <h5>"Such an interesting idea! I have played around with it and found the portfolio tools really easy to use."</h5>
+                        <h5>"I have played around with it and found the portfolio tools really easy to use."</h5>
                     </div>
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-md-block">
                         <div class="testimonial-img-container">
                             <img class="testimonial-img" src="{% static 'app/images/testimonial1.jpeg' %}" width="48" height="48">
                         </div>
@@ -249,7 +280,7 @@
                     <div class="testimonial">
                         <h5>"I like how easy it is to invest in other people's portfolios."</h5>
                     </div>
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-md-block">
                         <div class="testimonial-img-container">
                             <img class="testimonial-img" src="{% static 'app/images/testimonial2.JPG' %}" width="48" height="48">
                         </div>
@@ -262,7 +293,7 @@
                     <div class="testimonial">
                         <h5>"A cool playground to test out investment ideas in the crypto space."</h5>
                     </div>
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-md-block">
                         <div class="testimonial-img-container">
                             <img class="testimonial-img" src="{% static 'app/images/testimonial3.jpeg' %}" width="48" height="48">
                         </div>
@@ -289,27 +320,6 @@
         });
     </script>
 
-    <style>
-        .home-feature {
-            float:left;
-        }
-        .user-avatar {
-            border-radius: 9999px;
-            position: relative;
-            height: 145px;
-            width: 145px;
-            margin: 0 auto;
-        }
-        .user-avatar img {
-            border-radius: 9999px;
-            height: 100%;
-            object-fit: cover;
-            width: 100%;
-        }
-        .three-features {
-            margin-top: 60px;
-        }
-    </style>
     <div class="row three-features hidden-xs"  style="border-bottom: 1px solid #ddd;padding-bottom:60px;">
         <div class="container">
             <div><h2 style="text-align: center;">Our Team</h2></div><br/><br/>

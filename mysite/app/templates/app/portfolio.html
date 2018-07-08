@@ -97,6 +97,13 @@
     .nav-item {
         border-bottom: 1px solid #d5cbcb;
     }
+    .portfolios-name-tag-container > h4 {
+        text-align: center;
+        border-bottom: 1px solid #d5cbcb;
+        margin-bottom: 0px;
+        padding-bottom: 7px;
+        font-weight: normal;
+    }
     </style>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121123802-1"></script>
@@ -183,6 +190,9 @@
         <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                 <div class="sidebar-sticky" style="bottom:125px">
+                    <div class="portfolios-name-tag-container">
+                        <h4>Portfolios</h4>
+                    </div>
                     <ul class="nav flex-column">
                         {% for portfolio_with_appreciation in portfolios_with_appreciation %}
                         <li class="nav-item">
