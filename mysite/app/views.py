@@ -2674,3 +2674,17 @@ group by created_at div 1000;"""
         finally:
             connection.close()
     return JsonResponse({'error': 'Unsupported method'})
+
+def portfolios(request):
+    all_portfolios = Portfolio.objects.all()
+    portfolios_with_appreciation = []
+    for tmp_portfolio in all_portfolios:
+        appreciation = get_portfolio_appreciation_since_inception(tmp_portfolio)
+        if request.user.is_authenticated:
+            investments = Investment.objects.filter(owner=request.user, portfolio=tmp_portfolio)
+            investment_exists = len(investments) > 0
+        else:
+            investment_exists = False
+        portfolios_with_appreciation.append({"appreciation":appreciation, "portfolio":tmp_portfolio, "investment_exists": investment_exists})
+
+    return render(request, 'app/portfolios.html', {"portfolios_with_appreciation": portfolios_with_appreciation, "request_user": request.user})

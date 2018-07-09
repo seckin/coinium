@@ -50,9 +50,9 @@ bugun:
 
     OK 15dk menu doesn't work on mobile on portfolio page
 
-    20dk mobilde gostermek uzere portfolios page yap, single portfolio sayfasindan link ver
+    30dk mobilde gostermek uzere portfolios page yap, single portfolio sayfasindan link ver
 
-    15dk invest sayfasi ilk gelsin
+    OK 15dk invest sayfasi ilk gelsin
 
     60dk yatirim yaptiginda profilinde tum grafiklerin duzgun gosterdigini test et, duzelt problemleri.
         bug var, 0 gorunuyor 23 gorunmeliyken: "Total value of alan sten's personal investments: $0.0"
