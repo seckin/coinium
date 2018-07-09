@@ -2017,7 +2017,12 @@ def portfolio(request, pk):
     portfolios_with_appreciation = []
     for tmp_portfolio in all_portfolios:
         appreciation = get_portfolio_appreciation_since_inception(tmp_portfolio)
-        portfolios_with_appreciation.append({"appreciation":appreciation, "portfolio":tmp_portfolio})
+        if request.user.is_authenticated:
+            investments = Investment.objects.filter(owner=request.user, portfolio=tmp_portfolio)
+            investment_exists = len(investments) > 0
+        else:
+            investment_exists = False
+        portfolios_with_appreciation.append({"appreciation":appreciation, "portfolio":tmp_portfolio, "investment_exists": investment_exists})
 
     return render(request, 'app/portfolio.html', { \
         'portfolios_with_appreciation': portfolios_with_appreciation, \
