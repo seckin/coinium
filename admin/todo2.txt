@@ -1,7 +1,3 @@
-
-----------------------------------------
-----------------------------------------
-
 OK fix /media/ being destroyed during the release
 
 OK make the coins page faster
@@ -14,51 +10,80 @@ OK add new fields to profile page
 
 OK add approved investor badge
 
-bugun:
-    solda "portfolyolar" yaz
+OK solda "portfolyolar" yaz
 
-    OK mobilde testimoniallari duzelt
+OK mobilde testimoniallari duzelt
 
-    OK mobilde 2. homepage'i duzelt
+OK mobilde 2. homepage'i duzelt
 
-    OK testimonial'lari diger homepage'e de koy
+OK testimonial'lari diger homepage'e de koy
 
-    OK signup email yanlis linke gidiyor, login'e gitsin
-
-    portfolyo sayfalarini kaydolmadan gorebilsinler. home page'lere de link koy
-
-    daily digest emails - which portfolios and which of the top 100 coins are best performing
-
-    kendi profilinde follow olmasin
-
-    facebook ile login ve signup olmak mumkun olsun
-
-    invest ettigin portfolyolarin bg'unu light green yap
-
-    yatirim yaptiginda profilinde tum grafiklerin duzgun gosterdigini test et, duzelt problemleri.
-
-    investment yapildiginda, portfolio olusturuldugunda ve user signup oldugunda slack'e post atilsin
-
-    ilk signup olundugunda 10 portfolyo gosterip 5'ini secmelerini iste, onlara fazladan $100'er dolar invest ettir
+OK signup email yanlis linke gidiyor, login'e gitsin
 
 OK 'experience' part on the profile page - fill it in with edit profile button.
 
 OK money managers can't be anonymous - full names are required to be displayed everywhere
 
-gokhan'a email at
-
 OK db backup scriptini repoya koy
 
-bug var, 0 gorunuyor 23 gorunmeliyken: "Total value of alan sten's personal investments: $0.0"
-    https://coinium.app/app/profile/35
+OK e-meeting Khan’s Hedge fund manager friend
+
+OK solda portfolyo olusturuldugundan beri ne kadar appreciate/depreciate etmis gostermek
+
+
+
+
+----------------------------------------
+----------------------------------------
+
+
+bugun:
+    10dk kendi profilinde follow olmasin
+
+    15dk portfolyo sayfalarini kaydolmadan gorebilsinler. home page'lere de Portfolios linki koy
+
+    10dk invest ettigin portfolyolarin bg'unu light green yap
+
+    15dk investment yapildiginda, portfolio olusturuldugunda ve user signup oldugunda slack'e post atilsin
+
+    60dk ilk signup olundugunda 10 portfolyo gosterip 5'ini secmelerini iste, onlara fazladan $100'er dolar invest ettir
+
+    15dk menu doesn't work on mobile on portfolio page
+
+    15dk invest sayfasi ilk gelsin
+
+    60dk yatirim yaptiginda profilinde tum grafiklerin duzgun gosterdigini test et, duzelt problemleri.
+        bug var, 0 gorunuyor 23 gorunmeliyken: "Total value of alan sten's personal investments: $0.0"
+            https://coinium.app/app/profile/35
+
+    10dk ddown charts sayfasinda calismiyor
+
+    45dk setup background jobs(celery) with david and send emails through that on signups and new investments
+
+    60dk daily digest emails - which portfolios and which of the top 100 coins are best performing
+
+    60dk facebook ile login ve signup olmak mumkun olsun
+
+    10dk set up weekly hangouts with designers
+
+    shaun should own the google analytics weekly visits
+
+    "Brad Bulent Yasar" ile konus
+
+    Raj Patel -cofounderslab- ile konus -- Call me or text me at 646-820-7251 so that we can talk further. - Raj
+
+    it's not clear what to do or what will happen once you invest - maybe a quick guide
+        - portfolyo performans kismina drawium stili zoom yap, burdan performansi track edip yatirim yapip yapmayacaginiza karar verin
+        - invest kismina zoom yapip buradan investment yapin
+        - invest sonrasi da investment created alert'inin icine profile git linki koy, oraya zoom yap
+
+    create a list of prospective users and reach out to those people on linkedin
+
+gokhan'a email at
 
 kaydolan kisilere teker teker email at
 
-e-meeting Khan’s Hedge fund manager friend
-
 anasayfaya ornek kullanici profil kesitleri koy sol dogru akan profil foto, fullname ve descriptionlari. ustune "some of our users" yazip.
-
-solda portfolyo olusturuldugundan beri ne kadar appreciate/depreciate etmis gostermek
 
 creating index funds and listing on the left amongst portfolios
 

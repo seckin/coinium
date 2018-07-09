@@ -489,9 +489,11 @@ ul {
                                 <div class="col-md-10" style="padding-left: 0px;">Total value of {{user.first_name}} {{user.last_name}}'s personal investments: <div style="margin-left:15px;float:right;font-weight: bold;">${{total_investment_usd_amt}}</div></div>
                             </div>
                         </div>
+                        {% if request_user.id != user.id %}
                         <div style="float: right;">
                             <button class="follow btn btn-lg {% if following %}btn-success {% else %} btn-primary{% endif %}">{% if following %}Following{% else %}Follow{% endif %}</button>
                         </div>
+                        {% endif %}
                         <script>
                             // using jQuery
 function getCookie(name) {
