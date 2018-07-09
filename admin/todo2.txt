@@ -50,7 +50,7 @@ bugun:
 
     OK 15dk menu doesn't work on mobile on portfolio page
 
-    30dk mobilde gostermek uzere portfolios page yap, single portfolio sayfasindan link ver
+    OK 30dk mobilde gostermek uzere portfolios page yap, single portfolio sayfasindan link ver
 
     OK 15dk invest sayfasi ilk gelsin
 
