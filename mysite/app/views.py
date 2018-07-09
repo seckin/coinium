@@ -1989,8 +1989,8 @@ def portfolio(request, pk):
     finally:
         connection.close()
 
-    if not request.user.is_authenticated:
-        return redirect("/login/")
+    # if not request.user.is_authenticated:
+    #     return redirect("/login/")
 
     investment_created = False
     if 'investment_created' in request.session and request.session['investment_created'] == True:
@@ -2038,6 +2038,8 @@ def portfolio(request, pk):
         })
 
 def create_investment(request, portfolio_id):
+    if not request.user.is_authenticated:
+        return redirect("/login/")
     usd_amt = float(request.GET.get('usd_amt'))
     if usd_amt > request.user.investor.usd_amt:
         request.session["not_enough_usd"] = True

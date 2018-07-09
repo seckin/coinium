@@ -38,7 +38,7 @@ OK solda portfolyo olusturuldugundan beri ne kadar appreciate/depreciate etmis g
 
 
 bugun:
-    10dk kendi profilinde follow olmasin
+    OK 10dk kendi profilinde follow olmasin
 
     15dk portfolyo sayfalarini kaydolmadan gorebilsinler. home page'lere de Portfolios linki koy
 
