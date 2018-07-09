@@ -42,7 +42,7 @@ bugun:
 
     OK 15dk portfolyo sayfalarini kaydolmadan gorebilsinler. home page'lere de Portfolios linki koy
 
-    10dk invest ettigin portfolyolarin bg'unu light green yap
+    OK 10dk invest ettigin portfolyolarin bg'unu light green yap
 
     15dk investment yapildiginda, portfolio olusturuldugunda ve user signup oldugunda slack'e post atilsin
 

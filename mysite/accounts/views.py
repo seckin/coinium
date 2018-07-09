@@ -17,6 +17,8 @@ from .models import Investor
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
+import json
+import requests
 
 def signup(request):
     if request.method == 'POST':
@@ -40,6 +42,15 @@ def signup(request):
             email.send()
             request.session['just_signed_up'] = True
             # user.is_active = True
+
+            webhook_url = 'https://hooks.slack.com/services/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'
+            slack_data = {"text":"New signup. " + user.first_name + " " + user.last_name + " " + user.email}
+
+            response = requests.post(
+                webhook_url, data=json.dumps(slack_data),
+                headers={'Content-Type': 'application/json'}
+            )
+
             login(request, user)
             return redirect("/app/portfolio/1")
             # return HttpResponse('Please confirm your email address to complete the registration')
