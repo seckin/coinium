@@ -5,12 +5,12 @@ from django.shortcuts import redirect
 def home_view(request):
     if request.user.is_authenticated:
         return redirect("/app/portfolio/1")
-    return render(request, 'mysite/home.html', {})
+    return render(request, 'mysite/invest.html', {})
 
 def invest_view(request):
     if request.user.is_authenticated:
         return redirect("/app/portfolio/1")
-    return render(request, 'mysite/invest.html', {})
+    return render(request, 'mysite/home.html', {})
 
 def disclaimer_view(request):
     return render(request, 'mysite/disclaimer.html', {})
